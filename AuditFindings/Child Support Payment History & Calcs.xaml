@@ -1,17 +1,22 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Household_Demographic_Reporting" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Activity mc:Ignorable="sap sap2010" x:Class="Child_Support_Payment_History___Calcs" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
     <x:Property Name="in_ClassificationResultsData" Type="InArgument(sd:DataTable)" />
     <x:Property Name="out_DTAuditFindings" Type="OutArgument(sd:DataTable)" />
-    <x:Property Name="in_State" Type="InArgument(x:String)" />
-    <x:Property Name="in_PromptsFolder" Type="InArgument(x:String)" />
+    <x:Property Name="str_PromptsFolder" Type="InArgument(x:String)" />
+    <x:Property Name="str_ChildSupOnIAQ" Type="InArgument(x:String)" />
+    <x:Property Name="dt_ICWIncomeData" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="arr_ICWMemberNames" Type="InArgument(s:String[])" />
+    <x:Property Name="str_MoveIndate" Type="InArgument(x:String)" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>912,1592</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>954,688</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Validation</x:String>
       <x:String>Microsoft.VisualBasic</x:String>
       <x:String>System</x:String>
       <x:String>System.Collections</x:String>
@@ -19,6 +24,7 @@
       <x:String>System.Collections.ObjectModel</x:String>
       <x:String>System.Data</x:String>
       <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
       <x:String>System.Linq</x:String>
       <x:String>UiPath.Core.Activities</x:String>
       <x:String>System.Reflection</x:String>
@@ -34,6 +40,7 @@
       <x:String>UiPath.Excel</x:String>
       <x:String>UiPath.Excel.Activities</x:String>
       <x:String>UiPath.DataTableUtilities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
       <x:String>System.Activities.Runtime.Collections</x:String>
       <x:String>AshlingPartners.UiPath.StringMatching.Activities.Models</x:String>
       <x:String>AshlingPartners.UiPath.StringMatching.Activities.StringMatching</x:String>
@@ -42,12 +49,10 @@
       <x:String>System.Diagnostics</x:String>
       <x:String>System.Xml</x:String>
       <x:String>System.Xml.Linq</x:String>
-      <x:String>System.IO</x:String>
       <x:String>System.Net.Mail</x:String>
       <x:String>UiPath.Core</x:String>
       <x:String>GlobalVariablesNamespace</x:String>
       <x:String>GlobalConstantsNamespace</x:String>
-      <x:String>System.Linq.Expressions</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -137,41 +142,18 @@
       <AssemblyReference>ExtendedExtractionRe.rO5Qc4l572E1Kkf222vo2mj3</AssemblyReference>
       <AssemblyReference>ExtendedExtractionRe.j8Mm126ZmGJ1iLEoF1zdbbf4</AssemblyReference>
       <AssemblyReference>AuditFindings_Validation</AssemblyReference>
-      <AssemblyReference>AuditFindings_Validation_Expressions_38908378</AssemblyReference>
-      <AssemblyReference>AuditFindings_Validation_Expressions_23315661</AssemblyReference>
-      <AssemblyReference>AuditFindings_Validation_Expressions_55574102</AssemblyReference>
-      <AssemblyReference>AuditFindings_Validation_Expressions_27985125</AssemblyReference>
-      <AssemblyReference>AuditFindings_Validation_Expressions_43954154</AssemblyReference>
-      <AssemblyReference>AuditFindings_Validation_Expressions_57940660</AssemblyReference>
-      <AssemblyReference>AuditFindings_Validation_Expressions_37230508</AssemblyReference>
-      <AssemblyReference>AuditFindings_Validation_Expressions_47751487</AssemblyReference>
-      <AssemblyReference>AuditFindings_Validation_Expressions_61312212</AssemblyReference>
-      <AssemblyReference>UiPath.System.Activities.Api</AssemblyReference>
-      <AssemblyReference>UiPath.Testing.Activities.Api</AssemblyReference>
-      <AssemblyReference>UiPath.Interop</AssemblyReference>
-      <AssemblyReference>YardiActivities</AssemblyReference>
-      <AssemblyReference>AuditFindings_Validation_Expressions_42009560</AssemblyReference>
-      <AssemblyReference>AuditFindings_Validation_Expressions_39232759</AssemblyReference>
-      <AssemblyReference>AuditFindings_Validation_Expressions_19872526</AssemblyReference>
-      <AssemblyReference>AuditFindings_Validation_Expressions_28282175</AssemblyReference>
-      <AssemblyReference>AuditFindings_Validation_Expressions_3878100</AssemblyReference>
-      <AssemblyReference>AuditFindings_Validation_Expressions_44787643</AssemblyReference>
-      <AssemblyReference>AuditFindings_Validation_Expressions_56829714</AssemblyReference>
-      <AssemblyReference>ExtendedExtractionRe.6goFp1HGebK1yfzBK39iwIn2</AssemblyReference>
-      <AssemblyReference>ExtendedExtractionRe.WFa67YEsC1yxH8R4hvYHo1</AssemblyReference>
-      <AssemblyReference>ExtendedExtractionRe.Oxx7G4zi3CF1vYIIV3fwhra4</AssemblyReference>
       <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
       <AssemblyReference>System.ServiceModel</AssemblyReference>
       <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="612,1527" sap2010:WorkflowViewState.IdRef="Sequence_4027">
+  <Sequence DisplayName="Child Support Payment History &amp; Calcs" sap:VirtualizedContainerService.HintSize="612,532" sap2010:WorkflowViewState.IdRef="Sequence_4840">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <TryCatch DisplayName="Try Catch - Household Demographic Reporting Form" sap:VirtualizedContainerService.HintSize="550,1439" sap2010:WorkflowViewState.IdRef="TryCatch_231">
+    <TryCatch DisplayName="Try Catch-ChildSupportPaymentHistory" sap:VirtualizedContainerService.HintSize="550,444" sap2010:WorkflowViewState.IdRef="TryCatch_278">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
@@ -179,9 +161,16 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <TryCatch.Try>
-        <Sequence DisplayName="Household Demographic Reporting Form" sap:VirtualizedContainerService.HintSize="512,1188" sap2010:WorkflowViewState.IdRef="Sequence_4008">
+        <Sequence DisplayName="ChildSupportCalc,PaymentHistory" sap:VirtualizedContainerService.HintSize="416,433" sap2010:WorkflowViewState.IdRef="Sequence_4110">
           <Sequence.Variables>
-            <Variable x:TypeArguments="sd:DataTable" Name="dt_FilteredHDR" />
+            <Variable x:TypeArguments="x:Boolean" Name="bool_ChildSupCalcExists" />
+            <Variable x:TypeArguments="x:String" Name="str_PaymentConsistency" />
+            <Variable x:TypeArguments="s:String[]" Name="arr_CSCConsistentTotalPerYear" />
+            <Variable x:TypeArguments="s:String[]" Name="arr_CSCInconsisTotalPayments" />
+            <Variable x:TypeArguments="x:String" Name="str_CSCHouseholdMember" />
+            <Variable x:TypeArguments="x:String" Name="str_CSCTotalPerYear" />
+            <Variable x:TypeArguments="s:String[]" Name="arr_CSCStartDates" />
+            <Variable x:TypeArguments="s:String[]" Name="arr_CSCEndDates" />
           </Sequence.Variables>
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -189,79 +178,46 @@
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="450,173" sap2010:WorkflowViewState.IdRef="LogMessage_148" Message="[&quot;Started checking findings for &quot;+in_Config(&quot;HDR&quot;).ToString]">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-          </ui:LogMessage>
-          <ui:FilterDataTable DataTable="[in_ClassificationResultsData]" DisplayName="Filter Data Table - Household Demographic Reporting Form" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="450,193" sap2010:WorkflowViewState.IdRef="FilterDataTable_71" OutputDataTable="[dt_FilteredHDR]" SelectColumnsMode="Remove">
-            <ui:FilterDataTable.Filters>
-              <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
-                <ui:FilterOperationArgument BooleanOperator="And" Operator="CONTAINS">
-                  <ui:FilterOperationArgument.Column>
-                    <InArgument x:TypeArguments="x:String">["RequiredClassificationResult"]</InArgument>
-                  </ui:FilterOperationArgument.Column>
-                  <ui:FilterOperationArgument.Operand>
-                    <InArgument x:TypeArguments="x:String">[in_Config("HDR").ToString]</InArgument>
-                  </ui:FilterOperationArgument.Operand>
-                </ui:FilterOperationArgument>
-              </scg:List>
-            </ui:FilterDataTable.Filters>
-            <ui:FilterDataTable.SelectColumns>
-              <scg:List x:TypeArguments="InArgument" Capacity="4">
-                <x:Null />
-              </scg:List>
-            </ui:FilterDataTable.SelectColumns>
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-          </ui:FilterDataTable>
-          <If Condition="[dt_FilteredHDR.RowCount = 0]" DisplayName="If - Household Demographic Reporting Form exists" sap:VirtualizedContainerService.HintSize="450,570" sap2010:WorkflowViewState.IdRef="If_1216">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <If.Then>
-              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,297" sap2010:WorkflowViewState.IdRef="Sequence_4009">
-                <sap:WorkflowViewStateService.ViewState>
-                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                  </scg:Dictionary>
-                </sap:WorkflowViewStateService.ViewState>
-                <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;HDR&quot;,&quot;PageNum&quot;,in_Config(&quot;HDRExists&quot;).ToString,&quot;&quot;}]" DataTable="[out_DTAuditFindings]" DisplayName="Add Data Row - Household Reporting Form does not exist in the application" sap:VirtualizedContainerService.HintSize="354,209" sap2010:WorkflowViewState.IdRef="AddDataRow_1136">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                </ui:AddDataRow>
-              </Sequence>
-            </If.Then>
-            <If.Else>
-              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,103" sap2010:WorkflowViewState.IdRef="Sequence_4025">
-                <sap:WorkflowViewStateService.ViewState>
-                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                  </scg:Dictionary>
-                </sap:WorkflowViewStateService.ViewState>
-              </Sequence>
-            </If.Else>
-          </If>
-          <ui:LogMessage DisplayName="Log Message - Finished findings for Household Demograpfic Reporting Form" sap:VirtualizedContainerService.HintSize="450,164" sap2010:WorkflowViewState.IdRef="LogMessage_146" Message="[&quot;Finished findings for &quot;+in_Config(&quot;HDR&quot;).ToString]" />
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Child Support Calcs - Invoke Workflow File (Child Support Calcs.xaml)" sap:VirtualizedContainerService.HintSize="354,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_174" UnSafe="False" WorkflowFileName="AuditFindings\Child Support Calcs.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
+              <InArgument x:TypeArguments="sd:DataTable" x:Key="in_ClassificationResultsData">[in_ClassificationResultsData]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="str_PromptsFolder">[str_PromptsFolder]</InArgument>
+              <OutArgument x:TypeArguments="s:String[]" x:Key="arr_CSCStartDates">[arr_CSCStartDates]</OutArgument>
+              <OutArgument x:TypeArguments="s:String[]" x:Key="arr_CSCEndDates">[arr_CSCEndDates]</OutArgument>
+              <InOutArgument x:TypeArguments="s:String[]" x:Key="arr_CSCConsistentTotalPerYear">[arr_CSCConsistentTotalPerYear]</InOutArgument>
+              <InOutArgument x:TypeArguments="s:String[]" x:Key="arr_CSCInconsisTotalPayments">[arr_CSCInconsisTotalPayments]</InOutArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="str_ChildSupOnIAQ">[str_ChildSupOnIAQ]</InArgument>
+              <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DTAuditFindings">[out_DTAuditFindings]</OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="str_CSCHouseholdMember">[str_CSCHouseholdMember]</OutArgument>
+              <InOutArgument x:TypeArguments="x:String" x:Key="str_CSCTotalPerYear">[str_CSCTotalPerYear]</InOutArgument>
+              <OutArgument x:TypeArguments="x:Boolean" x:Key="bool_ChildSupCalcExists">[bool_ChildSupCalcExists]</OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="str_PaymentConsistency">[str_PaymentConsistency]</OutArgument>
+              <InArgument x:TypeArguments="sd:DataTable" x:Key="dt_ICWIncomeData">[dt_ICWIncomeData]</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Child Support Payment History - Invoke Workflow File (Child Support Payment History.xaml)" sap:VirtualizedContainerService.HintSize="354,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_175" UnSafe="False" WorkflowFileName="AuditFindings\Child Support Payment History.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
+              <InArgument x:TypeArguments="sd:DataTable" x:Key="in_ClassificationResultsData">[in_ClassificationResultsData]</InArgument>
+              <InArgument x:TypeArguments="x:Boolean" x:Key="bool_ChildSupCalcExists">[bool_ChildSupCalcExists]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="str_PromptsFolder">[str_PromptsFolder]</InArgument>
+              <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DTAuditFindings">[out_DTAuditFindings]</OutArgument>
+              <InArgument x:TypeArguments="s:String[]" x:Key="arr_ICWMemberNames">[arr_ICWMemberNames]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="str_CSCHouseholdMember">[str_CSCHouseholdMember]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="str_PaymentConsistency">[str_PaymentConsistency]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="str_CSCTotalPerYear">[str_CSCTotalPerYear]</InArgument>
+              <InArgument x:TypeArguments="s:String[]" x:Key="arr_CSCConsistentTotalPerYear">[arr_CSCConsistentTotalPerYear]</InArgument>
+              <InArgument x:TypeArguments="s:String[]" x:Key="arr_CSCInconsisTotalPayments">[arr_CSCInconsisTotalPayments]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="str_MoveIndate">[str_MoveIndate]</InArgument>
+              <InArgument x:TypeArguments="s:String[]" x:Key="arr_CSCStartDates">[arr_CSCStartDates]</InArgument>
+              <InArgument x:TypeArguments="s:String[]" x:Key="arr_CSCEndDates">[arr_CSCEndDates]</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
         </Sequence>
       </TryCatch.Try>
       <TryCatch.Catches>
-        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="516,22" sap2010:WorkflowViewState.IdRef="Catch`1_225">
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="516,22" sap2010:WorkflowViewState.IdRef="Catch`1_269">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -272,20 +228,21 @@
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Errors in HDR" sap:VirtualizedContainerService.HintSize="416,384" sap2010:WorkflowViewState.IdRef="Sequence_4026">
+            <Sequence sap:VirtualizedContainerService.HintSize="416,470" sap2010:WorkflowViewState.IdRef="Sequence_4633">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:LogMessage DisplayName="Failed at HDR - log message" sap:VirtualizedContainerService.HintSize="354,173" sap2010:WorkflowViewState.IdRef="LogMessage_147" Message="[&quot;Failed at Household Demographic Reporting Form: &quot;+exception.Message]">
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="354,173" sap2010:WorkflowViewState.IdRef="LogMessage_170" Message="[&quot;Failed at CSPH: &quot;+exception.Message]">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </ui:LogMessage>
-              <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;HDR&quot;,&quot;PageNum&quot;,in_Config(&quot;HDR_FindingError&quot;).ToString,exception.Message}]" DataTable="[out_DTAuditFindings]" DisplayName="Adding HDR Findings Error" sap:VirtualizedContainerService.HintSize="354,209" sap2010:WorkflowViewState.IdRef="AddDataRow_1137">
+              <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;CSPH&quot;,&quot;PageNum&quot;,in_Config(&quot;CSPH_FindingError&quot;).ToString,exception.Message}]" DataTable="[out_DTAuditFindings]" DisplayName="Add Data Row-CSPHError7" sap:VirtualizedContainerService.HintSize="354,209" sap2010:WorkflowViewState.IdRef="AddDataRow_1332">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
