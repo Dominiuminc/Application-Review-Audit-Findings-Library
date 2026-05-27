@@ -15,7 +15,7 @@
     <x:Property Name="arr_CSCStartDates" Type="InArgument(s:String[])" />
     <x:Property Name="arr_CSCEndDates" Type="InArgument(s:String[])" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>961,3549</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>961,3722</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -50,6 +50,7 @@
       <x:String>UiPath.Core</x:String>
       <x:String>GlobalVariablesNamespace</x:String>
       <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Linq.Expressions</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -145,13 +146,13 @@
       <AssemblyReference>ExtendedExtractionRe.RpJgiTa1UQ1KoVHC3krguS2</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Child Support Payment History" sap:VirtualizedContainerService.HintSize="971,3484" sap2010:WorkflowViewState.IdRef="Sequence_4633">
+  <Sequence DisplayName="Child Support Payment History" sap:VirtualizedContainerService.HintSize="971,3657" sap2010:WorkflowViewState.IdRef="Sequence_4633">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="ChildSupportPaymentHistoryCheck" sap:VirtualizedContainerService.HintSize="909,3396" sap2010:WorkflowViewState.IdRef="Sequence_4116">
+    <Sequence DisplayName="ChildSupportPaymentHistoryCheck" sap:VirtualizedContainerService.HintSize="909,3569" sap2010:WorkflowViewState.IdRef="Sequence_4116">
       <Sequence.Variables>
         <Variable x:TypeArguments="sd:DataTable" Name="dt_FilteredDocTypeData" />
       </Sequence.Variables>
@@ -161,6 +162,14 @@
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="847,173" sap2010:WorkflowViewState.IdRef="LogMessage_170" Message="[&quot;Started checking findings for &quot;+in_Config(&quot;CSPH&quot;).ToString]">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:LogMessage>
       <ui:FilterDataTable DataTable="[in_ClassificationResultsData]" DisplayName="Filter Data Table" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="847,193" sap2010:WorkflowViewState.IdRef="FilterDataTable_97" OutputDataTable="[dt_FilteredDocTypeData]" SelectColumnsMode="Remove">
         <ui:FilterDataTable.Filters>
           <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
