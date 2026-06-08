@@ -10,7 +10,7 @@
     <x:Property Name="arr_1040Names" Type="OutArgument(s:String[])" />
     <x:Property Name="arr_1040Amounts" Type="OutArgument(s:String[])" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>998,1819</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>912,1436</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -142,7 +142,7 @@
       <AssemblyReference>ExtendedExtractionRe.RpJgiTa1UQ1KoVHC3krguS2</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="1040" sap:VirtualizedContainerService.HintSize="699,1754" sap2010:WorkflowViewState.IdRef="Sequence_4554">
+  <Sequence DisplayName="1040" sap:VirtualizedContainerService.HintSize="699,1371" sap2010:WorkflowViewState.IdRef="Sequence_4554">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="dt_FilteredDocTypeData" />
       <Variable x:TypeArguments="x:String" Name="str_1040DocName" />
@@ -187,7 +187,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:FilterDataTable>
-    <If Condition="[dt_FilteredDocTypeData.RowCount&gt;0]" DisplayName="If-1040Exists" sap:VirtualizedContainerService.HintSize="637,1136" sap2010:WorkflowViewState.IdRef="If_1384">
+    <If Condition="[dt_FilteredDocTypeData.RowCount&gt;0]" DisplayName="If-1040Exists" sap:VirtualizedContainerService.HintSize="637,753" sap2010:WorkflowViewState.IdRef="If_1384">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -195,7 +195,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <If.Then>
-        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="603,863" sap2010:WorkflowViewState.IdRef="Sequence_4093">
+        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="512,480" sap2010:WorkflowViewState.IdRef="Sequence_4093">
           <Sequence.Variables>
             <Variable x:TypeArguments="njl:JArray" Name="jArr_ExtResults" />
           </Sequence.Variables>
@@ -205,14 +205,22 @@
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Sequence DisplayName="GetLLMJSONResults" sap:VirtualizedContainerService.HintSize="541,613" sap2010:WorkflowViewState.IdRef="Sequence_4094">
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="450,173" sap2010:WorkflowViewState.IdRef="LogMessage_163" Message="[in_Config(&quot;1040&quot;).ToString+&quot; exists&quot;]">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:LogMessage>
+          <Sequence DisplayName="GetLLMJSONResults" sap:VirtualizedContainerService.HintSize="450,57" sap2010:WorkflowViewState.IdRef="Sequence_4094">
             <Sequence.Variables>
               <Variable x:TypeArguments="scg:List(x:String)" Name="list_ImageFiles" />
               <Variable x:TypeArguments="njl:JObject" Name="jObj_ExtractionResults" />
             </Sequence.Variables>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
@@ -271,7 +279,7 @@
               </ui:MultipleAssign.AssignOperations>
             </ui:MultipleAssign>
           </Sequence>
-          <ui:ForEach x:TypeArguments="njl:JObject" CurrentIndex="{x:Null}" DisplayName="For Each jObj_ExtractionResults" sap:VirtualizedContainerService.HintSize="541,162" sap2010:WorkflowViewState.IdRef="ForEach`1_181" Values="[jArr_ExtResults]">
+          <ui:ForEach x:TypeArguments="njl:JObject" CurrentIndex="{x:Null}" DisplayName="For Each jObj_ExtractionResults" sap:VirtualizedContainerService.HintSize="450,162" sap2010:WorkflowViewState.IdRef="ForEach`1_181" Values="[jArr_ExtResults]">
             <ui:ForEach.Body>
               <ActivityAction x:TypeArguments="njl:JObject">
                 <ActivityAction.Argument>
