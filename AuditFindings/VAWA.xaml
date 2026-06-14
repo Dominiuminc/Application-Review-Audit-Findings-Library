@@ -2,13 +2,13 @@
   <x:Members>
     <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
     <x:Property Name="in_ClassificationResultsData" Type="InArgument(sd:DataTable)" />
-    <x:Property Name="str_PromptsFolder" Type="InArgument(x:String)" />
-    <x:Property Name="int_ICWNoOfAdults" Type="InArgument(x:Int32)" />
-    <x:Property Name="str_MoveIndate" Type="InArgument(x:String)" />
+    <x:Property Name="in_str_PromptsFolder" Type="InArgument(x:String)" />
+    <x:Property Name="in_int_ICWNoOfAdults" Type="InArgument(x:Int32)" />
+    <x:Property Name="in_str_MoveIndate" Type="InArgument(x:String)" />
     <x:Property Name="in_State" Type="InArgument(x:String)" />
-    <x:Property Name="out_DTAuditFindings" Type="InOutArgument(sd:DataTable)" />
+    <x:Property Name="io_DTAuditFindings" Type="InOutArgument(sd:DataTable)" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>2067,7038</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>998,2028</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -143,13 +143,13 @@
       <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="1138,6973" sap2010:WorkflowViewState.IdRef="Sequence_3106">
+  <Sequence sap:VirtualizedContainerService.HintSize="754,1963" sap2010:WorkflowViewState.IdRef="Sequence_3106">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <TryCatch DisplayName="Try Catch-VAWA" sap:VirtualizedContainerService.HintSize="1076,6885" sap2010:WorkflowViewState.IdRef="TryCatch_13">
+    <TryCatch DisplayName="Try Catch-VAWA" sap:VirtualizedContainerService.HintSize="692,1875" sap2010:WorkflowViewState.IdRef="TryCatch_13">
       <TryCatch.Variables>
         <Variable x:TypeArguments="x:Int32" Default="0" Name="int_VAWASignatures" />
       </TryCatch.Variables>
@@ -160,7 +160,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <TryCatch.Try>
-        <Sequence DisplayName="VAWACheck" sap:VirtualizedContainerService.HintSize="1038,6634" sap2010:WorkflowViewState.IdRef="Sequence_310">
+        <Sequence DisplayName="VAWACheck" sap:VirtualizedContainerService.HintSize="654,1624" sap2010:WorkflowViewState.IdRef="Sequence_310">
           <Sequence.Variables>
             <Variable x:TypeArguments="sd:DataTable" Name="dt_FilteredDocTypeData" />
           </Sequence.Variables>
@@ -170,15 +170,7 @@
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="976,173" sap2010:WorkflowViewState.IdRef="LogMessage_53" Message="[&quot;Started checking findings for &quot;+in_Config(&quot;VAWA&quot;).ToString]">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-          </ui:LogMessage>
-          <ui:FilterDataTable DataTable="[in_ClassificationResultsData]" DisplayName="Filter Data Table" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="976,193" sap2010:WorkflowViewState.IdRef="FilterDataTable_9" OutputDataTable="[dt_FilteredDocTypeData]" SelectColumnsMode="Remove">
+          <ui:FilterDataTable DataTable="[in_ClassificationResultsData]" DisplayName="Filter Data Table" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="592,193" sap2010:WorkflowViewState.IdRef="FilterDataTable_9" OutputDataTable="[dt_FilteredDocTypeData]" SelectColumnsMode="Remove">
             <ui:FilterDataTable.Filters>
               <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
                 <ui:FilterOperationArgument BooleanOperator="And" Operator="CONTAINS">
@@ -197,7 +189,7 @@
               </scg:List>
             </ui:FilterDataTable.SelectColumns>
           </ui:FilterDataTable>
-          <If Condition="[dt_FilteredDocTypeData.RowCount&gt;0]" DisplayName="If-VAWAExists" sap:VirtualizedContainerService.HintSize="976,6016" sap2010:WorkflowViewState.IdRef="If_129">
+          <If Condition="[dt_FilteredDocTypeData.RowCount&gt;0]" DisplayName="If-VAWAExists" sap:VirtualizedContainerService.HintSize="976,6043" sap2010:WorkflowViewState.IdRef="If_129">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -205,7 +197,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <If.Then>
-              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="942,5549" sap2010:WorkflowViewState.IdRef="Sequence_308">
+              <Sequence DisplayName="Then: If-VAWAExists" sap:VirtualizedContainerService.HintSize="942,5608" sap2010:WorkflowViewState.IdRef="Sequence_308">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="njl:JArray" Name="jArr_ExtResults" />
                 </Sequence.Variables>
@@ -215,6 +207,14 @@
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="880,173" sap2010:WorkflowViewState.IdRef="LogMessage_53" Message="[in_Config(&quot;VAWA&quot;).ToString+&quot; exists&quot;]">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:LogMessage>
                 <Sequence DisplayName="GetLLMJSONResults" sap:VirtualizedContainerService.HintSize="880,403" sap2010:WorkflowViewState.IdRef="Sequence_519">
                   <Sequence.Variables>
                     <Variable x:TypeArguments="scg:List(x:String)" Name="list_ImageFiles" />
@@ -237,7 +237,7 @@
                   </Assign>
                   <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="GetLLMExtractionResultsForEachDoc - Invoke Workflow File (GetLLMExtractionResultsForEachDoc.xaml)" sap:VirtualizedContainerService.HintSize="434,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_18" UnSafe="False" WorkflowFileName="LLM\GetLLMExtractionResultsForEachDoc.xaml">
                     <ui:InvokeWorkflowFile.Arguments>
-                      <InArgument x:TypeArguments="x:String" x:Key="in_UserPromptTextFile">[str_PromptsFolder+"VAWA_Prompt.txt"]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_UserPromptTextFile">[in_str_PromptsFolder+"VAWA_Prompt.txt"]</InArgument>
                       <InArgument x:TypeArguments="scg:List(x:String)" x:Key="in_ImagePath">[list_ImageFiles]</InArgument>
                       <OutArgument x:TypeArguments="njl:JObject" x:Key="out_jObjExtractionResults">[jObj_ExtractionResults]</OutArgument>
                       <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
@@ -250,20 +250,20 @@
                     </sap:WorkflowViewStateService.ViewState>
                   </ui:InvokeWorkflowFile>
                 </Sequence>
-                <ui:ForEach x:TypeArguments="njl:JObject" CurrentIndex="{x:Null}" DisplayName="For Each Jarrobject" sap:VirtualizedContainerService.HintSize="880,5058" sap2010:WorkflowViewState.IdRef="ForEach`1_33" Values="[jArr_ExtResults]">
+                <ui:ForEach x:TypeArguments="njl:JObject" CurrentIndex="{x:Null}" DisplayName="For Each Jarrobject" sap:VirtualizedContainerService.HintSize="880,4944" sap2010:WorkflowViewState.IdRef="ForEach`1_33" Values="[jArr_ExtResults]">
                   <ui:ForEach.Body>
                     <ActivityAction x:TypeArguments="njl:JObject">
                       <ActivityAction.Argument>
                         <DelegateInArgument x:TypeArguments="njl:JObject" Name="jObj_ExtractionResults" />
                       </ActivityAction.Argument>
-                      <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="846,4921" sap2010:WorkflowViewState.IdRef="Sequence_1153">
+                      <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="846,4807" sap2010:WorkflowViewState.IdRef="Sequence_1153">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             <x:Boolean x:Key="IsPinned">False</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <Sequence DisplayName="VAWA Acknowledgement" sap:VirtualizedContainerService.HintSize="784,4833" sap2010:WorkflowViewState.IdRef="Sequence_163">
+                        <Sequence DisplayName="VAWA Acknowledgement" sap:VirtualizedContainerService.HintSize="784,4719" sap2010:WorkflowViewState.IdRef="Sequence_163">
                           <Sequence.Variables>
                             <Variable x:TypeArguments="njl:JObject" Name="jObj_Validation" />
                             <Variable x:TypeArguments="njl:JObject" Name="jObj_JSON" />
@@ -275,26 +275,12 @@
                               <x:Boolean x:Key="IsPinned">False</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <Assign sap:VirtualizedContainerService.HintSize="722,114" sap2010:WorkflowViewState.IdRef="Assign_141">
-                            <Assign.To>
-                              <OutArgument x:TypeArguments="njl:JObject">[jObj_Validation]</OutArgument>
-                            </Assign.To>
-                            <Assign.Value>
-                              <InArgument x:TypeArguments="njl:JObject">[CType(jObj_ExtractionResults("validation"), Newtonsoft.Json.Linq.JObject)]</InArgument>
-                            </Assign.Value>
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                          </Assign>
-                          <Assign sap:VirtualizedContainerService.HintSize="722,114" sap2010:WorkflowViewState.IdRef="Assign_142">
+                          <Assign DisplayName="Assign-jObj_JSON" sap:VirtualizedContainerService.HintSize="722,114" sap2010:WorkflowViewState.IdRef="Assign_142">
                             <Assign.To>
                               <OutArgument x:TypeArguments="njl:JObject">[jObj_JSON]</OutArgument>
                             </Assign.To>
                             <Assign.Value>
-                              <InArgument x:TypeArguments="njl:JObject">[jObj_ExtractionResults]</InArgument>
+                              <InArgument x:TypeArguments="njl:JObject">[CType(jObj_ExtractionResults("VAWA"), Newtonsoft.Json.Linq.JObject)]</InArgument>
                             </Assign.Value>
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -320,7 +306,7 @@
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
                                   <If.Then>
-                                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,103" sap2010:WorkflowViewState.IdRef="Sequence_168">
+                                    <Sequence DisplayName="Then: If-HasSignature" sap:VirtualizedContainerService.HintSize="416,103" sap2010:WorkflowViewState.IdRef="Sequence_168">
                                       <sap:WorkflowViewStateService.ViewState>
                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -335,7 +321,7 @@
                                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                         </scg:Dictionary>
                                       </sap:WorkflowViewStateService.ViewState>
-                                      <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;VAWA&quot;,&quot;PageNum&quot;,in_Config(&quot;VAWA_HasSignature&quot;).ToString,&quot;&quot;}]" DataTable="[out_DTAuditFindings]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="354,209" sap2010:WorkflowViewState.IdRef="AddDataRow_75" />
+                                      <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;VAWA&quot;,&quot;PageNum&quot;,in_Config(&quot;VAWA_HasSignature&quot;).ToString,&quot;&quot;}]" DataTable="[io_DTAuditFindings]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="354,209" sap2010:WorkflowViewState.IdRef="AddDataRow_75" />
                                     </Sequence>
                                   </If.Else>
                                 </If>
@@ -355,7 +341,7 @@
                                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <ui:ForEach x:TypeArguments="njl:JToken" CurrentIndex="{x:Null}" DisplayName="For Each currentJToken - All Adults Signed Check" sap:VirtualizedContainerService.HintSize="626,691" sap2010:WorkflowViewState.IdRef="ForEach`1_111" Values="[jObj_JSON(&quot;VAWA&quot;)(&quot;Signatures&quot;)]">
+                            <ui:ForEach x:TypeArguments="njl:JToken" CurrentIndex="{x:Null}" DisplayName="For Each currentJToken - All Adults Signed Check" sap:VirtualizedContainerService.HintSize="626,691" sap2010:WorkflowViewState.IdRef="ForEach`1_111" Values="[jObj_JSON(&quot;Signatures&quot;)]">
                               <ui:ForEach.Body>
                                 <ActivityAction x:TypeArguments="njl:JToken">
                                   <ActivityAction.Argument>
@@ -375,7 +361,7 @@
                                         </scg:Dictionary>
                                       </sap:WorkflowViewStateService.ViewState>
                                       <If.Then>
-                                        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="496,193" sap2010:WorkflowViewState.IdRef="Sequence_3100">
+                                        <Sequence DisplayName="Then: If-Ifdateexists" sap:VirtualizedContainerService.HintSize="496,193" sap2010:WorkflowViewState.IdRef="Sequence_3100">
                                           <sap:WorkflowViewStateService.ViewState>
                                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -415,7 +401,7 @@
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
                               <If.Then>
-                                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,103" sap2010:WorkflowViewState.IdRef="Sequence_3108">
+                                <Sequence DisplayName="Then: If - VAWA is signed" sap:VirtualizedContainerService.HintSize="416,103" sap2010:WorkflowViewState.IdRef="Sequence_3108">
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -430,11 +416,11 @@
                                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
-                                  <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;VAWA&quot;,&quot;PageNum&quot;,in_Config(&quot;VAWA_HasSignature&quot;).ToString,&quot;&quot;}]" DataTable="[out_DTAuditFindings]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="354,209" sap2010:WorkflowViewState.IdRef="AddDataRow_933" />
+                                  <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;VAWA&quot;,&quot;PageNum&quot;,in_Config(&quot;VAWA_HasSignature&quot;).ToString,&quot;&quot;}]" DataTable="[io_DTAuditFindings]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="354,209" sap2010:WorkflowViewState.IdRef="AddDataRow_933" />
                                 </Sequence>
                               </If.Else>
                             </If>
-                            <If sap2010:Annotation.AnnotationText="int_ICWNoOfAdults = int_VAWASignatures" Condition="[int_VAWASignatures &gt;= int_ICWNoOfAdults]" DisplayName="If-VAWA_AllAdultsSigned" sap:VirtualizedContainerService.HintSize="626,592" sap2010:WorkflowViewState.IdRef="If_940">
+                            <If sap2010:Annotation.AnnotationText="int_ICWNoOfAdults = int_VAWASignatures" Condition="[int_VAWASignatures &gt;= in_int_ICWNoOfAdults]" DisplayName="If-VAWA_AllAdultsSigned" sap:VirtualizedContainerService.HintSize="626,592" sap2010:WorkflowViewState.IdRef="If_940">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -443,7 +429,7 @@
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
                               <If.Then>
-                                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,103" sap2010:WorkflowViewState.IdRef="Sequence_3103">
+                                <Sequence DisplayName="Then: If-VAWA_AllAdultsSigned" sap:VirtualizedContainerService.HintSize="416,103" sap2010:WorkflowViewState.IdRef="Sequence_3103">
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -458,12 +444,12 @@
                                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
-                                  <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;VAWA&quot;,&quot;PageNum&quot;,in_Config(&quot;VAWA_NotAllAdultsSigned&quot;).ToString,&quot;&quot;}]" DataTable="[out_DTAuditFindings]" DisplayName="Add Data Row - Not All Adults Signed" sap:VirtualizedContainerService.HintSize="354,209" sap2010:WorkflowViewState.IdRef="AddDataRow_932" />
+                                  <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;VAWA&quot;,&quot;PageNum&quot;,in_Config(&quot;VAWA_NotAllAdultsSigned&quot;).ToString,&quot;&quot;}]" DataTable="[io_DTAuditFindings]" DisplayName="Add Data Row - Not All Adults Signed" sap:VirtualizedContainerService.HintSize="354,209" sap2010:WorkflowViewState.IdRef="AddDataRow_932" />
                                 </Sequence>
                               </If.Else>
                             </If>
                           </Sequence>
-                          <ui:ForEach x:TypeArguments="njl:JToken" CurrentIndex="{x:Null}" DisplayName="For Each currentJToken" sap:VirtualizedContainerService.HintSize="722,1841" sap2010:WorkflowViewState.IdRef="ForEach`1_69" Values="[jObj_JSON(&quot;VAWA&quot;)(&quot;Signatures&quot;)]">
+                          <ui:ForEach x:TypeArguments="njl:JToken" CurrentIndex="{x:Null}" DisplayName="For Each currentJToken" sap:VirtualizedContainerService.HintSize="722,1841" sap2010:WorkflowViewState.IdRef="ForEach`1_69" Values="[jObj_JSON(&quot;Signatures&quot;)]">
                             <ui:ForEach.Body>
                               <ActivityAction x:TypeArguments="njl:JToken">
                                 <ActivityAction.Argument>
@@ -483,7 +469,7 @@
                                       </scg:Dictionary>
                                     </sap:WorkflowViewStateService.ViewState>
                                     <If.Then>
-                                      <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="592,1343" sap2010:WorkflowViewState.IdRef="Sequence_1986">
+                                      <Sequence DisplayName="Then: If - Date or Signature exists" sap:VirtualizedContainerService.HintSize="592,1343" sap2010:WorkflowViewState.IdRef="Sequence_1986">
                                         <sap:WorkflowViewStateService.ViewState>
                                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -492,7 +478,7 @@
                                         </sap:WorkflowViewStateService.ViewState>
                                         <If Condition="[Not String.IsNullOrEmpty(currentJToken(&quot;Date&quot;).ToString)]" DisplayName="If - Date is filled" sap:VirtualizedContainerService.HintSize="530,466" sap2010:WorkflowViewState.IdRef="If_942">
                                           <If.Then>
-                                            <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="496,193" sap2010:WorkflowViewState.IdRef="Sequence_3110">
+                                            <Sequence DisplayName="Then: If - Date is filled" sap:VirtualizedContainerService.HintSize="496,193" sap2010:WorkflowViewState.IdRef="Sequence_3110">
                                               <sap:WorkflowViewStateService.ViewState>
                                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -526,7 +512,7 @@
                                             </scg:Dictionary>
                                           </sap:WorkflowViewStateService.ViewState>
                                           <TryCatch.Try>
-                                            <If Condition="[CDate(currentJToken(&quot;Date&quot;).ToString)&gt;=CDate(str_MoveIndate).AddDays(-120)]" DisplayName="If-checkdate&gt;120DaysMoveInAS" sap:VirtualizedContainerService.HintSize="450,538" sap2010:WorkflowViewState.IdRef="If_566">
+                                            <If Condition="[CDate(currentJToken(&quot;Date&quot;).ToString)&gt;=CDate(in_str_MoveIndate).AddDays(-120)]" DisplayName="If-checkdate&gt;120DaysMoveInAS" sap:VirtualizedContainerService.HintSize="450,538" sap2010:WorkflowViewState.IdRef="If_566">
                                               <sap:WorkflowViewStateService.ViewState>
                                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -534,7 +520,7 @@
                                                 </scg:Dictionary>
                                               </sap:WorkflowViewStateService.ViewState>
                                               <If.Then>
-                                                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,103" sap2010:WorkflowViewState.IdRef="Sequence_1974">
+                                                <Sequence DisplayName="Then: If-checkdate&gt;120DaysMoveInAS" sap:VirtualizedContainerService.HintSize="416,103" sap2010:WorkflowViewState.IdRef="Sequence_1974">
                                                   <sap:WorkflowViewStateService.ViewState>
                                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -551,7 +537,7 @@
                                                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                                     </scg:Dictionary>
                                                   </sap:WorkflowViewStateService.ViewState>
-                                                  <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;VAWA&quot;,&quot;PageNum&quot;,in_Config(&quot;VAWA_CheckDateWithMoveIn&quot;).ToString,&quot;&quot;}]" DataTable="[out_DTAuditFindings]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="354,209" sap2010:WorkflowViewState.IdRef="AddDataRow_576">
+                                                  <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;VAWA&quot;,&quot;PageNum&quot;,in_Config(&quot;VAWA_CheckDateWithMoveIn&quot;).ToString,&quot;&quot;}]" DataTable="[io_DTAuditFindings]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="354,209" sap2010:WorkflowViewState.IdRef="AddDataRow_576">
                                                     <sap:WorkflowViewStateService.ViewState>
                                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
@@ -574,7 +560,7 @@
                                                 <ActivityAction.Argument>
                                                   <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                                                 </ActivityAction.Argument>
-                                                <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;VAWA&quot;,&quot;PageNum&quot;,&quot;Unable to validate a Finding: &quot;+in_Config(&quot;VAWA_CheckDateWithMoveIn&quot;).ToString+&quot;. Needs manual review&quot;,exception.Message}]" DataTable="[out_DTAuditFindings]" DisplayName="Add Data Row-Error7" sap:VirtualizedContainerService.HintSize="334,186" sap2010:WorkflowViewState.IdRef="AddDataRow_575">
+                                                <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;VAWA&quot;,&quot;PageNum&quot;,&quot;Unable to validate a Finding: &quot;+in_Config(&quot;VAWA_CheckDateWithMoveIn&quot;).ToString+&quot;. Needs manual review&quot;,exception.Message}]" DataTable="[io_DTAuditFindings]" DisplayName="Add Data Row-Error7" sap:VirtualizedContainerService.HintSize="334,186" sap2010:WorkflowViewState.IdRef="AddDataRow_575">
                                                   <sap:WorkflowViewStateService.ViewState>
                                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
@@ -610,14 +596,14 @@
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
                             <If.Then>
-                              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,297" sap2010:WorkflowViewState.IdRef="Sequence_170">
+                              <Sequence DisplayName="Then: If - VAWA is dated" sap:VirtualizedContainerService.HintSize="416,297" sap2010:WorkflowViewState.IdRef="Sequence_170">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
-                                <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;VAWA&quot;,&quot;PageNum&quot;,in_Config(&quot;VAWA_HasDate&quot;).ToString,&quot;&quot;}]" DataTable="[out_DTAuditFindings]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="354,209" sap2010:WorkflowViewState.IdRef="AddDataRow_76" />
+                                <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;VAWA&quot;,&quot;PageNum&quot;,in_Config(&quot;VAWA_HasDate&quot;).ToString,&quot;&quot;}]" DataTable="[io_DTAuditFindings]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="354,209" sap2010:WorkflowViewState.IdRef="AddDataRow_76" />
                               </Sequence>
                             </If.Then>
                             <If.Else>
@@ -650,11 +636,11 @@
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;VAWA&quot;,&quot;PageNum&quot;,in_Config(&quot;VAWAExists&quot;).ToString,&quot;&quot;}]" DataTable="[out_DTAuditFindings]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="354,209" sap2010:WorkflowViewState.IdRef="AddDataRow_136" />
+                <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;VAWA&quot;,&quot;PageNum&quot;,in_Config(&quot;VAWAExists&quot;).ToString,&quot;&quot;}]" DataTable="[io_DTAuditFindings]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="354,209" sap2010:WorkflowViewState.IdRef="AddDataRow_136" />
               </Sequence>
             </If.Else>
           </If>
-          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="976,164" sap2010:WorkflowViewState.IdRef="LogMessage_15" Message="[&quot;Finished findings for &quot;+in_Config(&quot;VAWA&quot;).ToString]">
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="592,164" sap2010:WorkflowViewState.IdRef="LogMessage_15" Message="[&quot;Finished findings for &quot;+in_Config(&quot;VAWA&quot;).ToString]">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
@@ -665,7 +651,7 @@
         </Sequence>
       </TryCatch.Try>
       <TryCatch.Catches>
-        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="1042,22" sap2010:WorkflowViewState.IdRef="Catch`1_13">
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="658,22" sap2010:WorkflowViewState.IdRef="Catch`1_13">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -683,14 +669,14 @@
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="354,175" sap2010:WorkflowViewState.IdRef="LogMessage_52" Message="[&quot;Failed at VAWA: &quot;+exception.Message]">
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="354,173" sap2010:WorkflowViewState.IdRef="LogMessage_52" Message="[&quot;Failed at VAWA: &quot;+exception.Message]">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </ui:LogMessage>
-              <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;VAWA&quot;,&quot;PageNum&quot;,in_Config(&quot;VAWA_FindingError&quot;).ToString,exception.Message}]" DataTable="[out_DTAuditFindings]" DisplayName="Add Data Row-VAWAError7" sap:VirtualizedContainerService.HintSize="354,212" sap2010:WorkflowViewState.IdRef="AddDataRow_468">
+              <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;VAWA&quot;,&quot;PageNum&quot;,in_Config(&quot;VAWA_FindingError&quot;).ToString,exception.Message}]" DataTable="[io_DTAuditFindings]" DisplayName="Add Data Row-VAWAError7" sap:VirtualizedContainerService.HintSize="354,212" sap2010:WorkflowViewState.IdRef="AddDataRow_468">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>

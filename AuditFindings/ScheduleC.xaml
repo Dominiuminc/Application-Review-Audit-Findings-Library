@@ -2,12 +2,12 @@
   <x:Members>
     <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
     <x:Property Name="in_ClassificationResultsData" Type="InArgument(sd:DataTable)" />
-    <x:Property Name="str_PromptsFolder" Type="InArgument(x:String)" />
-    <x:Property Name="bool_ScheduleCExists" Type="OutArgument(x:Boolean)" />
-    <x:Property Name="arr_ProprietorName" Type="OutArgument(s:String[])" />
-    <x:Property Name="arr_ScheduleCAmount" Type="OutArgument(s:String[])" />
+    <x:Property Name="in_str_PromptsFolder" Type="InArgument(x:String)" />
+    <x:Property Name="out_bool_ScheduleCExists" Type="OutArgument(x:Boolean)" />
+    <x:Property Name="out_arr_ProprietorName" Type="OutArgument(s:String[])" />
+    <x:Property Name="out_arr_ScheduleCAmount" Type="OutArgument(s:String[])" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>954,1556</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>912,1071</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -139,7 +139,7 @@
       <AssemblyReference>ExtendedExtractionRe.RpJgiTa1UQ1KoVHC3krguS2</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Schedule C" sap:VirtualizedContainerService.HintSize="699,1451" sap2010:WorkflowViewState.IdRef="Sequence_4556">
+  <Sequence DisplayName="Schedule C" sap:VirtualizedContainerService.HintSize="608,1006" sap2010:WorkflowViewState.IdRef="Sequence_4556">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="dt_FilteredDocTypeData" />
     </Sequence.Variables>
@@ -148,7 +148,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:FilterDataTable DataTable="[in_ClassificationResultsData]" DisplayName="Filter Data Table" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="637,193" sap2010:WorkflowViewState.IdRef="FilterDataTable_93" OutputDataTable="[dt_FilteredDocTypeData]" SelectColumnsMode="Remove">
+    <ui:FilterDataTable DataTable="[in_ClassificationResultsData]" DisplayName="Filter Data Table" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="546,193" sap2010:WorkflowViewState.IdRef="FilterDataTable_93" OutputDataTable="[dt_FilteredDocTypeData]" SelectColumnsMode="Remove">
       <ui:FilterDataTable.Filters>
         <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
           <ui:FilterOperationArgument BooleanOperator="And" Operator="CONTAINS">
@@ -173,7 +173,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:FilterDataTable>
-    <If Condition="[dt_FilteredDocTypeData.RowCount&gt;0]" DisplayName="If-Schedule CExists" sap:VirtualizedContainerService.HintSize="637,1006" sap2010:WorkflowViewState.IdRef="If_1385">
+    <If Condition="[dt_FilteredDocTypeData.RowCount&gt;0]" DisplayName="If-Schedule CExists" sap:VirtualizedContainerService.HintSize="546,561" sap2010:WorkflowViewState.IdRef="If_1385">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -181,7 +181,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <If.Then>
-        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="603,811" sap2010:WorkflowViewState.IdRef="Sequence_4097">
+        <Sequence DisplayName="Then: If-Schedule CExists" sap:VirtualizedContainerService.HintSize="512,366" sap2010:WorkflowViewState.IdRef="Sequence_4097">
           <Sequence.Variables>
             <Variable x:TypeArguments="njl:JArray" Name="jArr_ExtResults" />
           </Sequence.Variables>
@@ -191,14 +191,22 @@
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Sequence DisplayName="GetLLMJSONResults" sap:VirtualizedContainerService.HintSize="541,675" sap2010:WorkflowViewState.IdRef="Sequence_4098">
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="450,173" sap2010:WorkflowViewState.IdRef="LogMessage_163" Message="[in_Config(&quot;ScheduleC&quot;).ToString+&quot; exists&quot;]">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:LogMessage>
+          <Sequence DisplayName="GetLLMJSONResults" sap:VirtualizedContainerService.HintSize="450,57" sap2010:WorkflowViewState.IdRef="Sequence_4098">
             <Sequence.Variables>
               <Variable x:TypeArguments="scg:List(x:String)" Name="list_ImageFiles" />
               <Variable x:TypeArguments="njl:JObject" Name="jObj_ExtractionResults" />
             </Sequence.Variables>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
@@ -213,7 +221,7 @@
             </Assign>
             <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="GetLLMExtractionResultsForEachDoc - Invoke Workflow File (GetLLMExtractionResultsForEachDoc.xaml)" sap:VirtualizedContainerService.HintSize="479,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_167" UnSafe="False" WorkflowFileName="LLM\GetLLMExtractionResultsForEachDoc.xaml">
               <ui:InvokeWorkflowFile.Arguments>
-                <InArgument x:TypeArguments="x:String" x:Key="in_UserPromptTextFile">[str_PromptsFolder+"ScheduleC_Prompt.txt"]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_UserPromptTextFile">[in_str_PromptsFolder+"ScheduleC_Prompt.txt"]</InArgument>
                 <InArgument x:TypeArguments="scg:List(x:String)" x:Key="in_ImagePath">[list_ImageFiles]</InArgument>
                 <OutArgument x:TypeArguments="njl:JObject" x:Key="out_jObjExtractionResults">[jObj_ExtractionResults]</OutArgument>
                 <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
@@ -239,7 +247,7 @@
                   </ui:AssignOperation>
                   <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_434">
                     <ui:AssignOperation.To>
-                      <OutArgument x:TypeArguments="s:String[]">[arr_ProprietorName]</OutArgument>
+                      <OutArgument x:TypeArguments="s:String[]">[out_arr_ProprietorName]</OutArgument>
                     </ui:AssignOperation.To>
                     <ui:AssignOperation.Value>
                       <InArgument x:TypeArguments="s:String[]">[New String(){}]</InArgument>
@@ -247,7 +255,7 @@
                   </ui:AssignOperation>
                   <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_435">
                     <ui:AssignOperation.To>
-                      <OutArgument x:TypeArguments="s:String[]">[arr_ScheduleCAmount]</OutArgument>
+                      <OutArgument x:TypeArguments="s:String[]">[out_arr_ScheduleCAmount]</OutArgument>
                     </ui:AssignOperation.To>
                     <ui:AssignOperation.Value>
                       <InArgument x:TypeArguments="s:String[]">[New String(){}]</InArgument>
@@ -255,7 +263,7 @@
                   </ui:AssignOperation>
                   <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_438">
                     <ui:AssignOperation.To>
-                      <OutArgument x:TypeArguments="s:String[]">[arr_ProprietorName]</OutArgument>
+                      <OutArgument x:TypeArguments="s:String[]">[out_arr_ProprietorName]</OutArgument>
                     </ui:AssignOperation.To>
                     <ui:AssignOperation.Value>
                       <InArgument x:TypeArguments="s:String[]" xml:space="preserve">[jArr_ExtResults.
@@ -265,7 +273,7 @@
                   </ui:AssignOperation>
                   <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_439">
                     <ui:AssignOperation.To>
-                      <OutArgument x:TypeArguments="s:String[]">[arr_ScheduleCAmount]</OutArgument>
+                      <OutArgument x:TypeArguments="s:String[]">[out_arr_ScheduleCAmount]</OutArgument>
                     </ui:AssignOperation.To>
                     <ui:AssignOperation.Value>
                       <InArgument x:TypeArguments="s:String[]" xml:space="preserve">[jArr_ExtResults.
@@ -283,7 +291,7 @@
               </sap:WorkflowViewStateService.ViewState>
             </ui:MultipleAssign>
           </Sequence>
-          <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="541,48" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+          <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="450,48" sap2010:WorkflowViewState.IdRef="CommentOut_1">
             <ui:CommentOut.Body>
               <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,136" sap2010:WorkflowViewState.IdRef="Sequence_4557">
                 <sap:WorkflowViewStateService.ViewState>
@@ -330,7 +338,7 @@
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
                           </Assign>
-                          <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="479,201" sap2010:WorkflowViewState.IdRef="MultipleAssign_74">
+                          <ui:MultipleAssign DisplayName="Set: str_ProprietorName, str_ScheduleCAmount, bool_ScheduleCExists" sap:VirtualizedContainerService.HintSize="479,201" sap2010:WorkflowViewState.IdRef="MultipleAssign_74">
                             <ui:MultipleAssign.AssignOperations>
                               <scg:List x:TypeArguments="ui:AssignOperation" Capacity="16">
                                 <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_431">
@@ -351,7 +359,7 @@
                                 </ui:AssignOperation>
                                 <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_433">
                                   <ui:AssignOperation.To>
-                                    <OutArgument x:TypeArguments="x:Boolean">[bool_ScheduleCExists]</OutArgument>
+                                    <OutArgument x:TypeArguments="x:Boolean">[out_bool_ScheduleCExists]</OutArgument>
                                   </ui:AssignOperation.To>
                                   <ui:AssignOperation.Value>
                                     <InArgument x:TypeArguments="x:Boolean">True</InArgument>
@@ -399,6 +407,6 @@
         </Sequence>
       </If.Else>
     </If>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="637,164" sap2010:WorkflowViewState.IdRef="LogMessage_162" Message="[&quot;Finished findings for &quot;+in_Config(&quot;ScheduleC&quot;).ToString]" />
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="546,164" sap2010:WorkflowViewState.IdRef="LogMessage_162" Message="[&quot;Finished findings for &quot;+in_Config(&quot;ScheduleC&quot;).ToString]" />
   </Sequence>
 </Activity>

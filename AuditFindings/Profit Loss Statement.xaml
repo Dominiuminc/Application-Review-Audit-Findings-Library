@@ -2,15 +2,15 @@
   <x:Members>
     <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
     <x:Property Name="in_ClassificationResultsData" Type="InArgument(sd:DataTable)" />
-    <x:Property Name="str_PromptsFolder" Type="InArgument(x:String)" />
-    <x:Property Name="bool_ProfitLossExists" Type="OutArgument(x:Boolean)" />
+    <x:Property Name="in_str_PromptsFolder" Type="InArgument(x:String)" />
+    <x:Property Name="out_bool_ProfitLossExists" Type="OutArgument(x:Boolean)" />
     <x:Property Name="io_DTAuditFindings" Type="InOutArgument(sd:DataTable)" />
     <x:Property Name="in_State" Type="InArgument(x:String)" />
-    <x:Property Name="dbl_ProfitLossCalcNetIncome" Type="OutArgument(x:Double)" />
-    <x:Property Name="int_ProfitlossNoOfMonths" Type="OutArgument(x:Int32)" />
-    <x:Property Name="arr_ProfitLossNetIncomes" Type="OutArgument(s:String[])" />
+    <x:Property Name="out_dbl_ProfitLossCalcNetIncome" Type="OutArgument(x:Double)" />
+    <x:Property Name="out_int_ProfitlossNoOfMonths" Type="OutArgument(x:Int32)" />
+    <x:Property Name="out_arr_ProfitLossNetIncomes" Type="OutArgument(s:String[])" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>912,3074</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>912,2722</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -143,7 +143,7 @@
       <AssemblyReference>ExtendedExtractionRe.RpJgiTa1UQ1KoVHC3krguS2</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ProfitLossStatement" sap:VirtualizedContainerService.HintSize="833,3009" sap2010:WorkflowViewState.IdRef="Sequence_4558">
+  <Sequence DisplayName="ProfitLossStatement" sap:VirtualizedContainerService.HintSize="833,2657" sap2010:WorkflowViewState.IdRef="Sequence_4558">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="dt_FilteredDocTypeData" />
       <Variable x:TypeArguments="x:String" Name="str_ProfitLossName" />
@@ -158,7 +158,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <TryCatch DisplayName="Try Catch-ProfitLoss" sap:VirtualizedContainerService.HintSize="771,2921" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <TryCatch DisplayName="Try Catch-ProfitLoss" sap:VirtualizedContainerService.HintSize="771,2569" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
@@ -166,7 +166,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <TryCatch.Try>
-        <Sequence DisplayName="ProfitLossStatement" sap:VirtualizedContainerService.HintSize="733,2670" sap2010:WorkflowViewState.IdRef="Sequence_4581">
+        <Sequence DisplayName="ProfitLossStatement" sap:VirtualizedContainerService.HintSize="733,2318" sap2010:WorkflowViewState.IdRef="Sequence_4581">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -206,7 +206,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:FilterDataTable>
-          <If Condition="[dt_FilteredDocTypeData.RowCount&gt;0]" DisplayName="If-profitlossExists" sap:VirtualizedContainerService.HintSize="671,2052" sap2010:WorkflowViewState.IdRef="If_1386">
+          <If Condition="[dt_FilteredDocTypeData.RowCount&gt;0]" DisplayName="If-profitlossExists" sap:VirtualizedContainerService.HintSize="671,1700" sap2010:WorkflowViewState.IdRef="If_1386">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -214,7 +214,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <If.Then>
-              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="637,1857" sap2010:WorkflowViewState.IdRef="Sequence_4101">
+              <Sequence DisplayName="Then: If-profitlossExists" sap:VirtualizedContainerService.HintSize="637,1505" sap2010:WorkflowViewState.IdRef="Sequence_4101">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="njl:JArray" Name="jArr_ExtResults" />
                 </Sequence.Variables>
@@ -224,14 +224,22 @@
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <Sequence DisplayName="GetLLMJSONResults" sap:VirtualizedContainerService.HintSize="575,582" sap2010:WorkflowViewState.IdRef="Sequence_4102">
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="575,173" sap2010:WorkflowViewState.IdRef="LogMessage_166" Message="[in_Config(&quot;ProfitLoss&quot;).ToString+&quot; exists&quot;]">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:LogMessage>
+                <Sequence DisplayName="GetLLMJSONResults" sap:VirtualizedContainerService.HintSize="575,57" sap2010:WorkflowViewState.IdRef="Sequence_4102">
                   <Sequence.Variables>
                     <Variable x:TypeArguments="scg:List(x:String)" Name="list_ImageFiles" />
                     <Variable x:TypeArguments="njl:JObject" Name="jObj_ExtractionResults" />
                   </Sequence.Variables>
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
@@ -246,7 +254,7 @@
                   </Assign>
                   <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="GetLLMExtractionResultsForEachDoc - Invoke Workflow File (GetLLMExtractionResultsForEachDoc.xaml)" sap:VirtualizedContainerService.HintSize="479,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_168" UnSafe="False" WorkflowFileName="LLM\GetLLMExtractionResultsForEachDoc.xaml">
                     <ui:InvokeWorkflowFile.Arguments>
-                      <InArgument x:TypeArguments="x:String" x:Key="in_UserPromptTextFile">[str_PromptsFolder+"ProfitLoss_Prompt.txt"]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_UserPromptTextFile">[in_str_PromptsFolder+"ProfitLoss_Prompt.txt"]</InArgument>
                       <InArgument x:TypeArguments="scg:List(x:String)" x:Key="in_ImagePath">[list_ImageFiles]</InArgument>
                       <OutArgument x:TypeArguments="njl:JObject" x:Key="out_jObjExtractionResults">[jObj_ExtractionResults]</OutArgument>
                       <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
@@ -272,7 +280,7 @@
                         </ui:AssignOperation>
                         <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_498">
                           <ui:AssignOperation.To>
-                            <OutArgument x:TypeArguments="s:String[]">[arr_ProfitLossNetIncomes]</OutArgument>
+                            <OutArgument x:TypeArguments="s:String[]">[out_arr_ProfitLossNetIncomes]</OutArgument>
                           </ui:AssignOperation.To>
                           <ui:AssignOperation.Value>
                             <InArgument x:TypeArguments="s:String[]">[New String(){}]</InArgument>
@@ -372,7 +380,7 @@ Sum(Function(r) Convert.ToDouble(r("Amount")))]</InArgument>
                               </ui:AssignOperation>
                               <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_489">
                                 <ui:AssignOperation.To>
-                                  <OutArgument x:TypeArguments="x:Int32">[int_ProfitlossNoOfMonths]</OutArgument>
+                                  <OutArgument x:TypeArguments="x:Int32">[out_int_ProfitlossNoOfMonths]</OutArgument>
                                 </ui:AssignOperation.To>
                                 <ui:AssignOperation.Value>
                                   <InArgument x:TypeArguments="x:Int32">[CInt(jTkn_IncomeTable("GrossIncome")("MonthsWorked").ToString)]</InArgument>
@@ -380,7 +388,7 @@ Sum(Function(r) Convert.ToDouble(r("Amount")))]</InArgument>
                               </ui:AssignOperation>
                               <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_490">
                                 <ui:AssignOperation.To>
-                                  <OutArgument x:TypeArguments="x:Boolean">[bool_ProfitLossExists]</OutArgument>
+                                  <OutArgument x:TypeArguments="x:Boolean">[out_bool_ProfitLossExists]</OutArgument>
                                 </ui:AssignOperation.To>
                                 <ui:AssignOperation.Value>
                                   <InArgument x:TypeArguments="x:Boolean">True</InArgument>
@@ -400,7 +408,7 @@ Count()]</InArgument>
                               </ui:AssignOperation>
                               <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_492">
                                 <ui:AssignOperation.To>
-                                  <OutArgument x:TypeArguments="x:Double">[dbl_ProfitLossCalcNetIncome]</OutArgument>
+                                  <OutArgument x:TypeArguments="x:Double">[out_dbl_ProfitLossCalcNetIncome]</OutArgument>
                                 </ui:AssignOperation.To>
                                 <ui:AssignOperation.Value>
                                   <InArgument x:TypeArguments="x:Double">[dbl_ProfitLossGrossIncome - dbl_ProfitLossExpenses]</InArgument>
@@ -408,11 +416,11 @@ Count()]</InArgument>
                               </ui:AssignOperation>
                               <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_496">
                                 <ui:AssignOperation.To>
-                                  <OutArgument x:TypeArguments="s:String[]">[arr_ProfitLossNetIncomes]</OutArgument>
+                                  <OutArgument x:TypeArguments="s:String[]">[out_arr_ProfitLossNetIncomes]</OutArgument>
                                 </ui:AssignOperation.To>
                                 <ui:AssignOperation.Value>
-                                  <InArgument x:TypeArguments="s:String[]" xml:space="preserve">[arr_ProfitLossNetIncomes.Concat(
-    {dbl_ProfitLossCalcNetIncome.ToString}
+                                  <InArgument x:TypeArguments="s:String[]" xml:space="preserve">[out_arr_ProfitLossNetIncomes.Concat(
+    {out_dbl_ProfitLossCalcNetIncome.ToString}
 ).ToArray]</InArgument>
                                 </ui:AssignOperation.Value>
                               </ui:AssignOperation>
@@ -433,7 +441,7 @@ Count()]</InArgument>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                           <If.Then>
-                            <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,297" sap2010:WorkflowViewState.IdRef="Sequence_4560">
+                            <Sequence DisplayName="Then: If-ApplicantName" sap:VirtualizedContainerService.HintSize="416,297" sap2010:WorkflowViewState.IdRef="Sequence_4560">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -466,7 +474,7 @@ Count()]</InArgument>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                           <If.Then>
-                            <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,297" sap2010:WorkflowViewState.IdRef="Sequence_4562">
+                            <Sequence DisplayName="Then: If-BusinessName" sap:VirtualizedContainerService.HintSize="416,297" sap2010:WorkflowViewState.IdRef="Sequence_4562">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -499,7 +507,7 @@ Count()]</InArgument>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                           <If.Then>
-                            <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,297" sap2010:WorkflowViewState.IdRef="Sequence_4564">
+                            <Sequence DisplayName="Then: If-TypeofBusinessCheck" sap:VirtualizedContainerService.HintSize="416,297" sap2010:WorkflowViewState.IdRef="Sequence_4564">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -532,7 +540,7 @@ Count()]</InArgument>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                           <If.Then>
-                            <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,297" sap2010:WorkflowViewState.IdRef="Sequence_4566">
+                            <Sequence DisplayName="Then: If-BusinessStartDate" sap:VirtualizedContainerService.HintSize="416,297" sap2010:WorkflowViewState.IdRef="Sequence_4566">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -557,7 +565,7 @@ Count()]</InArgument>
                             </Sequence>
                           </If.Else>
                         </If>
-                        <If Condition="[Not (int_NoOfMonthsCalculated = int_ProfitlossNoOfMonths)]" DisplayName="If-MonthsDoNotMatch" sap:VirtualizedContainerService.HintSize="479,57" sap2010:WorkflowViewState.IdRef="If_1391">
+                        <If Condition="[Not (int_NoOfMonthsCalculated = out_int_ProfitlossNoOfMonths)]" DisplayName="If-MonthsDoNotMatch" sap:VirtualizedContainerService.HintSize="479,57" sap2010:WorkflowViewState.IdRef="If_1391">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -565,7 +573,7 @@ Count()]</InArgument>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                           <If.Then>
-                            <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,297" sap2010:WorkflowViewState.IdRef="Sequence_4568">
+                            <Sequence DisplayName="Then: If-MonthsDoNotMatch" sap:VirtualizedContainerService.HintSize="416,297" sap2010:WorkflowViewState.IdRef="Sequence_4568">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -590,7 +598,7 @@ Count()]</InArgument>
                             </Sequence>
                           </If.Else>
                         </If>
-                        <If Condition="[Not (dbl_ProfitLossCalcNetIncome = dbl_ProfitLossNetIncome)]" DisplayName="If-NetIncomedisplayedCheck" sap:VirtualizedContainerService.HintSize="479,57" sap2010:WorkflowViewState.IdRef="If_1392">
+                        <If Condition="[Not (out_dbl_ProfitLossCalcNetIncome = dbl_ProfitLossNetIncome)]" DisplayName="If-NetIncomedisplayedCheck" sap:VirtualizedContainerService.HintSize="479,57" sap2010:WorkflowViewState.IdRef="If_1392">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -598,7 +606,7 @@ Count()]</InArgument>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                           <If.Then>
-                            <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,297" sap2010:WorkflowViewState.IdRef="Sequence_4570">
+                            <Sequence DisplayName="Then: If-NetIncomedisplayedCheck" sap:VirtualizedContainerService.HintSize="416,297" sap2010:WorkflowViewState.IdRef="Sequence_4570">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -631,7 +639,7 @@ Count()]</InArgument>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                           <If.Then>
-                            <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,297" sap2010:WorkflowViewState.IdRef="Sequence_4572">
+                            <Sequence DisplayName="Then: If-bool_GenericExpensesListed" sap:VirtualizedContainerService.HintSize="416,297" sap2010:WorkflowViewState.IdRef="Sequence_4572">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>

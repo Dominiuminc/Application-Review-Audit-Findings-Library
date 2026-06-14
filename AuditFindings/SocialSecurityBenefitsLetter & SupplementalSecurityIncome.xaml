@@ -2,15 +2,15 @@
   <x:Members>
     <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
     <x:Property Name="in_ClassificationResultsData" Type="InArgument(sd:DataTable)" />
-    <x:Property Name="str_PromptsFolder" Type="InArgument(x:String)" />
-    <x:Property Name="str_SSIOnIAQ" Type="InArgument(x:String)" />
-    <x:Property Name="str_SupSIOnIAQ" Type="InArgument(x:String)" />
-    <x:Property Name="arr_ICWMemberNames" Type="InArgument(s:String[])" />
-    <x:Property Name="dt_ICWIncomeData" Type="InArgument(sd:DataTable)" />
-    <x:Property Name="str_MoveIndate" Type="InArgument(x:String)" />
+    <x:Property Name="in_str_PromptsFolder" Type="InArgument(x:String)" />
+    <x:Property Name="in_str_SSIOnIAQ" Type="InArgument(x:String)" />
+    <x:Property Name="in_str_SupSIOnIAQ" Type="InArgument(x:String)" />
+    <x:Property Name="in_arr_ICWMemberNames" Type="InArgument(s:String[])" />
+    <x:Property Name="in_dt_ICWIncomeData" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="in_str_MoveIndate" Type="InArgument(x:String)" />
     <x:Property Name="io_DTAuditFindings" Type="InOutArgument(sd:DataTable)" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>998,3988</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>912,4161</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -184,13 +184,13 @@
       <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="SS &amp; SSI" sap:VirtualizedContainerService.HintSize="895,3923" sap2010:WorkflowViewState.IdRef="Sequence_4288">
+  <Sequence DisplayName="SS &amp; SSI" sap:VirtualizedContainerService.HintSize="895,4096" sap2010:WorkflowViewState.IdRef="Sequence_4288">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <TryCatch DisplayName="Try Catch-SS,SSI" sap:VirtualizedContainerService.HintSize="833,3835" sap2010:WorkflowViewState.IdRef="TryCatch_233">
+    <TryCatch DisplayName="Try Catch-SS,SSI" sap:VirtualizedContainerService.HintSize="833,4008" sap2010:WorkflowViewState.IdRef="TryCatch_233">
       <TryCatch.Variables>
         <Variable x:TypeArguments="x:String" Name="str_ColaDate" />
       </TryCatch.Variables>
@@ -201,7 +201,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <TryCatch.Try>
-        <Sequence DisplayName="SS,SSI,ColaCalc,COLALetter" sap:VirtualizedContainerService.HintSize="795,3584" sap2010:WorkflowViewState.IdRef="Sequence_4175">
+        <Sequence DisplayName="SS,SSI,ColaCalc,COLALetter" sap:VirtualizedContainerService.HintSize="795,3757" sap2010:WorkflowViewState.IdRef="Sequence_4175">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:Boolean" Name="bool_COLALetterExists" />
             <Variable x:TypeArguments="x:Boolean" Name="bool_COLACalcExists" />
@@ -219,22 +219,22 @@
             <ui:InvokeWorkflowFile.Arguments>
               <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
               <InArgument x:TypeArguments="sd:DataTable" x:Key="in_ClassificationResultsData">[in_ClassificationResultsData]</InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="str_PromptsFolder">[str_PromptsFolder]</InArgument>
-              <OutArgument x:TypeArguments="njl:JArray" x:Key="jarr_ColaLetters">[jarr_ColaLetters]</OutArgument>
-              <OutArgument x:TypeArguments="x:Boolean" x:Key="bool_COLALetterExists">[bool_COLALetterExists]</OutArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_str_PromptsFolder">[in_str_PromptsFolder]</InArgument>
+              <OutArgument x:TypeArguments="njl:JArray" x:Key="out_jarr_ColaLetters">[jarr_ColaLetters]</OutArgument>
+              <OutArgument x:TypeArguments="x:Boolean" x:Key="out_bool_COLALetterExists">[bool_COLALetterExists]</OutArgument>
             </ui:InvokeWorkflowFile.Arguments>
           </ui:InvokeWorkflowFile>
           <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="COLA Calculator - Invoke Workflow File (COLA Calculator.xaml)" sap:VirtualizedContainerService.HintSize="733,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_167" UnSafe="False" WorkflowFileName="AuditFindings\COLA Calculator.xaml">
             <ui:InvokeWorkflowFile.Arguments>
               <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
               <InArgument x:TypeArguments="sd:DataTable" x:Key="in_ClassificationResultsData">[in_ClassificationResultsData]</InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="str_PromptsFolder">[str_PromptsFolder]</InArgument>
-              <InOutArgument x:TypeArguments="njl:JArray" x:Key="jarr_COLACalculations">[jarr_COLACalculations]</InOutArgument>
-              <OutArgument x:TypeArguments="x:Boolean" x:Key="bool_COLALetterExists">[bool_COLALetterExists]</OutArgument>
-              <OutArgument x:TypeArguments="s:String[]" x:Key="arr_COLACalcNames">[arr_COLACalcNames]</OutArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_str_PromptsFolder">[in_str_PromptsFolder]</InArgument>
+              <InOutArgument x:TypeArguments="njl:JArray" x:Key="io_jarr_COLACalculations">[jarr_COLACalculations]</InOutArgument>
+              <OutArgument x:TypeArguments="x:Boolean" x:Key="out_bool_COLALetterExists">[bool_COLALetterExists]</OutArgument>
+              <OutArgument x:TypeArguments="s:String[]" x:Key="out_arr_COLACalcNames">[arr_COLACalcNames]</OutArgument>
             </ui:InvokeWorkflowFile.Arguments>
           </ui:InvokeWorkflowFile>
-          <Sequence DisplayName="SocialSecurityBenefitsLetterCheck" sap:VirtualizedContainerService.HintSize="733,3142" sap2010:WorkflowViewState.IdRef="Sequence_4180">
+          <Sequence DisplayName="SocialSecurityBenefitsLetterCheck" sap:VirtualizedContainerService.HintSize="733,3315" sap2010:WorkflowViewState.IdRef="Sequence_4180">
             <Sequence.Variables>
               <Variable x:TypeArguments="sd:DataTable" Name="dt_FilteredDocTypeData" />
             </Sequence.Variables>
@@ -263,7 +263,7 @@
                 </scg:List>
               </ui:FilterDataTable.SelectColumns>
             </ui:FilterDataTable>
-            <If Condition="[dt_FilteredDocTypeData.RowCount&gt;0]" DisplayName="If-SSBLExists" sap:VirtualizedContainerService.HintSize="671,2674" sap2010:WorkflowViewState.IdRef="If_1237">
+            <If Condition="[dt_FilteredDocTypeData.RowCount&gt;0]" DisplayName="If-SSBLExists" sap:VirtualizedContainerService.HintSize="671,2847" sap2010:WorkflowViewState.IdRef="If_1237">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -271,7 +271,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
               <If.Then>
-                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="637,2368" sap2010:WorkflowViewState.IdRef="Sequence_4181">
+                <Sequence DisplayName="Then: If-SSBLExists" sap:VirtualizedContainerService.HintSize="637,2541" sap2010:WorkflowViewState.IdRef="Sequence_4181">
                   <Sequence.Variables>
                     <Variable x:TypeArguments="njl:JArray" Name="jArr_ExtResults" />
                   </Sequence.Variables>
@@ -281,6 +281,14 @@
                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="575,173" sap2010:WorkflowViewState.IdRef="LogMessage_154" Message="[in_Config(&quot;SSBL&quot;).ToString+&quot; exists&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:LogMessage>
                   <ui:Comment sap:VirtualizedContainerService.HintSize="575,88" sap2010:WorkflowViewState.IdRef="Comment_1" Text="// Check with Colin on SSBL_Incomplete check" />
                   <If Condition="[dt_FilteredDocTypeData.RowCount = 1]" DisplayName="If - SSBL is incomplete" sap:VirtualizedContainerService.HintSize="575,57" sap2010:WorkflowViewState.IdRef="If_1238">
                     <sap:WorkflowViewStateService.ViewState>
@@ -290,7 +298,7 @@
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                     <If.Then>
-                      <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,297" sap2010:WorkflowViewState.IdRef="Sequence_4200">
+                      <Sequence DisplayName="Then: If - SSBL is incomplete" sap:VirtualizedContainerService.HintSize="416,297" sap2010:WorkflowViewState.IdRef="Sequence_4200">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -339,7 +347,7 @@
                     </Assign>
                     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="GetLLMExtractionResultsForEachDoc - Invoke Workflow File (GetLLMExtractionResultsForEachDoc.xaml)" sap:VirtualizedContainerService.HintSize="434,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_163" UnSafe="False" WorkflowFileName="LLM\GetLLMExtractionResultsForEachDoc.xaml">
                       <ui:InvokeWorkflowFile.Arguments>
-                        <InArgument x:TypeArguments="x:String" x:Key="in_UserPromptTextFile">[str_PromptsFolder+"SSBL_Prompt.txt"]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_UserPromptTextFile">[in_str_PromptsFolder+"SSBL_Prompt.txt"]</InArgument>
                         <InArgument x:TypeArguments="scg:List(x:String)" x:Key="in_ImagePath">[list_ImageFiles]</InArgument>
                         <OutArgument x:TypeArguments="njl:JObject" x:Key="out_jObjExtractionResults">[jObj_ExtractionResults]</OutArgument>
                         <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
@@ -417,7 +425,7 @@
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
                           </Assign>
-                          <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="479,272" sap2010:WorkflowViewState.IdRef="MultipleAssign_28">
+                          <ui:MultipleAssign DisplayName="Set: bool_SSIBPresent, bool_SSBLPresent, str_LetterVersion, str_BeginningMonth..." sap:VirtualizedContainerService.HintSize="479,272" sap2010:WorkflowViewState.IdRef="MultipleAssign_28">
                             <ui:MultipleAssign.AssignOperations>
                               <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
                                 <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_375">
@@ -477,7 +485,7 @@
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
                             <If.Then>
-                              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,256" sap2010:WorkflowViewState.IdRef="Sequence_4241">
+                              <Sequence DisplayName="Then: If-SSBLExists" sap:VirtualizedContainerService.HintSize="416,256" sap2010:WorkflowViewState.IdRef="Sequence_4241">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -486,20 +494,20 @@
                                 </sap:WorkflowViewStateService.ViewState>
                                 <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Social Security Benefits Letter - Invoke Workflow File (Social Security Benefits Letter.xaml)" sap:VirtualizedContainerService.HintSize="354,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_168" UnSafe="False" WorkflowFileName="AuditFindings\Social Security Benefits Letter.xaml">
                                   <ui:InvokeWorkflowFile.Arguments>
-                                    <InArgument x:TypeArguments="njl:JObject" x:Key="jObj_JSON">[jObj_JSON]</InArgument>
-                                    <InArgument x:TypeArguments="s:String[]" x:Key="arr_ICWMemberNames">[arr_ICWMemberNames]</InArgument>
+                                    <InArgument x:TypeArguments="njl:JObject" x:Key="in_jObj_JSON">[jObj_JSON]</InArgument>
+                                    <InArgument x:TypeArguments="s:String[]" x:Key="in_arr_ICWMemberNames">[in_arr_ICWMemberNames]</InArgument>
                                     <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
-                                    <InOutArgument x:TypeArguments="x:Boolean" x:Key="bool_ColaEffective">[bool_ColaEffective]</InOutArgument>
-                                    <InArgument x:TypeArguments="sd:DataTable" x:Key="dt_ICWIncomeData">[dt_ICWIncomeData]</InArgument>
-                                    <InArgument x:TypeArguments="x:Boolean" x:Key="bool_COLALetterExists">[bool_COLALetterExists]</InArgument>
-                                    <InArgument x:TypeArguments="x:Boolean" x:Key="bool_COLACalcExists">[bool_COLACalcExists]</InArgument>
-                                    <InArgument x:TypeArguments="x:String" x:Key="str_LetterVersion">[str_LetterVersion]</InArgument>
-                                    <InArgument x:TypeArguments="x:String" x:Key="str_BeginningMonth">[str_BeginningMonth]</InArgument>
-                                    <InArgument x:TypeArguments="x:String" x:Key="str_BeginningYear">[str_BeginningYear]</InArgument>
-                                    <InArgument x:TypeArguments="x:String" x:Key="str_MoveIndate">[str_MoveIndate]</InArgument>
-                                    <InArgument x:TypeArguments="s:String[]" x:Key="arr_COLACalcNames">[arr_COLACalcNames]</InArgument>
-                                    <InArgument x:TypeArguments="njl:JArray" x:Key="jarr_COLACalculations">[jarr_COLACalculations]</InArgument>
-                                    <InArgument x:TypeArguments="njl:JArray" x:Key="jarr_ColaLetters">[jarr_ColaLetters]</InArgument>
+                                    <InOutArgument x:TypeArguments="x:Boolean" x:Key="io_bool_ColaEffective">[bool_ColaEffective]</InOutArgument>
+                                    <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_ICWIncomeData">[in_dt_ICWIncomeData]</InArgument>
+                                    <InArgument x:TypeArguments="x:Boolean" x:Key="in_bool_COLALetterExists">[bool_COLALetterExists]</InArgument>
+                                    <InArgument x:TypeArguments="x:Boolean" x:Key="in_bool_COLACalcExists">[bool_COLACalcExists]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_str_LetterVersion">[str_LetterVersion]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_str_BeginningMonth">[str_BeginningMonth]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_str_BeginningYear">[str_BeginningYear]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_str_MoveIndate">[in_str_MoveIndate]</InArgument>
+                                    <InArgument x:TypeArguments="s:String[]" x:Key="in_arr_COLACalcNames">[arr_COLACalcNames]</InArgument>
+                                    <InArgument x:TypeArguments="njl:JArray" x:Key="in_jarr_COLACalculations">[jarr_COLACalculations]</InArgument>
+                                    <InArgument x:TypeArguments="njl:JArray" x:Key="in_jarr_ColaLetters">[jarr_ColaLetters]</InArgument>
                                     <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_DTAuditFindings">[io_DTAuditFindings]</InOutArgument>
                                   </ui:InvokeWorkflowFile.Arguments>
                                 </ui:InvokeWorkflowFile>
@@ -524,7 +532,7 @@
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
                             <If.Then>
-                              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,256" sap2010:WorkflowViewState.IdRef="Sequence_4280">
+                              <Sequence DisplayName="Then: If-SSIBExists" sap:VirtualizedContainerService.HintSize="416,256" sap2010:WorkflowViewState.IdRef="Sequence_4280">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -533,20 +541,20 @@
                                 </sap:WorkflowViewStateService.ViewState>
                                 <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Supplemental Security Income Benefits - Invoke Workflow File (Supplemental Security Income Benefits.xaml)" sap:VirtualizedContainerService.HintSize="354,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_169" UnSafe="False" WorkflowFileName="AuditFindings\Supplemental Security Income Benefits.xaml">
                                   <ui:InvokeWorkflowFile.Arguments>
-                                    <InArgument x:TypeArguments="njl:JObject" x:Key="jObj_JSON">[jObj_JSON]</InArgument>
-                                    <InArgument x:TypeArguments="s:String[]" x:Key="arr_ICWMemberNames">[arr_ICWMemberNames]</InArgument>
+                                    <InArgument x:TypeArguments="njl:JObject" x:Key="in_jObj_JSON">[jObj_JSON]</InArgument>
+                                    <InArgument x:TypeArguments="s:String[]" x:Key="in_arr_ICWMemberNames">[in_arr_ICWMemberNames]</InArgument>
                                     <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
-                                    <InOutArgument x:TypeArguments="x:Boolean" x:Key="bool_ColaEffective">[bool_ColaEffective]</InOutArgument>
-                                    <InArgument x:TypeArguments="sd:DataTable" x:Key="dt_ICWIncomeData">[dt_ICWIncomeData]</InArgument>
-                                    <InArgument x:TypeArguments="x:Boolean" x:Key="bool_COLALetterExists">[bool_COLALetterExists]</InArgument>
-                                    <InArgument x:TypeArguments="x:Boolean" x:Key="bool_COLACalcExists">[bool_COLACalcExists]</InArgument>
+                                    <InOutArgument x:TypeArguments="x:Boolean" x:Key="io_bool_ColaEffective">[bool_ColaEffective]</InOutArgument>
+                                    <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_ICWIncomeData">[in_dt_ICWIncomeData]</InArgument>
+                                    <InArgument x:TypeArguments="x:Boolean" x:Key="in_bool_COLALetterExists">[bool_COLALetterExists]</InArgument>
+                                    <InArgument x:TypeArguments="x:Boolean" x:Key="in_bool_COLACalcExists">[bool_COLACalcExists]</InArgument>
                                     <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_DTAuditFindings">[io_DTAuditFindings]</InOutArgument>
-                                    <InArgument x:TypeArguments="x:String" x:Key="str_MoveIndate">[str_MoveIndate]</InArgument>
-                                    <InArgument x:TypeArguments="x:String" x:Key="str_LetterVersion">[str_LetterVersion]</InArgument>
-                                    <InArgument x:TypeArguments="x:String" x:Key="str_BeginningMonth">[str_BeginningMonth]</InArgument>
-                                    <InArgument x:TypeArguments="x:String" x:Key="str_BeginningYear">[str_BeginningYear]</InArgument>
-                                    <InArgument x:TypeArguments="njl:JArray" x:Key="jarr_COLACalculations">[jarr_COLACalculations]</InArgument>
-                                    <InArgument x:TypeArguments="njl:JArray" x:Key="jarr_ColaLetters">[jarr_ColaLetters]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_str_MoveIndate">[in_str_MoveIndate]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_str_LetterVersion">[str_LetterVersion]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_str_BeginningMonth">[str_BeginningMonth]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_str_BeginningYear">[str_BeginningYear]</InArgument>
+                                    <InArgument x:TypeArguments="njl:JArray" x:Key="in_jarr_COLACalculations">[jarr_COLACalculations]</InArgument>
+                                    <InArgument x:TypeArguments="njl:JArray" x:Key="in_jarr_ColaLetters">[jarr_ColaLetters]</InArgument>
                                   </ui:InvokeWorkflowFile.Arguments>
                                 </ui:InvokeWorkflowFile>
                               </Sequence>
@@ -582,7 +590,7 @@
                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <If Condition="[(Not String.IsNullOrEmpty(str_SSIOnIAQ) AndAlso str_SSIOnIAQ.ToLower = &quot;yes&quot;) OrElse &#xA;(Not String.IsNullOrEmpty(str_SupSIOnIAQ) AndAlso str_SupSIOnIAQ.ToLower = &quot;yes&quot;)]" DisplayName="If - SSIB/SSBL present on ICW and IAQ" sap:VirtualizedContainerService.HintSize="354,48" sap2010:WorkflowViewState.IdRef="If_1282">
+                  <If Condition="[(Not String.IsNullOrEmpty(in_str_SSIOnIAQ) AndAlso in_str_SSIOnIAQ.ToLower = &quot;yes&quot;) OrElse &#xA;(Not String.IsNullOrEmpty(in_str_SupSIOnIAQ) AndAlso in_str_SupSIOnIAQ.ToLower = &quot;yes&quot;)]" DisplayName="If - SSIB/SSBL present on ICW and IAQ" sap:VirtualizedContainerService.HintSize="354,48" sap2010:WorkflowViewState.IdRef="If_1282">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
@@ -590,7 +598,7 @@
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                     <If.Then>
-                      <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,297" sap2010:WorkflowViewState.IdRef="Sequence_4282">
+                      <Sequence DisplayName="Then: If - SSIB/SSBL present on ICW and IAQ" sap:VirtualizedContainerService.HintSize="416,297" sap2010:WorkflowViewState.IdRef="Sequence_4282">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
