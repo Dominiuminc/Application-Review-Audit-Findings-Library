@@ -8,8 +8,9 @@
     <x:Property Name="in_arr_ICWMemberNames" Type="InArgument(s:String[])" />
     <x:Property Name="in_str_MoveIndate" Type="InArgument(x:String)" />
     <x:Property Name="io_DTAuditFindings" Type="InOutArgument(sd:DataTable)" />
+    <x:Property Name="in_str_State" Type="InArgument(x:String)" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>912,837</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1745,2852</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -147,113 +148,271 @@
       <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Child Support Payment History &amp; Calcs" sap:VirtualizedContainerService.HintSize="516,772" sap2010:WorkflowViewState.IdRef="Sequence_4840">
+  <sap:WorkflowViewStateService.ViewState>
+    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+      <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
+    </scg:Dictionary>
+  </sap:WorkflowViewStateService.ViewState>
+  <Sequence DisplayName="Child Support Payment History &amp; Calcs" sap:VirtualizedContainerService.HintSize="620,2787" sap2010:WorkflowViewState.IdRef="Sequence_4840">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="s:String[]" Name="arr_CSCEndDates" />
+      <Variable x:TypeArguments="s:String[]" Name="arr_CSCStartDates" />
+      <Variable x:TypeArguments="x:String" Name="str_CSCTotalPerYear" />
+      <Variable x:TypeArguments="x:String" Name="str_CSCHouseholdMember" />
+      <Variable x:TypeArguments="s:String[]" Name="arr_CSCInconsisTotalPayments" />
+      <Variable x:TypeArguments="s:String[]" Name="arr_CSCConsistentTotalPerYear" />
+      <Variable x:TypeArguments="x:String" Name="str_PaymentConsistency" />
+      <Variable x:TypeArguments="x:Boolean" Name="bool_ChildSupCalcExists" />
+    </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <TryCatch DisplayName="Try Catch-ChildSupportPaymentHistory" sap:VirtualizedContainerService.HintSize="454,684" sap2010:WorkflowViewState.IdRef="TryCatch_278">
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-      <TryCatch.Try>
-        <Sequence DisplayName="ChildSupportCalc,PaymentHistory" sap:VirtualizedContainerService.HintSize="416,433" sap2010:WorkflowViewState.IdRef="Sequence_4110">
-          <Sequence.Variables>
-            <Variable x:TypeArguments="x:Boolean" Name="bool_ChildSupCalcExists" />
-            <Variable x:TypeArguments="x:String" Name="str_PaymentConsistency" />
-            <Variable x:TypeArguments="s:String[]" Name="arr_CSCConsistentTotalPerYear" />
-            <Variable x:TypeArguments="s:String[]" Name="arr_CSCInconsisTotalPayments" />
-            <Variable x:TypeArguments="x:String" Name="str_CSCHouseholdMember" />
-            <Variable x:TypeArguments="x:String" Name="str_CSCTotalPerYear" />
-            <Variable x:TypeArguments="s:String[]" Name="arr_CSCStartDates" />
-            <Variable x:TypeArguments="s:String[]" Name="arr_CSCEndDates" />
-          </Sequence.Variables>
+    <Switch x:TypeArguments="x:String" DisplayName="Switch: states" Expression="[in_str_State]" sap:VirtualizedContainerService.HintSize="558,2699" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+      <Switch.Default>
+        <TryCatch DisplayName="Try Catch-ChildSupportPaymentHistory" sap:VirtualizedContainerService.HintSize="456,1283" sap2010:WorkflowViewState.IdRef="TryCatch_278">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Child Support Calcs - Invoke Workflow File (Child Support Calcs.xaml)" sap:VirtualizedContainerService.HintSize="354,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_174" UnSafe="False" WorkflowFileName="AuditFindings\Child Support Calcs.xaml">
-            <ui:InvokeWorkflowFile.Arguments>
-              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
-              <InArgument x:TypeArguments="sd:DataTable" x:Key="in_ClassificationResultsData">[in_ClassificationResultsData]</InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_str_PromptsFolder">[in_str_PromptsFolder]</InArgument>
-              <OutArgument x:TypeArguments="s:String[]" x:Key="out_arr_CSCStartDates">[arr_CSCStartDates]</OutArgument>
-              <OutArgument x:TypeArguments="s:String[]" x:Key="out_arr_CSCEndDates">[arr_CSCEndDates]</OutArgument>
-              <InOutArgument x:TypeArguments="s:String[]" x:Key="io_arr_CSCConsistentTotalPerYear">[arr_CSCConsistentTotalPerYear]</InOutArgument>
-              <InOutArgument x:TypeArguments="s:String[]" x:Key="io_arr_CSCInconsisTotalPayments">[arr_CSCInconsisTotalPayments]</InOutArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_str_ChildSupOnIAQ">[in_str_ChildSupOnIAQ]</InArgument>
-              <OutArgument x:TypeArguments="x:String" x:Key="out_str_CSCHouseholdMember">[str_CSCHouseholdMember]</OutArgument>
-              <InOutArgument x:TypeArguments="x:String" x:Key="io_str_CSCTotalPerYear">[str_CSCTotalPerYear]</InOutArgument>
-              <OutArgument x:TypeArguments="x:Boolean" x:Key="out_bool_ChildSupCalcExists">[bool_ChildSupCalcExists]</OutArgument>
-              <OutArgument x:TypeArguments="x:String" x:Key="out_str_PaymentConsistency">[str_PaymentConsistency]</OutArgument>
-              <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_ICWIncomeData">[in_dt_ICWIncomeData]</InArgument>
-              <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_DTAuditFindings">[io_DTAuditFindings]</InOutArgument>
-            </ui:InvokeWorkflowFile.Arguments>
-          </ui:InvokeWorkflowFile>
-          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Child Support Payment History - Invoke Workflow File (Child Support Payment History.xaml)" sap:VirtualizedContainerService.HintSize="354,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_175" UnSafe="False" WorkflowFileName="AuditFindings\Child Support Payment History.xaml">
-            <ui:InvokeWorkflowFile.Arguments>
-              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
-              <InArgument x:TypeArguments="sd:DataTable" x:Key="in_ClassificationResultsData">[in_ClassificationResultsData]</InArgument>
-              <InArgument x:TypeArguments="x:Boolean" x:Key="in_bool_ChildSupCalcExists">[bool_ChildSupCalcExists]</InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_str_PromptsFolder">[in_str_PromptsFolder]</InArgument>
-              <InArgument x:TypeArguments="s:String[]" x:Key="in_arr_ICWMemberNames">[in_arr_ICWMemberNames]</InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_str_CSCHouseholdMember">[str_CSCHouseholdMember]</InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_str_PaymentConsistency">[str_PaymentConsistency]</InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_str_CSCTotalPerYear">[str_CSCTotalPerYear]</InArgument>
-              <InArgument x:TypeArguments="s:String[]" x:Key="in_arr_CSCConsistentTotalPerYear">[arr_CSCConsistentTotalPerYear]</InArgument>
-              <InArgument x:TypeArguments="s:String[]" x:Key="in_arr_CSCInconsisTotalPayments">[arr_CSCInconsisTotalPayments]</InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_str_MoveIndate">[in_str_MoveIndate]</InArgument>
-              <InArgument x:TypeArguments="s:String[]" x:Key="in_arr_CSCStartDates">[arr_CSCStartDates]</InArgument>
-              <InArgument x:TypeArguments="s:String[]" x:Key="in_arr_CSCEndDates">[arr_CSCEndDates]</InArgument>
-              <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_DTAuditFindings">[io_DTAuditFindings]</InOutArgument>
-            </ui:InvokeWorkflowFile.Arguments>
-          </ui:InvokeWorkflowFile>
-        </Sequence>
-      </TryCatch.Try>
-      <TryCatch.Catches>
-        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="420,22" sap2010:WorkflowViewState.IdRef="Catch`1_269">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-              <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ActivityAction x:TypeArguments="s:Exception">
-            <ActivityAction.Argument>
-              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
-            </ActivityAction.Argument>
-            <Sequence sap:VirtualizedContainerService.HintSize="416,470" sap2010:WorkflowViewState.IdRef="Sequence_4633">
+          <TryCatch.Try>
+            <Sequence DisplayName="ChildSupportCalc,PaymentHistory" sap:VirtualizedContainerService.HintSize="416,433" sap2010:WorkflowViewState.IdRef="Sequence_4110">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="354,173" sap2010:WorkflowViewState.IdRef="LogMessage_170" Message="[&quot;Failed at CSPH: &quot;+exception.Message]">
-                <sap:WorkflowViewStateService.ViewState>
-                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                  </scg:Dictionary>
-                </sap:WorkflowViewStateService.ViewState>
-              </ui:LogMessage>
-              <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;CSPH&quot;,&quot;PageNum&quot;,in_Config(&quot;CSPH_FindingError&quot;).ToString,exception.Message}]" DataTable="[io_DTAuditFindings]" DisplayName="Add Data Row-CSPHError7" sap:VirtualizedContainerService.HintSize="354,209" sap2010:WorkflowViewState.IdRef="AddDataRow_1332">
-                <sap:WorkflowViewStateService.ViewState>
-                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  </scg:Dictionary>
-                </sap:WorkflowViewStateService.ViewState>
-              </ui:AddDataRow>
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Child Support Calcs - Invoke Workflow File (Child Support Calcs.xaml)" sap:VirtualizedContainerService.HintSize="354,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_176" UnSafe="False" WorkflowFileName="AuditFindings\Child Support Calcs.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
+                  <InArgument x:TypeArguments="sd:DataTable" x:Key="in_ClassificationResultsData">[in_ClassificationResultsData]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_str_PromptsFolder">[in_str_PromptsFolder]</InArgument>
+                  <OutArgument x:TypeArguments="s:String[]" x:Key="out_arr_CSCStartDates">[arr_CSCStartDates]</OutArgument>
+                  <OutArgument x:TypeArguments="s:String[]" x:Key="out_arr_CSCEndDates">[arr_CSCEndDates]</OutArgument>
+                  <InOutArgument x:TypeArguments="s:String[]" x:Key="io_arr_CSCConsistentTotalPerYear">[arr_CSCConsistentTotalPerYear]</InOutArgument>
+                  <InOutArgument x:TypeArguments="s:String[]" x:Key="io_arr_CSCInconsisTotalPayments">[arr_CSCInconsisTotalPayments]</InOutArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_str_ChildSupOnIAQ">[in_str_ChildSupOnIAQ]</InArgument>
+                  <OutArgument x:TypeArguments="x:String" x:Key="out_str_CSCHouseholdMember">[str_CSCHouseholdMember]</OutArgument>
+                  <InOutArgument x:TypeArguments="x:String" x:Key="io_str_CSCTotalPerYear">[str_CSCTotalPerYear]</InOutArgument>
+                  <OutArgument x:TypeArguments="x:Boolean" x:Key="out_bool_ChildSupCalcExists">[bool_ChildSupCalcExists]</OutArgument>
+                  <OutArgument x:TypeArguments="x:String" x:Key="out_str_PaymentConsistency">[str_PaymentConsistency]</OutArgument>
+                  <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_ICWIncomeData">[in_dt_ICWIncomeData]</InArgument>
+                  <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_DTAuditFindings">[io_DTAuditFindings]</InOutArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Child Support Payment History - Invoke Workflow File (Child Support Payment History.xaml)" sap:VirtualizedContainerService.HintSize="354,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_175" UnSafe="False" WorkflowFileName="AuditFindings\Child Support Payment History.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
+                  <InArgument x:TypeArguments="sd:DataTable" x:Key="in_ClassificationResultsData">[in_ClassificationResultsData]</InArgument>
+                  <InArgument x:TypeArguments="x:Boolean" x:Key="in_bool_ChildSupCalcExists">[bool_ChildSupCalcExists]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_str_PromptsFolder">[in_str_PromptsFolder]</InArgument>
+                  <InArgument x:TypeArguments="s:String[]" x:Key="in_arr_ICWMemberNames">[in_arr_ICWMemberNames]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_str_CSCHouseholdMember">[str_CSCHouseholdMember]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_str_PaymentConsistency">[str_PaymentConsistency]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_str_CSCTotalPerYear">[str_CSCTotalPerYear]</InArgument>
+                  <InArgument x:TypeArguments="s:String[]" x:Key="in_arr_CSCConsistentTotalPerYear">[arr_CSCConsistentTotalPerYear]</InArgument>
+                  <InArgument x:TypeArguments="s:String[]" x:Key="in_arr_CSCInconsisTotalPayments">[arr_CSCInconsisTotalPayments]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_str_MoveIndate">[in_str_MoveIndate]</InArgument>
+                  <InArgument x:TypeArguments="s:String[]" x:Key="in_arr_CSCStartDates">[arr_CSCStartDates]</InArgument>
+                  <InArgument x:TypeArguments="s:String[]" x:Key="in_arr_CSCEndDates">[arr_CSCEndDates]</InArgument>
+                  <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_DTAuditFindings">[io_DTAuditFindings]</InOutArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_State">[in_str_State]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_str_CSCStartDate" />
+                  <InArgument x:TypeArguments="x:String" x:Key="in_str_CSCEndDate" />
+                  <InArgument x:TypeArguments="x:String" x:Key="in_str_CSCEndDate1" />
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
             </Sequence>
-          </ActivityAction>
-        </Catch>
-      </TryCatch.Catches>
-    </TryCatch>
+          </TryCatch.Try>
+          <TryCatch.Catches>
+            <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="422,540" sap2010:WorkflowViewState.IdRef="Catch`1_269">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ActivityAction x:TypeArguments="s:Exception">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                </ActivityAction.Argument>
+                <Sequence sap:VirtualizedContainerService.HintSize="416,470" sap2010:WorkflowViewState.IdRef="Sequence_4633">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="354,173" sap2010:WorkflowViewState.IdRef="LogMessage_172" Message="[&quot;Failed at CSPH: &quot;+exception.Message]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:LogMessage>
+                  <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;CSPH&quot;,&quot;PageNum&quot;,in_Config(&quot;CSPH_FindingError&quot;).ToString,exception.Message}]" DataTable="[io_DTAuditFindings]" DisplayName="Add Data Row-CSPHError7" sap:VirtualizedContainerService.HintSize="354,209" sap2010:WorkflowViewState.IdRef="AddDataRow_1334">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:AddDataRow>
+                </Sequence>
+              </ActivityAction>
+            </Catch>
+          </TryCatch.Catches>
+        </TryCatch>
+      </Switch.Default>
+      <Sequence x:Key="TX" DisplayName="Case: in_str_State = TX" sap:VirtualizedContainerService.HintSize="518,1163" sap2010:WorkflowViewState.IdRef="Sequence_4843">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="x:String" Name="str_CSCStartDate" />
+          <Variable x:TypeArguments="x:String" Name="str_CSCStartDate1" />
+          <Variable x:TypeArguments="x:String" Name="str_CSCEndDate1" />
+          <Variable x:TypeArguments="x:String" Name="str_CSCEndDate" />
+        </Sequence.Variables>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <TryCatch DisplayName="Try Catch: Child Support Calculations" sap:VirtualizedContainerService.HintSize="456,57" sap2010:WorkflowViewState.IdRef="TryCatch_279">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <TryCatch.Try>
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Child Support Calcs - Invoke Workflow File (Child Support Calcs.xaml)" sap:VirtualizedContainerService.HintSize="334,145" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_174" UnSafe="False" WorkflowFileName="AuditFindings\Child Support Calcs - TX.xaml">
+              <ui:InvokeWorkflowFile.Arguments>
+                <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
+                <InArgument x:TypeArguments="sd:DataTable" x:Key="in_ClassificationResultsData">[in_ClassificationResultsData]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_str_PromptsFolder">[in_str_PromptsFolder]</InArgument>
+                <OutArgument x:TypeArguments="s:String[]" x:Key="out_arr_CSCStartDates">[arr_CSCStartDates]</OutArgument>
+                <OutArgument x:TypeArguments="s:String[]" x:Key="out_arr_CSCEndDates">[arr_CSCEndDates]</OutArgument>
+                <InOutArgument x:TypeArguments="s:String[]" x:Key="io_arr_CSCConsistentTotalPerYear">[arr_CSCConsistentTotalPerYear]</InOutArgument>
+                <InOutArgument x:TypeArguments="s:String[]" x:Key="io_arr_CSCInconsisTotalPayments">[arr_CSCInconsisTotalPayments]</InOutArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_str_ChildSupOnIAQ">[in_str_ChildSupOnIAQ]</InArgument>
+                <OutArgument x:TypeArguments="x:String" x:Key="out_str_CSCHouseholdMember">[str_CSCHouseholdMember]</OutArgument>
+                <InOutArgument x:TypeArguments="x:String" x:Key="io_str_CSCTotalPerYear">[str_CSCTotalPerYear]</InOutArgument>
+                <OutArgument x:TypeArguments="x:Boolean" x:Key="out_bool_ChildSupCalcExists">[bool_ChildSupCalcExists]</OutArgument>
+                <OutArgument x:TypeArguments="x:String" x:Key="out_str_PaymentConsistency">[str_PaymentConsistency]</OutArgument>
+                <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_ICWIncomeData">[in_dt_ICWIncomeData]</InArgument>
+                <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_DTAuditFindings">[io_DTAuditFindings]</InOutArgument>
+                <OutArgument x:TypeArguments="x:String" x:Key="out_str_CSCStartDate">[str_CSCStartDate]</OutArgument>
+                <OutArgument x:TypeArguments="x:String" x:Key="out_str_CSCStartDate1">[str_CSCStartDate1]</OutArgument>
+                <OutArgument x:TypeArguments="x:String" x:Key="out_str_CSCEndDate">[str_CSCEndDate]</OutArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="out_str_CSCEndDate1">[str_CSCEndDate1]</InArgument>
+              </ui:InvokeWorkflowFile.Arguments>
+            </ui:InvokeWorkflowFile>
+          </TryCatch.Try>
+          <TryCatch.Catches>
+            <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="422,540" sap2010:WorkflowViewState.IdRef="Catch`1_270">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ActivityAction x:TypeArguments="s:Exception">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Catch: CSC error" sap:VirtualizedContainerService.HintSize="416,470" sap2010:WorkflowViewState.IdRef="Sequence_4841">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:LogMessage DisplayName="Log Message - CSC Finding error" sap:VirtualizedContainerService.HintSize="354,173" sap2010:WorkflowViewState.IdRef="LogMessage_171" Message="[&quot;Failed at Child Support Calculations: &quot;+exception.Message]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:LogMessage>
+                  <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;CSPH&quot;,&quot;PageNum&quot;,in_Config(&quot;CSC_FindingError&quot;).ToString,exception.Message}]" DataTable="[io_DTAuditFindings]" DisplayName="Add Data Row-CSCError7" sap:VirtualizedContainerService.HintSize="354,209" sap2010:WorkflowViewState.IdRef="AddDataRow_1333">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:AddDataRow>
+                </Sequence>
+              </ActivityAction>
+            </Catch>
+          </TryCatch.Catches>
+        </TryCatch>
+        <TryCatch DisplayName="Try Catch: CSPH" sap:VirtualizedContainerService.HintSize="456,1018" sap2010:WorkflowViewState.IdRef="TryCatch_280">
+          <TryCatch.Try>
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Child Support Payment History - Invoke Workflow File (Child Support Payment History.xaml)" sap:VirtualizedContainerService.HintSize="337,145" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_177" UnSafe="False" WorkflowFileName="AuditFindings\Child Support Payment History.xaml">
+              <ui:InvokeWorkflowFile.Arguments>
+                <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
+                <InArgument x:TypeArguments="sd:DataTable" x:Key="in_ClassificationResultsData">[in_ClassificationResultsData]</InArgument>
+                <InArgument x:TypeArguments="x:Boolean" x:Key="in_bool_ChildSupCalcExists">[bool_ChildSupCalcExists]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_str_PromptsFolder">[in_str_PromptsFolder]</InArgument>
+                <InArgument x:TypeArguments="s:String[]" x:Key="in_arr_ICWMemberNames">[in_arr_ICWMemberNames]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_str_CSCHouseholdMember">[str_CSCHouseholdMember]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_str_PaymentConsistency">[str_PaymentConsistency]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_str_CSCTotalPerYear">[str_CSCTotalPerYear]</InArgument>
+                <InArgument x:TypeArguments="s:String[]" x:Key="in_arr_CSCConsistentTotalPerYear">[arr_CSCConsistentTotalPerYear]</InArgument>
+                <InArgument x:TypeArguments="s:String[]" x:Key="in_arr_CSCInconsisTotalPayments">[arr_CSCInconsisTotalPayments]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_str_MoveIndate">[in_str_MoveIndate]</InArgument>
+                <InArgument x:TypeArguments="s:String[]" x:Key="in_arr_CSCStartDates">[arr_CSCStartDates]</InArgument>
+                <InArgument x:TypeArguments="s:String[]" x:Key="in_arr_CSCEndDates">[arr_CSCEndDates]</InArgument>
+                <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_DTAuditFindings">[io_DTAuditFindings]</InOutArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_State">[in_str_State]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_str_CSCStartDate">[str_CSCStartDate]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_str_CSCEndDate">[str_CSCEndDate]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_str_CSCEndDate1">[str_CSCEndDate1]</InArgument>
+              </ui:InvokeWorkflowFile.Arguments>
+            </ui:InvokeWorkflowFile>
+          </TryCatch.Try>
+          <TryCatch.Catches>
+            <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="422,540" sap2010:WorkflowViewState.IdRef="Catch`1_271">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ActivityAction x:TypeArguments="s:Exception">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Catch: CSPH Errors" sap:VirtualizedContainerService.HintSize="416,470" sap2010:WorkflowViewState.IdRef="Sequence_4842">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="354,173" sap2010:WorkflowViewState.IdRef="LogMessage_173" Message="[&quot;Failed at CSPH: &quot;+exception.Message]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:LogMessage>
+                  <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;CSPH&quot;,&quot;PageNum&quot;,in_Config(&quot;CSPH_FindingError&quot;).ToString,exception.Message}]" DataTable="[io_DTAuditFindings]" DisplayName="Add Data Row-CSPHError7" sap:VirtualizedContainerService.HintSize="354,209" sap2010:WorkflowViewState.IdRef="AddDataRow_1335">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:AddDataRow>
+                </Sequence>
+              </ActivityAction>
+            </Catch>
+          </TryCatch.Catches>
+        </TryCatch>
+      </Sequence>
+    </Switch>
   </Sequence>
 </Activity>
