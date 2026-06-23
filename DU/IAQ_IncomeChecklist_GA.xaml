@@ -5,7 +5,7 @@
     <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
     <x:Property Name="in_incomeChecklistDocumentData" Type="InArgument(uisad:IDocumentData(uisasegb:GASpecificIAQIAQIncomeChecklistV3))" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>912,1275</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1056,1275</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -177,7 +177,7 @@
                 <InArgument x:TypeArguments="x:String">[currentPropertyInfo.GetValue(in_incomeChecklistDocumentData.Data, Nothing).ToString()]</InArgument>
               </Assign.Value>
             </Assign>
-            <ausas:FindBestIncomeAssetTypeMatch Candidates="[in_arr_IncomeTypes]" DisplayName="Find Best Income/Asset Type Match" sap:VirtualizedContainerService.HintSize="434,275" sap2010:WorkflowViewState.IdRef="FindBestIncomeAssetTypeMatch_2" MinThreshold="[CDbl(in_Config(&quot;FindAllMatches_Threshold&quot;).ToString)]" Query="[str_IncomeType]" Result="[matchedIncomeType]">
+            <ausas:FindBestIncomeAssetTypeMatch Candidates="[in_arr_IncomeTypes]" DisplayName="Find Best Income/Asset Type Match" sap:VirtualizedContainerService.HintSize="434,275" sap2010:WorkflowViewState.IdRef="FindBestIncomeAssetTypeMatch_2" MinThreshold="[CDbl(in_Config(&quot;FindAllMatches_Threshold&quot;).ToString)]" Query="[str_IncomeType.replace(&quot;/&quot;,&quot; &quot;)]" Result="[matchedIncomeType]">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
