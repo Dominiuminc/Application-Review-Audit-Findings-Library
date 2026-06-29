@@ -299,9 +299,15 @@
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
-                              <TryCatch DisplayName="Try Catch - DU replace values for Employment Verification" sap:VirtualizedContainerService.HintSize="438,638" sap2010:WorkflowViewState.IdRef="TryCatch_4">
+                              <TryCatch DisplayName="Try Catch - DU replace values for Employment Verification" sap:VirtualizedContainerService.HintSize="438,638" sap2010:WorkflowViewState.IdRef="TryCatch_8">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
                                 <TryCatch.Try>
-                                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="EmploymentVerification_Extraction - Invoke Workflow File (DU\EmploymentVerification_Extraction.xaml)" sap:VirtualizedContainerService.HintSize="334,145" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="True" WorkflowFileName="DU\EmploymentVerification_Extraction.xaml">
+                                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="EmploymentVerification_Extraction - TX - Invoke Workflow File (DU\EmploymentVerification_Extraction - TX.xaml)" sap:VirtualizedContainerService.HintSize="334,145" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="True" WorkflowFileName="DU\EmploymentVerification_Extraction - TX.xaml">
                                     <ui:InvokeWorkflowFile.Arguments>
                                       <InArgument x:TypeArguments="s:String[]" x:Key="in_ArrImages">[listImageFiles.ToArray]</InArgument>
                                       <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
@@ -312,7 +318,7 @@
                                   </ui:InvokeWorkflowFile>
                                 </TryCatch.Try>
                                 <TryCatch.Catches>
-                                  <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,160" sap2010:WorkflowViewState.IdRef="Catch`1_3">
+                                  <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,160" sap2010:WorkflowViewState.IdRef="Catch`1_6">
                                     <sap:WorkflowViewStateService.ViewState>
                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                         <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -323,7 +329,7 @@
                                       <ActivityAction.Argument>
                                         <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                                       </ActivityAction.Argument>
-                                      <Throw DisplayName="Throw - DU exception" Exception="[New SystemException(exception.ToString)]" sap:VirtualizedContainerService.HintSize="334,90" sap2010:WorkflowViewState.IdRef="Throw_1" />
+                                      <Throw DisplayName="Throw - DU exception" Exception="[New SystemException(exception.ToString)]" sap:VirtualizedContainerService.HintSize="334,90" sap2010:WorkflowViewState.IdRef="Throw_3" />
                                     </ActivityAction>
                                   </Catch>
                                 </TryCatch.Catches>
@@ -454,7 +460,7 @@
                           </ui:MultipleAssign.AssignOperations>
                         </ui:MultipleAssign>
                         <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;EV&quot;, strEmployeeName, &quot;&quot;}]" DataTable="[io_DtIncomeDetails]" DisplayName="Add Data Row - dtIncomeDetails" sap:VirtualizedContainerService.HintSize="487,218" sap2010:WorkflowViewState.IdRef="AddDataRow_22" />
-                        <If Condition="[jObjJSON(&quot;EmployerSection&quot;)(&quot;PresentlyEmployed&quot;).ToString.ToLower.Equals(&quot;true&quot;)]" DisplayName="If Presently Empoyed checked" sap:VirtualizedContainerService.HintSize="487,57" sap2010:WorkflowViewState.IdRef="If_2">
+                        <If Condition="[jObjJSON(&quot;EmployerSection&quot;)(&quot;PresentlyEmployed&quot;).ToString.ToLower.Equals(&quot;yes&quot;)]" DisplayName="If Presently Empoyed checked" sap:VirtualizedContainerService.HintSize="487,57" sap2010:WorkflowViewState.IdRef="If_2">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -462,17 +468,17 @@
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                           <If.Then>
-                            <Sequence DisplayName="Then: If Presently Empoyed checked" sap:VirtualizedContainerService.HintSize="512,649" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                            <Sequence DisplayName="Then: If Presently Empoyed checked" sap:VirtualizedContainerService.HintSize="416,136" sap2010:WorkflowViewState.IdRef="Sequence_7">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
-                              <If Condition="[Not String.IsNullOrEmpty(jObjJSON(&quot;EmployerSection&quot;)(&quot;DateFirstEmployed&quot;).ToString)]" DisplayName="If presently employed documented" sap:VirtualizedContainerService.HintSize="450,561" sap2010:WorkflowViewState.IdRef="If_4">
+                              <If Condition="[Not String.IsNullOrEmpty(jObjJSON(&quot;EmployerSection&quot;)(&quot;DateFirstEmployed&quot;).ToString)]" DisplayName="If presently employed documented" sap:VirtualizedContainerService.HintSize="354,48" sap2010:WorkflowViewState.IdRef="If_4">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">True</x:Boolean>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
                                 <If.Then>
@@ -642,7 +648,7 @@
                             </Sequence>
                           </If.Else>
                         </If>
-                        <If Condition="[String.IsNullOrEmpty(jObjJSON(&quot;EmployerSection&quot;)(&quot;EmployeeName&quot;).ToString) Or&#xD;&#xA;String.IsNullOrEmpty(jObjJSON(&quot;EmployerSection&quot;)(&quot;PresentlyEmployed&quot;).ToString) Or&#xD;&#xA;String.IsNullOrEmpty(jObjJSON(&quot;EmployerSection&quot;)(&quot;DateFirstEmployed&quot;).ToString) Or&#xD;&#xA;String.IsNullOrEmpty(jObjJSON(&quot;EmployerSection&quot;)(&quot;CurrentWages&quot;).ToString) Or&#xD;&#xA;String.IsNullOrEmpty(jObjJSON(&quot;EmployerSection&quot;)(&quot;AverageHoursPerWeek&quot;).ToString) Or&#xD;&#xA;String.IsNullOrEmpty(jObjJSON(&quot;EmployerSection&quot;)(&quot;OvertimeRate&quot;).ToString) Or&#xD;&#xA;String.IsNullOrEmpty(jObjJSON(&quot;EmployerSection&quot;)(&quot;ShiftDifferentialRate&quot;).ToString)]" DisplayName="If Blanks exist" sap:VirtualizedContainerService.HintSize="487,57" sap2010:WorkflowViewState.IdRef="If_8">
+                        <If Condition="[String.IsNullOrEmpty(jObjJSON(&quot;EmployerSection&quot;)(&quot;EmployeeName&quot;).ToString) Or&#xA;String.IsNullOrEmpty(jObjJSON(&quot;EmployerSection&quot;)(&quot;PresentlyEmployed&quot;).ToString) Or&#xA;String.IsNullOrEmpty(jObjJSON(&quot;EmployerSection&quot;)(&quot;DateFirstEmployed&quot;).ToString) Or&#xA;String.IsNullOrEmpty(jObjJSON(&quot;EmployerSection&quot;)(&quot;CurrentWages&quot;).ToString) Or&#xA;String.IsNullOrEmpty(jObjJSON(&quot;EmployerSection&quot;)(&quot;AverageHoursPerWeek&quot;).ToString) Or&#xA;String.IsNullOrEmpty(jObjJSON(&quot;EmployerSection&quot;)(&quot;OvertimeRate&quot;).ToString) Or&#xA;String.IsNullOrEmpty(jObjJSON(&quot;EmployerSection&quot;)(&quot;ShiftDifferentialRate&quot;).ToString)]" DisplayName="If Blanks exist" sap:VirtualizedContainerService.HintSize="487,57" sap2010:WorkflowViewState.IdRef="If_8">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -943,30 +949,16 @@
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
                                 </ui:InvokeCode>
-                                <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim dec_Gross As Decimal = Convert.ToDecimal(in_GrossAmount.Replace(&quot;$&quot;,&quot;&quot;).Trim)&#xD;&#xA;Dim dec_OT    As Decimal = Convert.ToDecimal(in_OvertimeAmt.Replace(&quot;$&quot;,&quot;&quot;).Trim)&#xD;&#xA;Dim dec_Shift As Decimal = Convert.ToDecimal(in_ShiftDiffRate.Replace(&quot;$&quot;,&quot;&quot;).Trim)&#xD;&#xA;&#xD;&#xA;Dim rules As New List(Of Tuple(Of Boolean, String)) From {&#xD;&#xA;    Tuple.Create(&#xD;&#xA;        dec_Gross = 0 OrElse in_dt_RDCPayCategories.AsEnumerable().Any(Function(row)&#xD;&#xA;            Return row(&quot;Category&quot;).ToString.Trim.Equals(&quot;Regular Rate&quot;, StringComparison.OrdinalIgnoreCase) AndAlso&#xD;&#xA;                   Convert.ToDecimal(row(&quot;total_per_year&quot;).ToString.Trim) = dec_Gross * in_NumberPayPeriods&#xD;&#xA;        End Function),&#xD;&#xA;        in_Config(&quot;EV_GrossWageCheck&quot;).ToString&#xD;&#xA;    ),&#xD;&#xA;    Tuple.Create(&#xD;&#xA;        dec_OT = 0 OrElse in_dt_RDCPayCategories.AsEnumerable().Any(Function(row)&#xD;&#xA;            Return row(&quot;Category&quot;).ToString.Trim.Equals(&quot;OT Rate&quot;, StringComparison.OrdinalIgnoreCase) AndAlso&#xD;&#xA;                   Convert.ToDecimal(row(&quot;pay_rate&quot;).ToString.Trim) = dec_OT&#xD;&#xA;        End Function),&#xD;&#xA;        in_Config(&quot;EV_OvertimeRateCheck&quot;).ToString&#xD;&#xA;    ),&#xD;&#xA;    Tuple.Create(&#xD;&#xA;        dec_Shift = 0 OrElse in_dt_RDCPayCategories.AsEnumerable().Any(Function(row)&#xD;&#xA;            Return row(&quot;Category&quot;).ToString.Trim.Equals(&quot;Shift Pay&quot;, StringComparison.OrdinalIgnoreCase) AndAlso&#xD;&#xA;                   Convert.ToDecimal(row(&quot;pay_rate&quot;).ToString.Trim) = dec_Shift&#xD;&#xA;        End Function),&#xD;&#xA;        in_Config(&quot;EV_ShiftDiffRateCheck&quot;).ToString&#xD;&#xA;    )&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;For Each rule In rules.Where(Function(r) Not r.Item1)&#xD;&#xA;    Dim newRow As DataRow = io_DtFindings.NewRow()&#xD;&#xA;    newRow(&quot;DocumentType&quot;)   = &quot;EV&quot;&#xD;&#xA;    newRow(&quot;PageNumber&quot;)     = &quot;PageNum&quot;&#xD;&#xA;    newRow(&quot;Findings&quot;)       = rule.Item2&#xD;&#xA;    newRow(&quot;OtherCondition&quot;) = &quot;&quot;&#xD;&#xA;    io_DtFindings.Rows.Add(newRow)&#xD;&#xA;Next&#xD;&#xA;&#xD;&#xA;out_IsValid = rules.All(Function(r) r.Item1)" DisplayName="Invoke Code - Validate gross, overtime, and shift differential rates" sap:VirtualizedContainerService.HintSize="388,57" sap2010:WorkflowViewState.IdRef="InvokeCode_6">
+                                <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim dec_Gross As Decimal = Convert.ToDecimal(in_GrossAmount.Replace(&quot;$&quot;,&quot;&quot;).Trim)&#xA;Dim dec_OT    As Decimal = Convert.ToDecimal(in_OvertimeAmt.Replace(&quot;$&quot;,&quot;&quot;).Trim)&#xA;Dim dec_Shift As Decimal = Convert.ToDecimal(in_ShiftDiffRate.Replace(&quot;$&quot;,&quot;&quot;).Trim)&#xA;&#xA;Dim rules As New List(Of Tuple(Of Boolean, String)) From {&#xA;    Tuple.Create(&#xA;        dec_Gross = 0 OrElse in_dt_RDCPayCategories.AsEnumerable().Any(Function(row)&#xA;            Return row(&quot;Category&quot;).ToString.Trim.Equals(&quot;Regular Rate&quot;, StringComparison.OrdinalIgnoreCase) AndAlso&#xA;                   Convert.ToDecimal(row(&quot;total_per_year&quot;).ToString.Trim) = dec_Gross * in_NumberPayPeriods&#xA;        End Function),&#xA;        in_Config(&quot;EV_GrossWageCheck&quot;).ToString&#xA;    ),&#xA;    Tuple.Create(&#xA;        dec_OT = 0 OrElse in_dt_RDCPayCategories.AsEnumerable().Any(Function(row)&#xA;            Return row(&quot;Category&quot;).ToString.Trim.Equals(&quot;OT Rate&quot;, StringComparison.OrdinalIgnoreCase) AndAlso&#xA;                   Convert.ToDecimal(row(&quot;pay_rate&quot;).ToString.Trim) = dec_OT&#xA;        End Function),&#xA;        in_Config(&quot;EV_OvertimeRateCheck&quot;).ToString&#xA;    ),&#xA;    Tuple.Create(&#xA;        dec_Shift = 0 OrElse in_dt_RDCPayCategories.AsEnumerable().Any(Function(row)&#xA;            Return row(&quot;Category&quot;).ToString.Trim.Equals(&quot;Shift Pay&quot;, StringComparison.OrdinalIgnoreCase) AndAlso&#xA;                   Convert.ToDecimal(row(&quot;pay_rate&quot;).ToString.Trim) = dec_Shift&#xA;        End Function),&#xA;        in_Config(&quot;EV_ShiftDiffRateCheck&quot;).ToString&#xA;    )&#xA;}&#xA;&#xA;For Each rule In rules.Where(Function(r) Not r.Item1)&#xA;    Dim newRow As DataRow = io_DtFindings.NewRow()&#xA;    newRow(&quot;DocumentType&quot;)   = &quot;EV&quot;&#xA;    newRow(&quot;PageNumber&quot;)     = &quot;PageNum&quot;&#xA;    newRow(&quot;Findings&quot;)       = rule.Item2&#xA;    newRow(&quot;OtherCondition&quot;) = &quot;&quot;&#xA;    io_DtFindings.Rows.Add(newRow)&#xA;Next&#xA;&#xA;out_IsValid = rules.All(Function(r) r.Item1)" DisplayName="Invoke Code - Validate gross, overtime, and shift differential rates" sap:VirtualizedContainerService.HintSize="388,57" sap2010:WorkflowViewState.IdRef="InvokeCode_6">
                                   <ui:InvokeCode.Arguments>
-                                    <InArgument x:TypeArguments="x:String" x:Key="in_GrossAmount">
-                                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strGrossAmt" />
-                                    </InArgument>
-                                    <InArgument x:TypeArguments="x:String" x:Key="in_OvertimeAmt">
-                                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strOverTimeAmt" />
-                                    </InArgument>
-                                    <InArgument x:TypeArguments="x:String" x:Key="in_ShiftDiffRate">
-                                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strShiftDiffRate" />
-                                    </InArgument>
-                                    <InArgument x:TypeArguments="x:Int32" x:Key="in_NumberPayPeriods">
-                                      <VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="intNumberPayPeriods" />
-                                    </InArgument>
-                                    <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
-                                      <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_Config" />
-                                    </InArgument>
-                                    <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_RDCPayCategories">
-                                      <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="in_dt_RDCPayCategories" />
-                                    </InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_GrossAmount">[strGrossAmt]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_OvertimeAmt">[strOverTimeAmt]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_ShiftDiffRate">[strShiftDiffRate]</InArgument>
+                                    <InArgument x:TypeArguments="x:Int32" x:Key="in_NumberPayPeriods">[intNumberPayPeriods]</InArgument>
+                                    <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
+                                    <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_RDCPayCategories">[in_dt_RDCPayCategories]</InArgument>
                                     <OutArgument x:TypeArguments="x:Boolean" x:Key="out_IsValid" />
-                                    <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_DtFindings">
-                                      <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="io_dtAuditFindings" />
-                                    </InOutArgument>
+                                    <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_DtFindings">[io_dtAuditFindings]</InOutArgument>
                                   </ui:InvokeCode.Arguments>
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
