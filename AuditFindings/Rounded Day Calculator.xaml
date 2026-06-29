@@ -22,7 +22,7 @@
     <x:Property Name="in_State" Type="InArgument(x:String)" />
     <x:Property Name="out_bool_IsPropertyNameSafford" Type="OutArgument(x:Boolean)" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>1290,6086</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>2053,6504</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -161,7 +161,12 @@
       <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="1064,6021" sap2010:WorkflowViewState.IdRef="Sequence_4891">
+  <sap:WorkflowViewStateService.ViewState>
+    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+      <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
+    </scg:Dictionary>
+  </sap:WorkflowViewStateService.ViewState>
+  <Sequence sap:VirtualizedContainerService.HintSize="1064,6439" sap2010:WorkflowViewState.IdRef="Sequence_4891">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="str_RDCTotalGrossPay" />
       <Variable x:TypeArguments="x:String" Name="str_RDCPayScheduleOption" />
@@ -172,7 +177,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <TryCatch DisplayName="Try Catch-EDC" sap:VirtualizedContainerService.HintSize="1002,5933" sap2010:WorkflowViewState.IdRef="TryCatch_289">
+    <TryCatch DisplayName="Try Catch-EDC" sap:VirtualizedContainerService.HintSize="1002,6351" sap2010:WorkflowViewState.IdRef="TryCatch_289">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
@@ -180,7 +185,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <TryCatch.Try>
-        <Sequence DisplayName="ExactDayCalculator" sap:VirtualizedContainerService.HintSize="964,5682" sap2010:WorkflowViewState.IdRef="Sequence_4030">
+        <Sequence DisplayName="ExactDayCalculator" sap:VirtualizedContainerService.HintSize="964,5996" sap2010:WorkflowViewState.IdRef="Sequence_4030">
           <Sequence.Variables>
             <Variable x:TypeArguments="sd:DataTable" Name="dt_FilteredDocTypeData" />
             <Variable x:TypeArguments="njl:JObject" Name="jObj_JSON" />
@@ -217,7 +222,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:FilterDataTable>
-          <If Condition="[dt_FilteredDocTypeData.RowCount&gt;0]" DisplayName="If-ExactDayCalExists" sap:VirtualizedContainerService.HintSize="902,5237" sap2010:WorkflowViewState.IdRef="If_1248">
+          <If Condition="[dt_FilteredDocTypeData.RowCount&gt;0]" DisplayName="If-ExactDayCalExists" sap:VirtualizedContainerService.HintSize="902,5551" sap2010:WorkflowViewState.IdRef="If_1248">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -225,7 +230,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <If.Then>
-              <Sequence DisplayName="Then: If-ExactDayCalExists" sap:VirtualizedContainerService.HintSize="868,4964" sap2010:WorkflowViewState.IdRef="Sequence_4031">
+              <Sequence DisplayName="Then: If-ExactDayCalExists" sap:VirtualizedContainerService.HintSize="868,5278" sap2010:WorkflowViewState.IdRef="Sequence_4031">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="njl:JArray" Name="jArr_ExtResults" />
                 </Sequence.Variables>
@@ -250,7 +255,7 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                 </ui:BuildDataTable>
-                <Sequence DisplayName="GetLLMJSONResults" sap:VirtualizedContainerService.HintSize="806,937" sap2010:WorkflowViewState.IdRef="Sequence_4032">
+                <Sequence DisplayName="GetLLMJSONResults" sap:VirtualizedContainerService.HintSize="806,1251" sap2010:WorkflowViewState.IdRef="Sequence_4032">
                   <Sequence.Variables>
                     <Variable x:TypeArguments="scg:List(x:String)" Name="list_ImageFiles" />
                     <Variable x:TypeArguments="njl:JObject" Name="jObj_ExtractionResults" />
@@ -271,7 +276,7 @@
                  Select(Function(row) row("ImageFullPath").ToString()).ToList()]</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <Switch x:TypeArguments="x:String" DisplayName="Switch in_State prompt" Expression="[in_State]" sap:VirtualizedContainerService.HintSize="497,320" sap2010:WorkflowViewState.IdRef="Switch`1_46">
+                  <Switch x:TypeArguments="x:String" DisplayName="Switch in_State prompt" Expression="[in_State]" sap:VirtualizedContainerService.HintSize="497,424" sap2010:WorkflowViewState.IdRef="Switch`1_46">
                     <Switch.Default>
                       <Assign DisplayName="Assign - Prompt day calculator" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_1162">
                         <Assign.To>
@@ -282,14 +287,6 @@
                         </Assign.Value>
                       </Assign>
                     </Switch.Default>
-                    <Assign x:Key="TX" DisplayName="Assign - TX EDC" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_1160">
-                      <Assign.To>
-                        <OutArgument x:TypeArguments="x:String">[Prompt]</OutArgument>
-                      </Assign.To>
-                      <Assign.Value>
-                        <InArgument x:TypeArguments="x:String">EDC_Prompt.txt</InArgument>
-                      </Assign.Value>
-                    </Assign>
                     <Assign x:Key="GA" DisplayName="Assign - GA RDC" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_1161">
                       <Assign.To>
                         <OutArgument x:TypeArguments="x:String">[Prompt]</OutArgument>
@@ -306,6 +303,7 @@
                       <OutArgument x:TypeArguments="njl:JObject" x:Key="out_jObjExtractionResults">[jObj_ExtractionResults]</OutArgument>
                       <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
                       <OutArgument x:TypeArguments="njl:JArray" x:Key="out_jArrExtractionResults">[jArr_ExtResults]</OutArgument>
+                      <InArgument x:TypeArguments="s:Exception" x:Key="out_SystemException" />
                     </ui:InvokeWorkflowFile.Arguments>
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -314,23 +312,17 @@
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                   </ui:InvokeWorkflowFile>
-                  <Switch x:TypeArguments="x:String" DisplayName="Switch - initialize jArr_ExtResults based on RDC/EDC" Expression="[in_State]" sap:VirtualizedContainerService.HintSize="497,205" sap2010:WorkflowViewState.IdRef="Switch`1_45">
-                    <Assign x:Key="TX" DisplayName="Assign - jArr_ExtResults Init TX" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_1158">
-                      <Assign.To>
-                        <OutArgument x:TypeArguments="njl:JArray">[jArr_ExtResults]</OutArgument>
-                      </Assign.To>
-                      <Assign.Value>
-                        <InArgument x:TypeArguments="njl:JArray">[CType(jObj_ExtractionResults("values")(0)("ExactDayCalculator"), JArray)]</InArgument>
-                      </Assign.Value>
-                    </Assign>
-                    <Assign x:Key="AZ" DisplayName="Assign - jArr_ExtResults Init AZ" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_1159">
-                      <Assign.To>
-                        <OutArgument x:TypeArguments="njl:JArray">[jArr_ExtResults]</OutArgument>
-                      </Assign.To>
-                      <Assign.Value>
-                        <InArgument x:TypeArguments="njl:JArray">[CType(jObj_ExtractionResults("values")(0)("ExactDayCalculator"), JArray)]</InArgument>
-                      </Assign.Value>
-                    </Assign>
+                  <Switch x:TypeArguments="x:String" DisplayName="Switch - initialize jArr_ExtResults based on RDC/EDC" Expression="[in_State]" sap:VirtualizedContainerService.HintSize="497,415" sap2010:WorkflowViewState.IdRef="Switch`1_45">
+                    <Switch.Default>
+                      <Assign DisplayName="Assign - jArr_ExtResults Init" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_1158">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="njl:JArray">[jArr_ExtResults]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="njl:JArray">[CType(jObj_ExtractionResults("values")(0)("ExactDayCalculator"), JArray)]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </Switch.Default>
                     <Assign x:Key="GA" DisplayName="Assign - jArr_ExtResults Init GA" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_1128">
                       <Assign.To>
                         <OutArgument x:TypeArguments="njl:JArray">[jArr_ExtResults]</OutArgument>
