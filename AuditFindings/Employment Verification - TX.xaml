@@ -21,7 +21,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1056,4676</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1056,5022</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Employment_Verification_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -137,15 +137,15 @@
       <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence sap:VirtualizedContainerService.HintSize="841,4611" sap2010:WorkflowViewState.IdRef="Sequence_10">
+  <Sequence sap:VirtualizedContainerService.HintSize="841,4957" sap2010:WorkflowViewState.IdRef="Sequence_10">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <TryCatch DisplayName="Try Catch - Employment Verification" sap:VirtualizedContainerService.HintSize="779,4523" sap2010:WorkflowViewState.IdRef="TryCatch_6">
+    <TryCatch DisplayName="Try Catch - Employment Verification" sap:VirtualizedContainerService.HintSize="779,4869" sap2010:WorkflowViewState.IdRef="TryCatch_6">
       <TryCatch.Try>
-        <Sequence DisplayName="Employment_Verification" sap:VirtualizedContainerService.HintSize="741,3650" sap2010:WorkflowViewState.IdRef="Sequence_15">
+        <Sequence DisplayName="Employment_Verification" sap:VirtualizedContainerService.HintSize="741,3996" sap2010:WorkflowViewState.IdRef="Sequence_15">
           <Sequence.Variables>
             <Variable x:TypeArguments="sd:DataTable" Name="dt_FilteredEVData" />
           </Sequence.Variables>
@@ -154,6 +154,14 @@
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="679,173" sap2010:WorkflowViewState.IdRef="LogMessage_3" Message="[&quot;Started checking findings for &quot;+in_Config(&quot;EV&quot;).ToString]">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:LogMessage>
           <ui:FilterDataTable DataTable="[in_ClassificationResultsData]" DisplayName="Filter Data Table - EV" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="679,193" sap2010:WorkflowViewState.IdRef="FilterDataTable_1" OutputDataTable="[dt_FilteredEVData]" SelectColumnsMode="Remove">
             <ui:FilterDataTable.Filters>
               <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
@@ -173,7 +181,7 @@
               </scg:List>
             </ui:FilterDataTable.SelectColumns>
           </ui:FilterDataTable>
-          <If Condition="[dt_FilteredEVData.RowCount &gt; 0]" DisplayName="If - Employment Verification exists" sap:VirtualizedContainerService.HintSize="679,3205" sap2010:WorkflowViewState.IdRef="If_1">
+          <If Condition="[dt_FilteredEVData.RowCount &gt; 0]" DisplayName="If - Employment Verification exists" sap:VirtualizedContainerService.HintSize="679,3378" sap2010:WorkflowViewState.IdRef="If_1">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -181,7 +189,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <If.Then>
-              <Sequence DisplayName="Then: If - Employment Verification exists" sap:VirtualizedContainerService.HintSize="645,2842" sap2010:WorkflowViewState.IdRef="Sequence_2">
+              <Sequence DisplayName="Then: If - Employment Verification exists" sap:VirtualizedContainerService.HintSize="645,3015" sap2010:WorkflowViewState.IdRef="Sequence_2">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="njl:JArray" Name="jArrExtResults" />
                   <Variable x:TypeArguments="scg:List(x:String)" Name="listImageFiles" />
@@ -192,7 +200,7 @@
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <Sequence DisplayName="Get LLM JSON Results" sap:VirtualizedContainerService.HintSize="583,735" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                <Sequence DisplayName="Get LLM JSON Results" sap:VirtualizedContainerService.HintSize="583,908" sap2010:WorkflowViewState.IdRef="Sequence_3">
                   <Sequence.Variables>
                     <Variable x:TypeArguments="njl:JObject" Name="jObjExtractionResults" />
                   </Sequence.Variables>
@@ -202,6 +210,14 @@
                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,173" sap2010:WorkflowViewState.IdRef="LogMessage_4" Message="[in_Config(&quot;EV&quot;).ToString+&quot; exists&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:LogMessage>
                   <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;EV&quot;,&quot;PageNum&quot;,in_Config(&quot;EV_EmailReceiptAndClarification&quot;).ToString,&quot;&quot;}]" DataTable="[io_dtAuditFindings]" DisplayName="Add Data Row - EV needs manual review" sap:VirtualizedContainerService.HintSize="434,218" sap2010:WorkflowViewState.IdRef="AddDataRow_1">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">

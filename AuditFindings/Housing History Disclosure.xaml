@@ -8,7 +8,7 @@
     <x:Property Name="in_PromptsFolder" Type="InArgument(x:String)" />
     <x:Property Name="in_boolRealEstateIsChecked" Type="InArgument(x:Boolean)" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>916,6249</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1056,6478</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -143,13 +143,13 @@
       <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="926,6184" sap2010:WorkflowViewState.IdRef="Sequence_3970">
+  <Sequence sap:VirtualizedContainerService.HintSize="926,6413" sap2010:WorkflowViewState.IdRef="Sequence_3970">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <TryCatch DisplayName="Try Catch-HousingDisclosure" sap:VirtualizedContainerService.HintSize="864,6096" sap2010:WorkflowViewState.IdRef="TryCatch_183">
+    <TryCatch DisplayName="Try Catch-HousingDisclosure" sap:VirtualizedContainerService.HintSize="864,6325" sap2010:WorkflowViewState.IdRef="TryCatch_183">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
@@ -157,7 +157,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <TryCatch.Try>
-        <Sequence DisplayName="HousingDisclosureCheck" sap:VirtualizedContainerService.HintSize="826,5844" sap2010:WorkflowViewState.IdRef="Sequence_3112">
+        <Sequence DisplayName="HousingDisclosureCheck" sap:VirtualizedContainerService.HintSize="826,6073" sap2010:WorkflowViewState.IdRef="Sequence_3112">
           <Sequence.Variables>
             <Variable x:TypeArguments="sd:DataTable" Name="dt_FilteredHousingDisclosureData" />
           </Sequence.Variables>
@@ -200,7 +200,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:FilterDataTable>
-          <If Condition="[dt_FilteredHousingDisclosureData.RowCount&gt;0]" DisplayName="If-HousingDisclosureExists" sap:VirtualizedContainerService.HintSize="764,5224" sap2010:WorkflowViewState.IdRef="If_943">
+          <If Condition="[dt_FilteredHousingDisclosureData.RowCount&gt;0]" DisplayName="If-HousingDisclosureExists" sap:VirtualizedContainerService.HintSize="764,5453" sap2010:WorkflowViewState.IdRef="If_943">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -208,7 +208,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <If.Then>
-              <Sequence DisplayName="Then: If-HousingDisclosureExists" sap:VirtualizedContainerService.HintSize="730,4754" sap2010:WorkflowViewState.IdRef="Sequence_3113">
+              <Sequence DisplayName="Then: If-HousingDisclosureExists" sap:VirtualizedContainerService.HintSize="730,4983" sap2010:WorkflowViewState.IdRef="Sequence_3113">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="njl:JArray" Name="jArrExtResults" />
                   <Variable x:TypeArguments="scg:List(x:String)" Name="listImageFiles" />
@@ -219,7 +219,7 @@
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <Sequence DisplayName="GetLLMJSONResults" sap:VirtualizedContainerService.HintSize="668,403" sap2010:WorkflowViewState.IdRef="Sequence_3421">
+                <Sequence DisplayName="GetLLMJSONResults" sap:VirtualizedContainerService.HintSize="668,632" sap2010:WorkflowViewState.IdRef="Sequence_3421">
                   <Sequence.Variables>
                     <Variable x:TypeArguments="njl:JObject" Name="jObjExtractionResults" />
                   </Sequence.Variables>
@@ -229,6 +229,14 @@
                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,173" sap2010:WorkflowViewState.IdRef="LogMessage_131" Message="[in_Config(&quot;Housing Disclosure&quot;).ToString+&quot; exists&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:LogMessage>
                   <Assign DisplayName="Assign-ImageFiles" sap:VirtualizedContainerService.HintSize="434,115" sap2010:WorkflowViewState.IdRef="Assign_719">
                     <Assign.To>
                       <OutArgument x:TypeArguments="scg:List(x:String)">[listImageFiles]</OutArgument>
@@ -238,7 +246,7 @@
                  Select(Function(row) row("ImageFullPath").ToString()).ToList()]</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="GetLLMExtractionResultsForEachDoc - Invoke Workflow File (GetLLMExtractionResultsForEachDoc.xaml)" sap:VirtualizedContainerService.HintSize="434,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_86" UnSafe="False" WorkflowFileName="LLM\GetLLMExtractionResultsForEachDoc.xaml">
+                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="GetLLMExtractionResultsForEachDoc - Invoke Workflow File (GetLLMExtractionResultsForEachDoc.xaml)" sap:VirtualizedContainerService.HintSize="434,224" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_86" UnSafe="False" WorkflowFileName="LLM\GetLLMExtractionResultsForEachDoc.xaml">
                     <ui:InvokeWorkflowFile.Arguments>
                       <InArgument x:TypeArguments="x:String" x:Key="in_UserPromptTextFile">[in_PromptsFolder+"HHD_Prompt.txt"]</InArgument>
                       <InArgument x:TypeArguments="scg:List(x:String)" x:Key="in_ImagePath">[listImageFiles]</InArgument>

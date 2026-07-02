@@ -10,7 +10,7 @@
     <x:Property Name="io_DTAuditFindings" Type="InOutArgument(sd:DataTable)" />
     <x:Property Name="in_str_State" Type="InArgument(x:String)" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>1745,2852</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1056,688</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -153,7 +153,7 @@
       <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="Child Support Payment History &amp; Calcs" sap:VirtualizedContainerService.HintSize="620,2787" sap2010:WorkflowViewState.IdRef="Sequence_4840">
+  <Sequence DisplayName="Child Support Payment History &amp; Calcs" sap:VirtualizedContainerService.HintSize="416,482" sap2010:WorkflowViewState.IdRef="Sequence_4840">
     <Sequence.Variables>
       <Variable x:TypeArguments="s:String[]" Name="arr_CSCEndDates" />
       <Variable x:TypeArguments="s:String[]" Name="arr_CSCStartDates" />
@@ -169,7 +169,15 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Switch x:TypeArguments="x:String" DisplayName="Switch: states" Expression="[in_str_State]" sap:VirtualizedContainerService.HintSize="558,2699" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="354,173" sap2010:WorkflowViewState.IdRef="LogMessage_174" Message="[&quot;Started checking findings for &quot;+in_Config(&quot;CSPH&quot;).ToString+&quot; with supporting documents&quot;]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:LogMessage>
+    <Switch x:TypeArguments="x:String" DisplayName="Switch: states" Expression="[in_str_State]" sap:VirtualizedContainerService.HintSize="354,57" sap2010:WorkflowViewState.IdRef="Switch`1_1">
       <Switch.Default>
         <TryCatch DisplayName="Try Catch-ChildSupportPaymentHistory" sap:VirtualizedContainerService.HintSize="456,1283" sap2010:WorkflowViewState.IdRef="TryCatch_278">
           <sap:WorkflowViewStateService.ViewState>
@@ -268,6 +276,12 @@
           </TryCatch.Catches>
         </TryCatch>
       </Switch.Default>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
       <Sequence x:Key="TX" DisplayName="Case: in_str_State = TX" sap:VirtualizedContainerService.HintSize="518,1163" sap2010:WorkflowViewState.IdRef="Sequence_4843">
         <Sequence.Variables>
           <Variable x:TypeArguments="x:String" Name="str_CSCStartDate" />
@@ -414,5 +428,13 @@
         </TryCatch>
       </Sequence>
     </Switch>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="354,164" sap2010:WorkflowViewState.IdRef="LogMessage_175" Message="[&quot;Finished checking findings for &quot;+in_Config(&quot;CSPH&quot;).ToString+&quot; with supporting documents&quot;]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:LogMessage>
   </Sequence>
 </Activity>
