@@ -15,7 +15,7 @@
     <x:Property Name="in_jarr_COLACalculations" Type="InArgument(njl:JArray)" />
     <x:Property Name="in_jarr_ColaLetters" Type="InArgument(njl:JArray)" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>1056,1409</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1056,1527</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -184,20 +184,28 @@
       <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="SupplementalSecurityIncomeBenefits" sap:VirtualizedContainerService.HintSize="718,1344" sap2010:WorkflowViewState.IdRef="Sequence_4288">
+  <Sequence DisplayName="SupplementalSecurityIncomeBenefits" sap:VirtualizedContainerService.HintSize="659,1462" sap2010:WorkflowViewState.IdRef="Sequence_4288">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <TryCatch DisplayName="Try Catch-SupplementalSecurityIncomeBenefits" sap:VirtualizedContainerService.HintSize="656,1256" sap2010:WorkflowViewState.IdRef="TryCatch_243">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="597,173" sap2010:WorkflowViewState.IdRef="LogMessage_157" Message="[&quot;Started checking findings for &quot;+in_Config(&quot;SSIB&quot;).ToString]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:LogMessage>
+    <TryCatch DisplayName="Try Catch-SupplementalSecurityIncomeBenefits" sap:VirtualizedContainerService.HintSize="597,1201" sap2010:WorkflowViewState.IdRef="TryCatch_243">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <TryCatch.Try>
-        <Sequence DisplayName="SupplementalSecurityIncomeBenefits" sap:VirtualizedContainerService.HintSize="618,1005" sap2010:WorkflowViewState.IdRef="Sequence_4187">
+        <Sequence DisplayName="SupplementalSecurityIncomeBenefits" sap:VirtualizedContainerService.HintSize="559,950" sap2010:WorkflowViewState.IdRef="Sequence_4187">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:String" Name="str_EmployeeName" />
             <Variable x:TypeArguments="x:String" Name="str_Date" />
@@ -210,7 +218,7 @@
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:MultipleAssign DisplayName="Multiple Assign-SSIB" sap:VirtualizedContainerService.HintSize="556,57" sap2010:WorkflowViewState.IdRef="MultipleAssign_30">
+          <ui:MultipleAssign DisplayName="Multiple Assign-SSIB" sap:VirtualizedContainerService.HintSize="497,57" sap2010:WorkflowViewState.IdRef="MultipleAssign_30">
             <ui:MultipleAssign.AssignOperations>
               <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
                 <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_383">
@@ -246,7 +254,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:MultipleAssign>
-          <ausas:FindAllMatches Candidates="[in_arr_ICWMemberNames]" DisplayName="Find All Matches" sap:VirtualizedContainerService.HintSize="556,57" sap2010:WorkflowViewState.IdRef="FindAllMatches_13" MinThreshold="[CDec(in_Config(&quot;FindAllMatches_Threshold&quot;).ToString)]" Query="[str_EmployeeName]" Result="[list_ICWMatchedResults]">
+          <ausas:FindAllMatches Candidates="[in_arr_ICWMemberNames]" DisplayName="Find All Matches" sap:VirtualizedContainerService.HintSize="497,57" sap2010:WorkflowViewState.IdRef="FindAllMatches_13" MinThreshold="[CDec(in_Config(&quot;FindAllMatches_Threshold&quot;).ToString)]" Query="[str_EmployeeName]" Result="[list_ICWMatchedResults]">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
@@ -254,7 +262,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ausas:FindAllMatches>
-          <If Condition="[in_arr_ICWMemberNames IsNot Nothing AndAlso list_ICWMatchedResults.Count&gt;0]" DisplayName="If-EmployeeNameMatch" sap:VirtualizedContainerService.HintSize="556,57" sap2010:WorkflowViewState.IdRef="If_1248">
+          <If Condition="[in_arr_ICWMemberNames IsNot Nothing AndAlso list_ICWMatchedResults.Count&gt;0]" DisplayName="If-EmployeeNameMatch" sap:VirtualizedContainerService.HintSize="497,57" sap2010:WorkflowViewState.IdRef="If_1248">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -289,10 +297,10 @@
               </Sequence>
             </If.Else>
           </If>
-          <Switch x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="Perform MoveInDate check only if it is monthly" DisplayName="Switch-LetterVersion" Expression="[in_jObj_JSON(&quot;DocumentInformation&quot;)(&quot;LetterVersion&quot;).ToString.ToLower]" sap:VirtualizedContainerService.HintSize="556,331" sap2010:WorkflowViewState.IdRef="Switch`1_28">
+          <Switch x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="Perform MoveInDate check only if it is monthly" DisplayName="Switch-LetterVersion" Expression="[in_jObj_JSON(&quot;DocumentInformation&quot;)(&quot;LetterVersion&quot;).ToString.ToLower]" sap:VirtualizedContainerService.HintSize="497,99" sap2010:WorkflowViewState.IdRef="Switch`1_28">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
               </scg:Dictionary>
@@ -366,7 +374,7 @@
               </TryCatch.Catches>
             </TryCatch>
           </Switch>
-          <If Condition="[in_jObj_JSON(&quot;OverPayment&quot;)(&quot;HasOverPayment&quot;).ToString.ToLower.Equals(&quot;true&quot;) or Not in_jObj_JSON(&quot;OverPayment&quot;)(&quot;OverPaymentValue&quot;).ToString.ToLower.Equals(&quot;0&quot;)]" DisplayName="If-OverPaymentTrue" sap:VirtualizedContainerService.HintSize="556,57" sap2010:WorkflowViewState.IdRef="If_1247">
+          <If Condition="[in_jObj_JSON(&quot;OverPayment&quot;)(&quot;HasOverPayment&quot;).ToString.ToLower.Equals(&quot;true&quot;) or Not in_jObj_JSON(&quot;OverPayment&quot;)(&quot;OverPaymentValue&quot;).ToString.ToLower.Equals(&quot;0&quot;)]" DisplayName="If-OverPaymentTrue" sap:VirtualizedContainerService.HintSize="497,57" sap2010:WorkflowViewState.IdRef="If_1247">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
@@ -401,7 +409,7 @@
               </Sequence>
             </If.Else>
           </If>
-          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Check If COLA Effective - Invoke Workflow File (Check If COLA Effective.xaml)" sap:VirtualizedContainerService.HintSize="556,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Utilities\Check If COLA Effective.xaml">
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Check If COLA Effective - Invoke Workflow File (Check If COLA Effective.xaml)" sap:VirtualizedContainerService.HintSize="497,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Utilities\Check If COLA Effective.xaml">
             <ui:InvokeWorkflowFile.Arguments>
               <InArgument x:TypeArguments="x:String" x:Key="in_str_LetterVersion">[in_str_LetterVersion]</InArgument>
               <InArgument x:TypeArguments="x:String" x:Key="in_str_BeginningMonth">[in_str_BeginningMonth]</InArgument>
@@ -418,21 +426,21 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:InvokeWorkflowFile>
-          <Switch x:TypeArguments="x:String" DisplayName="Switch-COLAEffectiveYes/No-SSIB" Expression="[io_bool_ColaEffective.ToString.ToLower]" sap:VirtualizedContainerService.HintSize="556,181" sap2010:WorkflowViewState.IdRef="Switch`1_27">
+          <Switch x:TypeArguments="x:String" DisplayName="Switch-COLAEffectiveYes/No-SSIB" Expression="[io_bool_ColaEffective.ToString.ToLower]" sap:VirtualizedContainerService.HintSize="497,194" sap2010:WorkflowViewState.IdRef="Switch`1_27">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Sequence x:Key="false" DisplayName="Sequence-False" sap:VirtualizedContainerService.HintSize="512,649" sap2010:WorkflowViewState.IdRef="Sequence_4264">
+            <Sequence x:Key="false" DisplayName="Sequence-False" sap:VirtualizedContainerService.HintSize="416,174" sap2010:WorkflowViewState.IdRef="Sequence_4264">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <If Condition="[in_dt_ICWIncomeData.AsEnumerable().Any(Function(row) Convert.ToDouble(row(&quot;VerifiedIncome&quot;).ToString().Trim()) = Convert.ToDouble(if(String.IsNullOrEmpty(in_jObj_JSON(&quot;Benefits&quot;)(&quot;YearlyAmount&quot;).ToString()),&quot;0&quot;,in_jObj_JSON(&quot;Benefits&quot;)(&quot;YearlyAmount&quot;).ToString().Trim)))]" DisplayName="If-YearlyAmountMatchICW-SSIB" sap:VirtualizedContainerService.HintSize="450,561" sap2010:WorkflowViewState.IdRef="If_1274">
+              <If Condition="[in_dt_ICWIncomeData.AsEnumerable().Any(Function(row) Convert.ToDouble(row(&quot;VerifiedIncome&quot;).ToString().Trim()) = Convert.ToDouble(if(String.IsNullOrEmpty(in_jObj_JSON(&quot;Benefits&quot;)(&quot;YearlyAmount&quot;).ToString()),&quot;0&quot;,in_jObj_JSON(&quot;Benefits&quot;)(&quot;YearlyAmount&quot;).ToString().Trim)))]" DisplayName="If-YearlyAmountMatchICW-SSIB" sap:VirtualizedContainerService.HintSize="354,205" sap2010:WorkflowViewState.IdRef="If_1274">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -468,14 +476,14 @@
                 </If.Else>
               </If>
             </Sequence>
-            <Sequence x:Key="true" DisplayName="Sequence-true" sap:VirtualizedContainerService.HintSize="608,910" sap2010:WorkflowViewState.IdRef="Sequence_4279">
+            <Sequence x:Key="true" DisplayName="Sequence-true" sap:VirtualizedContainerService.HintSize="416,350" sap2010:WorkflowViewState.IdRef="Sequence_4279">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <If Condition="[in_bool_COLALetterExists]" DisplayName="If-ColaLetterPresentSSIB" sap:VirtualizedContainerService.HintSize="546,57" sap2010:WorkflowViewState.IdRef="If_1276">
+              <If Condition="[in_bool_COLALetterExists]" DisplayName="If-ColaLetterPresentSSIB" sap:VirtualizedContainerService.HintSize="354,57" sap2010:WorkflowViewState.IdRef="If_1276">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -577,7 +585,7 @@
                   </Sequence>
                 </If.Else>
               </If>
-              <If Condition="[in_bool_COLACalcExists]" DisplayName="If-ColaCalcFormExists" sap:VirtualizedContainerService.HintSize="546,765" sap2010:WorkflowViewState.IdRef="If_1281">
+              <If Condition="[in_bool_COLACalcExists]" DisplayName="If-ColaCalcFormExists" sap:VirtualizedContainerService.HintSize="354,205" sap2010:WorkflowViewState.IdRef="If_1281">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -759,10 +767,18 @@
               </If>
             </Sequence>
           </Switch>
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="497,164" sap2010:WorkflowViewState.IdRef="LogMessage_158" Message="[&quot;Ended checking findings for &quot;+in_Config(&quot;SSIB&quot;).ToString]">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:LogMessage>
         </Sequence>
       </TryCatch.Try>
       <TryCatch.Catches>
-        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="618,22" sap2010:WorkflowViewState.IdRef="Catch`1_234">
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="563,22" sap2010:WorkflowViewState.IdRef="Catch`1_234">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -773,7 +789,7 @@
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="ErrorAtSSI" sap:VirtualizedContainerService.HintSize="416,354" sap2010:WorkflowViewState.IdRef="Sequence_4287">
+            <Sequence DisplayName="ErrorAtSSI" sap:VirtualizedContainerService.HintSize="416,369" sap2010:WorkflowViewState.IdRef="Sequence_4287">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>

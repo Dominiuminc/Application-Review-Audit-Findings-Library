@@ -17,7 +17,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1056,5586</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1056,5447</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ConvertPDFsToImages_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -137,7 +137,7 @@
       <AssemblyReference>WindowsBase</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ConvertPDFsToImages" sap:VirtualizedContainerService.HintSize="1038,5521" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ConvertPDFsToImages" sap:VirtualizedContainerService.HintSize="1038,5382" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Int32" Name="int_Index" />
       <Variable x:TypeArguments="x:String" Name="str_RequiredDocPrompt" />
@@ -153,7 +153,7 @@
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="976,173" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;ConvertPDFsToImages.xaml is Started&quot;]" />
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="976,57" sap2010:WorkflowViewState.IdRef="CommentOut_170">
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="976,440" sap2010:WorkflowViewState.IdRef="CommentOut_170">
       <ui:CommentOut.Body>
         <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="541,289" sap2010:WorkflowViewState.IdRef="Sequence_288">
           <sap:WorkflowViewStateService.ViewState>
@@ -169,7 +169,7 @@
                     <OutArgument x:TypeArguments="x:String">[str_RequiredDocPromptFile]</OutArgument>
                   </ui:AssignOperation.To>
                   <ui:AssignOperation.Value>
-                    <InArgument x:TypeArguments="x:String">[in_Config("LocalPromptsFolder").ToString+"DocumentTypeUserPrompt.txt"]</InArgument>
+                    <InArgument x:TypeArguments="x:String">[in_Config("LocalPromptsFolder").ToString+"DocumentTypeUserPrompt_"+in_State+".txt"]</InArgument>
                   </ui:AssignOperation.Value>
                 </ui:AssignOperation>
                 <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_16">
@@ -201,26 +201,26 @@
       </ui:CommentOut.Body>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-    </ui:CommentOut>
-    <Sequence DisplayName="TestingPurpose" sap:VirtualizedContainerService.HintSize="976,579" sap2010:WorkflowViewState.IdRef="Sequence_291">
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Invoke InitAllSettings workflow" sap:VirtualizedContainerService.HintSize="434,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Framework\InitAllSettings.xaml">
+    </ui:CommentOut>
+    <Sequence DisplayName="TestingPurpose" sap:VirtualizedContainerService.HintSize="976,57" sap2010:WorkflowViewState.IdRef="Sequence_291">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Invoke InitAllSettings workflow" sap:VirtualizedContainerService.HintSize="441,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Framework\InitAllSettings.xaml">
         <ui:InvokeWorkflowFile.Arguments>
           <InArgument x:TypeArguments="x:String" x:Key="in_ConfigFile">Data\Config.xlsx</InArgument>
           <InArgument x:TypeArguments="s:String[]" x:Key="in_ConfigSheets">[{"Settings", "Constants","Findings"}]</InArgument>
           <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="out_Config">[in_Config]</OutArgument>
         </ui:InvokeWorkflowFile.Arguments>
       </ui:InvokeWorkflowFile>
-      <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_12">
+      <Assign sap:VirtualizedContainerService.HintSize="441,114" sap2010:WorkflowViewState.IdRef="Assign_12">
         <Assign.To>
           <OutArgument x:TypeArguments="scg:List(x:String)">[in_PDFFiles]</OutArgument>
         </Assign.To>
@@ -228,7 +228,7 @@
           <InArgument x:TypeArguments="scg:List(x:String)">[System.IO.Directory.GetFiles("C:\Users\harika.malyala\Documents\AZApplicationReview\PDFs\Unit WAIT1").ToList]</InArgument>
         </Assign.Value>
       </Assign>
-      <ui:ReadRange Range="{x:Null}" WorkbookPathResource="{x:Null}" AddHeaders="True" DataTable="[in_DTClassificationMatrix]" DisplayName="Read Range Workbook" sap:VirtualizedContainerService.HintSize="434,120" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="Sheet1" WorkbookPath="C:\Users\harika.malyala\Documents\AZApplicationReview\Prompts\Classification Matrix.xlsx">
+      <ui:ReadRange Range="{x:Null}" WorkbookPathResource="{x:Null}" AddHeaders="True" DataTable="[in_DTClassificationMatrix]" DisplayName="Read Range Workbook" sap:VirtualizedContainerService.HintSize="441,120" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="Sheet1" WorkbookPath="C:\Users\harika.malyala\Documents\AZApplicationReview\Prompts\Classification Matrix.xlsx">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -236,7 +236,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:ReadRange>
-      <ui:MultipleAssign DisplayName="Set: in_EndPoint, in_APIKey, in_DeploymentName, in_APIVersion..." sap:VirtualizedContainerService.HintSize="434,48" sap2010:WorkflowViewState.IdRef="MultipleAssign_4">
+      <ui:MultipleAssign DisplayName="Set: in_EndPoint, in_APIKey, in_DeploymentName, in_APIVersion..." sap:VirtualizedContainerService.HintSize="441,48" sap2010:WorkflowViewState.IdRef="MultipleAssign_4">
         <ui:MultipleAssign.AssignOperations>
           <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
             <ui:AssignOperation sap:VirtualizedContainerService.HintSize="334,25" sap2010:WorkflowViewState.IdRef="AssignOperation_8">
@@ -276,7 +276,7 @@
                 <OutArgument x:TypeArguments="x:String">[str_RequiredDocPromptFile]</OutArgument>
               </ui:AssignOperation.To>
               <ui:AssignOperation.Value>
-                <InArgument x:TypeArguments="x:String">C:\Users\harika.malyala\Documents\AZApplicationReview\Prompts\DocumentTypeUserPrompt.txt</InArgument>
+                <InArgument x:TypeArguments="x:String">["C:\Users\harika.malyala\Documents\AZApplicationReview\Prompts\"+"DocumentTypeUserPrompt_"+in_State+".txt"]</InArgument>
               </ui:AssignOperation.Value>
             </ui:AssignOperation>
             <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_13">
