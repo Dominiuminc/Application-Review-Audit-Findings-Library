@@ -3,12 +3,12 @@
     <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
     <x:Property Name="in_ClassificationResultsData" Type="InArgument(sd:DataTable)" />
     <x:Property Name="in_State" Type="InArgument(x:String)" />
-    <x:Property Name="io_DTAuditFindings" Type="InOutArgument(sd:DataTable)" />
     <x:Property Name="in_MoveIndate" Type="InArgument(x:String)" />
     <x:Property Name="in_PromptsFolder" Type="InArgument(x:String)" />
     <x:Property Name="in_boolRealEstateIsChecked" Type="InArgument(x:Boolean)" />
+    <x:Property Name="io_dt_AuditFindings" Type="InOutArgument(sd:DataTable)" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>1056,6478</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1413,6478</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -413,7 +413,7 @@
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
-                              <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;Housing Disclosure&quot;,&quot;PageNum&quot;,in_Config(&quot;HHD_IsSigned&quot;).ToString,&quot;&quot;}]" DataTable="[io_DTAuditFindings]" DisplayName="HHD is not signed row finding" sap:VirtualizedContainerService.HintSize="354,212" sap2010:WorkflowViewState.IdRef="AddDataRow_982" />
+                              <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;Housing Disclosure&quot;,&quot;PageNum&quot;,in_Config(&quot;HHD_IsSigned&quot;).ToString,&quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="HHD is not signed row finding" sap:VirtualizedContainerService.HintSize="354,212" sap2010:WorkflowViewState.IdRef="AddDataRow_982" />
                             </Sequence>
                           </If.Else>
                         </If>
@@ -440,7 +440,7 @@
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
-                              <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;Housing Disclosure&quot;,&quot;PageNum&quot;,in_Config(&quot;HHD_IsDated&quot;).ToString,&quot;&quot;}]" DataTable="[io_DTAuditFindings]" DisplayName="HHD is not dated finding" sap:VirtualizedContainerService.HintSize="354,212" sap2010:WorkflowViewState.IdRef="AddDataRow_983" />
+                              <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;Housing Disclosure&quot;,&quot;PageNum&quot;,in_Config(&quot;HHD_IsDated&quot;).ToString,&quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="HHD is not dated finding" sap:VirtualizedContainerService.HintSize="354,212" sap2010:WorkflowViewState.IdRef="AddDataRow_983" />
                             </Sequence>
                           </If.Else>
                         </If>
@@ -477,7 +477,7 @@
                                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
-                                  <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;Housing Disclosure&quot;,&quot;PageNum&quot;,in_Config(&quot;HHD_MoveInDateCheck&quot;).ToString,&quot;&quot;}]" DataTable="[io_DTAuditFindings]" DisplayName="Check for move in date for HHD" sap:VirtualizedContainerService.HintSize="354,212" sap2010:WorkflowViewState.IdRef="AddDataRow_984">
+                                  <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;Housing Disclosure&quot;,&quot;PageNum&quot;,in_Config(&quot;HHD_MoveInDateCheck&quot;).ToString,&quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Check for move in date for HHD" sap:VirtualizedContainerService.HintSize="354,212" sap2010:WorkflowViewState.IdRef="AddDataRow_984">
                                     <sap:WorkflowViewStateService.ViewState>
                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
@@ -500,7 +500,7 @@
                                 <ActivityAction.Argument>
                                   <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                                 </ActivityAction.Argument>
-                                <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;Housing Disclosure&quot;,&quot;PageNum&quot;,&quot;Unable to validate a Finding: &quot;+in_Config(&quot;HHD_MoveInDateCheck&quot;).ToString+&quot; Needs manual review&quot;,exception.Message}]" DataTable="[io_DTAuditFindings]" DisplayName="Erros in validating findings for HHD" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_991">
+                                <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;Housing Disclosure&quot;,&quot;PageNum&quot;,&quot;Unable to validate a Finding: &quot;+in_Config(&quot;HHD_MoveInDateCheck&quot;).ToString+&quot; Needs manual review&quot;,exception.Message}]" DataTable="[io_dt_AuditFindings]" DisplayName="Erros in validating findings for HHD" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_991">
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
@@ -525,7 +525,7 @@
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
-                              <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;Housing Disclosure&quot;,&quot;PageNum&quot;,in_Config(&quot;HHD_OwningCurrentAddress&quot;).ToString,&quot;&quot;}]" DataTable="[io_DTAuditFindings]" DisplayName="&quot;Own&quot; checkbox marked on HHD" sap:VirtualizedContainerService.HintSize="354,212" sap2010:WorkflowViewState.IdRef="AddDataRow_992">
+                              <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;Housing Disclosure&quot;,&quot;PageNum&quot;,in_Config(&quot;HHD_OwningCurrentAddress&quot;).ToString,&quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="&quot;Own&quot; checkbox marked on HHD" sap:VirtualizedContainerService.HintSize="354,212" sap2010:WorkflowViewState.IdRef="AddDataRow_992">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
@@ -558,7 +558,7 @@
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
-                              <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;Housing Disclosure&quot;,&quot;PageNum&quot;,in_Config(&quot;HHD_PropertyCheckbox&quot;).ToString,&quot;&quot;}]" DataTable="[io_DTAuditFindings]" DisplayName="Property checkbox check row finding" sap:VirtualizedContainerService.HintSize="354,212" sap2010:WorkflowViewState.IdRef="AddDataRow_1126">
+                              <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;Housing Disclosure&quot;,&quot;PageNum&quot;,in_Config(&quot;HHD_PropertyCheckbox&quot;).ToString,&quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Property checkbox check row finding" sap:VirtualizedContainerService.HintSize="354,212" sap2010:WorkflowViewState.IdRef="AddDataRow_1126">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
@@ -591,7 +591,7 @@
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;Housing Disclosure&quot;,&quot;PageNum&quot;,in_Config(&quot;HousingDisclosureExists&quot;).ToString,&quot;&quot;}]" DataTable="[io_DTAuditFindings]" DisplayName="HHD inexistent finding" sap:VirtualizedContainerService.HintSize="354,212" sap2010:WorkflowViewState.IdRef="AddDataRow_934">
+                <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;Housing Disclosure&quot;,&quot;PageNum&quot;,in_Config(&quot;HousingDisclosureExists&quot;).ToString,&quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="HHD inexistent finding" sap:VirtualizedContainerService.HintSize="354,212" sap2010:WorkflowViewState.IdRef="AddDataRow_934">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
@@ -629,7 +629,7 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </ui:LogMessage>
-              <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;Housing Disclosure&quot;,&quot;PageNum&quot;,in_Config(&quot;HHD_FindingError&quot;).ToString,exception.Message}]" DataTable="[io_DTAuditFindings]" DisplayName="Adding HHD error in DataTable" sap:VirtualizedContainerService.HintSize="354,212" sap2010:WorkflowViewState.IdRef="AddDataRow_981">
+              <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;Housing Disclosure&quot;,&quot;PageNum&quot;,in_Config(&quot;HHD_FindingError&quot;).ToString,exception.Message}]" DataTable="[io_dt_AuditFindings]" DisplayName="Adding HHD error in DataTable" sap:VirtualizedContainerService.HintSize="354,212" sap2010:WorkflowViewState.IdRef="AddDataRow_981">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
