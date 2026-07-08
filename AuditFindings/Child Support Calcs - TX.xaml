@@ -22,7 +22,7 @@
   <this:Child_Support_Calcs.out_str_CSCEndDate1>
     <InArgument x:TypeArguments="x:String" />
   </this:Child_Support_Calcs.out_str_CSCEndDate1>
-  <sap:VirtualizedContainerService.HintSize>1745,6808</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1056,6704</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -159,13 +159,13 @@
       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="Child Support Calcs" sap:VirtualizedContainerService.HintSize="1004,6583" sap2010:WorkflowViewState.IdRef="Sequence_4840">
+  <Sequence DisplayName="Child Support Calcs" sap:VirtualizedContainerService.HintSize="1004,6639" sap2010:WorkflowViewState.IdRef="Sequence_4840">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="ChildSupportCalcsCheck" sap:VirtualizedContainerService.HintSize="942,6495" sap2010:WorkflowViewState.IdRef="Sequence_4111">
+    <Sequence DisplayName="ChildSupportCalcsCheck" sap:VirtualizedContainerService.HintSize="942,6551" sap2010:WorkflowViewState.IdRef="Sequence_4111">
       <Sequence.Variables>
         <Variable x:TypeArguments="sd:DataTable" Name="dt_FilteredDocTypeData" />
       </Sequence.Variables>
@@ -208,7 +208,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:FilterDataTable>
-      <If Condition="[dt_FilteredDocTypeData.RowCount&gt;0]" DisplayName="If-CSCExists" sap:VirtualizedContainerService.HintSize="880,5854" sap2010:WorkflowViewState.IdRef="If_1409">
+      <If Condition="[dt_FilteredDocTypeData.RowCount&gt;0]" DisplayName="If-CSCExists" sap:VirtualizedContainerService.HintSize="880,5910" sap2010:WorkflowViewState.IdRef="If_1409">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -216,7 +216,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
         <If.Then>
-          <Sequence DisplayName="Then: If-CSCExists" sap:VirtualizedContainerService.HintSize="773,5035" sap2010:WorkflowViewState.IdRef="Sequence_4112">
+          <Sequence DisplayName="Then: If-CSCExists" sap:VirtualizedContainerService.HintSize="773,5091" sap2010:WorkflowViewState.IdRef="Sequence_4112">
             <Sequence.Variables>
               <Variable x:TypeArguments="njl:JArray" Name="jArr_ExtResults" />
             </Sequence.Variables>
@@ -234,7 +234,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:LogMessage>
-            <Sequence DisplayName="GetLLMJSONResults" sap:VirtualizedContainerService.HintSize="711,758" sap2010:WorkflowViewState.IdRef="Sequence_4113">
+            <Sequence DisplayName="GetLLMJSONResults" sap:VirtualizedContainerService.HintSize="711,814" sap2010:WorkflowViewState.IdRef="Sequence_4113">
               <Sequence.Variables>
                 <Variable x:TypeArguments="scg:List(x:String)" Name="list_ImageFiles" />
                 <Variable x:TypeArguments="njl:JObject" Name="jObj_ExtractionResults" />
@@ -254,7 +254,7 @@
                  Select(Function(row) row("ImageFullPath").ToString()).ToList()]</InArgument>
                 </Assign.Value>
               </Assign>
-              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="GetLLMExtractionResultsForEachDoc - Invoke Workflow File (GetLLMExtractionResultsForEachDoc.xaml)" sap:VirtualizedContainerService.HintSize="482,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_171" UnSafe="False" WorkflowFileName="LLM\GetLLMExtractionResultsForEachDoc.xaml">
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="GetLLMExtractionResultsForEachDoc - Invoke Workflow File (GetLLMExtractionResultsForEachDoc.xaml)" sap:VirtualizedContainerService.HintSize="482,233" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_171" UnSafe="False" WorkflowFileName="LLM\GetLLMExtractionResultsForEachDoc.xaml">
                 <ui:InvokeWorkflowFile.Arguments>
                   <InArgument x:TypeArguments="x:String" x:Key="in_UserPromptTextFile">[in_str_PromptsFolder+"CSC_Prompt_TX.txt"]</InArgument>
                   <InArgument x:TypeArguments="scg:List(x:String)" x:Key="in_ImagePath">[list_ImageFiles]</InArgument>
@@ -745,7 +745,7 @@
                           </Sequence>
                         </If.Else>
                       </If>
-                      <If Condition="[Not io_arr_CSCConsistentTotalPerYear.Any(Function(x) CDbl(x) = 0) AndAlso&#xD;&#xA;(CDbl(jObj_JSON(&quot;CombinedTotalPerYear&quot;).ToString) &gt; 0 OrElse&#xD;&#xA;CDbl(jObj_JSON(&quot;120DaysOfPayHistoryIsAvailable&quot;)(&quot;PerYearPayments&quot;).ToString) &gt; 0 OrElse&#xD;&#xA;CDbl(jObj_JSON(&quot;120DaysOfPayHistoryIsNotAvailable&quot;)(&quot;PerYearPayments&quot;).ToString) &gt; 0)]" DisplayName="If - ConsistentPayments" sap:VirtualizedContainerService.HintSize="553,561" sap2010:WorkflowViewState.IdRef="If_1513">
+                      <If Condition="[Not io_arr_CSCConsistentTotalPerYear.Any(Function(x) CDbl(x) = 0) AndAlso&#xA;(CDbl(jObj_JSON(&quot;CombinedTotalPerYear&quot;).ToString) &gt; 0 OrElse&#xA;CDbl(jObj_JSON(&quot;120DaysOfPayHistoryIsAvailable&quot;)(&quot;PerYearPayments&quot;).ToString) &gt; 0 OrElse&#xA;CDbl(jObj_JSON(&quot;120DaysOfPayHistoryIsNotAvailable&quot;)(&quot;PerYearPayments&quot;).ToString) &gt; 0)]" DisplayName="If - ConsistentPayments" sap:VirtualizedContainerService.HintSize="553,561" sap2010:WorkflowViewState.IdRef="If_1513">
                         <If.Then>
                           <Sequence DisplayName="Then: If - ConsistentPayments" sap:VirtualizedContainerService.HintSize="416,297" sap2010:WorkflowViewState.IdRef="Sequence_4843">
                             <sap:WorkflowViewStateService.ViewState>
