@@ -9,7 +9,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1368,5175</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1745,5303</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>DU_Extraction_EV_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -131,22 +131,22 @@
       <AssemblyReference>ExtendedExtractionRe.eBPdc5NkRF1NkY8XpvezI3</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="DU_Extraction_EV" sap:VirtualizedContainerService.HintSize="1123,5110" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="DU_Extraction_EV" sap:VirtualizedContainerService.HintSize="1123,5238" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:LogMessage DisplayName="Log Message - DU Started for EV" sap:VirtualizedContainerService.HintSize="1061,173" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Employment Verification DU Extraction started.&quot;]" />
-    <TryCatch DisplayName="Try Catch - DU Employnent Verification" sap:VirtualizedContainerService.HintSize="1061,4512" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <TryCatch DisplayName="Try Catch - DU Employnent Verification" sap:VirtualizedContainerService.HintSize="1061,4640" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <TryCatch.Try>
-        <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each currentFile" sap:VirtualizedContainerService.HintSize="1023,4252" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[in_ArrImages]">
+        <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each currentFile" sap:VirtualizedContainerService.HintSize="1023,4380" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[in_ArrImages]">
           <ui:ForEach.Body>
             <ActivityAction x:TypeArguments="x:String">
               <ActivityAction.Argument>
                 <DelegateInArgument x:TypeArguments="x:String" Name="currentFile" />
               </ActivityAction.Argument>
-              <Sequence DisplayName="Extracting values for Employment Verification" sap:VirtualizedContainerService.HintSize="989,4138" sap2010:WorkflowViewState.IdRef="Sequence_2">
+              <Sequence DisplayName="Extracting values for Employment Verification" sap:VirtualizedContainerService.HintSize="989,4266" sap2010:WorkflowViewState.IdRef="Sequence_2">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="upr:ILocalResource" Name="lRes_File" />
                   <Variable x:TypeArguments="uisad:DocumentData" Name="classifiedDocument" />
@@ -175,9 +175,9 @@
                   </p:ClassifyDocument.ProjectTag>
                 </p:ClassifyDocument>
                 <ui:LogMessage DisplayName="Log document type" sap:VirtualizedContainerService.HintSize="927,173" sap2010:WorkflowViewState.IdRef="LogMessage_3" Message="[string.Format(&quot;Classified {0} as {1}&quot;, currentFile, classifiedDocument.DocumentType.DisplayName)]" />
-                <If Condition="[classifiedDocument.DocumentType.DisplayName.Equals(&quot;Employment Verification&quot;)]" DisplayName="If Document Type is Employment Verification" sap:VirtualizedContainerService.HintSize="927,3193" sap2010:WorkflowViewState.IdRef="If_2">
+                <If Condition="[classifiedDocument.DocumentType.DisplayName.Equals(&quot;Employment Verification&quot;)]" DisplayName="If Document Type is Employment Verification" sap:VirtualizedContainerService.HintSize="927,3321" sap2010:WorkflowViewState.IdRef="If_2">
                   <If.Then>
-                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="893,2929" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="893,3057" sap2010:WorkflowViewState.IdRef="Sequence_18">
                       <Sequence.Variables>
                         <Variable x:TypeArguments="ausam:NameMatchResult" Name="matchedEmployeeResult" />
                         <Variable x:TypeArguments="ausam:CompanyMatchResult" Name="matchedJobTitlesResult" />
@@ -187,7 +187,7 @@
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <p:ExtractDocumentDataWithDocumentData x:TypeArguments="uisasecb:CommonEVEmploymentVerificationV4" DocumentBounds="{x:Null}" DocumentObjectModel="{x:Null}" DocumentPath="{x:Null}" DocumentText="{x:Null}" ExtractorDocumentType="{x:Null}" ExtractorResult="{x:Null}" PersistenceId="{x:Null}" PredictionId="{x:Null}" Prompt="{x:Null}" ApplyAutoValidation="False" DisplayName="Extract Document Data" DocType="1c22edba-5d5b-f111-8fcb-6045bddad048" ExtractionResults="[EVDocData]" ExtractorName="CommonEV_Employment Verification_v4" FileInput="[classifiedDocument]" GenerateData="True" sap:VirtualizedContainerService.HintSize="831,359" sap2010:WorkflowViewState.IdRef="ExtractDocumentDataWithDocumentData`1_2" ModernDocumentTypeId="14f60e6a-8550-f111-8ef3-002248237633" ModernDocumentTypeName="Employment Verification" ProjectId="2fdd4fa5-6b45-f111-8ef3-6045bda78650" ProjectName="Common Document Understanding" ProjectVersionName="CommonEV" ProjectVersionNumber="4" RuntimeAssetPath="Compliance/Application Review Process/DU_AppCredentials" RuntimeTenantUrl="[in_Config(&quot;DU_TenantURL&quot;).ToString]" TimeoutInSeconds="[CInt(in_config(&quot;DU_TimeOut&quot;).ToString)]">
+                      <p:ExtractDocumentDataWithDocumentData x:TypeArguments="uisasecb:CommonEVEmploymentVerificationV4" DocumentBounds="{x:Null}" DocumentObjectModel="{x:Null}" DocumentPath="{x:Null}" DocumentText="{x:Null}" ExtractorDocumentType="{x:Null}" ExtractorResult="{x:Null}" PersistenceId="{x:Null}" PredictionId="{x:Null}" Prompt="{x:Null}" ApplyAutoValidation="False" DisplayName="Extract Document Data" DocType="1c22edba-5d5b-f111-8fcb-6045bddad048" ExtractionResults="[EVDocData]" ExtractorName="CommonEV_Employment Verification_v4" FileInput="[classifiedDocument]" GenerateData="True" sap:VirtualizedContainerService.HintSize="831,359" sap2010:WorkflowViewState.IdRef="ExtractDocumentDataWithDocumentData`1_2" ModernDocumentTypeId="14f60e6a-8550-f111-8ef3-002248237633" ModernDocumentTypeName="Employment Verification" ProjectId="2fdd4fa5-6b45-f111-8ef3-6045bda78650" ProjectName="Common Document Understanding" ProjectTag="[Nothing]" ProjectVersionName="CommonEV" ProjectVersionNumber="4" RuntimeAssetPath="Compliance/Application Review Process/DU_AppCredentials" RuntimeTenantUrl="[in_Config(&quot;DU_TenantURL&quot;).ToString]" TimeoutInSeconds="[CInt(in_config(&quot;DU_TimeOut&quot;).ToString)]">
                         <p:ExtractDocumentDataWithDocumentData.AutoValidationConfidenceThreshold>
                           <InArgument x:TypeArguments="s:Nullable(x:Int32)">
                             <Literal x:TypeArguments="s:Nullable(x:Int32)" Value="0" />
@@ -196,11 +196,6 @@
                         <p:ExtractDocumentDataWithDocumentData.GptPromptWithVariables>
                           <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
                         </p:ExtractDocumentDataWithDocumentData.GptPromptWithVariables>
-                        <p:ExtractDocumentDataWithDocumentData.ProjectTag>
-                          <InArgument x:TypeArguments="x:String">
-                            <Literal x:TypeArguments="x:String" Value="" />
-                          </InArgument>
-                        </p:ExtractDocumentDataWithDocumentData.ProjectTag>
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -370,13 +365,13 @@
                           </Sequence>
                         </If.Else>
                       </If>
-                      <ui:ForEach x:TypeArguments="njl:JObject" CurrentIndex="{x:Null}" DisplayName="For Each currentJObject" sap:VirtualizedContainerService.HintSize="831,1704" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[io_jArrDUResults]">
+                      <ui:ForEach x:TypeArguments="njl:JObject" CurrentIndex="{x:Null}" DisplayName="For Each currentJObject" sap:VirtualizedContainerService.HintSize="831,1832" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[io_jArrDUResults]">
                         <ui:ForEach.Body>
                           <ActivityAction x:TypeArguments="njl:JObject">
                             <ActivityAction.Argument>
                               <DelegateInArgument x:TypeArguments="njl:JObject" Name="currentJObject" />
                             </ActivityAction.Argument>
-                            <Sequence DisplayName="currentJObject" sap:VirtualizedContainerService.HintSize="797,1567" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                            <Sequence DisplayName="currentJObject" sap:VirtualizedContainerService.HintSize="797,1695" sap2010:WorkflowViewState.IdRef="Sequence_19">
                               <Sequence.Variables>
                                 <Variable x:TypeArguments="njl:JObject" Name="jObj_JSON" />
                               </Sequence.Variables>
@@ -393,9 +388,9 @@
                                   <InArgument x:TypeArguments="njl:JObject">[currentJObject]</InArgument>
                                 </Assign.Value>
                               </Assign>
-                              <If Condition="[(jObj_JSON(&quot;EmployerSection&quot;)(&quot;EmployeeName&quot;).ToString.Equals(str_LLMName) And jObj_JSON(&quot;EmployerSection&quot;)(&quot;JobTitle&quot;).ToString.Equals(str_LLMJobTitle)) Or&#xA;io_jArrDUResults.Count = 1]" DisplayName="If-EmployeeNameMatch" sap:VirtualizedContainerService.HintSize="735,1365" sap2010:WorkflowViewState.IdRef="If_5">
+                              <If Condition="[(jObj_JSON(&quot;EmployerSection&quot;)(&quot;EmployeeName&quot;).ToString.Equals(str_LLMName) And jObj_JSON(&quot;EmployerSection&quot;)(&quot;JobTitle&quot;).ToString.Equals(str_LLMJobTitle)) Or&#xA;io_jArrDUResults.Count = 1]" DisplayName="If-EmployeeNameMatch" sap:VirtualizedContainerService.HintSize="735,1493" sap2010:WorkflowViewState.IdRef="If_5">
                                 <If.Then>
-                                  <Sequence DisplayName="Then: currentJObject" sap:VirtualizedContainerService.HintSize="701,1003" sap2010:WorkflowViewState.IdRef="Sequence_28">
+                                  <Sequence DisplayName="Then: currentJObject" sap:VirtualizedContainerService.HintSize="701,1131" sap2010:WorkflowViewState.IdRef="Sequence_28">
                                     <sap:WorkflowViewStateService.ViewState>
                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -460,7 +455,7 @@
                                           <InArgument x:TypeArguments="njl:JToken">["yearly"]</InArgument>
                                         </Assign.Value>
                                       </Assign>
-                                      <Assign x:Key="other" DisplayName="Assign - other (commissions frequency)" sap:VirtualizedContainerService.HintSize="434,81" sap2010:WorkflowViewState.IdRef="Assign_10">
+                                      <Assign x:Key="other" DisplayName="Assign - other (commissions frequency)" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_10">
                                         <Assign.To>
                                           <OutArgument x:TypeArguments="njl:JToken">[jObj_JSON("EmployerSection")("CommissionsBonusesTipsFrequency")]</OutArgument>
                                         </Assign.To>
@@ -469,11 +464,11 @@
                                         </Assign.Value>
                                       </Assign>
                                     </Switch>
-                                    <Switch x:TypeArguments="x:String" DisplayName="Switch - CurrentWgesFrequency" Expression="[EVDocData.Data.CurrentWagesFrequency.Value.Replace(&quot;☒&quot;,&quot;&quot;).ToLower.Trim]" sap:VirtualizedContainerService.HintSize="639,302" sap2010:WorkflowViewState.IdRef="Switch`1_2">
+                                    <Switch x:TypeArguments="x:String" DisplayName="Switch - CurrentWgesFrequency" Expression="[EVDocData.Data.CurrentWagesFrequency.Value.Replace(&quot;☒&quot;,&quot;&quot;).ToLower.Trim]" sap:VirtualizedContainerService.HintSize="639,430" sap2010:WorkflowViewState.IdRef="Switch`1_2">
                                       <Switch.Default>
-                                        <Assign DisplayName="Assign - &quot;unanswered&quot; CurrentWagesFrequency" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_19">
+                                        <Assign DisplayName="Assign - &quot;unanswered&quot; CurrentWagesFrequency" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_19">
                                           <Assign.To>
-                                            <OutArgument x:TypeArguments="njl:JToken">[jObj_JSON("EmployeSection")("CurrentWagesFrequency")]</OutArgument>
+                                            <OutArgument x:TypeArguments="njl:JToken">[jObj_JSON("EmployerSection")("CurrentWagesFrequency")]</OutArgument>
                                           </Assign.To>
                                           <Assign.Value>
                                             <InArgument x:TypeArguments="njl:JToken">["unanswered"]</InArgument>
@@ -488,7 +483,7 @@
                                           <InArgument x:TypeArguments="njl:JToken">["hourly"]</InArgument>
                                         </Assign.Value>
                                       </Assign>
-                                      <Assign x:Key="weekly" DisplayName="Assign - weekly CurrentWagesFrequency" sap:VirtualizedContainerService.HintSize="434,81" sap2010:WorkflowViewState.IdRef="Assign_13">
+                                      <Assign x:Key="weekly" DisplayName="Assign - weekly CurrentWagesFrequency" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_13">
                                         <Assign.To>
                                           <OutArgument x:TypeArguments="njl:JToken">[jObj_JSON("EmployerSection")("CurrentWagesFrequency")]</OutArgument>
                                         </Assign.To>
