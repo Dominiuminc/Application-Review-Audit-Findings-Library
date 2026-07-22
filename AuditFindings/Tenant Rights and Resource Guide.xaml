@@ -16,7 +16,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>2053,6977</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1745,6977</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Tenant_Rights_and_Resource_Guide_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -123,6 +123,7 @@
       <AssemblyReference>System.Collections.Specialized</AssemblyReference>
       <AssemblyReference>AshlingPartners.UiPath.StringMatching.Activities</AssemblyReference>
       <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence sap:VirtualizedContainerService.HintSize="1042,6912" sap2010:WorkflowViewState.IdRef="Sequence_7">
@@ -263,7 +264,7 @@
                             <InArgument x:TypeArguments="njl:JObject">[currentJObject]</InArgument>
                           </Assign.Value>
                         </Assign>
-                        <If Condition="[Not in_ICWHeadOfHousehold.ToLower.Contains(jObjJSON(&quot;HouseholdName&quot;).ToString.ToLower) OrElse&#xD;&#xA;String.IsNullOrEmpty(jObjJSON(&quot;HouseholdName&quot;).ToString)]" DisplayName="If - Household name does not match" sap:VirtualizedContainerService.HintSize="688,570" sap2010:WorkflowViewState.IdRef="If_9">
+                        <If Condition="[Not jObjJSON(&quot;HouseholdName&quot;).ToString.ToLower.Split(&quot; &quot;).Any(Function(word) in_ICWHeadOfHousehold.ToLower.Contains(word)) OrElse&#xD;&#xA;String.IsNullOrEmpty(jObjJSON(&quot;HouseholdName&quot;).ToString)]" DisplayName="If - Household name does not match" sap:VirtualizedContainerService.HintSize="688,570" sap2010:WorkflowViewState.IdRef="If_9">
                           <If.Then>
                             <Sequence DisplayName="Then: If - Household name does not match" sap:VirtualizedContainerService.HintSize="416,297" sap2010:WorkflowViewState.IdRef="Sequence_24">
                               <sap:WorkflowViewStateService.ViewState>
