@@ -8,11 +8,12 @@
     <x:Property Name="in_ArrICWMemberNames" Type="InArgument(s:String[])" />
     <x:Property Name="in_ICWNoOfAdults" Type="InArgument(x:Int32)" />
     <x:Property Name="io_dt_AuditFindings" Type="InOutArgument(sd:DataTable)" />
+    <x:Property Name="out_bool_RCFExists" Type="OutArgument(x:Boolean)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>2053,7044</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>2385,6469</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Release_and_Consent_Form_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -119,13 +120,13 @@
       <AssemblyReference>AshlingPartners.UiPath.StringMatching.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="1042,6979" sap2010:WorkflowViewState.IdRef="Sequence_16">
+  <Sequence sap:VirtualizedContainerService.HintSize="1042,6404" sap2010:WorkflowViewState.IdRef="Sequence_16">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="980,6891" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="980,6316" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -133,7 +134,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <TryCatch.Try>
-        <Sequence DisplayName="Release_and_Consent_Form" sap:VirtualizedContainerService.HintSize="942,6640" sap2010:WorkflowViewState.IdRef="Sequence_1">
+        <Sequence DisplayName="Release_and_Consent_Form" sap:VirtualizedContainerService.HintSize="942,6065" sap2010:WorkflowViewState.IdRef="Sequence_1">
           <Sequence.Variables>
             <Variable x:TypeArguments="sd:DataTable" Name="dt_FilteredRCFData" />
           </Sequence.Variables>
@@ -170,7 +171,7 @@
               </scg:List>
             </ui:FilterDataTable.SelectColumns>
           </ui:FilterDataTable>
-          <If Condition="[dt_FilteredRCFData.RowCount &gt; 0]" DisplayName="If - RCF exists" sap:VirtualizedContainerService.HintSize="880,6022" sap2010:WorkflowViewState.IdRef="If_1">
+          <If Condition="[dt_FilteredRCFData.RowCount &gt; 0]" DisplayName="If - RCF exists" sap:VirtualizedContainerService.HintSize="880,5447" sap2010:WorkflowViewState.IdRef="If_1">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -178,7 +179,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <If.Then>
-              <Sequence DisplayName="Then: If - RCF exists" sap:VirtualizedContainerService.HintSize="846,5555" sap2010:WorkflowViewState.IdRef="Sequence_2">
+              <Sequence DisplayName="Then: If - RCF exists" sap:VirtualizedContainerService.HintSize="846,4980" sap2010:WorkflowViewState.IdRef="Sequence_2">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="njl:JArray" Name="jArr_ExtResults" />
                 </Sequence.Variables>
@@ -187,14 +188,22 @@
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <Sequence DisplayName="Get LLM Results" sap:VirtualizedContainerService.HintSize="784,746" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                <Assign DisplayName="Assign: out_bool_RCFExists" sap:VirtualizedContainerService.HintSize="784,114" sap2010:WorkflowViewState.IdRef="Assign_9">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Boolean">[out_bool_RCFExists]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Sequence DisplayName="Get LLM Results" sap:VirtualizedContainerService.HintSize="784,57" sap2010:WorkflowViewState.IdRef="Sequence_3">
                   <Sequence.Variables>
                     <Variable x:TypeArguments="scg:List(x:String)" Name="listImageFiles" />
                     <Variable x:TypeArguments="njl:JObject" Name="jObj_ExtractionResults" />
                   </Sequence.Variables>
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
