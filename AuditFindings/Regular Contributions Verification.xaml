@@ -12,7 +12,7 @@
     <x:Property Name="in_dt_IncomeSourceDetails" Type="InArgument(sd:DataTable)" />
     <x:Property Name="in_arr_MemberNameOfIS" Type="InArgument(s:String[])" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>1320,8984</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1320,9098</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -148,15 +148,15 @@
       <AssemblyReference>ExtendedExtractionRe.xW07J20KyVO1al2AV416mOX1</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Regular Contributions Verification" sap:VirtualizedContainerService.HintSize="1330,8919" sap2010:WorkflowViewState.IdRef="Sequence_4813">
+  <Sequence DisplayName="Regular Contributions Verification" sap:VirtualizedContainerService.HintSize="1330,9033" sap2010:WorkflowViewState.IdRef="Sequence_4813">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <TryCatch DisplayName="Try Catch-Regular Contributions Verification" sap:VirtualizedContainerService.HintSize="1268,8831" sap2010:WorkflowViewState.IdRef="TryCatch_275">
+    <TryCatch DisplayName="Try Catch-Regular Contributions Verification" sap:VirtualizedContainerService.HintSize="1268,8945" sap2010:WorkflowViewState.IdRef="TryCatch_275">
       <TryCatch.Try>
-        <Sequence DisplayName="Regular Contributions Verification" sap:VirtualizedContainerService.HintSize="1230,8580" sap2010:WorkflowViewState.IdRef="Sequence_4786">
+        <Sequence DisplayName="Regular Contributions Verification" sap:VirtualizedContainerService.HintSize="1230,8694" sap2010:WorkflowViewState.IdRef="Sequence_4786">
           <Sequence.Variables>
             <Variable x:TypeArguments="sd:DataTable" Name="dt_FilteredDocTypeData" />
           </Sequence.Variables>
@@ -199,7 +199,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:FilterDataTable>
-          <If Condition="[dt_FilteredDocTypeData.RowCount&gt;0]" DisplayName="If-RCVExists" sap:VirtualizedContainerService.HintSize="1168,7962" sap2010:WorkflowViewState.IdRef="If_1405">
+          <If Condition="[dt_FilteredDocTypeData.RowCount&gt;0]" DisplayName="If-RCVExists" sap:VirtualizedContainerService.HintSize="1168,8076" sap2010:WorkflowViewState.IdRef="If_1405">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -207,7 +207,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <If.Then>
-              <Sequence DisplayName="Then: If-RCVExists" sap:VirtualizedContainerService.HintSize="1134,7143" sap2010:WorkflowViewState.IdRef="Sequence_4105">
+              <Sequence DisplayName="Then: If-RCVExists" sap:VirtualizedContainerService.HintSize="1134,7257" sap2010:WorkflowViewState.IdRef="Sequence_4105">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="njl:JArray" Name="jArr_ExtResults" />
                   <Variable x:TypeArguments="scg:List(x:String)" Name="list_ImageFiles" />
@@ -435,13 +435,13 @@
                     </Assign.Value>
                   </Assign>
                 </Sequence>
-                <ui:ForEach x:TypeArguments="njl:JObject" CurrentIndex="{x:Null}" DisplayName="For Each jObj_ExtractionResults" sap:VirtualizedContainerService.HintSize="1072,4662" sap2010:WorkflowViewState.IdRef="ForEach`1_184" Values="[jArr_ExtResults]">
+                <ui:ForEach x:TypeArguments="njl:JObject" CurrentIndex="{x:Null}" DisplayName="For Each jObj_ExtractionResults" sap:VirtualizedContainerService.HintSize="1072,4776" sap2010:WorkflowViewState.IdRef="ForEach`1_184" Values="[jArr_ExtResults]">
                   <ui:ForEach.Body>
                     <ActivityAction x:TypeArguments="njl:JObject">
                       <ActivityAction.Argument>
                         <DelegateInArgument x:TypeArguments="njl:JObject" Name="jObj_ExtractionResults" />
                       </ActivityAction.Argument>
-                      <Sequence DisplayName="Body-RCV" sap:VirtualizedContainerService.HintSize="750,4525" sap2010:WorkflowViewState.IdRef="Sequence_4787">
+                      <Sequence DisplayName="Body-RCV" sap:VirtualizedContainerService.HintSize="750,4639" sap2010:WorkflowViewState.IdRef="Sequence_4787">
                         <Sequence.Variables>
                           <Variable x:TypeArguments="njl:JObject" Name="jObj_JSON" />
                           <Variable x:TypeArguments="x:String" Name="str_RecipientName" />
@@ -488,10 +488,11 @@
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                         </ui:MultipleAssign>
-                        <Sequence sap2010:Annotation.AnnotationText="For matching names from IAQ (Page 2) Income source" sap:VirtualizedContainerService.HintSize="688,1405" sap2010:WorkflowViewState.IdRef="Sequence_4837">
+                        <Sequence sap2010:Annotation.AnnotationText="For matching names from IAQ (Page 2) Income source" sap:VirtualizedContainerService.HintSize="688,1519" sap2010:WorkflowViewState.IdRef="Sequence_4837">
                           <Sequence.Variables>
                             <Variable x:TypeArguments="x:String" Name="variable1" />
                             <Variable x:TypeArguments="scg:List(ausam:NameMatchResult)" Name="list_MatchedNamesIAQ" />
+                            <Variable x:TypeArguments="s:String[]" Name="arr_RCVMemberName" />
                           </Sequence.Variables>
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -519,6 +520,14 @@
                               </scg:List>
                             </ui:FilterDataTable.SelectColumns>
                           </ui:FilterDataTable>
+                          <Assign sap:VirtualizedContainerService.HintSize="546,114" sap2010:WorkflowViewState.IdRef="Assign_1115">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="s:String[]">[arr_RCVMemberName]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="s:String[]">[dt_IAQMatchingDoc.AsEnumerable().Select(Function(r) r("MemberName").ToString().Trim()).ToArray()]</InArgument>
+                            </Assign.Value>
+                          </Assign>
                           <ui:ForEach x:TypeArguments="sd:DataRow" CurrentIndex="{x:Null}" DisplayName="For Each currentDataRow" sap:VirtualizedContainerService.HintSize="546,1061" sap2010:WorkflowViewState.IdRef="ForEach`1_185" Values="[dt_IAQMatchingDoc.AsEnumerable()]">
                             <ui:ForEach.Body>
                               <ActivityAction x:TypeArguments="sd:DataRow">
@@ -531,7 +540,7 @@
                                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
-                                  <ausas:FindAllMatches Candidates="[in_arr_MemberNameOfIS]" DisplayName="Find All Matches" sap:VirtualizedContainerService.HintSize="450,275" sap2010:WorkflowViewState.IdRef="FindAllMatches_14" MinThreshold="[CDec(in_Config(&quot;FindAllMatches_Threshold&quot;).ToString)]" Query="[str_RecipientName]" Result="[list_MatchedNamesIAQ]" />
+                                  <ausas:FindAllMatches Candidates="[arr_RCVMemberName]" DisplayName="Find All Matches" sap:VirtualizedContainerService.HintSize="450,275" sap2010:WorkflowViewState.IdRef="FindAllMatches_14" MinThreshold="[CDec(in_Config(&quot;FindAllMatches_Threshold&quot;).ToString)]" Query="[str_RecipientName]" Result="[list_MatchedNamesIAQ]" />
                                   <If Condition="[list_MatchedNamesIAQ.Count &gt; 0]" sap:VirtualizedContainerService.HintSize="450,561" sap2010:WorkflowViewState.IdRef="If_1511">
                                     <sap:WorkflowViewStateService.ViewState>
                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
