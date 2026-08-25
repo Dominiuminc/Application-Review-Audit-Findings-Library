@@ -17,7 +17,7 @@
     <x:Property Name="io_DTAuditFindings" Type="InOutArgument(sd:DataTable)" />
     <x:Property Name="in_dt_IncomeSourceDetails" Type="InArgument(sd:DataTable)" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>1142,5860</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1299,5860</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -608,7 +608,7 @@
                               </ui:ForEach.Body>
                             </ui:ForEach>
                           </Sequence>
-                          <If Condition="[str_Status.ToLower.Equals(&quot;active&quot;)]" DisplayName="If-StatusActive" sap:VirtualizedContainerService.HintSize="704,48" sap2010:WorkflowViewState.IdRef="If_481">
+                          <If Condition="[str_Status.ToLower.Equals(&quot;active&quot;)]" DisplayName="If-StatusActive" sap:VirtualizedContainerService.HintSize="996,4769" sap2010:WorkflowViewState.IdRef="If_481">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -749,7 +749,7 @@
                                                     <OutArgument x:TypeArguments="x:Double">[dbl_OverTime]</OutArgument>
                                                   </ui:AssignOperation.To>
                                                   <ui:AssignOperation.Value>
-                                                    <InArgument x:TypeArguments="x:Double">[If(String.IsNullOrEmpty(currentJIncomeSummary("Overtime").ToString),0,CDbl(currentJIncomeSummary("Overtime").ToString))]</InArgument>
+                                                    <InArgument x:TypeArguments="x:Double">[If(String.IsNullOrEmpty(currentJIncomeSummary("Overtime").ToString),0,CDbl(currentJIncomeSummary("Overtime").ToString.Replace("$","").Replace(",","")))]</InArgument>
                                                   </ui:AssignOperation.Value>
                                                 </ui:AssignOperation>
                                                 <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_178">
@@ -757,7 +757,7 @@
                                                     <OutArgument x:TypeArguments="x:Double">[dbl_Commission]</OutArgument>
                                                   </ui:AssignOperation.To>
                                                   <ui:AssignOperation.Value>
-                                                    <InArgument x:TypeArguments="x:Double">[If(String.IsNullOrEmpty(currentJIncomeSummary("Commission").ToString),0,CDbl(currentJIncomeSummary("Commission").ToString))]</InArgument>
+                                                    <InArgument x:TypeArguments="x:Double">[If(String.IsNullOrEmpty(currentJIncomeSummary("Commission").ToString),0,CDbl(currentJIncomeSummary("Commission").ToString.Replace("$","").Replace(",","")))]</InArgument>
                                                   </ui:AssignOperation.Value>
                                                 </ui:AssignOperation>
                                                 <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_179">
@@ -773,7 +773,7 @@
                                                     <OutArgument x:TypeArguments="x:Double">[dbl_Other]</OutArgument>
                                                   </ui:AssignOperation.To>
                                                   <ui:AssignOperation.Value>
-                                                    <InArgument x:TypeArguments="x:Double">[If(String.IsNullOrEmpty(currentJIncomeSummary("Other").ToString),0,CDbl(currentJIncomeSummary("Other").ToString))]</InArgument>
+                                                    <InArgument x:TypeArguments="x:Double">[If(String.IsNullOrEmpty(currentJIncomeSummary("Other").ToString),0,CDbl(currentJIncomeSummary("Other").ToString.Replace("$","").Replace(",","")))]</InArgument>
                                                   </ui:AssignOperation.Value>
                                                 </ui:AssignOperation>
                                                 <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_181">
@@ -793,7 +793,7 @@
                                               </scg:Dictionary>
                                             </sap:WorkflowViewStateService.ViewState>
                                           </ui:MultipleAssign>
-                                          <If Condition="[dbl_Total = dbl_Base+dbl_Bonus+dbl_Commission+dbl_Other+dbl_OverTime]" DisplayName="If-TotalMatchesTheSum" sap:VirtualizedContainerService.HintSize="479,618" sap2010:WorkflowViewState.IdRef="If_484">
+                                          <If Condition="[Math.Round(dbl_Total, 2) = Math.Round(dbl_Base + dbl_Bonus + dbl_Commission + dbl_Other + dbl_OverTime, 2)]" DisplayName="If-TotalMatchesTheSum" sap:VirtualizedContainerService.HintSize="479,618" sap2010:WorkflowViewState.IdRef="If_484">
                                             <sap:WorkflowViewStateService.ViewState>
                                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
