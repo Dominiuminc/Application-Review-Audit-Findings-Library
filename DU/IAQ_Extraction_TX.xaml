@@ -7,7 +7,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>2385,11693</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>2089,12378</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>IAQ_Extraction_TX_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -154,7 +154,7 @@
       <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="IAQ_Extraction_TX" sap:VirtualizedContainerService.HintSize="1326,11628" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="IAQ_Extraction_TX" sap:VirtualizedContainerService.HintSize="1326,12313" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="njl:JArray" Name="jArr_AssetChecklist" />
       <Variable x:TypeArguments="s:String[]" Name="arr_AssetTypes" />
@@ -211,13 +211,13 @@
         </ActivityAction>
       </ui:ForEach.Body>
     </ui:ForEach>
-    <ui:ForEach x:TypeArguments="scg:List(x:String)" CurrentIndex="{x:Null}" DisplayName="For Each currentListOfText" sap:VirtualizedContainerService.HintSize="1264,10572" sap2010:WorkflowViewState.IdRef="ForEach`1_4" Values="[list_Batches]">
+    <ui:ForEach x:TypeArguments="scg:List(x:String)" CurrentIndex="{x:Null}" DisplayName="For Each currentListOfText" sap:VirtualizedContainerService.HintSize="1264,11257" sap2010:WorkflowViewState.IdRef="ForEach`1_4" Values="[list_Batches]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="scg:List(x:String)">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="scg:List(x:String)" Name="currentListOfText" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="1230,10426" sap2010:WorkflowViewState.IdRef="Sequence_18">
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="1230,11111" sap2010:WorkflowViewState.IdRef="Sequence_18">
             <Sequence.Variables>
               <Variable x:TypeArguments="njl:JObject" Name="jObjJSONToReplace" />
             </Sequence.Variables>
@@ -226,13 +226,13 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each currentFile" sap:VirtualizedContainerService.HintSize="1168,10338" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[currentListOfText]">
+            <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each currentFile" sap:VirtualizedContainerService.HintSize="1168,11023" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[currentListOfText]">
               <ui:ForEach.Body>
                 <ActivityAction x:TypeArguments="x:String">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="x:String" Name="currentFile" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="1134,10201" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="1134,10886" sap2010:WorkflowViewState.IdRef="Sequence_2">
                     <Sequence.Variables>
                       <Variable x:TypeArguments="upr:ILocalResource" Name="lRes_File" />
                       <Variable x:TypeArguments="uisad1:DocumentData" Name="classifiedDocument" />
@@ -261,7 +261,7 @@
                       </sap:WorkflowViewStateService.ViewState>
                     </p:ClassifyDocument>
                     <ui:LogMessage DisplayName="Log document type" sap:VirtualizedContainerService.HintSize="1072,173" sap2010:WorkflowViewState.IdRef="LogMessage_4" Message="[string.Format(&quot;Classified {0} as {1}&quot;, currentFile, classifiedDocument.DocumentType.DisplayName)]" />
-                    <If Condition="[classifiedDocument.DocumentType.DisplayName = &quot;IAQ Income Checklist&quot;]" DisplayName="If Document Type = Income Checklist" sap:VirtualizedContainerService.HintSize="1072,6266" sap2010:WorkflowViewState.IdRef="If_4">
+                    <If Condition="[classifiedDocument.DocumentType.DisplayName = &quot;IAQ Income Checklist&quot;]" DisplayName="If Document Type = Income Checklist" sap:VirtualizedContainerService.HintSize="1072,6951" sap2010:WorkflowViewState.IdRef="If_4">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -269,7 +269,7 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                       <If.Then>
-                        <Sequence DisplayName="Then: If Document Type = Income Checklist" sap:VirtualizedContainerService.HintSize="1038,5993" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                        <Sequence DisplayName="Then: If Document Type = Income Checklist" sap:VirtualizedContainerService.HintSize="1038,6678" sap2010:WorkflowViewState.IdRef="Sequence_5">
                           <Sequence.Variables>
                             <Variable x:TypeArguments="uisad:IDocumentData(uisasetb:TXSpecificAllIAQIncomeChecklistV8)" Name="incomeChecklistDocumentData" />
                             <Variable x:TypeArguments="x:String" Name="str_DUName" />
@@ -294,19 +294,57 @@
                             </p:ExtractDocumentDataWithDocumentData.GptPromptWithVariables>
                           </p:ExtractDocumentDataWithDocumentData>
                           <ui:LogMessage DisplayName="Write extracted data (Income Checklist)" sap:VirtualizedContainerService.HintSize="976,173" sap2010:WorkflowViewState.IdRef="LogMessage_8" Message="[&quot;The following data has been extracted (excluding table data): {for each fields, except tables, display as key-value pairs: field name - field value}.&quot; &amp; vbCrLf &amp; incomeChecklistDocumentData.ToString]" />
-                          <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="976,584" sap2010:WorkflowViewState.IdRef="TryCatch_3">
+                          <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="976,1269" sap2010:WorkflowViewState.IdRef="TryCatch_3">
                             <TryCatch.Try>
-                              <Assign DisplayName="Assign - str_DUName" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_10">
-                                <Assign.To>
-                                  <OutArgument x:TypeArguments="x:String">[str_DUName]</OutArgument>
-                                </Assign.To>
-                                <Assign.Value>
-                                  <InArgument x:TypeArguments="x:String">[String.Join(" ", {incomeChecklistDocumentData.Data.MemberName.ToString().Trim().Split(New Char() {" "c}, StringSplitOptions.RemoveEmptyEntries).First(), incomeChecklistDocumentData.Data.MemberName.ToString().Trim().Split(New Char() {" "c}, StringSplitOptions.RemoveEmptyEntries).Last()})]</InArgument>
-                                </Assign.Value>
-                              </Assign>
+                              <Sequence DisplayName="Try assigning str_DUName" sap:VirtualizedContainerService.HintSize="559,767" sap2010:WorkflowViewState.IdRef="Sequence_30">
+                                <Sequence.Variables>
+                                  <Variable x:TypeArguments="s:String[]" Name="arr_NameWords" />
+                                </Sequence.Variables>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <Assign DisplayName="Assign: arr_NameWords" sap:VirtualizedContainerService.HintSize="497,114" sap2010:WorkflowViewState.IdRef="Assign_22">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="s:String[]">[arr_NameWords]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="s:String[]">[incomeChecklistDocumentData.Data.MemberName.ToString().Trim().Split(New String() {" "c}, StringSplitOptions.RemoveEmptyEntries)]</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <Switch x:TypeArguments="x:Int32" DisplayName="Switch - Assigning only the First and Last Name" Expression="[arr_NameWords.Length]" sap:VirtualizedContainerService.HintSize="497,565" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+                                  <Switch.Default>
+                                    <Assign DisplayName="Assign - str_DUName" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_10">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:String">[str_DUName]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:String">[arr_NameWords(0) &amp; " " &amp; arr_NameWords(arr_NameWords.Length - 1)]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                  </Switch.Default>
+                                  <Assign x:Key="1" DisplayName="Assign - str_DUName 1" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_23">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="x:String">[str_DUName]</OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="x:String">[arr_NameWords(0)]</InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                  <Assign x:Key="2" DisplayName="Assign - str_DUName 2" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_24">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="x:String">[str_DUName]</OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="x:String">[arr_NameWords(0) &amp; " " &amp; arr_NameWords(1)]</InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                </Switch>
+                              </Sequence>
                             </TryCatch.Try>
                             <TryCatch.Catches>
-                              <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="438,160" sap2010:WorkflowViewState.IdRef="Catch`1_3">
+                              <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="563,160" sap2010:WorkflowViewState.IdRef="Catch`1_3">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">False</x:Boolean>
