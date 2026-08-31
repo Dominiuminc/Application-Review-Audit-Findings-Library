@@ -1,0 +1,596 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="DU_Extraction_MID" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ausam="clr-namespace:AshlingPartners.UiPath.StringMatching.Activities.Models;assembly=AshlingPartners.UiPath.StringMatching.Activities" xmlns:ausas="clr-namespace:AshlingPartners.UiPath.StringMatching.Activities.StringMatching;assembly=AshlingPartners.UiPath.StringMatching.Activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:p="http://schemas.uipath.com/workflow/activities/intelligentocr" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uisad="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.DataExtraction;assembly=UiPath.IntelligentOCR.StudioWeb.Activities" xmlns:uisad1="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.DocumentClassification;assembly=UiPath.IntelligentOCR.StudioWeb.Activities" xmlns:uisasetb="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.SWEntities.ExtendedExtractionResultsForDocumentData.TXSpecificAllMemberInformationDocumentV8.Bundle;assembly=ExtendedExtractionRe.fDB6c4zPdpQ1Mf8ka2ncDma4" xmlns:upr="clr-namespace:UiPath.Platform.ResourceHandling;assembly=UiPath.Platform" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_ArrImages" Type="InArgument(s:String[])" />
+    <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="io_jArrDUResults" Type="InOutArgument(njl:JArray)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1216,8312</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>DU_Extraction_MID_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+      <x:String>System.Dynamic</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Collections.Specialized</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>UiPath.IntelligentOCR.StudioWeb.Activities.DocumentClassification</x:String>
+      <x:String>UiPath.DocumentProcessing.Contracts.Dom</x:String>
+      <x:String>UiPath.DocumentProcessing.Contracts.Classification</x:String>
+      <x:String>UiPath.IntelligentOCR.StudioWeb.Activities</x:String>
+      <x:String>UiPath.DocumentProcessing.Contracts</x:String>
+      <x:String>UiPath.IntelligentOCR.StudioWeb.Activities.DataExtraction</x:String>
+      <x:String>UiPath.DocumentProcessing.Contracts.DataExtraction</x:String>
+      <x:String>UiPath.DocumentProcessing.Contracts.Results</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.IntelligentOCR.StudioWeb.Activities.SWEntities.ExtendedExtractionResultsForDocumentData.DUExtraction10ASIAQASCSCHHSMIDVOEMemberInformationDocumentV7.Bundle</x:String>
+      <x:String>AshlingPartners.UiPath.StringMatching.Activities.Models</x:String>
+      <x:String>AshlingPartners.UiPath.StringMatching.Activities.StringMatching</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.IntelligentOCR.StudioWeb.Activities.SWEntities.ExtendedExtractionResultsForDocumentData.TXSpecificMIDandEVEmploymentVerificationV2.Bundle</x:String>
+      <x:String>UiPath.IntelligentOCR.StudioWeb.Activities.SWEntities.ExtendedExtractionResultsForDocumentData.TXSpecificMIDandEVMemberInformationDocumentV2.Bundle</x:String>
+      <x:String>AshlingPartners.UiPath.StringMatching.Activities</x:String>
+      <x:String>System.Numerics</x:String>
+      <x:String>UiPath.IntelligentOCR.StudioWeb.Activities.SWEntities.ExtendedExtractionResultsForDocumentData.TXSpecificAllMemberInformationDocumentV5.Bundle</x:String>
+      <x:String>UiPath.Platform</x:String>
+      <x:String>UiPath.IntelligentOCR.StudioWeb.Activities.SWEntities.ExtendedExtractionResultsForDocumentData.TXSpecificAllIAQIncomeChecklistV7.Bundle</x:String>
+      <x:String>UiPath.IntelligentOCR.StudioWeb.Activities.SWEntities.ExtendedExtractionResultsForDocumentData.TXSpecificAllMemberInformationDocumentV7.Bundle</x:String>
+      <x:String>UiPath.IntelligentOCR.StudioWeb.Activities.SWEntities.ExtendedExtractionResultsForDocumentData.TXSpecificAllEmploymentVerificationV8.Bundle</x:String>
+      <x:String>UiPath.IntelligentOCR.StudioWeb.Activities.SWEntities.ExtendedExtractionResultsForDocumentData.TXSpecificAllMemberInformationDocumentV8.Bundle</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>AshlingPartners.UiPath.StringMatching.Activities</AssemblyReference>
+      <AssemblyReference>ExtendedExtractionRe.p5MCi3rafuR1sQ0pU1mxz7B3</AssemblyReference>
+      <AssemblyReference>ExtendedExtractionRe.UuNRc4zVj9J1FTPvI1qrXWb1</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>netstandard</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>NPOI.Core</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.CodeDom</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Collections.Specialized</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
+      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.CodedWorkflows</AssemblyReference>
+      <AssemblyReference>UiPath.DocumentProcessing.Contracts</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.IntelligentOCR.StudioWeb.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>ExtendedExtractionRe.1CEj24VJBON1mw2Uf30nFF84</AssemblyReference>
+      <AssemblyReference>ExtendedExtractionRe.kyX9y2RYGxD1VF2tx2fNXpd3</AssemblyReference>
+      <AssemblyReference>ExtendedExtractionRe.C1k193nx80F1qSHV4pQ4021</AssemblyReference>
+      <AssemblyReference>ExtendedExtractionRe.UM9jT4PhyDI1eoG6c131nDf2</AssemblyReference>
+      <AssemblyReference>ExtendedExtractionRe.GtT4r3qzACM1sHcOX4b37Rm1</AssemblyReference>
+      <AssemblyReference>ExtendedExtractionRe.VwXw53u9FTC1rMbKf49VUcL3</AssemblyReference>
+      <AssemblyReference>ExtendedExtractionRe.fDB6c4zPdpQ1Mf8ka2ncDma4</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <sap:WorkflowViewStateService.ViewState>
+    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+      <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
+    </scg:Dictionary>
+  </sap:WorkflowViewStateService.ViewState>
+  <Sequence DisplayName="DU_Extraction_MID" sap:VirtualizedContainerService.HintSize="1135,8247" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="str_DUName" />
+      <Variable x:TypeArguments="s:String[]" Default="[New String() {}]" Name="arr_MIDNames" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Message - DU Started" sap:VirtualizedContainerService.HintSize="1073,173" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[&quot;DU_Extraction_MID.xaml is Started.&quot;]" />
+    <ui:ForEach x:TypeArguments="njl:JObject" CurrentIndex="{x:Null}" DisplayName="For Each currentJObject" sap:VirtualizedContainerService.HintSize="1073,338" sap2010:WorkflowViewState.IdRef="ForEach`1_6" Values="[io_jArrDUResults]">
+      <ui:ForEach.Body>
+        <ActivityAction x:TypeArguments="njl:JObject">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="njl:JObject" Name="currentJObject" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="496,192" sap2010:WorkflowViewState.IdRef="Sequence_32">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign DisplayName="Assign-arr_MIDNames" sap:VirtualizedContainerService.HintSize="434,104" sap2010:WorkflowViewState.IdRef="Assign_25">
+              <Assign.To>
+                <OutArgument x:TypeArguments="s:String[]">[arr_MIDNames]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="s:String[]">[arr_MIDNames.Concat({currentJObject("MemberInformation")("LegalName").ToString}).ToArray()]</InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEach.Body>
+    </ui:ForEach>
+    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each currentFile" sap:VirtualizedContainerService.HintSize="1073,7311" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[in_ArrImages]">
+      <ui:ForEach.Body>
+        <ActivityAction x:TypeArguments="x:String">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:String" Name="currentFile" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Body " sap:VirtualizedContainerService.HintSize="995,7165" sap2010:WorkflowViewState.IdRef="Sequence_33">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="upr:ILocalResource" Name="lRes_File" />
+              <Variable x:TypeArguments="njl:JObject" Name="jObj_JSON" />
+              <Variable x:TypeArguments="scg:List(ausam:NameMatchResult)" Name="list_matchedMIDNames" />
+              <Variable x:TypeArguments="uisad1:DocumentData" Name="classifiedDocument" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:LogMessage DisplayName="Log file processing update" sap:VirtualizedContainerService.HintSize="933,173" sap2010:WorkflowViewState.IdRef="LogMessage_8" Message="[string.Format(&quot;Processing file: {0}&quot;, currentFile)]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:LogMessage>
+            <ui:PathExists Exists="{x:Null}" DisplayName="CurrentFile Exists" sap:VirtualizedContainerService.HintSize="933,172" sap2010:WorkflowViewState.IdRef="PathExists_1" Path="[currentFile]" PathType="File" Resource="[lRes_File]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:PathExists>
+            <p:ClassifyDocument ApiKey="{x:Null}" ClassifierResult="{x:Null}" DocumentObjectModel="{x:Null}" DocumentPath="{x:Null}" DocumentText="{x:Null}" DocumentTypes="{x:Null}" PersistenceId="{x:Null}" PredictionId="{x:Null}" Prompt="{x:Null}" ClassificationResults="[classifiedDocument]" ClassifierId="60005e65-4980-f111-b337-00224834108a" ClassifierName="TXSpecificAll_classifier_v8" DisplayName="Classify Document" Endpoint="https://cloud.uipath.com/a6e81ae5-13a7-4d1d-9b35-86ac86d911ce/4af39ed3-b30e-48f2-b551-f1e60b4acb75/du_/api/framework/projects/85829f8a-b45a-f111-8fcb-000d3a15097f/classifiers/60005e65-4980-f111-b337-00224834108a/classification/start?api-version=1.1" FileInput="[lRes_File]" sap:VirtualizedContainerService.HintSize="933,309" sap2010:WorkflowViewState.IdRef="ClassifyDocument_2" MinimumConfidence="50" ProjectId="85829f8a-b45a-f111-8fcb-000d3a15097f" ProjectName="TX Document Understanding" ProjectVersionName="TXSpecificAll" ProjectVersionNumber="8" RuntimeAssetPath="Compliance/Application Review Process/DU_AppCredentials" RuntimeTenantUrl="[in_Config(&quot;DU_TenantURL&quot;).ToString]" TimeoutInSeconds="[CInt(in_Config(&quot;DU_TimeOut&quot;).ToString)]">
+              <p:ClassifyDocument.GptPromptWithVariables>
+                <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+              </p:ClassifyDocument.GptPromptWithVariables>
+              <p:ClassifyDocument.ProjectTag>
+                <InArgument x:TypeArguments="x:String">
+                  <Literal x:TypeArguments="x:String" Value="" />
+                </InArgument>
+              </p:ClassifyDocument.ProjectTag>
+            </p:ClassifyDocument>
+            <ui:LogMessage DisplayName="Log document type" sap:VirtualizedContainerService.HintSize="933,173" sap2010:WorkflowViewState.IdRef="LogMessage_9" Message="[string.Format(&quot;Classified {0} as {1}&quot;, currentFile, classifiedDocument.DocumentType.DisplayName)]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:LogMessage>
+            <If Condition="[classifiedDocument.DocumentType.DisplayName = &quot;Member Information Document&quot;]" DisplayName="If - doc type is MID" sap:VirtualizedContainerService.HintSize="933,6250" sap2010:WorkflowViewState.IdRef="If_1">
+              <If.Then>
+                <Sequence DisplayName="Then: If - doc type is MID" sap:VirtualizedContainerService.HintSize="899,5986" sap2010:WorkflowViewState.IdRef="Sequence_53">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="uisad:IDocumentData(uisasetb:TXSpecificAllMemberInformationDocumentV8)" Name="MIDDocumentData" />
+                  </Sequence.Variables>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <p:ExtractDocumentDataWithDocumentData x:TypeArguments="uisasetb:TXSpecificAllMemberInformationDocumentV8" DocumentBounds="{x:Null}" DocumentObjectModel="{x:Null}" DocumentPath="{x:Null}" DocumentText="{x:Null}" ExtractorDocumentType="{x:Null}" ExtractorResult="{x:Null}" PersistenceId="{x:Null}" PredictionId="{x:Null}" Prompt="{x:Null}" ApplyAutoValidation="False" DisplayName="Extract Document Data" DocType="62005e65-4980-f111-b337-00224834108a" ExtractionResults="[MIDDocumentData]" ExtractorName="TXSpecificAll_Member Information Document_v8" FileInput="[classifiedDocument]" GenerateData="True" sap:VirtualizedContainerService.HintSize="837,359" sap2010:WorkflowViewState.IdRef="ExtractDocumentDataWithDocumentData`1_3" ModernDocumentTypeId="5c871f7d-c765-f111-8fcb-0022482e82a5" ModernDocumentTypeName="Member Information Document" ProjectId="85829f8a-b45a-f111-8fcb-000d3a15097f" ProjectName="TX Document Understanding" ProjectVersionName="TXSpecificAll" ProjectVersionNumber="8" RuntimeAssetPath="Compliance/Application Review Process/DU_AppCredentials" RuntimeTenantUrl="[in_Config(&quot;DU_TenantURL&quot;).ToString]" TimeoutInSeconds="[CInt(in_Config(&quot;DU_TimeOut&quot;).ToString)]">
+                    <p:ExtractDocumentDataWithDocumentData.AutoValidationConfidenceThreshold>
+                      <InArgument x:TypeArguments="s:Nullable(x:Int32)">
+                        <Literal x:TypeArguments="s:Nullable(x:Int32)" Value="0" />
+                      </InArgument>
+                    </p:ExtractDocumentDataWithDocumentData.AutoValidationConfidenceThreshold>
+                    <p:ExtractDocumentDataWithDocumentData.GptPromptWithVariables>
+                      <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                    </p:ExtractDocumentDataWithDocumentData.GptPromptWithVariables>
+                    <p:ExtractDocumentDataWithDocumentData.ProjectTag>
+                      <InArgument x:TypeArguments="x:String">
+                        <Literal x:TypeArguments="x:String" Value="" />
+                      </InArgument>
+                    </p:ExtractDocumentDataWithDocumentData.ProjectTag>
+                  </p:ExtractDocumentDataWithDocumentData>
+                  <ui:LogMessage DisplayName="Write extracted data MID" sap:VirtualizedContainerService.HintSize="837,173" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="Info" Message="[&quot;The following data has been extracted (excluding table data): {for each fields, except tables, display as key-value pairs: field name - field value}.&quot; &amp; vbCrLf &amp; MIDDocumentData.ToString]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:LogMessage>
+                  <Assign DisplayName="Assign - str_DUName" sap:VirtualizedContainerService.HintSize="837,114" sap2010:WorkflowViewState.IdRef="Assign_26">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[str_DUName]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[MIDDocumentData.Data.LegalName.Value.ToString]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <ausas:FindAllMatches Candidates="[arr_MIDNames]" DisplayName="Find All Matches - FullName" sap:VirtualizedContainerService.HintSize="837,275" sap2010:WorkflowViewState.IdRef="FindAllMatches_1" MinThreshold="[CDec(in_Config(&quot;FindAllMatches_Threshold&quot;).ToString)]" Query="[str_DUName]" Result="[list_matchedMIDNames]" />
+                  <If Condition="[Not list_matchedMIDNames.Count &gt; 0]" DisplayName="If - Name does not match" sap:VirtualizedContainerService.HintSize="837,474" sap2010:WorkflowViewState.IdRef="If_2">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If.Then>
+                      <Sequence DisplayName="Then: If - Name does not match" sap:VirtualizedContainerService.HintSize="416,201" sap2010:WorkflowViewState.IdRef="Sequence_38">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <Throw Exception="[New SystemException(&quot;The DU Member Name does not match with LLM Name so cannot replace the DU results.&quot;)]" sap:VirtualizedContainerService.HintSize="354,113" sap2010:WorkflowViewState.IdRef="Throw_1" />
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,103" sap2010:WorkflowViewState.IdRef="Sequence_39">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </Sequence>
+                    </If.Else>
+                  </If>
+                  <ui:ForEach x:TypeArguments="njl:JObject" CurrentIndex="{x:Null}" DisplayName="For Each currentJObject" sap:VirtualizedContainerService.HintSize="837,4503" sap2010:WorkflowViewState.IdRef="ForEach`1_7" Values="[io_jArrDUResults]">
+                    <ui:ForEach.Body>
+                      <ActivityAction x:TypeArguments="njl:JObject">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="njl:JObject" Name="currentJObject" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="803,4366" sap2010:WorkflowViewState.IdRef="Sequence_34">
+                          <Sequence.Variables>
+                            <Variable x:TypeArguments="s:DateTime" Name="dateTime_1" />
+                            <Variable x:TypeArguments="s:DateTime" Name="dateTime_2" />
+                            <Variable x:TypeArguments="x:String" Name="str_LLMName" />
+                          </Sequence.Variables>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Assign DisplayName="Assign - jObj_JSON for the current page" sap:VirtualizedContainerService.HintSize="741,113" sap2010:WorkflowViewState.IdRef="Assign_27">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="njl:JObject">[jObj_JSON]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="njl:JObject">[currentJObject]</InArgument>
+                            </Assign.Value>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </Assign>
+                          <ui:MultipleAssign DisplayName="Set: str_LLMName" sap:VirtualizedContainerService.HintSize="741,148" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+                            <ui:MultipleAssign.AssignOperations>
+                              <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
+                                  <ui:AssignOperation.To>
+                                    <OutArgument x:TypeArguments="x:String">[str_LLMName]</OutArgument>
+                                  </ui:AssignOperation.To>
+                                  <ui:AssignOperation.Value>
+                                    <InArgument x:TypeArguments="x:String">[currentJObject("MemberInformation")("LegalName").ToString]</InArgument>
+                                  </ui:AssignOperation.Value>
+                                </ui:AssignOperation>
+                              </scg:List>
+                            </ui:MultipleAssign.AssignOperations>
+                          </ui:MultipleAssign>
+                          <If Condition="[list_matchedMIDNames.Count &gt; 0 AndAlso&#xA;list_matchedMIDNames.Any(Function(x) x.OriginalName.Contains(str_LLMName))]" DisplayName="If Name and DOB match" sap:VirtualizedContainerService.HintSize="741,4017" sap2010:WorkflowViewState.IdRef="If_10">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <If.Then>
+                              <Sequence DisplayName="Then: If Name and DOB match" sap:VirtualizedContainerService.HintSize="707,3753" sap2010:WorkflowViewState.IdRef="Sequence_51">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <Switch x:TypeArguments="x:String" DisplayName="Switch: IsMember50Percent" Expression="[MIDDocumentData.Data.IsMember50Percent.Value.ToString.ToLower.Replace(&quot;☒&quot;, &quot;&quot;).Trim]" sap:VirtualizedContainerService.HintSize="645,574" sap2010:WorkflowViewState.IdRef="Switch`1_8">
+                                  <Switch.Default>
+                                    <Assign DisplayName="Set: IsMember50Percent" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_56">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="njl:JToken">[jObj_JSON("PartB")("IsMember50Percent")]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="njl:JToken">["unanswered"]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                  </Switch.Default>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <Assign x:Key="yes" DisplayName="Set: IsMember50Percent1" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_54">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="njl:JToken">[jObj_JSON("PartB")("IsMember50Percent")]</OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="njl:JToken">["yes"]</InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                  <Assign x:Key="no" DisplayName="Set: IsMember50Percent2" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_55">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="njl:JToken">[jObj_JSON("PartB")("IsMember50Percent")]</OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="njl:JToken">["no"]</InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                </Switch>
+                                <Switch x:TypeArguments="x:String" DisplayName="Switch: EmapcipatedMinor" Expression="[MIDDocumentData.Data.EmancipatedMinor.Value.ToString.ToLower]" sap:VirtualizedContainerService.HintSize="645,574" sap2010:WorkflowViewState.IdRef="Switch`1_9">
+                                  <Switch.Default>
+                                    <Assign DisplayName="Set: EmapcipatedMinor" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_59">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="njl:JToken">[jObj_JSON("MemberInformation")("EmancipatedMinor")]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="njl:JToken">["unanswered"]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                  </Switch.Default>
+                                  <Assign x:Key="☒" DisplayName="Set: EmapcipatedMinor1" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_57">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="njl:JToken">[jObj_JSON("MemberInformation")("EmancipatedMinor")]</OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="njl:JToken">[true]</InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                  <Assign x:Key="☐" DisplayName="Set: EmapcipatedMinor2" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_58">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="njl:JToken">[jObj_JSON("MemberInformation")("EmancipatedMinor")]</OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="njl:JToken">[false]</InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                </Switch>
+                                <Switch x:TypeArguments="x:String" DisplayName="Switch: FullTimeStudent" Expression="[MIDDocumentData.Data.FullTimeStudent.Value.ToString.ToLower]" sap:VirtualizedContainerService.HintSize="645,574" sap2010:WorkflowViewState.IdRef="Switch`1_4">
+                                  <Switch.Default>
+                                    <Assign DisplayName="Set: FullTimeStudent" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_44">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="njl:JToken">[jObj_JSON("PartAStudentStatus")("FullTimeStudent")]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="njl:JToken">["unanswered"]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                  </Switch.Default>
+                                  <Assign x:Key="☒ full-time student" DisplayName="Set: FullTimeStudent1" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_60">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="njl:JToken">[jObj_JSON("PartAStudentStatus")("FullTimeStudent")]</OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="njl:JToken">[true]</InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                  <Assign x:Key="☐ full-time student" DisplayName="Set: FullTimeStudent2" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_43">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="njl:JToken">[jObj_JSON("PartAStudentStatus")("FullTimeStudent")]</OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="njl:JToken">[false]</InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                </Switch>
+                                <Switch x:TypeArguments="x:String" DisplayName="Switch: PartTimeStudent" Expression="[MIDDocumentData.Data.PartTimeStudent.Value. ToString.ToLower]" sap:VirtualizedContainerService.HintSize="645,574" sap2010:WorkflowViewState.IdRef="Switch`1_5">
+                                  <Switch.Default>
+                                    <Assign DisplayName="Set: PartTimeStudent" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_47">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="njl:JToken">[jObj_JSON("PartAStudentStatus")("PartTimeStudent")]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="njl:JToken">["unanswered"]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                  </Switch.Default>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <Assign x:Key="☒ part-time student" DisplayName="Set: PartTimeStudent1" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_61">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="njl:JToken">[jObj_JSON("PartAStudentStatus")("PartTimeStudent")]</OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="njl:JToken">[true]</InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                  <Assign x:Key="☐ part-time student" DisplayName="Set: PartTimeStudent2" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_46">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="njl:JToken">[jObj_JSON("PartAStudentStatus")("PartTimeStudent")]</OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="njl:JToken">[false]</InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                </Switch>
+                                <Switch x:TypeArguments="x:String" DisplayName="Switch: NotAStudentStudent" Expression="[MIDDocumentData.Data.NotAStudent.Value.ToString.ToLower]" sap:VirtualizedContainerService.HintSize="645,574" sap2010:WorkflowViewState.IdRef="Switch`1_6">
+                                  <Switch.Default>
+                                    <Assign DisplayName="Set: NotAStudentStudent" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_50">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="njl:JToken">[jObj_JSON("PartAStudentStatus")("NotAStudent")]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="njl:JToken">["unanswered"]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                  </Switch.Default>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <Assign x:Key="☒ not a student" DisplayName="Set: NotAStudentStudent1" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_62">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="njl:JToken">[jObj_JSON("PartAStudentStatus")("NotAStudent")]</OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="njl:JToken">[true]</InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                  <Assign x:Key="☐ not a student" DisplayName="Set: NotAStudentStudent2" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_49">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="njl:JToken">[jObj_JSON("PartAStudentStatus")("NotAStudent")]</OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="njl:JToken">[false]</InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                </Switch>
+                                <Switch x:TypeArguments="x:String" DisplayName="Switch: IsMemberAVeteran" Expression="[MIDDocumentData.Data.IsMemberAVeteran.Value.ToString.ToLower.Replace(&quot;☒&quot;, &quot;&quot;).Trim]" sap:VirtualizedContainerService.HintSize="645,574" sap2010:WorkflowViewState.IdRef="Switch`1_7">
+                                  <Switch.Default>
+                                    <Assign DisplayName="Set: IsMemberAVeteran" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_53">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="njl:JToken">[jObj_JSON("PartAStudentStatus")("IsMemberAVeteran")]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="njl:JToken">["unanswered"]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                  </Switch.Default>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <Assign x:Key="yes" DisplayName="Set: IsMemberAVeteran1" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_63">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="njl:JToken">[jObj_JSON("PartAStudentStatus")("IsMemberAVeteran")]</OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="njl:JToken">["yes"]</InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                  <Assign x:Key="no" DisplayName="Set: IsMemberAVeteran2" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_52">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="njl:JToken">[jObj_JSON("PartAStudentStatus")("IsMemberAVeteran")]</OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="njl:JToken">["no"]</InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                </Switch>
+                                <ui:LogMessage DisplayName="Log Message - updated JSON" sap:VirtualizedContainerService.HintSize="645,173" sap2010:WorkflowViewState.IdRef="LogMessage_11" Message="[&quot;MID JSON is updated with DU results:&quot; + vbCrLf + jObj_JSON.ToString]">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </ui:LogMessage>
+                                <ui:Break sap:VirtualizedContainerService.HintSize="645,48" sap2010:WorkflowViewState.IdRef="Break_1" />
+                              </Sequence>
+                            </If.Then>
+                            <If.Else>
+                              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,103" sap2010:WorkflowViewState.IdRef="Sequence_52">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </Sequence>
+                            </If.Else>
+                          </If>
+                        </Sequence>
+                      </ActivityAction>
+                    </ui:ForEach.Body>
+                  </ui:ForEach>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,103" sap2010:WorkflowViewState.IdRef="Sequence_54">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Sequence>
+              </If.Else>
+            </If>
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEach.Body>
+    </ui:ForEach>
+    <ui:LogMessage DisplayName="Log Message - updated JSON" sap:VirtualizedContainerService.HintSize="1073,173" sap2010:WorkflowViewState.IdRef="LogMessage_5" Message="[&quot;MID JSON is updated with DU results:&quot; + vbCrLf + io_jArrDUResults.ToString]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:LogMessage>
+    <ui:LogMessage DisplayName="Log Message - DU Completed" sap:VirtualizedContainerService.HintSize="642,164" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Info" Message="[&quot;DU_Extraction_MID.xaml is Completed.&quot;]" />
+  </Sequence>
+</Activity>
