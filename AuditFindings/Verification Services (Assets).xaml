@@ -15,7 +15,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>992,5233</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1391,5193</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Verification_Services__Assets__1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -269,7 +269,7 @@
                                   <OutArgument x:TypeArguments="x:Object">[CurrentRow("InstitutionName")]</OutArgument>
                                 </Assign.To>
                                 <Assign.Value>
-                                  <InArgument x:TypeArguments="x:Object">[System.Text.RegularExpressions.Regex.Split(CurrentRow("Description").ToString, "\s*-\s*")(1).ToLower.Trim]</InArgument>
+                                  <InArgument x:TypeArguments="x:Object">[If(Regex.Split(CurrentRow("Description").ToString, "\s*-\s*").Length &gt; 1, Regex.Split(CurrentRow("Description").ToString, "\s*-\s*")(1).ToLower.Trim, "")]</InArgument>
                                 </Assign.Value>
                               </Assign>
                             </Sequence>
@@ -458,7 +458,7 @@
         </Sequence>
       </TryCatch.Try>
       <TryCatch.Catches>
-        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="714,22" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="906,22" sap2010:WorkflowViewState.IdRef="Catch`1_1">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -469,14 +469,14 @@
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Verification Services (Assets)" sap:VirtualizedContainerService.HintSize="416,475" sap2010:WorkflowViewState.IdRef="Sequence_6">
+            <Sequence DisplayName="Verification Services (Assets)" sap:VirtualizedContainerService.HintSize="416,473" sap2010:WorkflowViewState.IdRef="Sequence_6">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
               <ui:LogMessage DisplayName="Log Message - VSA Error" sap:VirtualizedContainerService.HintSize="354,173" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Warn" Message="[&quot;Error at Verification Services (Assets): &quot; + exception.message]" />
-              <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;VSA&quot;,&quot;PageNum&quot;,in_Config(&quot;VSA_FindingError&quot;).ToString,exception.Message}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add Data Row - Verification Services (Assets) Finding error" sap:VirtualizedContainerService.HintSize="354,212" sap2010:WorkflowViewState.IdRef="AddDataRow_1">
+              <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;VSA&quot;,&quot;PageNum&quot;,in_Config(&quot;VSA_FindingError&quot;).ToString,exception.Message}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add Data Row - Verification Services (Assets) Finding error" sap:VirtualizedContainerService.HintSize="354,209" sap2010:WorkflowViewState.IdRef="AddDataRow_1">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
