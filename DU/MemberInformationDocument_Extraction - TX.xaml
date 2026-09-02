@@ -7,7 +7,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1361,8504</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1125,8916</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>DU_Extraction_MID_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -52,6 +52,7 @@
       <x:String>UiPath.IntelligentOCR.StudioWeb.Activities.SWEntities.ExtendedExtractionResultsForDocumentData.TXSpecificAllMemberInformationDocumentV7.Bundle</x:String>
       <x:String>UiPath.IntelligentOCR.StudioWeb.Activities.SWEntities.ExtendedExtractionResultsForDocumentData.TXSpecificAllEmploymentVerificationV8.Bundle</x:String>
       <x:String>UiPath.IntelligentOCR.StudioWeb.Activities.SWEntities.ExtendedExtractionResultsForDocumentData.TXSpecificAllMemberInformationDocumentV8.Bundle</x:String>
+      <x:String>System.Activities.Runtime.Collections</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -134,7 +135,7 @@
       <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="DU_Extraction_MID" sap:VirtualizedContainerService.HintSize="1135,8399" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="DU_Extraction_MID" sap:VirtualizedContainerService.HintSize="1135,8531" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="str_DUName" />
       <Variable x:TypeArguments="s:String[]" Default="[New String() {}]" Name="arr_MIDNames" />
@@ -169,13 +170,13 @@
         </ActivityAction>
       </ui:ForEach.Body>
     </ui:ForEach>
-    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each currentFile" sap:VirtualizedContainerService.HintSize="1073,7458" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[in_ArrImages]">
+    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each currentFile" sap:VirtualizedContainerService.HintSize="1073,7590" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[in_ArrImages]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="x:String">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:String" Name="currentFile" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body " sap:VirtualizedContainerService.HintSize="995,7311" sap2010:WorkflowViewState.IdRef="Sequence_33">
+          <Sequence DisplayName="Body " sap:VirtualizedContainerService.HintSize="995,7443" sap2010:WorkflowViewState.IdRef="Sequence_33">
             <Sequence.Variables>
               <Variable x:TypeArguments="upr:ILocalResource" Name="lRes_File" />
               <Variable x:TypeArguments="njl:JObject" Name="jObj_JSON" />
@@ -221,9 +222,9 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:LogMessage>
-            <If Condition="[classifiedDocument.DocumentType.DisplayName = &quot;Member Information Document&quot;]" DisplayName="If - doc type is MID" sap:VirtualizedContainerService.HintSize="933,6383" sap2010:WorkflowViewState.IdRef="If_1">
+            <If Condition="[classifiedDocument.DocumentType.DisplayName = &quot;Member Information Document&quot;]" DisplayName="If - doc type is MID" sap:VirtualizedContainerService.HintSize="933,6515" sap2010:WorkflowViewState.IdRef="If_1">
               <If.Then>
-                <Sequence DisplayName="Then: If - doc type is MID" sap:VirtualizedContainerService.HintSize="899,6118" sap2010:WorkflowViewState.IdRef="Sequence_53">
+                <Sequence DisplayName="Then: If - doc type is MID" sap:VirtualizedContainerService.HintSize="899,6250" sap2010:WorkflowViewState.IdRef="Sequence_53">
                   <Sequence.Variables>
                     <Variable x:TypeArguments="uisad:IDocumentData(uisasetb:TXSpecificAllMemberInformationDocumentV8)" Name="MIDDocumentData" />
                     <Variable x:TypeArguments="s:String[]" Name="arr_NameWords" />
@@ -251,14 +252,86 @@
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                   </ui:LogMessage>
-                  <Assign sap:VirtualizedContainerService.HintSize="837,115" sap2010:WorkflowViewState.IdRef="Assign_64">
-                    <Assign.To>
-                      <OutArgument x:TypeArguments="s:String[]">[arr_NameWords]</OutArgument>
-                    </Assign.To>
-                    <Assign.Value>
-                      <InArgument x:TypeArguments="s:String[]">[MIDDocumentData.Data.LegalName.ToString().Trim().Split(New String() {" "c}, StringSplitOptions.RemoveEmptyEntries)]</InArgument>
-                    </Assign.Value>
-                  </Assign>
+                  <ui:CommentOut DisplayName="Implementation for MID" sap:VirtualizedContainerService.HintSize="837,247" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+                    <ui:CommentOut.Body>
+                      <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,136" sap2010:WorkflowViewState.IdRef="Sequence_56">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <TryCatch DisplayName="Try Catch - str_DUName" sap:VirtualizedContainerService.HintSize="354,48" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <TryCatch.Try>
+                            <Sequence DisplayName="Try: Assigning str_DUName" sap:VirtualizedContainerService.HintSize="559,775" sap2010:WorkflowViewState.IdRef="Sequence_55">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <Assign DisplayName="Assign: arr_NameWords" sap:VirtualizedContainerService.HintSize="497,115" sap2010:WorkflowViewState.IdRef="Assign_64">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="s:String[]">[arr_NameWords]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="s:String[]">[MIDDocumentData.Data.LegalName.ToString().Trim().Split(New String() {" "c}, StringSplitOptions.RemoveEmptyEntries)]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <Switch x:TypeArguments="x:Int32" DisplayName="Switch - Assigning only the First and Last Name" Expression="[arr_NameWords.Length]" sap:VirtualizedContainerService.HintSize="497,572" sap2010:WorkflowViewState.IdRef="Switch`1_10">
+                                <Switch.Default>
+                                  <Assign DisplayName="Assign - str_DUName" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_67">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="x:String">[str_DUName]</OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="x:String">[arr_NameWords(0) &amp; " " &amp; arr_NameWords(arr_NameWords.Length - 1)]</InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                </Switch.Default>
+                                <Assign x:Key="1" DisplayName="Assign - str_DUName 1" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_65">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">[str_DUName]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String">[arr_NameWords(0)]</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <Assign x:Key="2" DisplayName="Assign - str_DUName 2" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_66">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">[str_DUName]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String">[arr_NameWords(0) &amp; " " &amp; arr_NameWords(1)]</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </Switch>
+                            </Sequence>
+                          </TryCatch.Try>
+                          <TryCatch.Catches>
+                            <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="563,162" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ActivityAction x:TypeArguments="s:Exception">
+                                <ActivityAction.Argument>
+                                  <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                </ActivityAction.Argument>
+                                <Throw Exception="[New Exception(&quot;DU name is empty: &quot; + exception.Message)]" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="Throw_2" />
+                              </ActivityAction>
+                            </Catch>
+                          </TryCatch.Catches>
+                        </TryCatch>
+                      </Sequence>
+                    </ui:CommentOut.Body>
+                  </ui:CommentOut>
                   <Assign DisplayName="Assign - str_DUName" sap:VirtualizedContainerService.HintSize="837,115" sap2010:WorkflowViewState.IdRef="Assign_26">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[str_DUName]</OutArgument>
