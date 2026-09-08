@@ -3,8 +3,9 @@
     <x:Property Name="io_JSONObject" Type="InOutArgument(njl:JObject)" />
     <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
     <x:Property Name="in_ArrImages" Type="InArgument(s:String[])" />
+    <x:Property Name="io_jArrDUResults" Type="InOutArgument(njl:JArray)" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>1390.9999999999998,6933</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1245,7384</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -150,16 +151,21 @@
       <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="Application_Summary" sap:VirtualizedContainerService.HintSize="1255,6828" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Application_Summary" sap:VirtualizedContainerService.HintSize="1255,7319" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="uisad1:IDocumentData(uisasecb:CommonDUModelsInitialApplicationSummaryV1)" Name="applicationSummaryDocumentData" />
+      <Variable x:TypeArguments="s:String[]" Name="arr_ASNames">
+        <Variable.Default>
+          <VisualBasicValue x:TypeArguments="s:String[]" ExpressionText="New String() {}" />
+        </Variable.Default>
+      </Variable>
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message-Started" sap:VirtualizedContainerService.HintSize="1193,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;DU_Extraction_AS.xaml is Started&quot;]">
+    <ui:LogMessage DisplayName="Log Message-Started" sap:VirtualizedContainerService.HintSize="1193,173" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;DU_Extraction_AS.xaml is Started&quot;]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -167,7 +173,42 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="1193,6401" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <ui:CommentOut DisplayName="Comment Out - 3350" sap:VirtualizedContainerService.HintSize="1193,529" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="592,418" sap2010:WorkflowViewState.IdRef="Sequence_19">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:ForEach x:TypeArguments="njl:JObject" CurrentIndex="{x:Null}" DisplayName="For Each currentJObject" sap:VirtualizedContainerService.HintSize="530,330" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[io_jArrDUResults]">
+            <ui:ForEach.Body>
+              <ActivityAction x:TypeArguments="njl:JObject">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="njl:JObject" Name="currentJObject" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="496,193" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Assign DisplayName="Assign-arr_MIDNames" sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_19">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="s:String[]">[arr_ASNames]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="s:String[]">[arr_ASNames.Concat({currentJObject("Members")("Name").ToString}).ToArray()]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </Sequence>
+              </ActivityAction>
+            </ui:ForEach.Body>
+          </ui:ForEach>
+        </Sequence>
+      </ui:CommentOut.Body>
+    </ui:CommentOut>
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="1193,6365" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -175,13 +216,13 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <TryCatch.Try>
-        <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each currentFile" sap:VirtualizedContainerService.HintSize="1155,6033" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[in_ArrImages]">
+        <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each currentFile" sap:VirtualizedContainerService.HintSize="1155,6001" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[in_ArrImages]">
           <ui:ForEach.Body>
             <ActivityAction x:TypeArguments="x:String">
               <ActivityAction.Argument>
                 <DelegateInArgument x:TypeArguments="x:String" Name="currentFile" />
               </ActivityAction.Argument>
-              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="1121,5918" sap2010:WorkflowViewState.IdRef="Sequence_13">
+              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="1121,5887" sap2010:WorkflowViewState.IdRef="Sequence_13">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="upr:ILocalResource" Name="lRes_File" />
                   <Variable x:TypeArguments="uisad:DocumentData" Name="classifiedDocument" />
@@ -191,9 +232,9 @@
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:LogMessage DisplayName="Log file processing update" sap:VirtualizedContainerService.HintSize="979,175" sap2010:WorkflowViewState.IdRef="LogMessage_5" Message="[string.Format(&quot;Processing file: {0}&quot;, currentFile)]" />
-                <ui:PathExists Exists="{x:Null}" DisplayName="CurrentFile Exists" sap:VirtualizedContainerService.HintSize="1059,174" sap2010:WorkflowViewState.IdRef="PathExists_1" Path="[currentFile]" PathType="File" Resource="[lRes_File]" />
-                <p:ClassifyDocument ApiKey="{x:Null}" ClassifierResult="{x:Null}" DocumentObjectModel="{x:Null}" DocumentPath="{x:Null}" DocumentText="{x:Null}" DocumentTypes="{x:Null}" PersistenceId="{x:Null}" PredictionId="{x:Null}" Prompt="{x:Null}" ClassificationResults="[classifiedDocument]" ClassifierId="26790897-ce94-f111-9b33-000d3a8c392e" ClassifierName="CommonCSEIandSC_2-1_classifier_v9" DisplayName="Classify Document" Endpoint="https://cloud.uipath.com/a6e81ae5-13a7-4d1d-9b35-86ac86d911ce/4af39ed3-b30e-48f2-b551-f1e60b4acb75/du_/api/framework/projects/2fdd4fa5-6b45-f111-8ef3-6045bda78650/classifiers/26790897-ce94-f111-9b33-000d3a8c392e/classification/start?api-version=1.1" FileInput="[lRes_File]" sap:VirtualizedContainerService.HintSize="1059,348" sap2010:WorkflowViewState.IdRef="ClassifyDocument_1" MinimumConfidence="50" ProjectId="2fdd4fa5-6b45-f111-8ef3-6045bda78650" ProjectName="Common Document Understanding" ProjectVersionName="CommonCSEIandSC_2-1" ProjectVersionNumber="9" RuntimeAssetPath="Compliance/Application Review Process/DU_AppCredentials" RuntimeTenantUrl="[in_Config(&quot;DU_TenantURL&quot;).ToString]" TimeoutInSeconds="[CInt(in_config(&quot;DU_TimeOut&quot;).ToString)]">
+                <ui:LogMessage DisplayName="Log file processing update" sap:VirtualizedContainerService.HintSize="1059,173" sap2010:WorkflowViewState.IdRef="LogMessage_5" Message="[string.Format(&quot;Processing file: {0}&quot;, currentFile)]" />
+                <ui:PathExists Exists="{x:Null}" DisplayName="CurrentFile Exists" sap:VirtualizedContainerService.HintSize="1059,172" sap2010:WorkflowViewState.IdRef="PathExists_1" Path="[currentFile]" PathType="File" Resource="[lRes_File]" />
+                <p:ClassifyDocument ApiKey="{x:Null}" ClassifierResult="{x:Null}" DocumentObjectModel="{x:Null}" DocumentPath="{x:Null}" DocumentText="{x:Null}" DocumentTypes="{x:Null}" PersistenceId="{x:Null}" PredictionId="{x:Null}" Prompt="{x:Null}" ClassificationResults="[classifiedDocument]" ClassifierId="26790897-ce94-f111-9b33-000d3a8c392e" ClassifierName="CommonCSEIandSC_2-1_classifier_v9" DisplayName="Classify Document" Endpoint="https://cloud.uipath.com/a6e81ae5-13a7-4d1d-9b35-86ac86d911ce/4af39ed3-b30e-48f2-b551-f1e60b4acb75/du_/api/framework/projects/2fdd4fa5-6b45-f111-8ef3-6045bda78650/classifiers/26790897-ce94-f111-9b33-000d3a8c392e/classification/start?api-version=1.1" FileInput="[lRes_File]" sap:VirtualizedContainerService.HintSize="1059,339" sap2010:WorkflowViewState.IdRef="ClassifyDocument_1" MinimumConfidence="50" ProjectId="2fdd4fa5-6b45-f111-8ef3-6045bda78650" ProjectName="Common Document Understanding" ProjectVersionName="CommonCSEIandSC_2-1" ProjectVersionNumber="9" RuntimeAssetPath="Compliance/Application Review Process/DU_AppCredentials" RuntimeTenantUrl="[in_Config(&quot;DU_TenantURL&quot;).ToString]" TimeoutInSeconds="[CInt(in_config(&quot;DU_TimeOut&quot;).ToString)]">
                   <p:ClassifyDocument.GptPromptWithVariables>
                     <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
                   </p:ClassifyDocument.GptPromptWithVariables>
@@ -209,8 +250,8 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                 </p:ClassifyDocument>
-                <ui:LogMessage DisplayName="Log document type" sap:VirtualizedContainerService.HintSize="1059,175" sap2010:WorkflowViewState.IdRef="LogMessage_6" Message="[string.Format(&quot;Classified {0} as {1}&quot;, currentFile, classifiedDocument.DocumentType.DisplayName)]" />
-                <If Condition="[classifiedDocument.DocumentType.DisplayName.Equals(&quot;Application Summary&quot;)]" DisplayName="If-DT-ApplicationSummary" sap:VirtualizedContainerService.HintSize="1059,4958" sap2010:WorkflowViewState.IdRef="If_1">
+                <ui:LogMessage DisplayName="Log document type" sap:VirtualizedContainerService.HintSize="1059,173" sap2010:WorkflowViewState.IdRef="LogMessage_6" Message="[string.Format(&quot;Classified {0} as {1}&quot;, currentFile, classifiedDocument.DocumentType.DisplayName)]" />
+                <If Condition="[classifiedDocument.DocumentType.DisplayName.Equals(&quot;Application Summary&quot;)]" DisplayName="If-DT-ApplicationSummary" sap:VirtualizedContainerService.HintSize="1059,4942" sap2010:WorkflowViewState.IdRef="If_1">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -218,20 +259,20 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                   <If.Then>
-                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="1025,4692" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="1025,4677" sap2010:WorkflowViewState.IdRef="Sequence_15">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <Sequence DisplayName="AS_Extraction" sap:VirtualizedContainerService.HintSize="963,4604" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                      <Sequence DisplayName="AS_Extraction" sap:VirtualizedContainerService.HintSize="963,4589" sap2010:WorkflowViewState.IdRef="Sequence_17">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             <x:Boolean x:Key="IsPinned">False</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <p:ExtractDocumentDataWithDocumentData x:TypeArguments="uisasecb:CommonDUModelsInitialApplicationSummaryV1" DocumentBounds="{x:Null}" DocumentObjectModel="{x:Null}" DocumentPath="{x:Null}" DocumentText="{x:Null}" ExtractorDocumentType="{x:Null}" ExtractorResult="{x:Null}" PersistenceId="{x:Null}" PredictionId="{x:Null}" Prompt="{x:Null}" ApplyAutoValidation="False" DisplayName="Extract Document Data" DocType="6b808d7d-3e4e-f111-8ef3-000d3a1a5339" ExtractionResults="[applicationSummaryDocumentData]" ExtractorName="CommonDUModelsInitial_Application Summary_v1" FileInput="[classifiedDocument]" GenerateData="True" sap:VirtualizedContainerService.HintSize="901,367" sap2010:WorkflowViewState.IdRef="ExtractDocumentDataWithDocumentData`1_1" ModernDocumentTypeId="39fceb8e-dd47-f111-8ef3-002248237633" ModernDocumentTypeName="Application Summary" ProjectId="2fdd4fa5-6b45-f111-8ef3-6045bda78650" ProjectName="Common Document Understanding" ProjectTag="[Nothing]" ProjectVersionName="CommonDUModelsInitial" ProjectVersionNumber="1" RuntimeAssetPath="Compliance/Application Review Process/DU_AppCredentials" RuntimeTenantUrl="[in_Config(&quot;DU_TenantURL&quot;).ToString]" TimeoutInSeconds="[CInt(in_config(&quot;DU_TimeOut&quot;).ToString)]">
+                        <p:ExtractDocumentDataWithDocumentData x:TypeArguments="uisasecb:CommonDUModelsInitialApplicationSummaryV1" DocumentBounds="{x:Null}" DocumentObjectModel="{x:Null}" DocumentPath="{x:Null}" DocumentText="{x:Null}" ExtractorDocumentType="{x:Null}" ExtractorResult="{x:Null}" PersistenceId="{x:Null}" PredictionId="{x:Null}" Prompt="{x:Null}" ApplyAutoValidation="False" DisplayName="Extract Document Data" DocType="6b808d7d-3e4e-f111-8ef3-000d3a1a5339" ExtractionResults="[applicationSummaryDocumentData]" ExtractorName="CommonDUModelsInitial_Application Summary_v1" FileInput="[classifiedDocument]" GenerateData="True" sap:VirtualizedContainerService.HintSize="901,359" sap2010:WorkflowViewState.IdRef="ExtractDocumentDataWithDocumentData`1_1" ModernDocumentTypeId="39fceb8e-dd47-f111-8ef3-002248237633" ModernDocumentTypeName="Application Summary" ProjectId="2fdd4fa5-6b45-f111-8ef3-6045bda78650" ProjectName="Common Document Understanding" ProjectTag="[Nothing]" ProjectVersionName="CommonDUModelsInitial" ProjectVersionNumber="1" RuntimeAssetPath="Compliance/Application Review Process/DU_AppCredentials" RuntimeTenantUrl="[in_Config(&quot;DU_TenantURL&quot;).ToString]" TimeoutInSeconds="[CInt(in_config(&quot;DU_TimeOut&quot;).ToString)]">
                           <p:ExtractDocumentDataWithDocumentData.AutoValidationConfidenceThreshold>
                             <InArgument x:TypeArguments="s:Nullable(x:Int32)">
                               <Literal x:TypeArguments="s:Nullable(x:Int32)" Value="0" />
@@ -241,7 +282,7 @@
                             <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
                           </p:ExtractDocumentDataWithDocumentData.GptPromptWithVariables>
                         </p:ExtractDocumentDataWithDocumentData>
-                        <ui:LogMessage DisplayName="Write extracted data (Application Summary)" sap:VirtualizedContainerService.HintSize="901,175" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[&quot;The following data has been extracted (excluding table data): {for each fields, except tables, display as key-value pairs: field name - field value}.&quot; &amp; vbCrLf &amp; applicationSummaryDocumentData.ToString]">
+                        <ui:LogMessage DisplayName="Write extracted data (Application Summary)" sap:VirtualizedContainerService.HintSize="901,173" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[&quot;The following data has been extracted (excluding table data): {for each fields, except tables, display as key-value pairs: field name - field value}.&quot; &amp; vbCrLf &amp; applicationSummaryDocumentData.ToString]">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -249,7 +290,7 @@
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                         </ui:LogMessage>
-                        <Sequence DisplayName="ReplaceFieldsInAS" sap:VirtualizedContainerService.HintSize="901,3951" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                        <Sequence DisplayName="ReplaceFieldsInAS" sap:VirtualizedContainerService.HintSize="901,3946" sap2010:WorkflowViewState.IdRef="Sequence_2">
                           <Sequence.Variables>
                             <Variable x:TypeArguments="x:String" Name="str_FieldName" />
                             <Variable x:TypeArguments="x:String" Name="str_SelectedValue" />
@@ -262,7 +303,7 @@
                               <x:Boolean x:Key="IsPinned">False</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <Switch x:TypeArguments="x:String" DisplayName="SwitchFedraltaxRefund" Expression="[applicationSummaryDocumentData.Data.FederalTaxRefundReceived.Value.Replace(&quot;☒&quot;,&quot;&quot;).Replace(&quot; &quot;,&quot;&quot;).ToLower]" sap:VirtualizedContainerService.HintSize="839,580" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+                          <Switch x:TypeArguments="x:String" DisplayName="SwitchFedraltaxRefund" Expression="[applicationSummaryDocumentData.Data.FederalTaxRefundReceived.Value.Replace(&quot;☒&quot;,&quot;&quot;).Replace(&quot; &quot;,&quot;&quot;).ToLower]" sap:VirtualizedContainerService.HintSize="839,575" sap2010:WorkflowViewState.IdRef="Switch`1_1">
                             <Switch.Default>
                               <Assign DisplayName="Assign-HasFederalTaxRefund" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_14">
                                 <Assign.To>
@@ -285,7 +326,7 @@
                                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <Assign x:Key="yes" DisplayName="Assign-HasFederalTaxRefund" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_12">
+                            <Assign x:Key="yes" DisplayName="Assign-HasFederalTaxRefund" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_12">
                               <Assign.To>
                                 <OutArgument x:TypeArguments="njl:JToken">[io_JSONObject("HouseholdQuestions")("FederalTaxRefund")("HasFederalTaxRefund")]</OutArgument>
                               </Assign.To>
