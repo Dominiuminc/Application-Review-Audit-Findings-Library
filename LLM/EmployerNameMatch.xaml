@@ -1,13 +1,18 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="EmployerNameMatch" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="EmployerNameMatch" this:EmployerNameMatch.in_UserPrompt="Compare these employer names: Buc-ees Ltd vs Buc-ees" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:afa="clr-namespace:AshlingPartners.Foundry.Activities;assembly=AshlingPartners.Foundry.Activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
-    <x:Property Name="in_UserPromptTextFile" Type="InArgument(x:String)" />
     <x:Property Name="out_LLMEmployerMatchResponse" Type="OutArgument(x:String)" />
+    <x:Property Name="in_ImagePath" Type="InArgument(x:String)" />
+    <x:Property Name="in_SystemTextFile" Type="InArgument(x:String)" />
+    <x:Property Name="in_UserPrompt" Type="InArgument(x:String)" />
   </x:Members>
+  <this:EmployerNameMatch.in_ImagePath>
+    <InArgument x:TypeArguments="x:String" />
+  </this:EmployerNameMatch.in_ImagePath>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1158,1022</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1745,1328</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>EmployerNameMatch_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -37,6 +42,9 @@
       <x:String>System.Runtime.Serialization</x:String>
       <x:String>System.Reflection</x:String>
       <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>APIClient.Models</x:String>
+      <x:String>AshlingPartners.Foundry.Activities</x:String>
+      <x:String>System.Numerics</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -81,23 +89,27 @@
       <AssemblyReference>NPOI.Core</AssemblyReference>
       <AssemblyReference>System.Collections</AssemblyReference>
       <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>APIClient</AssemblyReference>
+      <AssemblyReference>AshlingPartners.Foundry.Activities</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="EmployerNameMatch" sap:VirtualizedContainerService.HintSize="541,617" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="EmployerNameMatch" sap:VirtualizedContainerService.HintSize="541,1263" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="str_EndPoint" />
       <Variable x:TypeArguments="x:String" Name="str_APIKey" />
       <Variable x:TypeArguments="x:String" Name="str_DeploymentName" />
       <Variable x:TypeArguments="x:String" Name="str_APIVersion" />
-      <Variable x:TypeArguments="x:String" Name="str_UserPrompt" />
+      <Variable x:TypeArguments="x:String" Name="str_SystemPrompt" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message-EmployerNameStarted" sap:VirtualizedContainerService.HintSize="479,173" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;EmployerNameMatch.xaml started.&quot;]" />
-    <ui:MultipleAssign DisplayName="Set: str_EndPoint, str_APIKey, str_DeploymentName, str_APIVersion..." sap:VirtualizedContainerService.HintSize="479,241" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+    <ui:LogMessage DisplayName="Log Message-EmployerNameStarted" sap:VirtualizedContainerService.HintSize="479,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;EmployerNameMatch.xaml started.&quot;]" />
+    <ui:MultipleAssign DisplayName="Set: str_EndPoint, str_APIKey, str_DeploymentName, str_APIVersion..." sap:VirtualizedContainerService.HintSize="479,242" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
       <ui:MultipleAssign.AssignOperations>
         <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
           <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
@@ -141,7 +153,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:MultipleAssign>
-    <ui:ReadTextFile File="{x:Null}" Content="[str_UserPrompt]" DisplayName="Read Text File_Prompts" FileName="[in_UserPromptTextFile]" sap:VirtualizedContainerService.HintSize="479,115" sap2010:WorkflowViewState.IdRef="ReadTextFile_1">
+    <ui:ReadTextFile File="{x:Null}" Content="[str_SystemPrompt]" DisplayName="Read Text File_Prompts" FileName="[in_SystemTextFile]" sap:VirtualizedContainerService.HintSize="479,124" sap2010:WorkflowViewState.IdRef="ReadTextFile_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -149,5 +161,6 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ReadTextFile>
+    <afa:SendImage Temperature="{x:Null}" APIKey="[str_APIKey]" APIVersion="[str_APIVersion]" DeploymentName="[str_DeploymentName]" DisplayName="Send Image" EndPoint="[str_EndPoint]" sap:VirtualizedContainerService.HintSize="479,634" sap2010:WorkflowViewState.IdRef="SendImage_1" ImagePath="[in_ImagePath]" MaxReturnTokens="[CInt(in_Config(&quot;LLM_Extraction_MaxTokens&quot;).ToString)]" RetryCount="3" SystemPrompt="[str_SystemPrompt]" Timeout="[CInt(in_Config(&quot;LLM_Extraction_Timeout&quot;).ToString)]" UserPrompt="[in_UserPrompt]" />
   </Sequence>
 </Activity>
