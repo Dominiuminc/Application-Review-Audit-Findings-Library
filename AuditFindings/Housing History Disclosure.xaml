@@ -8,7 +8,7 @@
     <x:Property Name="in_boolRealEstateIsChecked" Type="InArgument(x:Boolean)" />
     <x:Property Name="io_dt_AuditFindings" Type="InOutArgument(sd:DataTable)" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>1090,8524</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1439,8757</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -148,13 +148,13 @@
       <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence sap:VirtualizedContainerService.HintSize="926,8459" sap2010:WorkflowViewState.IdRef="Sequence_3970">
+  <Sequence sap:VirtualizedContainerService.HintSize="926,8692" sap2010:WorkflowViewState.IdRef="Sequence_3970">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <TryCatch DisplayName="Try Catch-HousingDisclosure" sap:VirtualizedContainerService.HintSize="864,8371" sap2010:WorkflowViewState.IdRef="TryCatch_183">
+    <TryCatch DisplayName="Try Catch-HousingDisclosure" sap:VirtualizedContainerService.HintSize="864,8604" sap2010:WorkflowViewState.IdRef="TryCatch_183">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
@@ -162,7 +162,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <TryCatch.Try>
-        <Sequence DisplayName="HousingDisclosureCheck" sap:VirtualizedContainerService.HintSize="826,8015" sap2010:WorkflowViewState.IdRef="Sequence_3112">
+        <Sequence DisplayName="HousingDisclosureCheck" sap:VirtualizedContainerService.HintSize="826,8248" sap2010:WorkflowViewState.IdRef="Sequence_3112">
           <Sequence.Variables>
             <Variable x:TypeArguments="sd:DataTable" Name="dt_FilteredHousingDisclosureData" />
           </Sequence.Variables>
@@ -205,7 +205,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:FilterDataTable>
-          <If Condition="[dt_FilteredHousingDisclosureData.RowCount&gt;0]" DisplayName="If-HousingDisclosureExists" sap:VirtualizedContainerService.HintSize="764,7395" sap2010:WorkflowViewState.IdRef="If_943">
+          <If Condition="[dt_FilteredHousingDisclosureData.RowCount&gt;0]" DisplayName="If-HousingDisclosureExists" sap:VirtualizedContainerService.HintSize="764,7628" sap2010:WorkflowViewState.IdRef="If_943">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -213,7 +213,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <If.Then>
-              <Sequence DisplayName="Then: If-HousingDisclosureExists" sap:VirtualizedContainerService.HintSize="730,6925" sap2010:WorkflowViewState.IdRef="Sequence_3113">
+              <Sequence DisplayName="Then: If-HousingDisclosureExists" sap:VirtualizedContainerService.HintSize="730,7158" sap2010:WorkflowViewState.IdRef="Sequence_3113">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="njl:JArray" Name="jArr_ExtResults" />
                   <Variable x:TypeArguments="scg:List(x:String)" Name="listImageFiles" />
@@ -422,13 +422,13 @@
                     <OutArgument x:TypeArguments="x:String" x:Key="out_MatchedName">[MatchedName]</OutArgument>
                   </ui:InvokeWorkflowFile.Arguments>
                 </ui:InvokeWorkflowFile>
-                <ui:ForEach x:TypeArguments="njl:JObject" CurrentIndex="{x:Null}" DisplayName="For Each Jarrobject" sap:VirtualizedContainerService.HintSize="668,3802" sap2010:WorkflowViewState.IdRef="ForEach`1_129" Values="[jArr_ExtResults]">
+                <ui:ForEach x:TypeArguments="njl:JObject" CurrentIndex="{x:Null}" DisplayName="For Each Jarrobject" sap:VirtualizedContainerService.HintSize="668,4035" sap2010:WorkflowViewState.IdRef="ForEach`1_129" Values="[jArr_ExtResults]">
                   <ui:ForEach.Body>
                     <ActivityAction x:TypeArguments="njl:JObject">
                       <ActivityAction.Argument>
                         <DelegateInArgument x:TypeArguments="njl:JObject" Name="jObj_ExtractionResults" />
                       </ActivityAction.Argument>
-                      <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="628,3665" sap2010:WorkflowViewState.IdRef="Sequence_3326">
+                      <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="628,3898" sap2010:WorkflowViewState.IdRef="Sequence_3326">
                         <Sequence.Variables>
                           <Variable x:TypeArguments="njl:JObject" Name="jObjJSON" />
                         </Sequence.Variables>
@@ -506,8 +506,8 @@
                             </Sequence>
                           </If.Else>
                         </If>
-                        <Switch x:TypeArguments="x:Boolean" DisplayName="Switch" Expression="[jObjJSON(&quot;Signature&quot;)(&quot;Date&quot;).ToString IsNot Nothing AndAlso&#xA;Not String.IsNullOrEmpty(jObjJSON(&quot;Signature&quot;)(&quot;Date&quot;).ToString) AndAlso&#xA;Not String.IsNullOrWhiteSpace(in_MoveIndate)]" sap:VirtualizedContainerService.HintSize="566,1191" sap2010:WorkflowViewState.IdRef="Switch`1_1">
-                          <TryCatch x:Key="True" DisplayName="Try Catch-DateCheckWithMoveIn-HHD" sap:VirtualizedContainerService.HintSize="488,871" sap2010:WorkflowViewState.IdRef="TryCatch_182">
+                        <Switch x:TypeArguments="x:Boolean" DisplayName="Switch in_MoveIndate check" Expression="[jObjJSON(&quot;Signature&quot;)(&quot;Date&quot;).ToString IsNot Nothing AndAlso&#xD;&#xA;Not String.IsNullOrEmpty(jObjJSON(&quot;Signature&quot;)(&quot;Date&quot;).ToString) AndAlso&#xD;&#xA;Not String.IsNullOrWhiteSpace(in_MoveIndate)]" sap:VirtualizedContainerService.HintSize="566,1424" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+                          <TryCatch x:Key="True" DisplayName="Try Catch-DateCheckWithMoveIn-HHD" sap:VirtualizedContainerService.HintSize="488,1104" sap2010:WorkflowViewState.IdRef="TryCatch_182">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
@@ -552,7 +552,7 @@
                               </If>
                             </TryCatch.Try>
                             <TryCatch.Catches>
-                              <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="454,23" sap2010:WorkflowViewState.IdRef="Catch`1_178">
+                              <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="454,256" sap2010:WorkflowViewState.IdRef="Catch`1_178">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -563,7 +563,7 @@
                                   <ActivityAction.Argument>
                                     <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                                   </ActivityAction.Argument>
-                                  <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;Housing Disclosure&quot;,&quot;PageNum&quot;,&quot;Unable to validate a Finding: &quot;+in_Config(&quot;HHD_MoveInDateCheck&quot;).ToString+&quot; Needs manual review&quot;,exception.Message}]" DataTable="[io_dt_AuditFindings]" DisplayName="Erros in validating findings for HHD" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_991">
+                                  <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;Housing Disclosure&quot;,&quot;PageNum&quot;,&quot;Unable to validate a Finding: &quot;+in_Config(&quot;HHD_MoveInDateCheck&quot;).ToString+&quot; Needs manual review&quot;,exception.Message}]" DataTable="[io_dt_AuditFindings]" DisplayName="Erros in validating findings for HHD" sap:VirtualizedContainerService.HintSize="334,186" sap2010:WorkflowViewState.IdRef="AddDataRow_991">
                                     <sap:WorkflowViewStateService.ViewState>
                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
@@ -575,7 +575,7 @@
                             </TryCatch.Catches>
                           </TryCatch>
                         </Switch>
-                        <If Condition="[Not in_boolRealEstateIsChecked AndAlso&#xA;jObjJSON(&quot;CurrentAddress&quot;)(&quot;CurrentAddressCheckbox&quot;).ToString.ToLower.Contains(&quot;own&quot;)]" DisplayName="If - Own is marked but marked No to Real Estate on the IAQ" sap:VirtualizedContainerService.HintSize="518,570" sap2010:WorkflowViewState.IdRef="If_1025">
+                        <If Condition="[Not in_boolRealEstateIsChecked AndAlso&#xA;jObjJSON(&quot;CurrentAddress&quot;)(&quot;CurrentAddressCheckbox&quot;).ToString.ToLower.Contains(&quot;own&quot;)]" DisplayName="If - Own is marked but marked No to Real Estate on the IAQ" sap:VirtualizedContainerService.HintSize="566,570" sap2010:WorkflowViewState.IdRef="If_1025">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
