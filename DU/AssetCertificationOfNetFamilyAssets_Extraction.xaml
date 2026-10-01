@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="AssetCertificationOfNetFamilyAssets_Extraction" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="http://schemas.uipath.com/workflow/activities/intelligentocr" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uisad="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.DataExtraction;assembly=UiPath.IntelligentOCR.StudioWeb.Activities" xmlns:uisad1="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.DocumentClassification;assembly=UiPath.IntelligentOCR.StudioWeb.Activities" xmlns:uisasetb="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.SWEntities.ExtendedExtractionResultsForDocumentData.TXSpecificAllCertificationOfNetFamilyAssetV8.Bundle;assembly=ExtendedExtractionRe.buzcADzc5Q1GdSgFZGKfR3" xmlns:upr="clr-namespace:UiPath.Platform.ResourceHandling;assembly=UiPath.Platform" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="AssetCertificationOfNetFamilyAssets_Extraction" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:p="http://schemas.uipath.com/workflow/activities/intelligentocr" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uisad="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.DataExtraction;assembly=UiPath.IntelligentOCR.StudioWeb.Activities" xmlns:uisad1="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.DocumentClassification;assembly=UiPath.IntelligentOCR.StudioWeb.Activities" xmlns:uisasetb="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.SWEntities.ExtendedExtractionResultsForDocumentData.TXSpecificAllCertificationOfNetFamilyAssetV8.Bundle;assembly=ExtendedExtractionRe.buzcADzc5Q1GdSgFZGKfR3" xmlns:upr="clr-namespace:UiPath.Platform.ResourceHandling;assembly=UiPath.Platform" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
     <x:Property Name="in_ArrImages" Type="InArgument(s:String[])" />
@@ -6,11 +6,12 @@
     <x:Property Name="out_HasNoAssets" Type="OutArgument(x:String)" />
     <x:Property Name="out_HasNoSolde" Type="OutArgument(x:String)" />
     <x:Property Name="out_HeadOfHousehold" Type="OutArgument(x:String)" />
+    <x:Property Name="out_ACNFADocumentDataList" Type="OutArgument(njl:JArray)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1210,2769</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1090,2802</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>AssetCertificationOfNetFamilyAssets_Extraction_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -61,6 +62,10 @@
       <x:String>UiPath.IntelligentOCR.StudioWeb.Activities.SWEntities.ExtendedExtractionResultsForDocumentData.TXSpecificAllCertificationOfNetFamilyAssetV7.Bundle</x:String>
       <x:String>UiPath.IntelligentOCR.StudioWeb.Activities.SWEntities.ExtendedExtractionResultsForDocumentData.TXSpecificAllEmploymentVerificationV8.Bundle</x:String>
       <x:String>UiPath.IntelligentOCR.StudioWeb.Activities.SWEntities.ExtendedExtractionResultsForDocumentData.TXSpecificAllCertificationOfNetFamilyAssetV8.Bundle</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+      <x:String>System.Dynamic</x:String>
+      <x:String>System.Collections.Specialized</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -127,18 +132,22 @@
       <AssemblyReference>ExtendedExtractionRe.LOz3p30egjF1GLmtA2THiEC1</AssemblyReference>
       <AssemblyReference>ExtendedExtractionRe.VwXw53u9FTC1rMbKf49VUcL3</AssemblyReference>
       <AssemblyReference>ExtendedExtractionRe.buzcADzc5Q1GdSgFZGKfR3</AssemblyReference>
+      <AssemblyReference>netstandard</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System.Collections.Specialized</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="813,2704" sap2010:WorkflowViewState.IdRef="Sequence_4">
+  <Sequence sap:VirtualizedContainerService.HintSize="670,2737" sap2010:WorkflowViewState.IdRef="Sequence_4">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="AssetCertificationOfNetFamilyAssets_Extraction" sap:VirtualizedContainerService.HintSize="751,2616" sap2010:WorkflowViewState.IdRef="Sequence_7">
+    <Sequence DisplayName="AssetCertificationOfNetFamilyAssets_Extraction (old)" sap:VirtualizedContainerService.HintSize="608,57" sap2010:WorkflowViewState.IdRef="Sequence_7">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <ui:LogMessage DisplayName="Log Message-Started" sap:VirtualizedContainerService.HintSize="689,173" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;AssetCertificatoinOfNetFamilyAssets.xaml is Started&quot;]" />
@@ -325,6 +334,114 @@
           </ActivityAction>
         </ui:ForEach.Body>
       </ui:ForEach>
+    </Sequence>
+    <Sequence DisplayName="AssetCertificationOfNetFamilyAssets_Extraction" sap:VirtualizedContainerService.HintSize="608,2592" sap2010:WorkflowViewState.IdRef="Sequence_8">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="njl:JArray" Name="jArr_ACNFADocumentDataResults" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:LogMessage DisplayName="Log Message-Started" sap:VirtualizedContainerService.HintSize="546,173" sap2010:WorkflowViewState.IdRef="LogMessage_5" Message="[&quot;AssetCertificatoinOfNetFamilyAssets.xaml is Started&quot;]" />
+      <Assign DisplayName="Assign-InitACNFADocumentDataList" sap:VirtualizedContainerService.HintSize="546,114" sap2010:WorkflowViewState.IdRef="Assign_11">
+        <Assign.To>
+          <OutArgument x:TypeArguments="njl:JArray">[jArr_ACNFADocumentDataResults]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="njl:JArray">[New JArray()]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each currentFile" sap:VirtualizedContainerService.HintSize="546,2089" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[in_ArrImages]">
+        <ui:ForEach.Body>
+          <ActivityAction x:TypeArguments="x:String">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="x:String" Name="currentFile" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="512,1943" sap2010:WorkflowViewState.IdRef="Sequence_9">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="upr:ILocalResource" Name="lRes_File" />
+                <Variable x:TypeArguments="uisad1:DocumentData" Name="classifiedDocument" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage DisplayName="Log file processing update" sap:VirtualizedContainerService.HintSize="450,173" sap2010:WorkflowViewState.IdRef="LogMessage_6" Message="[string.Format(&quot;Processing file: {0}&quot;, currentFile)]" />
+              <ui:PathExists Exists="{x:Null}" DisplayName="CurrentFile Exists" sap:VirtualizedContainerService.HintSize="450,172" sap2010:WorkflowViewState.IdRef="PathExists_2" Path="[currentFile]" PathType="File" Resource="[lRes_File]" />
+              <p:ClassifyDocument ApiKey="{x:Null}" ClassifierResult="{x:Null}" DocumentObjectModel="{x:Null}" DocumentPath="{x:Null}" DocumentText="{x:Null}" DocumentTypes="{x:Null}" PersistenceId="{x:Null}" PredictionId="{x:Null}" Prompt="{x:Null}" ClassificationResults="[classifiedDocument]" ClassifierId="60005e65-4980-f111-b337-00224834108a" ClassifierName="TXSpecificAll_classifier_v8" DisplayName="Classify Document" Endpoint="https://cloud.uipath.com/a6e81ae5-13a7-4d1d-9b35-86ac86d911ce/4af39ed3-b30e-48f2-b551-f1e60b4acb75/du_/api/framework/projects/85829f8a-b45a-f111-8fcb-000d3a15097f/classifiers/60005e65-4980-f111-b337-00224834108a/classification/start?api-version=1.1" FileInput="[lRes_File]" sap:VirtualizedContainerService.HintSize="450,309" sap2010:WorkflowViewState.IdRef="ClassifyDocument_4" MinimumConfidence="50" ProjectId="85829f8a-b45a-f111-8fcb-000d3a15097f" ProjectName="TX Document Understanding" ProjectVersionName="TXSpecificAll" ProjectVersionNumber="8" RuntimeAssetPath="Compliance/Application Review Process/DU_AppCredentials" RuntimeTenantUrl="[in_Config(&quot;DU_TenantURL&quot;).ToString]" TimeoutInSeconds="[CInt(in_Config(&quot;DU_TimeOut&quot;).ToString)]">
+                <p:ClassifyDocument.GptPromptWithVariables>
+                  <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                </p:ClassifyDocument.GptPromptWithVariables>
+                <p:ClassifyDocument.ProjectTag>
+                  <InArgument x:TypeArguments="x:String">
+                    <Literal x:TypeArguments="x:String" Value="" />
+                  </InArgument>
+                </p:ClassifyDocument.ProjectTag>
+              </p:ClassifyDocument>
+              <ui:LogMessage DisplayName="Log document type" sap:VirtualizedContainerService.HintSize="450,173" sap2010:WorkflowViewState.IdRef="LogMessage_7" Message="[string.Format(&quot;Classified {0} as {1}&quot;, currentFile, classifiedDocument.DocumentType.DisplayName)]" />
+              <If Condition="[classifiedDocument.DocumentType.DisplayName.Equals(&quot;Certification of Net Family Asset&quot;)]" DisplayName="IfVdocument is ACNFA" sap:VirtualizedContainerService.HintSize="450,1028" sap2010:WorkflowViewState.IdRef="If_2">
+                <If.Then>
+                  <Sequence DisplayName="Then: If document is ACNFA" sap:VirtualizedContainerService.HintSize="416,764" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="uisad:IDocumentData(uisasetb:TXSpecificAllCertificationOfNetFamilyAssetV8)" Name="ACNFADocData" />
+                    </Sequence.Variables>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <p:ExtractDocumentDataWithDocumentData x:TypeArguments="uisasetb:TXSpecificAllCertificationOfNetFamilyAssetV8" DocumentBounds="{x:Null}" DocumentObjectModel="{x:Null}" DocumentPath="{x:Null}" DocumentText="{x:Null}" ExtractorDocumentType="{x:Null}" ExtractorResult="{x:Null}" PersistenceId="{x:Null}" PredictionId="{x:Null}" Prompt="{x:Null}" ApplyAutoValidation="False" DisplayName="Extract Document Data" DocType="61005e65-4980-f111-b337-00224834108a" ExtractionResults="[ACNFADocData]" ExtractorName="TXSpecificAll_Certification of Net Family Asset_v8" FileInput="[classifiedDocument]" GenerateData="True" sap:VirtualizedContainerService.HintSize="354,344" sap2010:WorkflowViewState.IdRef="ExtractDocumentDataWithDocumentData`1_4" ModernDocumentTypeId="214a1a91-b45a-f111-8fcb-000d3a4dfac4" ModernDocumentTypeName="Certification of Net Family Asset" ProjectId="85829f8a-b45a-f111-8fcb-000d3a15097f" ProjectName="TX Document Understanding" ProjectTag="[Nothing]" ProjectVersionName="TXSpecificAll" ProjectVersionNumber="8" RuntimeAssetPath="Compliance/Application Review Process/DU_AppCredentials" RuntimeTenantUrl="[in_Config(&quot;DU_TenantURL&quot;).ToString]" TimeoutInSeconds="[CInt(in_Config(&quot;DU_TimeOut&quot;).ToString)]">
+                      <p:ExtractDocumentDataWithDocumentData.AutoValidationConfidenceThreshold>
+                        <InArgument x:TypeArguments="s:Nullable(x:Int32)">
+                          <Literal x:TypeArguments="s:Nullable(x:Int32)" Value="0" />
+                        </InArgument>
+                      </p:ExtractDocumentDataWithDocumentData.AutoValidationConfidenceThreshold>
+                      <p:ExtractDocumentDataWithDocumentData.GptPromptWithVariables>
+                        <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                      </p:ExtractDocumentDataWithDocumentData.GptPromptWithVariables>
+                    </p:ExtractDocumentDataWithDocumentData>
+                    <ui:LogMessage DisplayName="Write extracted data (ACNFA)" sap:VirtualizedContainerService.HintSize="354,173" sap2010:WorkflowViewState.IdRef="LogMessage_8" Message="[&quot;The following data has been extracted (excluding table data): {for each fields, except tables, display as key-value pairs: field name - field value}.&quot; &amp; vbCrLf &amp; ACNFADocData.ToString]">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:LogMessage>
+                    <InvokeMethod DisplayName="Add ACNFADocumentData to List (InvokeMethod)" sap:VirtualizedContainerService.HintSize="354,159" sap2010:WorkflowViewState.IdRef="InvokeMethod_1" MethodName="Add">
+                      <InvokeMethod.TargetObject>
+                        <InArgument x:TypeArguments="njl:JArray">[jArr_ACNFADocumentDataResults]</InArgument>
+                      </InvokeMethod.TargetObject>
+                      <InArgument x:TypeArguments="njl:JObject">[JObject.FromObject(ACNFADocData.Data)]</InArgument>
+                    </InvokeMethod>
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,103" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Sequence>
+                </If.Else>
+              </If>
+            </Sequence>
+          </ActivityAction>
+        </ui:ForEach.Body>
+      </ui:ForEach>
+      <Assign DisplayName="Assign-out_ACNFADocumentDataList" sap:VirtualizedContainerService.HintSize="546,105" sap2010:WorkflowViewState.IdRef="Assign_12">
+        <Assign.To>
+          <OutArgument x:TypeArguments="njl:JArray">[out_ACNFADocumentDataList]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="njl:JArray">[jArr_ACNFADocumentDataResults]</InArgument>
+        </Assign.Value>
+      </Assign>
     </Sequence>
   </Sequence>
 </Activity>
