@@ -13,7 +13,7 @@
     <x:Property Name="in_MoveIndate" Type="InArgument(x:String)" />
     <x:Property Name="in_DictICWStudentStatus" Type="InArgument(scg:Dictionary(x:String, x:String))" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>2385,21380</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1745,21549</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -154,6 +154,10 @@
       <AssemblyReference>ExtendedExtractionRe.a5iEf2SDGwF1hZPFL3GWPJi2</AssemblyReference>
       <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
       <AssemblyReference>System.Text.Encoding.CodePages</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.Watcher</AssemblyReference>
+      <AssemblyReference>System.IO.Packaging</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.AccessControl</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <sap:WorkflowViewStateService.ViewState>
@@ -161,13 +165,13 @@
       <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="CSS" sap:VirtualizedContainerService.HintSize="1402,21275" sap2010:WorkflowViewState.IdRef="Sequence_3980">
+  <Sequence DisplayName="CSS" sap:VirtualizedContainerService.HintSize="1402,21484" sap2010:WorkflowViewState.IdRef="Sequence_3980">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <TryCatch DisplayName="Try Catch - Certification of Student Status and ICW checks" sap:VirtualizedContainerService.HintSize="1340,21187" sap2010:WorkflowViewState.IdRef="TryCatch_194">
+    <TryCatch DisplayName="Try Catch - Certification of Student Status and ICW checks" sap:VirtualizedContainerService.HintSize="1340,21396" sap2010:WorkflowViewState.IdRef="TryCatch_194">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -175,7 +179,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <TryCatch.Try>
-        <Sequence DisplayName="CSS, ICW Check" sap:VirtualizedContainerService.HintSize="1302,20314" sap2010:WorkflowViewState.IdRef="Sequence_3651">
+        <Sequence DisplayName="CSS, ICW Check" sap:VirtualizedContainerService.HintSize="1302,20519" sap2010:WorkflowViewState.IdRef="Sequence_3651">
           <Sequence.Variables>
             <Variable x:TypeArguments="sd:DataTable" Name="dt_FilteredCSSData" />
             <Variable x:TypeArguments="x:Int32" Default="0" Name="int_CSSSignatures" />
@@ -189,7 +193,7 @@
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1240,173" sap2010:WorkflowViewState.IdRef="LogMessage_134" Message="[&quot;Started checking findings for &quot;+in_Config(&quot;CSS&quot;).ToString]">
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1240,175" sap2010:WorkflowViewState.IdRef="LogMessage_134" Message="[&quot;Started checking findings for &quot;+in_Config(&quot;CSS&quot;).ToString]">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -197,7 +201,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:LogMessage>
-          <ui:FilterDataTable DataTable="[in_ClassificationResultsData]" DisplayName="Filter CSS datatable" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="1240,193" sap2010:WorkflowViewState.IdRef="FilterDataTable_63" OutputDataTable="[dt_FilteredCSSData]" SelectColumnsMode="Remove">
+          <ui:FilterDataTable DataTable="[in_ClassificationResultsData]" DisplayName="Filter CSS datatable" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="1240,195" sap2010:WorkflowViewState.IdRef="FilterDataTable_63" OutputDataTable="[dt_FilteredCSSData]" SelectColumnsMode="Remove">
             <ui:FilterDataTable.Filters>
               <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
                 <ui:FilterOperationArgument BooleanOperator="And" Operator="CONTAINS">
@@ -216,7 +220,7 @@
               </scg:List>
             </ui:FilterDataTable.SelectColumns>
           </ui:FilterDataTable>
-          <If Condition="[dt_FilteredCSSData.RowCount&gt;0]" DisplayName="If CSS Exists" sap:VirtualizedContainerService.HintSize="1240,19696" sap2010:WorkflowViewState.IdRef="If_1090">
+          <If Condition="[dt_FilteredCSSData.RowCount&gt;0]" DisplayName="If CSS Exists" sap:VirtualizedContainerService.HintSize="1240,19897" sap2010:WorkflowViewState.IdRef="If_1090">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -224,7 +228,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <If.Then>
-              <Sequence DisplayName="Then: If CSS Exists" sap:VirtualizedContainerService.HintSize="1206,19229" sap2010:WorkflowViewState.IdRef="Sequence_3553">
+              <Sequence DisplayName="Then: If CSS Exists" sap:VirtualizedContainerService.HintSize="1204,19429" sap2010:WorkflowViewState.IdRef="Sequence_3553">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="njl:JArray" Name="jArr_ExtResults" />
                   <Variable x:TypeArguments="scg:List(x:String)" Name="list_ImageFiles" />
@@ -247,7 +251,7 @@
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <Sequence DisplayName="GetLLMJSONResults - CSS" sap:VirtualizedContainerService.HintSize="1144,2797" sap2010:WorkflowViewState.IdRef="Sequence_3554">
+                <Sequence DisplayName="GetLLMJSONResults - CSS" sap:VirtualizedContainerService.HintSize="1142,2818" sap2010:WorkflowViewState.IdRef="Sequence_3554">
                   <Sequence.Variables>
                     <Variable x:TypeArguments="njl:JObject" Name="jObj_ExtractionResults" />
                     <Variable x:TypeArguments="s:Exception" Name="DUSystemException" />
@@ -259,7 +263,7 @@
                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1082,173" sap2010:WorkflowViewState.IdRef="LogMessage_135" Message="[in_Config(&quot;CSS&quot;).ToString+&quot; exists&quot;]">
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1080,175" sap2010:WorkflowViewState.IdRef="LogMessage_135" Message="[in_Config(&quot;CSS&quot;).ToString+&quot; exists&quot;]">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -267,7 +271,7 @@
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                   </ui:LogMessage>
-                  <Assign DisplayName="Assign-ImageFiles" sap:VirtualizedContainerService.HintSize="1082,115" sap2010:WorkflowViewState.IdRef="Assign_756">
+                  <Assign DisplayName="Assign-ImageFiles" sap:VirtualizedContainerService.HintSize="1080,116" sap2010:WorkflowViewState.IdRef="Assign_756">
                     <Assign.To>
                       <OutArgument x:TypeArguments="scg:List(x:String)">[list_ImageFiles]</OutArgument>
                     </Assign.To>
@@ -276,8 +280,8 @@
                  Select(Function(row) row("ImageFullPath").ToString()).ToList()]</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <Parallel sap:VirtualizedContainerService.HintSize="1082,1468" sap2010:WorkflowViewState.IdRef="Parallel_1">
-                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="GetLLMExtractionResultsForEachDoc - Invoke Workflow File (GetLLMExtractionResultsForEachDoc.xaml)" sap:VirtualizedContainerService.HintSize="376,1389" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_117" UnSafe="False" WorkflowFileName="LLM\GetLLMExtractionResultsForEachDoc.xaml">
+                  <Parallel sap:VirtualizedContainerService.HintSize="1080,1480" sap2010:WorkflowViewState.IdRef="Parallel_1">
+                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="GetLLMExtractionResultsForEachDoc - Invoke Workflow File (GetLLMExtractionResultsForEachDoc.xaml)" sap:VirtualizedContainerService.HintSize="374,1401" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_117" UnSafe="False" WorkflowFileName="LLM\GetLLMExtractionResultsForEachDoc.xaml">
                       <ui:InvokeWorkflowFile.Arguments>
                         <InArgument x:TypeArguments="x:String" x:Key="in_UserPromptTextFile">[in_str_PromptsFolder+"CSS_Prompt.txt"]</InArgument>
                         <InArgument x:TypeArguments="scg:List(x:String)" x:Key="in_ImagePath">[list_ImageFiles]</InArgument>
@@ -292,7 +296,7 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                     </ui:InvokeWorkflowFile>
-                    <TryCatch DisplayName="Try Catch - Validate CSS DU" sap:VirtualizedContainerService.HintSize="612,1389" sap2010:WorkflowViewState.IdRef="TryCatch_196">
+                    <TryCatch DisplayName="Try Catch - Validate CSS DU" sap:VirtualizedContainerService.HintSize="612,1401" sap2010:WorkflowViewState.IdRef="TryCatch_196">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -300,16 +304,16 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                       <TryCatch.Try>
-                        <ui:RetryScope LogRetriedExceptions="{x:Null}" RetriedExceptionsLogLevel="{x:Null}" DisplayName="Retry Scope - CSS DU retry" sap:VirtualizedContainerService.HintSize="534,927" sap2010:WorkflowViewState.IdRef="RetryScope_1" NumberOfRetries="3" RetryInterval="[TimeSpan.FromSeconds(5)]">
+                        <ui:RetryScope LogRetriedExceptions="{x:Null}" RetriedExceptionsLogLevel="{x:Null}" DisplayName="Retry Scope - CSS DU retry" sap:VirtualizedContainerService.HintSize="534,933" sap2010:WorkflowViewState.IdRef="RetryScope_1" NumberOfRetries="3" RetryInterval="[TimeSpan.FromSeconds(5)]">
                           <ui:RetryScope.ActivityBody>
                             <ActivityAction>
-                              <Sequence DisplayName="Action" sap:VirtualizedContainerService.HintSize="500,726" sap2010:WorkflowViewState.IdRef="Sequence_4052">
+                              <Sequence DisplayName="Action" sap:VirtualizedContainerService.HintSize="500,732" sap2010:WorkflowViewState.IdRef="Sequence_4052">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
-                                <TryCatch DisplayName="Try Catch-CSSDU" sap:VirtualizedContainerService.HintSize="438,638" sap2010:WorkflowViewState.IdRef="TryCatch_195">
+                                <TryCatch DisplayName="Try Catch-CSSDU" sap:VirtualizedContainerService.HintSize="438,644" sap2010:WorkflowViewState.IdRef="TryCatch_195">
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -317,7 +321,7 @@
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
                                   <TryCatch.Try>
-                                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="CertificationOfStudentStatus_Extraction - Invoke Workflow File (DU\CertificationOfStudentStatus_Extraction.xaml)" sap:VirtualizedContainerService.HintSize="338,145" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_121" UnSafe="True" WorkflowFileName="DU\CertificationOfStudentStatus_Extraction.xaml">
+                                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="CertificationOfStudentStatus_Extraction - Invoke Workflow File (DU\CertificationOfStudentStatus_Extraction.xaml)" sap:VirtualizedContainerService.HintSize="337,145" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_121" UnSafe="True" WorkflowFileName="DU\CertificationOfStudentStatus_Extraction.xaml">
                                       <ui:InvokeWorkflowFile.Arguments>
                                         <InArgument x:TypeArguments="s:String[]" x:Key="in_ArrImages">[list_ImageFiles.ToArray]</InArgument>
                                         <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
@@ -329,7 +333,7 @@
                                     </ui:InvokeWorkflowFile>
                                   </TryCatch.Try>
                                   <TryCatch.Catches>
-                                    <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,160" sap2010:WorkflowViewState.IdRef="Catch`1_188">
+                                    <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,162" sap2010:WorkflowViewState.IdRef="Catch`1_188">
                                       <sap:WorkflowViewStateService.ViewState>
                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -340,7 +344,7 @@
                                         <ActivityAction.Argument>
                                           <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                                         </ActivityAction.Argument>
-                                        <Throw DisplayName="Throw-CSS Error" Exception="[New SystemException(exception.ToString)]" sap:VirtualizedContainerService.HintSize="334,90" sap2010:WorkflowViewState.IdRef="Throw_1" />
+                                        <Throw DisplayName="Throw-CSS Error" Exception="[New SystemException(exception.ToString)]" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="Throw_1" />
                                       </ActivityAction>
                                     </Catch>
                                   </TryCatch.Catches>
@@ -360,7 +364,7 @@
                         </ui:RetryScope>
                       </TryCatch.Try>
                       <TryCatch.Catches>
-                        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="538,152" sap2010:WorkflowViewState.IdRef="Catch`1_189">
+                        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="538,154" sap2010:WorkflowViewState.IdRef="Catch`1_189">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -371,7 +375,7 @@
                             <ActivityAction.Argument>
                               <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                             </ActivityAction.Argument>
-                            <Assign DisplayName="Assign-ExceptionDU" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_863">
+                            <Assign DisplayName="Assign-ExceptionDU" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_863">
                               <Assign.To>
                                 <OutArgument x:TypeArguments="s:Exception">[DUSystemException]</OutArgument>
                               </Assign.To>
@@ -384,7 +388,7 @@
                       </TryCatch.Catches>
                     </TryCatch>
                   </Parallel>
-                  <Sequence DisplayName="HandlingDUOrLLMExceptionIfAny" sap:VirtualizedContainerService.HintSize="1082,57" sap2010:WorkflowViewState.IdRef="Sequence_4057">
+                  <Sequence DisplayName="HandlingDUOrLLMExceptionIfAny" sap:VirtualizedContainerService.HintSize="1080,57" sap2010:WorkflowViewState.IdRef="Sequence_4057">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -435,7 +439,7 @@
                       </If.Else>
                     </If>
                   </Sequence>
-                  <ui:MultipleAssign DisplayName="Arrays initialization" sap:VirtualizedContainerService.HintSize="1082,303" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
+                  <ui:MultipleAssign DisplayName="Arrays initialization" sap:VirtualizedContainerService.HintSize="1080,304" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
                     <ui:MultipleAssign.AssignOperations>
                       <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
                         <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
@@ -489,7 +493,7 @@
                       </scg:List>
                     </ui:MultipleAssign.AssignOperations>
                   </ui:MultipleAssign>
-                  <Assign sap:VirtualizedContainerService.HintSize="1082,114" sap2010:WorkflowViewState.IdRef="Assign_857">
+                  <Assign sap:VirtualizedContainerService.HintSize="1080,115" sap2010:WorkflowViewState.IdRef="Assign_857">
                     <Assign.To>
                       <OutArgument x:TypeArguments="njl:JArray">[jArr_ExtResults]</OutArgument>
                     </Assign.To>
@@ -497,7 +501,7 @@
                       <InArgument x:TypeArguments="njl:JArray">[CType(jObj_ExtractionResults("values")(0)("CertificationOfStudentStatus"), JArray)]</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <Assign sap:VirtualizedContainerService.HintSize="1082,114" sap2010:WorkflowViewState.IdRef="Assign_877">
+                  <Assign sap:VirtualizedContainerService.HintSize="1080,115" sap2010:WorkflowViewState.IdRef="Assign_877">
                     <Assign.To>
                       <OutArgument x:TypeArguments="njl:JObject">[DocTypeObj]</OutArgument>
                     </Assign.To>
@@ -505,7 +509,7 @@
                       <InArgument x:TypeArguments="njl:JObject">[CType(jObj_ExtractionResults("values")(0), JObject)]</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <Assign sap:VirtualizedContainerService.HintSize="1082,114" sap2010:WorkflowViewState.IdRef="Assign_878">
+                  <Assign sap:VirtualizedContainerService.HintSize="1080,115" sap2010:WorkflowViewState.IdRef="Assign_878">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[DocType]</OutArgument>
                     </Assign.To>
@@ -513,7 +517,7 @@
                       <InArgument x:TypeArguments="x:String">[DocTypeObj.Properties.First().Name]</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <Assign sap:VirtualizedContainerService.HintSize="1082,114" sap2010:WorkflowViewState.IdRef="Assign_876">
+                  <Assign sap:VirtualizedContainerService.HintSize="1080,115" sap2010:WorkflowViewState.IdRef="Assign_876">
                     <Assign.To>
                       <OutArgument x:TypeArguments="njl:JArray">[Out_jArr_ExtResults]</OutArgument>
                     </Assign.To>
@@ -521,7 +525,7 @@
                       <InArgument x:TypeArguments="njl:JArray">[CType(DocTypeObj(DocType), JArray)]</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <Assign sap:VirtualizedContainerService.HintSize="1082,105" sap2010:WorkflowViewState.IdRef="Assign_879">
+                  <Assign sap:VirtualizedContainerService.HintSize="1080,106" sap2010:WorkflowViewState.IdRef="Assign_879">
                     <Assign.To>
                       <OutArgument x:TypeArguments="sd:DataTable">[CSS_DU_Members]</OutArgument>
                     </Assign.To>
@@ -530,7 +534,7 @@
                     </Assign.Value>
                   </Assign>
                 </Sequence>
-                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="DU LLM Name Matching - Invoke Workflow File (AuditFindings\DU LLM Name Matching.xaml)" sap:VirtualizedContainerService.HintSize="1144,251" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_122" UnSafe="False" WorkflowFileName="AuditFindings\DU LLM Name Matching.xaml">
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="DU LLM Name Matching - Invoke Workflow File (AuditFindings\DU LLM Name Matching.xaml)" sap:VirtualizedContainerService.HintSize="1142,251" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_122" UnSafe="False" WorkflowFileName="AuditFindings\DU LLM Name Matching.xaml">
                   <ui:InvokeWorkflowFile.Arguments>
                     <InArgument x:TypeArguments="x:String" x:Key="DocType">[DocType]</InArgument>
                     <InArgument x:TypeArguments="sd:DataTable" x:Key="DU_Members">[CSS_DU_Members]</InArgument>
@@ -539,7 +543,15 @@
                     <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_dtMatchedMembers">[in_dtMatchedMembers]</OutArgument>
                   </ui:InvokeWorkflowFile.Arguments>
                 </ui:InvokeWorkflowFile>
-                <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="1144,57" sap2010:WorkflowViewState.IdRef="CommentOut_350">
+                <ui:WriteTextFile File="{x:Null}" Output="{x:Null}" DisplayName="Write Text File-JSONDU" FileName="[Path.GetDirectoryName(list_ImageFiles(0))+&quot;\&quot;+Path.GetFileNameWithoutExtension(in_str_PromptsFolder+&quot;CSS_Prompt.txt&quot;)+&quot;_DU_JSON.txt&quot;]" sap:VirtualizedContainerService.HintSize="1142,176" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[jArr_ExtResults.ToString]">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:WriteTextFile>
+                <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="1142,57" sap2010:WorkflowViewState.IdRef="CommentOut_350">
                   <ui:CommentOut.Body>
                     <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="512,844" sap2010:WorkflowViewState.IdRef="Sequence_4078">
                       <sap:WorkflowViewStateService.ViewState>
@@ -756,13 +768,13 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                 </ui:CommentOut>
-                <ui:ForEach x:TypeArguments="njl:JObject" CurrentIndex="{x:Null}" DisplayName="For Each currentJObject" sap:VirtualizedContainerService.HintSize="1144,16036" sap2010:WorkflowViewState.IdRef="ForEach`1_140" Values="[jArr_ExtResults]">
+                <ui:ForEach x:TypeArguments="njl:JObject" CurrentIndex="{x:Null}" DisplayName="For Each currentJObject" sap:VirtualizedContainerService.HintSize="1142,16039" sap2010:WorkflowViewState.IdRef="ForEach`1_140" Values="[jArr_ExtResults]">
                   <ui:ForEach.Body>
                     <ActivityAction x:TypeArguments="njl:JObject">
                       <ActivityAction.Argument>
                         <DelegateInArgument x:TypeArguments="njl:JObject" Name="currentJObject" />
                       </ActivityAction.Argument>
-                      <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="813,15899" sap2010:WorkflowViewState.IdRef="Sequence_3649">
+                      <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="813,15901" sap2010:WorkflowViewState.IdRef="Sequence_3649">
                         <Sequence.Variables>
                           <Variable x:TypeArguments="njl:JObject" Name="jObjJSON" />
                         </Sequence.Variables>
@@ -772,7 +784,7 @@
                             <x:Boolean x:Key="IsPinned">False</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <Assign DisplayName="Assign - jObjJSON" sap:VirtualizedContainerService.HintSize="751,114" sap2010:WorkflowViewState.IdRef="Assign_759">
+                        <Assign DisplayName="Assign - jObjJSON" sap:VirtualizedContainerService.HintSize="751,115" sap2010:WorkflowViewState.IdRef="Assign_759">
                           <Assign.To>
                             <OutArgument x:TypeArguments="njl:JObject">[jObjJSON]</OutArgument>
                           </Assign.To>
@@ -786,7 +798,7 @@
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                         </Assign>
-                        <Sequence DisplayName="Replacing LLM with DU results" sap:VirtualizedContainerService.HintSize="751,722" sap2010:WorkflowViewState.IdRef="Sequence_4079">
+                        <Sequence DisplayName="Replacing LLM with DU results" sap:VirtualizedContainerService.HintSize="751,723" sap2010:WorkflowViewState.IdRef="Sequence_4079">
                           <Sequence.Variables>
                             <Variable x:TypeArguments="s:String[]" Name="arr_DUMembers" />
                           </Sequence.Variables>
@@ -796,7 +808,7 @@
                               <x:Boolean x:Key="IsPinned">False</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <ui:ForEach x:TypeArguments="njl:JObject" CurrentIndex="{x:Null}" DisplayName="For Each currentHouseholdMember" sap:VirtualizedContainerService.HintSize="575,602" sap2010:WorkflowViewState.IdRef="ForEach`1_142" Values="[jObjJSON(&quot;HouseholdMembers&quot;)]">
+                          <ui:ForEach x:TypeArguments="njl:JObject" CurrentIndex="{x:Null}" DisplayName="For Each currentHouseholdMember" sap:VirtualizedContainerService.HintSize="575,603" sap2010:WorkflowViewState.IdRef="ForEach`1_142" Values="[jObjJSON(&quot;HouseholdMembers&quot;)]">
                             <ui:ForEach.Body>
                               <ActivityAction x:TypeArguments="njl:JObject">
                                 <ActivityAction.Argument>
@@ -1503,7 +1515,7 @@
                               <x:Boolean x:Key="IsPinned">False</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <Switch x:TypeArguments="x:Boolean" DisplayName="Switch" Expression="[Not String.IsNullOrWhiteSpace(jObjJSON(&quot;MoveInDate&quot;).ToString.Trim) AndAlso&#xD;&#xA;Not String.IsNullOrWhiteSpace(jObjJSON(&quot;EffectiveDate&quot;).ToString.Trim)]" sap:VirtualizedContainerService.HintSize="592,946" sap2010:WorkflowViewState.IdRef="Switch`1_5">
+                          <Switch x:TypeArguments="x:Boolean" DisplayName="Switch" Expression="[Not String.IsNullOrWhiteSpace(jObjJSON(&quot;MoveInDate&quot;).ToString.Trim) AndAlso&#xA;Not String.IsNullOrWhiteSpace(jObjJSON(&quot;EffectiveDate&quot;).ToString.Trim)]" sap:VirtualizedContainerService.HintSize="592,946" sap2010:WorkflowViewState.IdRef="Switch`1_5">
                             <TryCatch x:Key="True" DisplayName="Try Catch - Effective and MoveIn Date  match" sap:VirtualizedContainerService.HintSize="438,626" sap2010:WorkflowViewState.IdRef="TryCatch_197">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -1682,7 +1694,7 @@
                               </Sequence>
                             </If.Else>
                           </If>
-                          <Switch x:TypeArguments="x:Boolean" DisplayName="Switch in_MoveInDate check" Expression="[Not String.IsNullOrWhiteSpace(in_MoveIndate.ToString) AndAlso&#xD;&#xA;Not String.IsNullOrWhiteSpace(jObjJSON(&quot;MoveInDate&quot;).ToString.Trim) AndAlso&#xD;&#xA;Not String.IsNullOrWhiteSpace(jObjJSON(&quot;EffectiveDate&quot;).ToString.Trim)]" sap:VirtualizedContainerService.HintSize="592,1424" sap2010:WorkflowViewState.IdRef="Switch`1_3">
+                          <Switch x:TypeArguments="x:Boolean" DisplayName="Switch in_MoveInDate check" Expression="[Not String.IsNullOrWhiteSpace(in_MoveIndate.ToString) AndAlso&#xA;Not String.IsNullOrWhiteSpace(jObjJSON(&quot;MoveInDate&quot;).ToString.Trim) AndAlso&#xA;Not String.IsNullOrWhiteSpace(jObjJSON(&quot;EffectiveDate&quot;).ToString.Trim)]" sap:VirtualizedContainerService.HintSize="592,1424" sap2010:WorkflowViewState.IdRef="Switch`1_3">
                             <TryCatch x:Key="True" DisplayName="Try Catch - Move In Date and Effective Date check" sap:VirtualizedContainerService.HintSize="488,1104" sap2010:WorkflowViewState.IdRef="TryCatch_192">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
