@@ -8,6 +8,7 @@
     <x:Property Name="io_dt_AuditFindings" Type="InOutArgument(sd:DataTable)" />
     <x:Property Name="out_bool_VSAExists" Type="OutArgument(x:Boolean)" />
     <x:Property Name="in_bool_BSExists" Type="InArgument(x:Boolean)" />
+    <x:Property Name="in_str_ASPropertyName" Type="InArgument(x:String)" />
   </x:Members>
   <this:Verification_Services__Assets_.str_PromptsFolder>
     <InArgument x:TypeArguments="x:String" />
@@ -15,7 +16,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1745,1844</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1361,1921</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Verification_Services__Assets__1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -117,13 +118,13 @@
       <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Verification Services (Assets)" sap:VirtualizedContainerService.HintSize="812,1779" sap2010:WorkflowViewState.IdRef="Sequence_7">
+  <Sequence DisplayName="Verification Services (Assets)" sap:VirtualizedContainerService.HintSize="1118,1816" sap2010:WorkflowViewState.IdRef="Sequence_7">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message: Started findings for VSA" sap:VirtualizedContainerService.HintSize="750,175" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[&quot;Started checking findings for &quot;+in_Config(&quot;VSA&quot;).ToString]">
+    <ui:LogMessage DisplayName="Log Message: Started findings for VSA" sap:VirtualizedContainerService.HintSize="1056,175" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[&quot;Started checking findings for &quot;+in_Config(&quot;VSA&quot;).ToString]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -131,9 +132,9 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <TryCatch DisplayName="Try Catch - VSA" sap:VirtualizedContainerService.HintSize="750,1516" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+    <TryCatch DisplayName="Try Catch - VSA" sap:VirtualizedContainerService.HintSize="1056,1553" sap2010:WorkflowViewState.IdRef="TryCatch_2">
       <TryCatch.Try>
-        <Sequence DisplayName="Verification_Services__Assets_" sap:VirtualizedContainerService.HintSize="712,1260" sap2010:WorkflowViewState.IdRef="Sequence_1">
+        <Sequence DisplayName="Verification_Services__Assets_" sap:VirtualizedContainerService.HintSize="1018,1297" sap2010:WorkflowViewState.IdRef="Sequence_1">
           <Sequence.Variables>
             <Variable x:TypeArguments="sd:DataTable" Name="dt_FilteredVSAData" />
           </Sequence.Variables>
@@ -142,7 +143,7 @@
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:FilterDataTable DataTable="[in_ClassificationResultsData]" DisplayName="Filter VSA" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="650,195" sap2010:WorkflowViewState.IdRef="FilterDataTable_1" OutputDataTable="[dt_FilteredVSAData]" SelectColumnsMode="Remove">
+          <ui:FilterDataTable DataTable="[in_ClassificationResultsData]" DisplayName="Filter VSA" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="956,195" sap2010:WorkflowViewState.IdRef="FilterDataTable_1" OutputDataTable="[dt_FilteredVSAData]" SelectColumnsMode="Remove">
             <ui:FilterDataTable.Filters>
               <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
                 <ui:FilterOperationArgument BooleanOperator="And" Operator="CONTAINS">
@@ -161,14 +162,14 @@
               </scg:List>
             </ui:FilterDataTable.SelectColumns>
           </ui:FilterDataTable>
-          <Switch x:TypeArguments="x:Boolean" DisplayName="Switch: in_bool_BSExists" Expression="[in_bool_BSExists]" sap:VirtualizedContainerService.HintSize="650,977" sap2010:WorkflowViewState.IdRef="Switch`1_1">
-            <Sequence x:Key="False" DisplayName="BS is not present" sap:VirtualizedContainerService.HintSize="610,765" sap2010:WorkflowViewState.IdRef="Sequence_20">
+          <Switch x:TypeArguments="x:Boolean" DisplayName="Switch: in_bool_BSExists" Expression="[in_bool_BSExists]" sap:VirtualizedContainerService.HintSize="956,1014" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+            <Sequence x:Key="False" DisplayName="BS is not present" sap:VirtualizedContainerService.HintSize="916,762" sap2010:WorkflowViewState.IdRef="Sequence_20">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <If Condition="[dt_FilteredVSAData.RowCount &gt; 0]" DisplayName="If - VSA exists" sap:VirtualizedContainerService.HintSize="548,677" sap2010:WorkflowViewState.IdRef="If_1">
+              <If Condition="[dt_FilteredVSAData.RowCount &gt; 0]" DisplayName="If - VSA exists" sap:VirtualizedContainerService.HintSize="854,674" sap2010:WorkflowViewState.IdRef="If_1">
                 <If.Then>
                   <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,25" sap2010:WorkflowViewState.IdRef="Sequence_3">
                     <Sequence.Variables>
@@ -436,31 +437,22 @@
                   </Sequence>
                 </If.Then>
                 <If.Else>
-                  <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="514,490" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                  <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="820,487" sap2010:WorkflowViewState.IdRef="Sequence_5">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <ui:CommentOut DisplayName="business asked to remove" sap:VirtualizedContainerService.HintSize="452,402" sap2010:WorkflowViewState.IdRef="CommentOut_2">
-                      <ui:CommentOut.Body>
-                        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,300" sap2010:WorkflowViewState.IdRef="Sequence_22">
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                          <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;VSA&quot;, &quot;PageNum&quot;,in_Config(&quot;VSAExists&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add Data Row - VSA existence" sap:VirtualizedContainerService.HintSize="354,212" sap2010:WorkflowViewState.IdRef="AddDataRow_2">
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                          </ui:AddDataRow>
-                        </Sequence>
-                      </ui:CommentOut.Body>
-                    </ui:CommentOut>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Switch - VSA Validation for TX_VSAVerificationProperties" Expression="[in_Config(&quot;TX_VSAVerificationProperties&quot;).ToString.ToLower.Trim.Contains(in_str_ASPropertyName.ToLower.Trim)]" sap:VirtualizedContainerService.HintSize="758,399" sap2010:WorkflowViewState.IdRef="Switch`1_2">
+                      <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;VSA&quot;, &quot;PageNum&quot;,in_Config(&quot;VSAExists&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add Data Row - VSA existence" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_6">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
                   </Sequence>
                 </If.Else>
               </If>
@@ -480,7 +472,7 @@
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Verification Services (Assets)" sap:VirtualizedContainerService.HintSize="416,470" sap2010:WorkflowViewState.IdRef="Sequence_6">
+            <Sequence DisplayName="Verification Services (Assets)" sap:VirtualizedContainerService.HintSize="416,475" sap2010:WorkflowViewState.IdRef="Sequence_6">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
