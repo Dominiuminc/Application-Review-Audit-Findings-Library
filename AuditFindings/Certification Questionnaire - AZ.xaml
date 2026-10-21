@@ -1,7 +1,6 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="Certification_Questionnaire___AZ" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
-    <x:Property Name="in_ClassificationResultsData" Type="InArgument(sd:DataTable)" />
     <x:Property Name="in_str_PromptsFolder" Type="InArgument(x:String)" />
     <x:Property Name="in_State" Type="InArgument(x:String)" />
     <x:Property Name="in_str_MoveInDate" Type="InArgument(x:String)" />
@@ -10,11 +9,12 @@
     <x:Property Name="in_int_ICWNoOfAdults" Type="InArgument(x:Int32)" />
     <x:Property Name="in_dt_ICWIncomeData" Type="InArgument(sd:DataTable)" />
     <x:Property Name="in_dt_ICWAssetsInfo" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="in_dt_ClassifResultsData" Type="InArgument(sd:DataTable)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>2031,5477</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1391,39670.00000000001</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Certification_Questionnaire___AZ_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -115,9 +115,15 @@
       <AssemblyReference>Newtonsoft.Json</AssemblyReference>
       <AssemblyReference>netstandard</AssemblyReference>
       <AssemblyReference>System.Collections.Specialized</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Certification_Questionnaire___AZ" sap:VirtualizedContainerService.HintSize="921,5372" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <sap:WorkflowViewStateService.ViewState>
+    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+      <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
+    </scg:Dictionary>
+  </sap:WorkflowViewStateService.ViewState>
+  <Sequence DisplayName="Certification_Questionnaire___AZ" sap:VirtualizedContainerService.HintSize="1125,39245" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="dt_FilteredCQData" />
     </Sequence.Variables>
@@ -126,7 +132,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log message at the start of checking findings" sap:VirtualizedContainerService.HintSize="859,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="{x:Null}" Message="[&quot;Started checking findings for &quot;+in_Config(&quot;CQ&quot;).ToString]">
+    <ui:LogMessage DisplayName="Log message at the start of checking findings" sap:VirtualizedContainerService.HintSize="1063,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Started checking findings for &quot;+in_Config(&quot;CQ&quot;).ToString]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -134,7 +140,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <ui:FilterDataTable DataTable="[in_ClassificationResultsData]" DisplayName="Filter data table by classification result" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="859,195" sap2010:WorkflowViewState.IdRef="FilterDataTable_1" OutputDataTable="[dt_FilteredCQData]" SelectColumnsMode="Remove">
+    <ui:FilterDataTable DataTable="[in_dt_ClassifResultsData]" DisplayName="Filter data table by classification result" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="1063,195" sap2010:WorkflowViewState.IdRef="FilterDataTable_1" OutputDataTable="[dt_FilteredCQData]" SelectColumnsMode="Remove">
       <ui:FilterDataTable.Filters>
         <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
           <ui:FilterOperationArgument BooleanOperator="And" Operator="CONTAINS">
@@ -159,10 +165,10 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:FilterDataTable>
-    <TryCatch DisplayName="Check if filtered CQ data exists" sap:VirtualizedContainerService.HintSize="859,4914" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <TryCatch DisplayName="Check if filtered CQ data exists" sap:VirtualizedContainerService.HintSize="1063,38787" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <TryCatch.Try>
-        <Switch x:TypeArguments="x:Boolean" DisplayName="Check if CQ data exists" Expression="[dt_FilteredCQData.RowCount &gt; 0]" sap:VirtualizedContainerService.HintSize="821,4658" sap2010:WorkflowViewState.IdRef="Switch`1_1">
-          <Sequence x:Key="True" DisplayName="Log CQ existence and build a data table" sap:VirtualizedContainerService.HintSize="781,4446" sap2010:WorkflowViewState.IdRef="Sequence_2">
+        <Switch x:TypeArguments="x:Boolean" DisplayName="Check if CQ data exists" Expression="[dt_FilteredCQData.RowCount &gt; 0]" sap:VirtualizedContainerService.HintSize="1025,37904" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+          <Sequence x:Key="True" DisplayName="Log CQ existence and build a data table" sap:VirtualizedContainerService.HintSize="985,37482" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <Sequence.Variables>
               <Variable x:TypeArguments="sd:DataTable" Name="dt_IncomeSources" />
               <Variable x:TypeArguments="njl:JArray" Name="jArr_ExtResults" />
@@ -173,7 +179,7 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:LogMessage DisplayName="Log message about CQ configuration existence" sap:VirtualizedContainerService.HintSize="719,175" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="{x:Null}" Message="[in_Config(&quot;CQ&quot;).ToString+&quot; exists&quot;]">
+            <ui:LogMessage DisplayName="Log message about CQ configuration existence" sap:VirtualizedContainerService.HintSize="880,175" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[in_Config(&quot;CQ&quot;).ToString+&quot; exists&quot;]">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -181,8 +187,8 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:LogMessage>
-            <ui:BuildDataTable DataTable="[dt_IncomeSources]" DisplayName="Build a data table for income sources." sap:VirtualizedContainerService.HintSize="719,92" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xD;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xD;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xD;&#xA;      &lt;xs:complexType&gt;&#xD;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xD;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xD;&#xA;            &lt;xs:complexType&gt;&#xD;&#xA;              &lt;xs:sequence&gt;&#xD;&#xA;                &lt;xs:element name=&quot;MemberName&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;IncomeType&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;IncomeSource&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;              &lt;/xs:sequence&gt;&#xD;&#xA;            &lt;/xs:complexType&gt;&#xD;&#xA;          &lt;/xs:element&gt;&#xD;&#xA;        &lt;/xs:choice&gt;&#xD;&#xA;      &lt;/xs:complexType&gt;&#xD;&#xA;    &lt;/xs:element&gt;&#xD;&#xA;  &lt;/xs:schema&gt;&#xD;&#xA;&lt;/NewDataSet&gt;" />
-            <Sequence DisplayName="Get LLM results" sap:VirtualizedContainerService.HintSize="719,634" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <ui:BuildDataTable DataTable="[dt_IncomeSources]" DisplayName="Build a data table for income sources." sap:VirtualizedContainerService.HintSize="880,92" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;MemberName&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;IncomeType&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;IncomeSource&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
+            <Sequence DisplayName="Get LLM results" sap:VirtualizedContainerService.HintSize="880,634" sap2010:WorkflowViewState.IdRef="Sequence_3">
               <Sequence.Variables>
                 <Variable x:TypeArguments="scg:List(x:String)" Name="list_ImageFiles" />
                 <Variable x:TypeArguments="s:Exception" Name="LLMException" />
@@ -208,7 +214,7 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </Assign>
-              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="GetLLMExtractionResultsForEachDoc - Invoke Workflow File (LLM\GetLLMExtractionResultsForEachDoc.xaml)" sap:VirtualizedContainerService.HintSize="435,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" Level="{x:Null}" LogEntry="{x:Null}" LogExit="{x:Null}" Timeout="{x:Null}" UnSafe="False" WorkflowFileName="LLM\GetLLMExtractionResultsForEachDoc.xaml">
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="GetLLMExtractionResultsForEachDoc - Invoke Workflow File (LLM\GetLLMExtractionResultsForEachDoc.xaml)" sap:VirtualizedContainerService.HintSize="435,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="LLM\GetLLMExtractionResultsForEachDoc.xaml">
                 <ui:InvokeWorkflowFile.Arguments>
                   <InArgument x:TypeArguments="x:String" x:Key="in_UserPromptTextFile">[in_str_PromptsFolder + "CQ_Prompt.txt"]</InArgument>
                   <InArgument x:TypeArguments="scg:List(x:String)" x:Key="in_ImagePath">[list_ImageFiles]</InArgument>
@@ -226,7 +232,7 @@
                   <InArgument x:TypeArguments="x:Int32">[CInt(CType(jObj_ExtractionResults("values")(0)("CertificationQuestionnaire"), JArray).Count)]</InArgument>
                 </Assign.Value>
               </Assign>
-              <Assign DisplayName="Assign-jArr_ExtResults" sap:VirtualizedContainerService.HintSize="435,106" sap2010:WorkflowViewState.IdRef="Assign_2">
+              <Assign DisplayName="Assigns extracted questionnaire data to a JArray" sap:VirtualizedContainerService.HintSize="435,106" sap2010:WorkflowViewState.IdRef="Assign_2">
                 <Assign.To>
                   <OutArgument x:TypeArguments="njl:JArray">[jArr_ExtResults]</OutArgument>
                 </Assign.To>
@@ -241,14 +247,14 @@
                 </sap:WorkflowViewStateService.ViewState>
               </Assign>
             </Sequence>
-            <ui:Comment sap:VirtualizedContainerService.HintSize="719,89" sap2010:WorkflowViewState.IdRef="Comment_1" Text="Here should be DU.&#xD;&#xA;" />
-            <ui:ForEach x:TypeArguments="njl:JObject" CurrentIndex="{x:Null}" DisplayName="Iterate through JObjects in an array." sap:VirtualizedContainerService.HintSize="719,3368" sap2010:WorkflowViewState.IdRef="ForEach`1_1" MaxIterations="{x:Null}" Values="[jArr_ExtResults]">
+            <ui:Comment DisplayName="Placeholder for Document Understanding activities." sap:VirtualizedContainerService.HintSize="880,89" sap2010:WorkflowViewState.IdRef="Comment_1" Text="Here should be DU.&#xA;" />
+            <ui:ForEach x:TypeArguments="njl:JObject" CurrentIndex="{x:Null}" DisplayName="Iterate through JObjects in an array." sap:VirtualizedContainerService.HintSize="923,36404" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[jArr_ExtResults]">
               <ui:ForEach.Body>
                 <ActivityAction x:TypeArguments="njl:JObject">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="njl:JObject" Name="currentJObject" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="685,3230" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="889,36266" sap2010:WorkflowViewState.IdRef="Sequence_4">
                     <Sequence.Variables>
                       <Variable x:TypeArguments="njl:JObject" Name="jObj_JSON" />
                       <Variable x:TypeArguments="s:String[]" Name="arr_IncomeTypes" />
@@ -259,7 +265,7 @@
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <Assign DisplayName="Assign JObject value" sap:VirtualizedContainerService.HintSize="623,115" sap2010:WorkflowViewState.IdRef="Assign_3">
+                    <Assign DisplayName="Assign JObject value" sap:VirtualizedContainerService.HintSize="784,115" sap2010:WorkflowViewState.IdRef="Assign_3">
                       <Assign.To>
                         <OutArgument x:TypeArguments="njl:JObject">[jObj_JSON]</OutArgument>
                       </Assign.To>
@@ -267,7 +273,7 @@
                         <InArgument x:TypeArguments="njl:JObject">[currentJObject]</InArgument>
                       </Assign.Value>
                     </Assign>
-                    <ui:MultipleAssign DisplayName="Extract income types from JSON data" sap:VirtualizedContainerService.HintSize="623,180" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+                    <ui:MultipleAssign DisplayName="Extract income types from JSON data" sap:VirtualizedContainerService.HintSize="827,180" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
                       <ui:MultipleAssign.AssignOperations>
                         <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
                           <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
@@ -289,8 +295,8 @@
                         </scg:List>
                       </ui:MultipleAssign.AssignOperations>
                     </ui:MultipleAssign>
-                    <Switch x:TypeArguments="x:Boolean" DisplayName="Switch based on questionnaire count" Expression="[int_NoOfQuestionnaires &lt; in_int_ICWNoOfAdults]" sap:VirtualizedContainerService.HintSize="623,408" sap2010:WorkflowViewState.IdRef="Switch`1_2">
-                      <ui:AddDataRow x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQExists&quot;).ToString, &quot;&quot;}]" DataRow="{x:Null}" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ error details to audit findings DataTable" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_4">
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Switch based on questionnaire count" Expression="[int_NoOfQuestionnaires &lt; in_int_ICWNoOfAdults]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_2">
+                      <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQExists&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ error details to audit findings DataTable" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_4">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsPinned">False</x:Boolean>
@@ -299,8 +305,8 @@
                         </sap:WorkflowViewStateService.ViewState>
                       </ui:AddDataRow>
                     </Switch>
-                    <Switch x:TypeArguments="x:Boolean" DisplayName="Check if JSON name field is empty" Expression="[String.IsNullOrWhiteSpace(jObj_JSON(&quot;Name&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="623,408" sap2010:WorkflowViewState.IdRef="Switch`1_3">
-                      <ui:AddDataRow x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Name&quot;).ToString, &quot;&quot;}]" DataRow="{x:Null}" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ name error details to audit findings." sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_5">
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Check if JSON name field is empty" Expression="[String.IsNullOrWhiteSpace(jObj_JSON(&quot;ApplicationInformation&quot;)(&quot;Name&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_3">
+                      <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Name&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ name error details to audit findings." sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_5">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsPinned">False</x:Boolean>
@@ -309,8 +315,8 @@
                         </sap:WorkflowViewStateService.ViewState>
                       </ui:AddDataRow>
                     </Switch>
-                    <Switch x:TypeArguments="x:Boolean" DisplayName="Check if JSON UnitNumber is empty" Expression="[String.IsNullOrWhiteSpace(jObj_JSON(&quot;UnitNumber&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="623,408" sap2010:WorkflowViewState.IdRef="Switch`1_4">
-                      <ui:AddDataRow x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_UnitNumber&quot;).ToString, &quot;&quot;}]" DataRow="{x:Null}" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ UnitNumber error details to audit findings." sap:VirtualizedContainerService.HintSize="338,189" sap2010:WorkflowViewState.IdRef="AddDataRow_6">
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Check if JSON UnitNumber is empty" Expression="[String.IsNullOrWhiteSpace(jObj_JSON(&quot;ApplicationInformation&quot;)(&quot;UnitNumber&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_4">
+                      <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_UnitNumber&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ UnitNumber error details to audit findings." sap:VirtualizedContainerService.HintSize="338,189" sap2010:WorkflowViewState.IdRef="AddDataRow_6">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsPinned">False</x:Boolean>
@@ -319,8 +325,8 @@
                         </sap:WorkflowViewStateService.ViewState>
                       </ui:AddDataRow>
                     </Switch>
-                    <Switch x:TypeArguments="x:Boolean" DisplayName="Check if JSON property name is empty." Expression="[String.IsNullOrWhiteSpace(jObj_JSON(&quot;PropertyName&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="623,408" sap2010:WorkflowViewState.IdRef="Switch`1_5">
-                      <ui:AddDataRow x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_PropertyName&quot;).ToString, &quot;&quot;}]" DataRow="{x:Null}" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ name error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_7">
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Check if JSON property name is empty." Expression="[String.IsNullOrWhiteSpace(jObj_JSON(&quot;ApplicationInformation&quot;)(&quot;PropertyName&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_5">
+                      <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_PropertyName&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ name error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_7">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsPinned">False</x:Boolean>
@@ -329,8 +335,8 @@
                         </sap:WorkflowViewStateService.ViewState>
                       </ui:AddDataRow>
                     </Switch>
-                    <Switch x:TypeArguments="x:Boolean" DisplayName="Branch workflow based on JSON 'Signature' property value" Expression="[Not String.IsNullOrWhiteSpace(jObj_JSON(&quot;Signature&quot;)(&quot;Signature&quot;).ToString) AndAlso&#xD;&#xA;jObj_JSON(&quot;Signature&quot;).ToString.ToLower.Equals(&quot;yes&quot;)]" sap:VirtualizedContainerService.HintSize="623,408" sap2010:WorkflowViewState.IdRef="Switch`1_6">
-                      <ui:AddDataRow x:Key="False" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_NotSigned&quot;).ToString, &quot;&quot;}]" DataRow="{x:Null}" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ signature error details to audit findings" sap:VirtualizedContainerService.HintSize="339,189" sap2010:WorkflowViewState.IdRef="AddDataRow_8">
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Branch workflow based on JSON 'Signature' property value" Expression="[Not String.IsNullOrWhiteSpace(jObj_JSON(&quot;Signature&quot;)(&quot;Signature&quot;).ToString) AndAlso&#xA;jObj_JSON(&quot;Signature&quot;).ToString.ToLower.Equals(&quot;yes&quot;)]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_6">
+                      <ui:AddDataRow DataRow="{x:Null}" x:Key="False" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_NotSigned&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ signature error details to audit findings" sap:VirtualizedContainerService.HintSize="339,189" sap2010:WorkflowViewState.IdRef="AddDataRow_8">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsPinned">False</x:Boolean>
@@ -339,8 +345,87 @@
                         </sap:WorkflowViewStateService.ViewState>
                       </ui:AddDataRow>
                     </Switch>
-                    <Switch x:TypeArguments="x:Boolean" DisplayName="Switch workflow based on JSON Signature Date property" Expression="[String.IsNullOrWhiteSpace(jObj_JSON(&quot;Signature&quot;)(&quot;Date&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="623,408" sap2010:WorkflowViewState.IdRef="Switch`1_7">
-                      <ui:AddDataRow x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_NotDated&quot;).ToString, &quot;&quot;}]" DataRow="{x:Null}" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ signature error details to audit findings" sap:VirtualizedContainerService.HintSize="339,189" sap2010:WorkflowViewState.IdRef="AddDataRow_9">
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Switch workflow based on JSON Signature Date property" Expression="[String.IsNullOrWhiteSpace(jObj_JSON(&quot;Signature&quot;)(&quot;Date&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="827,1989" sap2010:WorkflowViewState.IdRef="Switch`1_7">
+                      <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_NotDated&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ signature error details to audit findings" sap:VirtualizedContainerService.HintSize="339,189" sap2010:WorkflowViewState.IdRef="AddDataRow_9">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                      <Switch x:TypeArguments="x:Boolean" x:Key="False" DisplayName="Switch based on MoveInDate string" Expression="[Not String.IsNullOrWhiteSpace(in_str_MoveInDate)]" sap:VirtualizedContainerService.HintSize="534,1408" sap2010:WorkflowViewState.IdRef="Switch`1_10">
+                        <TryCatch x:Key="True" DisplayName="Checks move-in date against signature date and logs audit findings." sap:VirtualizedContainerService.HintSize="494,1117" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <TryCatch.Try>
+                            <If Condition="[CDate(jObj_JSON(&quot;Signature&quot;)(&quot;Date&quot;).ToString)&gt;=CDate(in_str_MoveIndate).AddDays(-120)]" DisplayName="Checks move-in date against signature date and logs audit findings" sap:VirtualizedContainerService.HintSize="456,543" sap2010:WorkflowViewState.IdRef="If_2">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <If.Then>
+                                <Sequence DisplayName="Then: Checks move-in date against signature date and logs audit findings" sap:VirtualizedContainerService.HintSize="417,104" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </Sequence>
+                              </If.Then>
+                              <If.Else>
+                                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,300" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <ui:AddDataRow ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_CheckMoveInDate&quot;).ToString, &quot;&quot;}]" DataRow="{x:Null}" DataTable="[io_dt_AuditFindings]" DisplayName="Add a data row to the audit findings DataTable" sap:VirtualizedContainerService.HintSize="354,212" sap2010:WorkflowViewState.IdRef="AddDataRow_11">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                  </ui:AddDataRow>
+                                </Sequence>
+                              </If.Else>
+                            </If>
+                          </TryCatch.Try>
+                          <TryCatch.Catches>
+                            <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="460,260" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ActivityAction x:TypeArguments="s:Exception">
+                                <ActivityAction.Argument>
+                                  <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                </ActivityAction.Argument>
+                                <ui:AddDataRow ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, &quot;Unable to validate a finding: &quot; + in_Config(&quot;CQ_CheckMoveInDate&quot;).ToString + &quot;. Needs manual review because of the following exception: &quot;, exception.Message}]" DataRow="{x:Null}" DataTable="[io_dt_AuditFindings]" DisplayName="Add error details to audit findings data table" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_12">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </ui:AddDataRow>
+                              </ActivityAction>
+                            </Catch>
+                          </TryCatch.Catches>
+                        </TryCatch>
+                      </Switch>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Branch workflow based on JSON signature printed name" Expression="[String.IsNullOrWhiteSpace(jObj_JSON(&quot;Signature&quot;)(&quot;PrintedName&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_8">
+                      <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_PrintedName&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ signature error details to audit findings" sap:VirtualizedContainerService.HintSize="339,189" sap2010:WorkflowViewState.IdRef="AddDataRow_10">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsPinned">False</x:Boolean>
@@ -349,8 +434,633 @@
                         </sap:WorkflowViewStateService.ViewState>
                       </ui:AddDataRow>
                     </Switch>
-                    <Switch x:TypeArguments="x:Boolean" DisplayName="Branch workflow based on JSON signature printed name" Expression="[String.IsNullOrWhiteSpace(jObj_JSON(&quot;Signature&quot;)(&quot;PrintedName&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="623,399" sap2010:WorkflowViewState.IdRef="Switch`1_8">
-                      <ui:AddDataRow x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_PrintedName&quot;).ToString, &quot;&quot;}]" DataRow="{x:Null}" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ signature error details to audit findings" sap:VirtualizedContainerService.HintSize="339,189" sap2010:WorkflowViewState.IdRef="AddDataRow_10">
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Check Rental Assistance Q1 checkbox value - Not Yes or No" Expression="[Not jObj_JSON(&quot;RentalAssistance&quot;)(&quot;Question1&quot;)(&quot;Question1Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;RentalAssistance&quot;)(&quot;Question1&quot;)(&quot;Question1Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;)]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_11">
+                      <ui:AddDataRow x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q1NotYesNo&quot;).ToString, &quot;&quot;}]" DataRow="{x:Null}" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q1 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_13">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate rental assistance condition - Q1 Yes but name not provided" Expression="[jObj_JSON(&quot;RentalAssistance&quot;)(&quot;Question1&quot;)(&quot;Question1Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;String.IsNullOrWhiteSpace(jObj_JSON(&quot;RentalAssistance&quot;)(&quot;Question1&quot;)(&quot;PHAName&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_12">
+                      <ui:AddDataRow x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q1YesNoPHAName&quot;).ToString, &quot;&quot;}]" DataRow="{x:Null}" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q1 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_14">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" sap2010:Annotation.AnnotationText="This finding should be a FYI Finding, not a Weighted one - will work on that after the implementation is done." DisplayName="Evaluate rental assistance condition - Q1 Yes and name provided" Expression="[jObj_JSON(&quot;RentalAssistance&quot;)(&quot;Question1&quot;)(&quot;Question1Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;Not String.IsNullOrWhiteSpace(jObj_JSON(&quot;RentalAssistance&quot;)(&quot;Question1&quot;)(&quot;PHAName&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="827,543" sap2010:WorkflowViewState.IdRef="Switch`1_13">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:AddDataRow x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q1Yes&quot;).ToString, &quot;&quot;}]" DataRow="{x:Null}" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q1 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_15">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Check Rental Assistance Q2 checkbox value - Not Yes or No" Expression="[Not jObj_JSON(&quot;RentalAssistance&quot;)(&quot;Question2&quot;)(&quot;Question2Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;RentalAssistance&quot;)(&quot;Question2&quot;)(&quot;Question2Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;)]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_14">
+                      <ui:AddDataRow x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q2NotYesNo&quot;).ToString, &quot;&quot;}]" DataRow="{x:Null}" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q2 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_16">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate rental assistance Q2 condition" Expression="[jObj_JSON(&quot;RentalAssistance&quot;)(&quot;Question2&quot;)(&quot;Question2Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;(String.IsNullOrWhiteSpace(jObj_JSON(&quot;RentalAssistance&quot;)(&quot;Question2&quot;)(&quot;ProgramName&quot;).ToString) OrElse&#xD;&#xA;String.IsNullOrWhiteSpace(jObj_JSON(&quot;RentalAssistance&quot;)(&quot;Question2&quot;)(&quot;OrgProvidingRentalAssistance&quot;).ToString))]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_15">
+                      <ui:AddDataRow x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q2YesNoProgramName&quot;).ToString, &quot;&quot;}]" DataRow="{x:Null}" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q2 Yes error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_17">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Check if 'Income Information Q3' checkbox value is not 'yes' or 'no'." Expression="[Not jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question3&quot;)(&quot;Question3Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question3&quot;)(&quot;Question3Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;)]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_16">
+                      <ui:AddDataRow x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q3NotYesNo&quot;).ToString, &quot;&quot;}]" DataRow="{x:Null}" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q3 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_19">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate income information Q4 checkbox value" Expression="[Not jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question4&quot;)(&quot;Question4Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question4&quot;)(&quot;Question4Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;)]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_17">
+                      <ui:AddDataRow x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q4NotYesNo&quot;).ToString, &quot;&quot;}]" DataRow="{x:Null}" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q4 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_20">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate income information Q5 checkbox value" Expression="[Not jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question5&quot;)(&quot;Question5Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question5&quot;)(&quot;Question5Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;)]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_18">
+                      <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q5NotYesNo&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q5 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_21">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate income information Q6 checkbox value" Expression="[Not jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question6&quot;)(&quot;Question6Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question6&quot;)(&quot;Question6Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;)]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_19">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q6NotYesNo&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q6 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_22">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate income information Q6 checkbox and gross income" Expression="[jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question6&quot;)(&quot;Question6Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question6&quot;)(&quot;GrossIncome&quot;).ToString.ToLower.Equals(&quot;0&quot;)]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_39">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:AddDataRow x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q6Yes&quot;).ToString, &quot;&quot;}]" DataRow="{x:Null}" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q6 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_58">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate income information Q7 checkbox value" Expression="[Not jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question7&quot;)(&quot;Question7Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question7&quot;)(&quot;Question7Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;)]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_20">
+                      <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q7NotYesNo&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q7 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_23">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate income information Q7 checkbox and gross income" Expression="[jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question7&quot;)(&quot;Question7Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question7&quot;)(&quot;GrossIncome&quot;).ToString.ToLower.Equals(&quot;0&quot;)]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_21">
+                      <ui:AddDataRow x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q7Yes&quot;).ToString, &quot;&quot;}]" DataRow="{x:Null}" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q7 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_24">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate income information Q8 checkbox value" Expression="[Not jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question8&quot;)(&quot;Question8Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question8&quot;)(&quot;Question8Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;)]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_22">
+                      <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q8NotYesNo&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q8 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_25">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate income information Q8 checkbox and gross income" Expression="[jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question8&quot;)(&quot;Question8Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question8&quot;)(&quot;GrossIncome&quot;).ToString.ToLower.Equals(&quot;0&quot;)]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_40">
+                      <ui:AddDataRow x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q8Yes&quot;).ToString, &quot;&quot;}]" DataRow="{x:Null}" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q8 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_59">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate income information Q9 checkbox value" Expression="[Not jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question9&quot;)(&quot;Question9Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question9&quot;)(&quot;Question9Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;)]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_23">
+                      <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q9NotYesNo&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q9 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_26">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate income information Q9 checkbox value" Expression="[Not jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question9&quot;)(&quot;Question9Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xA;Not jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question9&quot;)(&quot;Question9Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;)]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_24">
+                      <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q9NotYesNo&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q9 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_27">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate income information Q10 checkbox value" Expression="[Not jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question10&quot;)(&quot;Question10Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question10&quot;)(&quot;Question10Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;)]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_25">
+                      <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q10NotYesNo&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q10 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_28">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate income information Q10 checkbox and gross income" Expression="[jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question10&quot;)(&quot;Question10Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;CInt(jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question10&quot;)(&quot;GrossIncome&quot;).ToString) &lt;= 0]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_41">
+                      <ui:AddDataRow x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q10Yes&quot;).ToString, &quot;&quot;}]" DataRow="{x:Null}" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q10 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_60">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate income information Q11 checkbox value" Expression="[Not jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question11&quot;)(&quot;Question11Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question11&quot;)(&quot;Question11Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;)]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_26">
+                      <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q11NotYesNo&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q11 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_29">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate income Q11 checkbox and gross income" Expression="[jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question11&quot;)(&quot;Question11Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;CInt(jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question11&quot;)(&quot;GrossIncome&quot;).ToString) &lt;= 0]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_42">
+                      <ui:AddDataRow x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q11Yes&quot;).ToString, &quot;&quot;}]" DataRow="{x:Null}" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q11 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_61">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate income information Q12 checkbox value" Expression="[Not jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question12&quot;)(&quot;Question12Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question12&quot;)(&quot;Question12Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;)]" sap:VirtualizedContainerService.HintSize="827,552" sap2010:WorkflowViewState.IdRef="Switch`1_27">
+                      <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q12NotYesNo&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q12 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_30">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate income information Q12 checkbox and gross income" Expression="[jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question12&quot;)(&quot;Question12Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;CInt(jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question12&quot;)(&quot;GrossIncome&quot;).ToString) &lt;= 0]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_43">
+                      <ui:AddDataRow x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q12Yes&quot;).ToString, &quot;&quot;}]" DataRow="{x:Null}" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q12 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_62">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate income information Q13 checkbox value" Expression="[Not jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question13&quot;)(&quot;Question13TopCheckbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question13&quot;)(&quot;Question13TopCheckbox&quot;).ToString.ToLower.Equals(&quot;no&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question13&quot;)(&quot;Question13BottomCheckbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question13&quot;)(&quot;Question13BottomCheckbox&quot;).ToString.ToLower.Equals(&quot;no&quot;)]" sap:VirtualizedContainerService.HintSize="827,552" sap2010:WorkflowViewState.IdRef="Switch`1_28">
+                      <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q13NotYesNo&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q13 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_31">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate income Q13 checkbox value for invalid answers for Yes" Expression="[(jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question13&quot;)(&quot;Question13TopCheckbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;(CInt(jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question13&quot;)(&quot;PersonsSupported&quot;).ToString) &lt;= 0 Or&#xD;&#xA;CInt(jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question13&quot;)(&quot;GrossIncome&quot;).ToString) &lt;= 0)) Or&#xD;&#xA;(Not jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question13&quot;)(&quot;Question13BottomCheckbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question13&quot;)(&quot;Question13BottomCheckbox&quot;).ToString.ToLower.Equals(&quot;no&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question13&quot;)(&quot;Question13NA&quot;).ToString.ToLower.Equals(&quot;false&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question13&quot;)(&quot;Question13NA&quot;).ToString.ToLower.Equals(&quot;true&quot;)) Or&#xD;&#xA;(jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question13&quot;)(&quot;Question13BottomCheckbox&quot;).ToString.ToLower.Equals(&quot;no&quot;) AndAlso&#xD;&#xA;String.IsNullOrWhiteSpace(jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question13&quot;)(&quot;NoClarification&quot;).ToString))]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_44">
+                      <ui:AddDataRow x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q13Yes&quot;).ToString, &quot;&quot;}]" DataRow="{x:Null}" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q13 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_63">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate income information Q14 checkbox value" Expression="[Not jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question14&quot;)(&quot;Question14Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question14&quot;)(&quot;Question14Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;)]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_29">
+                      <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q14NotYesNo&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q14 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_32">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate Q14 checkbox and gross income" Expression="[jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question14&quot;)(&quot;Question14Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;CInt(jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question14&quot;)(&quot;GrossIncome&quot;).ToString) &lt;= 0]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_45">
+                      <ui:AddDataRow x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q14Yes&quot;).ToString, &quot;&quot;}]" DataRow="{x:Null}" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q14 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_64">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate income information Q15 checkbox value" Expression="[Not jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question15&quot;)(&quot;Question15Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question15&quot;)(&quot;Question15Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;)]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_30">
+                      <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q15NotYesNo&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q15 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_33">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate income information Q16 checkbox value" Expression="[Not jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question16&quot;)(&quot;Question16Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question16&quot;)(&quot;Question16Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;)]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_31">
+                      <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q16NotYesNo&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q16 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_34">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate Q16 income information checkbox and gross income" Expression="[jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question16&quot;)(&quot;Question16Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;CInt(jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question16&quot;)(&quot;GrossIncome&quot;).ToString) &lt;= 0]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_46">
+                      <ui:AddDataRow x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q16Yes&quot;).ToString, &quot;&quot;}]" DataRow="{x:Null}" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q16 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_65">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate income information Q17 checkbox value" Expression="[Not jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question17&quot;)(&quot;Question17Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question17&quot;)(&quot;Question17Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;)]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_32">
+                      <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q17NotYesNo&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q17 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_35">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate income information Q17 checkbox and gross income value" Expression="[jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question17&quot;)(&quot;Question17Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;CInt(jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question17&quot;)(&quot;GrossIncome&quot;).ToString) &lt;= 0]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_47">
+                      <ui:AddDataRow x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q17Yes&quot;).ToString, &quot;&quot;}]" DataRow="{x:Null}" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q17 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_66">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate income information Q18 checkbox value" Expression="[Not jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question18&quot;)(&quot;Question18Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question18&quot;)(&quot;Question18Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;)]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_33">
+                      <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q18NotYesNo&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q18 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_36">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate income information Q19 checkbox value" Expression="[Not jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question19&quot;)(&quot;Question19Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;IncomeInformation&quot;)(&quot;Question19&quot;)(&quot;Question19Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;)]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_34">
+                      <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q19NotYesNo&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q19 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_37">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate asset information Q20 checkbox value" Expression="[Not jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question20&quot;)(&quot;Question20Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question20&quot;)(&quot;Question20Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;)]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_35">
+                      <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q20NotYesNo&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q20 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_38">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate asset information Q21 checkbox value" Expression="[Not jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question21&quot;)(&quot;Question21Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question21&quot;)(&quot;Question21Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;)]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_36">
+                      <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q21NotYesNo&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q21 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_39">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate asset information Q22 checkbox value" Expression="[Not jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question22&quot;)(&quot;Question22Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question22&quot;)(&quot;Question22Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;)]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_37">
+                      <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q22NotYesNo&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q22 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_40">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate asset information Q23 checkbox value" Expression="[Not jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question23&quot;)(&quot;Question23Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question23&quot;)(&quot;Question23Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;)]" sap:VirtualizedContainerService.HintSize="788,512" sap2010:WorkflowViewState.IdRef="Switch`1_38">
+                      <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q23NotYesNo&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q23 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_43">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate asset information Q24 checkbox value" Expression="[Not jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question24&quot;)(&quot;Question24Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question24&quot;)(&quot;Question24Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;)]" sap:VirtualizedContainerService.HintSize="788,512" sap2010:WorkflowViewState.IdRef="Switch`1_48">
+                      <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q24NotYesNo&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q24 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_44">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate asset information Q25 checkbox value" Expression="[Not jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question25&quot;)(&quot;Question25Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question25&quot;)(&quot;Question25Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;)]" sap:VirtualizedContainerService.HintSize="788,512" sap2010:WorkflowViewState.IdRef="Switch`1_49">
+                      <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q25NotYesNo&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q25 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_45">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate asset information Q26 checkbox value" Expression="[Not jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question26&quot;)(&quot;Question26Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question26&quot;)(&quot;Question26Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;)]" sap:VirtualizedContainerService.HintSize="788,512" sap2010:WorkflowViewState.IdRef="Switch`1_50">
+                      <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q26NotYesNo&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q26 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_46">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate asset information Q27 checkbox value" Expression="[Not jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question27&quot;)(&quot;Question27Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question27&quot;)(&quot;Question27Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;)]" sap:VirtualizedContainerService.HintSize="788,512" sap2010:WorkflowViewState.IdRef="Switch`1_51">
+                      <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q27NotYesNo&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q27 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_47">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate asset information Q28 checkbox value" Expression="[Not jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question28&quot;)(&quot;Question28Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question28&quot;)(&quot;Question28Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;)]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_52">
+                      <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q28NotYesNo&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q28 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_48">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate asset information Q29 checkbox value" Expression="[Not jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question29&quot;)(&quot;Question29Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question29&quot;)(&quot;Question29Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;)]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_53">
+                      <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q29NotYesNo&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q29 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_49">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate asset information Q29 yes" Expression="[jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question29&quot;)(&quot;Question29Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;(String.IsNullOrWhiteSpace(jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question29&quot;)(&quot;InsuranceCompany&quot;).ToString) Or&#xD;&#xA;CInt(jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question29&quot;)(&quot;NumberofPolicies&quot;).ToString) &lt;= 0 Or&#xD;&#xA;CInt(jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question29&quot;)(&quot;Balance&quot;).ToString) &lt;=0)]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_70">
+                      <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q29Yes&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q29 yes details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_75">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate asset information Q30 checkbox value" Expression="[Not jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question30&quot;)(&quot;Question30Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question30&quot;)(&quot;Question30Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;)]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_54">
+                      <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q30NotYesNo&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q30 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_50">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate asset information Q30 yes" Expression="[jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question30&quot;)(&quot;Question30Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;CInt(jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question30&quot;)(&quot;Balance&quot;).ToString) &lt;= 0]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_67">
+                      <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q30Yes&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q30 yes details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_74">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate asset information Q31 checkbox value" Expression="[Not jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question31&quot;)(&quot;Question31Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question31&quot;)(&quot;Question31Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;)]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_55">
+                      <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q31NotYesNo&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q31 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_51">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate asset information Q31 yes" Expression="[jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question31&quot;)(&quot;Question31Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;CInt(jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question31&quot;)(&quot;Balance&quot;).ToString) &lt;=0]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_68">
+                      <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q31Yes&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q31 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_73">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate asset information Q32 checkbox value" Expression="[Not jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question32&quot;)(&quot;Question32Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question32&quot;)(&quot;Question32Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;)]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_56">
+                      <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q32NotYesNo&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q32 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_52">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate asset information Q32 Yes" Expression="[jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question32&quot;)(&quot;Question32Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;)]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_69">
+                      <ui:AddDataRow x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q32Yes&quot;).ToString, &quot;&quot;}]" DataRow="{x:Null}" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q32 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_72">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate asset information Q33 checkbox value" Expression="[Not jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question33&quot;)(&quot;Question33Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question33&quot;)(&quot;Question33Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;)]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_57">
+                      <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q33NotYesNo&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q33 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_53">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate asset information Q33 condition" Expression="[jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question33&quot;)(&quot;Question33Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;(String.IsNullOrWhiteSpace(jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question33&quot;)(&quot;Institution&quot;).ToString) Or&#xD;&#xA;String.IsNullOrWhiteSpace(jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question33&quot;)(&quot;Contents&quot;).ToString) Or&#xD;&#xA;CInt(jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question33&quot;)(&quot;Value&quot;).ToString) &lt;= 0)]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_65">
+                      <ui:AddDataRow x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q33Yes&quot;).ToString, &quot;&quot;}]" DataRow="{x:Null}" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q33 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_71">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate asset information Q34 checkbox value" Expression="[Not jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question34&quot;)(&quot;Question34Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question34&quot;)(&quot;Question34Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;)]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_58">
+                      <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q34NotYesNo&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q34 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_54">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluates asset Q34 checkbox and balance condition" Expression="[jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question34&quot;)(&quot;Question34Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;CInt(jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question34&quot;)(&quot;Balance&quot;).ToString) &lt;= 0]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_66">
+                      <ui:AddDataRow x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q34Yes&quot;).ToString, &quot;&quot;}]" DataRow="{x:Null}" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q34 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_70">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate asset information Q35 checkbox value" Expression="[Not jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question35&quot;)(&quot;Question35Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question35&quot;)(&quot;Question35Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;)]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_59">
+                      <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q35NotYesNo&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q35 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_55">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate asset information Q36 checkbox value" Expression="[Not jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question36&quot;)(&quot;Question36Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;AssetInformation&quot;)(&quot;Question36&quot;)(&quot;Question36Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;)]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_60">
+                      <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q36NotYesNo&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q36 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_56">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate asset information Q37 checkbox value" Expression="[Not jObj_JSON(&quot;StudentCertification&quot;)(&quot;Question37&quot;)(&quot;Question37Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;StudentCertification&quot;)(&quot;Question37&quot;)(&quot;Question37Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;)]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_61">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q37NotYesNo&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q37 error details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_57">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate Q37 Yes" Expression="[jObj_JSON(&quot;StudentCertification&quot;)(&quot;Question37&quot;)(&quot;Question37Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;StudentCertification&quot;)(&quot;Question38&quot;)(&quot;Question38Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;StudentCertification&quot;)(&quot;Question38&quot;)(&quot;Question38Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;StudentCertification&quot;)(&quot;Question39&quot;)(&quot;Question39Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;StudentCertification&quot;)(&quot;Question39&quot;)(&quot;Question39Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;)]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_62">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:AddDataRow x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q37Yes&quot;).ToString, &quot;&quot;}]" DataRow="{x:Null}" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q37 Yes details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_68">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate Q37 No" Expression="[jObj_JSON(&quot;StudentCertification&quot;)(&quot;Question37&quot;)(&quot;Question37Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;) AndAlso&#xD;&#xA;(Not jObj_JSON(&quot;StudentCertification&quot;)(&quot;Question38&quot;)(&quot;Question38Checkbox&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;) Or&#xD;&#xA;Not jObj_JSON(&quot;StudentCertification&quot;)(&quot;Question39&quot;)(&quot;Question39Checkbox&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;) Or&#xD;&#xA;Not jObj_JSON(&quot;StudentCertification&quot;)(&quot;Question40&quot;)(&quot;Question40Checkbox&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;) Or&#xD;&#xA;Not jObj_JSON(&quot;StudentCertification&quot;)(&quot;Question41&quot;)(&quot;Question41Checkbox1&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;) Or&#xD;&#xA;Not jObj_JSON(&quot;StudentCertification&quot;)(&quot;Question41&quot;)(&quot;Question41Checkbox2&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;) Or&#xD;&#xA;Not jObj_JSON(&quot;StudentCertification&quot;)(&quot;Question41&quot;)(&quot;Question41Checkbox3&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;) Or&#xD;&#xA;Not jObj_JSON(&quot;StudentCertification&quot;)(&quot;Question42&quot;)(&quot;Question42Checkbox&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;) Or&#xD;&#xA;Not jObj_JSON(&quot;StudentCertification&quot;)(&quot;Question43&quot;)(&quot;Question43Checkbox&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;) Or&#xD;&#xA;Not jObj_JSON(&quot;StudentCertification&quot;)(&quot;Question44&quot;)(&quot;Question44Checkbox&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;) Or&#xD;&#xA;Not jObj_JSON(&quot;StudentCertification&quot;)(&quot;Question45&quot;)(&quot;Question45Checkbox1&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;) Or&#xD;&#xA;Not jObj_JSON(&quot;StudentCertification&quot;)(&quot;Question45&quot;)(&quot;Question45Checkbox2&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;) Or&#xD;&#xA;Not jObj_JSON(&quot;StudentCertification&quot;)(&quot;Question46&quot;)(&quot;Question46Checkbox&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;) Or&#xD;&#xA;Not jObj_JSON(&quot;StudentCertification&quot;)(&quot;Question47&quot;)(&quot;Question47Checkbox&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;) Or&#xD;&#xA;Not jObj_JSON(&quot;StudentCertification&quot;)(&quot;Question48&quot;)(&quot;Question48Checkbox&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;) Or&#xD;&#xA;Not jObj_JSON(&quot;StudentCertification&quot;)(&quot;Question49&quot;)(&quot;Question49Checkbox&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;) Or&#xD;&#xA;Not jObj_JSON(&quot;StudentCertification&quot;)(&quot;Question50&quot;)(&quot;Question50Checkbox&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;) Or&#xD;&#xA;Not jObj_JSON(&quot;StudentCertification&quot;)(&quot;Question51&quot;)(&quot;Question51Checkbox&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;) Or&#xD;&#xA;Not jObj_JSON(&quot;StudentCertification&quot;)(&quot;Question52&quot;)(&quot;Question52Checkbox&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;) Or&#xD;&#xA;Not jObj_JSON(&quot;StudentCertification&quot;)(&quot;Question53&quot;)(&quot;Question53Checkbox&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;) Or&#xD;&#xA;Not jObj_JSON(&quot;StudentCertification&quot;)(&quot;Question54&quot;)(&quot;Question54Checkbox&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;))]" sap:VirtualizedContainerService.HintSize="827,512" sap2010:WorkflowViewState.IdRef="Switch`1_63">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q37No&quot;).ToString, &quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q37 Yes details to audit findings" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_69">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:AddDataRow>
+                    </Switch>
+                    <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate student certification conditions from JSON data" Expression="[jObj_JSON(&quot;StudentCertification&quot;)(&quot;Question45&quot;)(&quot;Question45Checkbox1&quot;).ToString.ToLower.Equals(&quot;no&quot;) AndAlso&#xD;&#xA;jObj_JSON(&quot;StudentCertification&quot;)(&quot;Question45&quot;)(&quot;Question45Checkbox2&quot;).ToString.ToLower.Equals(&quot;no&quot;) AndAlso&#xD;&#xA;jObj_JSON(&quot;StudentCertification&quot;)(&quot;Question46&quot;)(&quot;Question46Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;) AndAlso&#xD;&#xA;jObj_JSON(&quot;StudentCertification&quot;)(&quot;Question47&quot;)(&quot;Question47Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;) AndAlso&#xD;&#xA;jObj_JSON(&quot;StudentCertification&quot;)(&quot;Question48&quot;)(&quot;Question48checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;) AndAlso&#xD;&#xA;jObj_JSON(&quot;StudentCertification&quot;)(&quot;Question49&quot;)(&quot;Question49Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;) AndAlso&#xD;&#xA;jObj_JSON(&quot;StudentCertification&quot;)(&quot;Question50&quot;)(&quot;Question50checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;StudentCertification&quot;)(&quot;Question51&quot;)(&quot;Question51Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;StudentCertification&quot;)(&quot;Question51&quot;)(&quot;Question51Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;StudentCertification&quot;)(&quot;Question52&quot;)(&quot;Question52Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;StudentCertification&quot;)(&quot;Question52&quot;)(&quot;Question52Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;StudentCertification&quot;)(&quot;Question53&quot;)(&quot;Question53Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;StudentCertification&quot;)(&quot;Question53&quot;)(&quot;Question53Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;StudentCertification&quot;)(&quot;Question54&quot;)(&quot;Question54Checkbox&quot;).ToString.ToLower.Equals(&quot;no&quot;) AndAlso&#xD;&#xA;Not jObj_JSON(&quot;StudentCertification&quot;)(&quot;Question54&quot;)(&quot;Question54Checkbox&quot;).ToString.ToLower.Equals(&quot;yes&quot;)]" sap:VirtualizedContainerService.HintSize="827,503" sap2010:WorkflowViewState.IdRef="Switch`1_64">
+                      <ui:AddDataRow x:Key="True" ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_Q51-54NotCompleted&quot;).ToString, &quot;&quot;}]" DataRow="{x:Null}" DataTable="[io_dt_AuditFindings]" DisplayName="Add CQ Q51-Q54 error details to audit findings" sap:VirtualizedContainerService.HintSize="336,189" sap2010:WorkflowViewState.IdRef="AddDataRow_67">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsPinned">False</x:Boolean>
@@ -368,7 +1078,7 @@
         </Switch>
       </TryCatch.Try>
       <TryCatch.Catches>
-        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="825,23" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="1029,546" sap2010:WorkflowViewState.IdRef="Catch`1_1">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -385,14 +1095,14 @@
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:LogMessage DisplayName="Log a message for IAQ failure" sap:VirtualizedContainerService.HintSize="354,175" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Warn" Message="[&quot;Failed at Certification Questionnaire: &quot; + exception.Message]">
+              <ui:LogMessage DisplayName="Log warning for certification questionnaire failure" sap:VirtualizedContainerService.HintSize="354,175" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Warn" Message="[&quot;Failed at Certification Questionnaire: &quot; + exception.Message]">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </ui:LogMessage>
-              <ui:AddDataRow ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_FindingError&quot;).ToString, exception.Message}]" DataRow="{x:Null}" DataTable="[io_dt_AuditFindings]" DisplayName="Add Data Row - Error on CQ" sap:VirtualizedContainerService.HintSize="354,212" sap2010:WorkflowViewState.IdRef="AddDataRow_2">
+              <ui:AddDataRow ArrayRow="[{&quot;CQ&quot;, &quot;PageNum&quot;, in_Config(&quot;CQ_FindingError&quot;).ToString, exception.Message}]" DataRow="{x:Null}" DataTable="[io_dt_AuditFindings]" DisplayName="Add &quot;CQ&quot; error details to audit findings DataTable." sap:VirtualizedContainerService.HintSize="354,212" sap2010:WorkflowViewState.IdRef="AddDataRow_2">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
