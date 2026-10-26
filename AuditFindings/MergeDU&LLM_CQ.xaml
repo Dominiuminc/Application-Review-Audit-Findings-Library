@@ -1,0 +1,161 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="MergeDU_LLM_CQ" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="out_ReviewList" Type="OutArgument(scg:List(x:String))" />
+    <x:Property Name="out_Differences" Type="OutArgument(scg:List(x:String))" />
+    <x:Property Name="in_DUData" Type="InArgument(njl:JObject)" />
+    <x:Property Name="io_LLMData" Type="InOutArgument(njl:JObject)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1745,760</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>MergeDU_LLM_CQ_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>System.Numerics</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+      <x:String>System.Dynamic</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Collections.Specialized</x:String>
+      <x:String>System.Activities.Runtime.Collections</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
+      <AssemblyReference>NPOI.Core</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>netstandard</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Collections.Specialized</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="MergeDU_LLM_CQ" sap:VirtualizedContainerService.HintSize="516,615" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="out_JSON" />
+      <Variable x:TypeArguments="scg:List(x:String)" Name="out_ReviewList" />
+      <Variable x:TypeArguments="scg:List(x:String)" Name="out_Differences" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="454,527" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+      <TryCatch.Try>
+        <Sequence sap:VirtualizedContainerService.HintSize="416,276" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim checkedChars As String = &quot;☒☑✓✔■&quot;&#xD;&#xA;Dim uncheckedChars As String = &quot;☐□&quot;&#xD;&#xA;Dim review As New List(Of String)&#xD;&#xA;Dim differences As New List(Of String)&#xD;&#xA;Dim boxPattern As String = &quot;\b(unchecked|checked|unselected|selected)\b|[☒☑✓✔■☐□]&quot;&#xD;&#xA;&#xD;&#xA;If in_DUData Is Nothing Then Throw New Exception(&quot;in_DuData is Nothing. Check the value passed from Main.&quot;)&#xD;&#xA;If io_LLMData Is Nothing Then Throw New Exception(&quot;io_LlmData is Nothing. Check the value passed from Main.&quot;)&#xD;&#xA;&#xD;&#xA;Dim duObjects As New List(Of Newtonsoft.Json.Linq.JObject)&#xD;&#xA;If in_DuData.Type = Newtonsoft.Json.Linq.JTokenType.Array Then&#xD;&#xA;    duObjects.AddRange(in_DuData.Children(Of Newtonsoft.Json.Linq.JObject)())&#xD;&#xA;ElseIf in_DuData.Type = Newtonsoft.Json.Linq.JTokenType.Object Then&#xD;&#xA;    duObjects.Add(CType(in_DuData, Newtonsoft.Json.Linq.JObject))&#xD;&#xA;End If&#xD;&#xA;&#xD;&#xA;Dim duFields As New List(Of KeyValuePair(Of String, String))&#xD;&#xA;&#xD;&#xA;For Each duObj As Newtonsoft.Json.Linq.JObject In duObjects&#xD;&#xA;    Dim duFieldList As Newtonsoft.Json.Linq.JToken = duObj.SelectToken(&quot;ResultsDocument.Fields&quot;)&#xD;&#xA;&#xD;&#xA;    If duFieldList IsNot Nothing Then&#xD;&#xA;        For Each f As Newtonsoft.Json.Linq.JToken In duFieldList&#xD;&#xA;            If f.Type &lt;&gt; Newtonsoft.Json.Linq.JTokenType.Object Then Continue For&#xD;&#xA;            Dim nameToken As Newtonsoft.Json.Linq.JToken = If(f(&quot;FieldName&quot;), f(&quot;FieldId&quot;))&#xD;&#xA;            If nameToken Is Nothing Then Continue For&#xD;&#xA;            Dim firstValue As Newtonsoft.Json.Linq.JToken = f.SelectToken(&quot;Values[0].Value&quot;)&#xD;&#xA;            duFields.Add(New KeyValuePair(Of String, String)(nameToken.ToString(), If(firstValue IsNot Nothing, firstValue.ToString(), &quot;&quot;)))&#xD;&#xA;        Next&#xD;&#xA;    Else&#xD;&#xA;        For Each p As Newtonsoft.Json.Linq.JProperty In duObj.Properties()&#xD;&#xA;            Dim v As Newtonsoft.Json.Linq.JToken = p.Value&#xD;&#xA;&#xD;&#xA;            If v.Type = Newtonsoft.Json.Linq.JTokenType.Object Then&#xD;&#xA;                Dim inner As Newtonsoft.Json.Linq.JToken = v(&quot;Value&quot;)&#xD;&#xA;                If (inner Is Nothing OrElse inner.Type = Newtonsoft.Json.Linq.JTokenType.Null) Then&#xD;&#xA;                    inner = v.SelectToken(&quot;MultiValues[0].Value&quot;)&#xD;&#xA;                End If&#xD;&#xA;                v = inner&#xD;&#xA;            End If&#xD;&#xA;&#xD;&#xA;            Dim text As String = If(v Is Nothing OrElse v.Type = Newtonsoft.Json.Linq.JTokenType.Null, &quot;&quot;, v.ToString())&#xD;&#xA;            duFields.Add(New KeyValuePair(Of String, String)(p.Name, text))&#xD;&#xA;        Next&#xD;&#xA;    End If&#xD;&#xA;Next&#xD;&#xA;&#xD;&#xA;If duFields.Count = 0 Then&#xD;&#xA;    Throw New Exception(&quot;No fields found in in_DuData. Type: &quot; &amp; in_DuData.Type.ToString())&#xD;&#xA;End If&#xD;&#xA;&#xD;&#xA;Dim questionnaire As Newtonsoft.Json.Linq.JObject = io_LlmData&#xD;&#xA;&#xD;&#xA;Dim mapping As New Dictionary(Of String, String)(StringComparer.OrdinalIgnoreCase) From {&#xD;&#xA;    {&quot;Name&quot;, &quot;ApplicationInformation.Name&quot;},&#xD;&#xA;    {&quot;Comissions&quot;, &quot;IncomeInformation.Question4.PayType.Commissions&quot;},&#xD;&#xA;    {&quot;Question41Top&quot;, &quot;StudentCertification.Question41.Question41Checkbox1&quot;},&#xD;&#xA;    {&quot;Question41Middle&quot;, &quot;StudentCertification.Question41.Question41Checkbox2&quot;},&#xD;&#xA;    {&quot;Question41Bottom&quot;, &quot;StudentCertification.Question41.Question41Checkbox3&quot;},&#xD;&#xA;    {&quot;Question45Top&quot;, &quot;StudentCertification.Question45.Question45Checkbox1&quot;},&#xD;&#xA;    {&quot;Question45Bottom&quot;, &quot;StudentCertification.Question45.Question45Checkbox2&quot;},&#xD;&#xA;    {&quot;Question51&quot;, &quot;StudentCertification.Question51.Question51Checbox&quot;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;Dim properties As List(Of Newtonsoft.Json.Linq.JProperty) = questionnaire.Descendants() _&#xD;&#xA;    .OfType(Of Newtonsoft.Json.Linq.JProperty)() _&#xD;&#xA;    .Where(Function(p) p.Value.Type &lt;&gt; Newtonsoft.Json.Linq.JTokenType.Object AndAlso p.Value.Type &lt;&gt; Newtonsoft.Json.Linq.JTokenType.Array) _&#xD;&#xA;    .ToList()&#xD;&#xA;&#xD;&#xA;For Each duField As KeyValuePair(Of String, String) In duFields&#xD;&#xA;    Dim fieldName As String = duField.Key&#xD;&#xA;    Dim fieldValue As String = If(duField.Value, &quot;&quot;).Trim()&#xD;&#xA;&#xD;&#xA;    Dim states As List(Of Boolean) = System.Text.RegularExpressions.Regex _&#xD;&#xA;        .Matches(fieldValue, boxPattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase) _&#xD;&#xA;        .Cast(Of System.Text.RegularExpressions.Match)() _&#xD;&#xA;        .Select(Function(x) Not (x.Value.StartsWith(&quot;un&quot;, StringComparison.OrdinalIgnoreCase) OrElse uncheckedChars.Contains(x.Value))) _&#xD;&#xA;        .ToList()&#xD;&#xA;&#xD;&#xA;    Dim isYesNo As Boolean = System.Text.RegularExpressions.Regex.IsMatch(fieldName, &quot;^Question\d+(Top|Middle|Bottom)?$&quot;)&#xD;&#xA;    Dim answer As String&#xD;&#xA;&#xD;&#xA;    If isYesNo Then&#xD;&#xA;        Dim code As String = String.Concat(states.Select(Function(b) If(b, &quot;1&quot;, &quot;0&quot;)))&#xD;&#xA;        Select Case code&#xD;&#xA;            Case &quot;10&quot; : answer = &quot;yes&quot;&#xD;&#xA;            Case &quot;01&quot; : answer = &quot;no&quot;&#xD;&#xA;            Case &quot;00&quot; : answer = &quot;unanswered&quot;&#xD;&#xA;            Case Else&#xD;&#xA;                review.Add(String.Format(&quot;{0}: DU value '{1}' is unclear, kept LLM value&quot;, fieldName, fieldValue))&#xD;&#xA;                Continue For&#xD;&#xA;        End Select&#xD;&#xA;    ElseIf states.Count = 1 Then&#xD;&#xA;        answer = If(states(0), &quot;yes&quot;, &quot;no&quot;)&#xD;&#xA;    ElseIf states.Count &gt; 1 Then&#xD;&#xA;        review.Add(String.Format(&quot;{0}: DU value '{1}' has more boxes than expected, kept LLM value&quot;, fieldName, fieldValue))&#xD;&#xA;        Continue For&#xD;&#xA;    Else&#xD;&#xA;        answer = fieldValue&#xD;&#xA;    End If&#xD;&#xA;&#xD;&#xA;    Dim targets As New List(Of Newtonsoft.Json.Linq.JProperty)&#xD;&#xA;    If mapping.ContainsKey(fieldName) Then&#xD;&#xA;        Dim token As Newtonsoft.Json.Linq.JToken = questionnaire.SelectToken(mapping(fieldName))&#xD;&#xA;        If token IsNot Nothing AndAlso TypeOf token.Parent Is Newtonsoft.Json.Linq.JProperty Then&#xD;&#xA;            targets.Add(CType(token.Parent, Newtonsoft.Json.Linq.JProperty))&#xD;&#xA;        End If&#xD;&#xA;    Else&#xD;&#xA;        Dim searchName As String = fieldName&#xD;&#xA;        targets = properties.Where(Function(p) p.Name.Equals(searchName, StringComparison.OrdinalIgnoreCase) _&#xD;&#xA;                                        OrElse p.Name.Equals(searchName &amp; &quot;Checkbox&quot;, StringComparison.OrdinalIgnoreCase)).ToList()&#xD;&#xA;    End If&#xD;&#xA;&#xD;&#xA;    If targets.Count = 0 Then&#xD;&#xA;        review.Add(fieldName &amp; &quot;: not found in LLM data&quot;)&#xD;&#xA;        Continue For&#xD;&#xA;    ElseIf targets.Count &gt; 1 Then&#xD;&#xA;        review.Add(fieldName &amp; &quot;: found &quot; &amp; targets.Count.ToString &amp; &quot; times in LLM data, add it to the mapping&quot;)&#xD;&#xA;        Continue For&#xD;&#xA;    End If&#xD;&#xA;&#xD;&#xA;    Dim target As Newtonsoft.Json.Linq.JProperty = targets(0)&#xD;&#xA;    Dim newValue As Newtonsoft.Json.Linq.JValue&#xD;&#xA;&#xD;&#xA;    If target.Value.Type = Newtonsoft.Json.Linq.JTokenType.Boolean AndAlso (answer = &quot;yes&quot; OrElse answer = &quot;no&quot;) Then&#xD;&#xA;        newValue = New Newtonsoft.Json.Linq.JValue(answer = &quot;yes&quot;)&#xD;&#xA;    Else&#xD;&#xA;        newValue = New Newtonsoft.Json.Linq.JValue(answer)&#xD;&#xA;    End If&#xD;&#xA;&#xD;&#xA;    If Not String.Equals(target.Value.ToString(), newValue.ToString(), StringComparison.OrdinalIgnoreCase) Then&#xD;&#xA;        differences.Add(String.Format(&quot;{0}: LLM '{1}' -&gt; DU '{2}'&quot;, target.Name, target.Value.ToString(), newValue.ToString()))&#xD;&#xA;    End If&#xD;&#xA;&#xD;&#xA;    target.Value = newValue&#xD;&#xA;Next&#xD;&#xA;&#xD;&#xA;out_ReviewList = review&#xD;&#xA;out_Differences = differences" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="354,188" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+            <ui:InvokeCode.Arguments>
+              <InArgument x:TypeArguments="njl:JObject" x:Key="in_DUData">
+                <VisualBasicValue x:TypeArguments="njl:JObject" ExpressionText="in_DUData" />
+              </InArgument>
+              <InArgument x:TypeArguments="njl:JObject" x:Key="io_LLMData">
+                <VisualBasicValue x:TypeArguments="njl:JObject" ExpressionText="io_LLMData" />
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="out_JSON">
+                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="out_JSON" />
+              </InArgument>
+              <OutArgument x:TypeArguments="scg:List(x:String)" x:Key="out_ReviewList">
+                <VisualBasicReference x:TypeArguments="scg:List(x:String)" ExpressionText="out_ReviewList" />
+              </OutArgument>
+              <OutArgument x:TypeArguments="scg:List(x:String)" x:Key="out_Differences">
+                <VisualBasicReference x:TypeArguments="scg:List(x:String)" ExpressionText="out_Differences" />
+              </OutArgument>
+            </ui:InvokeCode.Arguments>
+          </ui:InvokeCode>
+        </Sequence>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="420,22" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ActivityAction x:TypeArguments="s:Exception">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+            </ActivityAction.Argument>
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Exception at replacing the values for CQ: &quot; + exception.Message]" />
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+    </TryCatch>
+  </Sequence>
+</Activity>
