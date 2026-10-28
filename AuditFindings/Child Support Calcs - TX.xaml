@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Child_Support_Calcs" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Child_Support_Calcs" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
     <x:Property Name="in_ClassificationResultsData" Type="InArgument(sd:DataTable)" />
@@ -18,11 +18,9 @@
     <x:Property Name="out_str_CSCStartDate1" Type="OutArgument(x:String)" />
     <x:Property Name="out_str_CSCEndDate" Type="OutArgument(x:String)" />
     <x:Property Name="out_str_CSCEndDate1" Type="InArgument(x:String)" />
+    <x:Property Name="out_arr_CSCPaymentAmounts" Type="OutArgument(s:String[])" />
   </x:Members>
-  <this:Child_Support_Calcs.out_str_CSCEndDate1>
-    <InArgument x:TypeArguments="x:String" />
-  </this:Child_Support_Calcs.out_str_CSCEndDate1>
-  <sap:VirtualizedContainerService.HintSize>1090,9286</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1090,9218</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -159,13 +157,13 @@
       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="Child Support Calcs" sap:VirtualizedContainerService.HintSize="1100,9221" sap2010:WorkflowViewState.IdRef="Sequence_4840">
+  <Sequence DisplayName="Child Support Calcs" sap:VirtualizedContainerService.HintSize="1100,9153" sap2010:WorkflowViewState.IdRef="Sequence_4840">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="ChildSupportCalcsCheck" sap:VirtualizedContainerService.HintSize="1038,9133" sap2010:WorkflowViewState.IdRef="Sequence_4111">
+    <Sequence DisplayName="ChildSupportCalcsCheck" sap:VirtualizedContainerService.HintSize="1038,9065" sap2010:WorkflowViewState.IdRef="Sequence_4111">
       <Sequence.Variables>
         <Variable x:TypeArguments="sd:DataTable" Name="dt_FilteredDocTypeData" />
       </Sequence.Variables>
@@ -183,7 +181,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:LogMessage>
-      <If Condition="[in_ClassificationResultsData IsNot Nothing AndAlso in_ClassificationResultsData.Columns.Count &gt; 0]" DisplayName="If Classification Results nothing" sap:VirtualizedContainerService.HintSize="976,8685" sap2010:WorkflowViewState.IdRef="If_1514">
+      <If Condition="[in_ClassificationResultsData IsNot Nothing AndAlso in_ClassificationResultsData.Columns.Count &gt; 0]" DisplayName="If Classification Results nothing" sap:VirtualizedContainerService.HintSize="976,8617" sap2010:WorkflowViewState.IdRef="If_1514">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -191,7 +189,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
         <If.Then>
-          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="942,8263" sap2010:WorkflowViewState.IdRef="Sequence_4845">
+          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="942,8195" sap2010:WorkflowViewState.IdRef="Sequence_4845">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -223,7 +221,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:FilterDataTable>
-            <If Condition="[dt_FilteredDocTypeData IsNot Nothing AndAlso dt_FilteredDocTypeData.RowCount &gt; 0]" DisplayName="If-CSCExists" sap:VirtualizedContainerService.HintSize="880,7982" sap2010:WorkflowViewState.IdRef="If_1409">
+            <If Condition="[dt_FilteredDocTypeData IsNot Nothing AndAlso dt_FilteredDocTypeData.RowCount &gt; 0]" DisplayName="If-CSCExists" sap:VirtualizedContainerService.HintSize="880,7914" sap2010:WorkflowViewState.IdRef="If_1409">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -231,7 +229,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
               <If.Then>
-                <Sequence DisplayName="Then: If-CSCExists" sap:VirtualizedContainerService.HintSize="846,6999" sap2010:WorkflowViewState.IdRef="Sequence_4112">
+                <Sequence DisplayName="Then: If-CSCExists" sap:VirtualizedContainerService.HintSize="846,6931" sap2010:WorkflowViewState.IdRef="Sequence_4112">
                   <Sequence.Variables>
                     <Variable x:TypeArguments="njl:JArray" Name="jArr_ExtResults" />
                   </Sequence.Variables>
@@ -249,7 +247,7 @@
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                   </ui:LogMessage>
-                  <Sequence DisplayName="GetLLMJSONResults" sap:VirtualizedContainerService.HintSize="784,814" sap2010:WorkflowViewState.IdRef="Sequence_4113">
+                  <Sequence DisplayName="GetLLMJSONResults" sap:VirtualizedContainerService.HintSize="784,845" sap2010:WorkflowViewState.IdRef="Sequence_4113">
                     <Sequence.Variables>
                       <Variable x:TypeArguments="scg:List(x:String)" Name="list_ImageFiles" />
                       <Variable x:TypeArguments="njl:JObject" Name="jObj_ExtractionResults" />
@@ -292,9 +290,9 @@
                         <InArgument x:TypeArguments="njl:JArray">[CType(jObj_ExtractionResults("values")(0)("ChildSupportCalcs"), JArray)]</InArgument>
                       </Assign.Value>
                     </Assign>
-                    <ui:MultipleAssign DisplayName="Set: out_arr_CSCStartDates, out_arr_CSCEndDates, io_arr_CSCConsistentTotalPerYear, arr_CSCInconsisTotalPayments" sap:VirtualizedContainerService.HintSize="482,232" sap2010:WorkflowViewState.IdRef="MultipleAssign_87">
+                    <ui:MultipleAssign DisplayName="Set: out_arr_CSCStartDates, out_arr_CSCEndDates, io_arr_CSCConsistentTotalPerYear, arr_CSCInconsisTotalPayments" sap:VirtualizedContainerService.HintSize="482,263" sap2010:WorkflowViewState.IdRef="MultipleAssign_87">
                       <ui:MultipleAssign.AssignOperations>
-                        <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                        <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
                           <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_507">
                             <ui:AssignOperation.To>
                               <OutArgument x:TypeArguments="s:String[]">[out_arr_CSCStartDates]</OutArgument>
@@ -327,6 +325,14 @@
                               <InArgument x:TypeArguments="s:String[]">[New String(){}]</InArgument>
                             </ui:AssignOperation.Value>
                           </ui:AssignOperation>
+                          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_514">
+                            <ui:AssignOperation.To>
+                              <OutArgument x:TypeArguments="s:String[]">[out_arr_CSCPaymentAmounts]</OutArgument>
+                            </ui:AssignOperation.To>
+                            <ui:AssignOperation.Value>
+                              <InArgument x:TypeArguments="s:String[]">[New String(){}]</InArgument>
+                            </ui:AssignOperation.Value>
+                          </ui:AssignOperation>
                         </scg:List>
                       </ui:MultipleAssign.AssignOperations>
                       <sap:WorkflowViewStateService.ViewState>
@@ -337,7 +343,7 @@
                       </sap:WorkflowViewStateService.ViewState>
                     </ui:MultipleAssign>
                   </Sequence>
-                  <ui:ForEach x:TypeArguments="njl:JObject" CurrentIndex="{x:Null}" DisplayName="For Each jObj_ExtractionResults" sap:VirtualizedContainerService.HintSize="784,5924" sap2010:WorkflowViewState.IdRef="ForEach`1_185" Values="[jArr_ExtResults]">
+                  <ui:ForEach x:TypeArguments="njl:JObject" CurrentIndex="{x:Null}" DisplayName="For Each jObj_ExtractionResults" sap:VirtualizedContainerService.HintSize="784,5825" sap2010:WorkflowViewState.IdRef="ForEach`1_185" Values="[jArr_ExtResults]">
                     <ui:ForEach.Body>
                       <ActivityAction x:TypeArguments="njl:JObject">
                         <ActivityAction.Argument>
@@ -348,14 +354,14 @@
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="750,5787" sap2010:WorkflowViewState.IdRef="Sequence_4602">
+                        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="750,5688" sap2010:WorkflowViewState.IdRef="Sequence_4602">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               <x:Boolean x:Key="IsPinned">False</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <Sequence DisplayName="ChildSupportCalcs" sap:VirtualizedContainerService.HintSize="688,5699" sap2010:WorkflowViewState.IdRef="Sequence_4114">
+                          <Sequence DisplayName="ChildSupportCalcs" sap:VirtualizedContainerService.HintSize="688,5600" sap2010:WorkflowViewState.IdRef="Sequence_4114">
                             <Sequence.Variables>
                               <Variable x:TypeArguments="njl:JObject" Name="jObj_JSON" />
                               <Variable x:TypeArguments="x:String" Name="str_CSCPaymentsTotal" />
@@ -383,7 +389,7 @@
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
                             </Assign>
-                            <ui:MultipleAssign DisplayName="Set: out_str_CSCHouseholdMember, io_str_CSCTotalPerYear, str_CSCStartDate, str_CSCEndDate..." sap:VirtualizedContainerService.HintSize="626,272" sap2010:WorkflowViewState.IdRef="MultipleAssign_77">
+                            <ui:MultipleAssign DisplayName="Set: out_str_CSCHouseholdMember, io_str_CSCTotalPerYear, str_CSCStartDate, str_CSCEndDate..." sap:VirtualizedContainerService.HintSize="626,303" sap2010:WorkflowViewState.IdRef="MultipleAssign_77">
                               <ui:MultipleAssign.AssignOperations>
                                 <scg:List x:TypeArguments="ui:AssignOperation" Capacity="32">
                                   <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_445">
@@ -428,6 +434,19 @@
                                       <InArgument x:TypeArguments="x:String">[jObj_JSON("PaymentsTotal").ToString]</InArgument>
                                     </ui:AssignOperation.Value>
                                   </ui:AssignOperation>
+                                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_515">
+                                    <ui:AssignOperation.To>
+                                      <OutArgument x:TypeArguments="s:String[]">[out_arr_CSCPaymentAmounts]</OutArgument>
+                                    </ui:AssignOperation.To>
+                                    <ui:AssignOperation.Value>
+                                      <InArgument x:TypeArguments="s:String[]" xml:space="preserve">[out_arr_CSCPaymentAmounts.Concat(
+    jObj_JSON.SelectTokens("ConsistantChildSupport[*].AmountPaid").
+    Concat(jObj_JSON.SelectTokens("Payments[*].Amount")).
+    Select(Function(t) t.ToString().Replace("$", "").Replace(",", "").Trim()).
+    Where(Function(s) IsNumeric(s) AndAlso CDec(s) &gt; 0).
+    Select(Function(s) CDec(s).ToString("0.00"))).ToArray()]</InArgument>
+                                    </ui:AssignOperation.Value>
+                                  </ui:AssignOperation>
                                 </scg:List>
                               </ui:MultipleAssign.AssignOperations>
                               <sap:WorkflowViewStateService.ViewState>
@@ -437,7 +456,7 @@
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
                             </ui:MultipleAssign>
-                            <Switch x:TypeArguments="x:String" DisplayName="Switch: Start Date populated" Expression="[jObj_JSON(&quot;120DaysOfPayHistoryIsAvailable&quot;)(&quot;StartDate&quot;).ToString]" sap:VirtualizedContainerService.HintSize="626,424" sap2010:WorkflowViewState.IdRef="Switch`1_2">
+                            <Switch x:TypeArguments="x:String" DisplayName="Switch: Start Date populated" Expression="[jObj_JSON(&quot;120DaysOfPayHistoryIsAvailable&quot;)(&quot;StartDate&quot;).ToString]" sap:VirtualizedContainerService.HintSize="626,294" sap2010:WorkflowViewState.IdRef="Switch`1_2">
                               <Switch.Default>
                                 <Assign DisplayName="Set: Start Date 120 days of pay history available" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_1133">
                                   <Assign.To>
