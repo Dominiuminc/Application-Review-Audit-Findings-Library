@@ -10,7 +10,7 @@
     <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
     <x:Property Name="in_bool_COLACalcExists" Type="InArgument(x:Boolean)" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>1131,2053</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1361,3927</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -43,6 +43,10 @@
       <x:String>GlobalConstantsNamespace</x:String>
       <x:String>System.Linq.Expressions</x:String>
       <x:String>System.Globalization</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+      <x:String>System.Dynamic</x:String>
+      <x:String>System.Collections.Specialized</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -175,7 +179,12 @@
       <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="CheckCOLAEffective" sap:VirtualizedContainerService.HintSize="788,1908" sap2010:WorkflowViewState.IdRef="Sequence_4223">
+  <sap:WorkflowViewStateService.ViewState>
+    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+      <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
+    </scg:Dictionary>
+  </sap:WorkflowViewStateService.ViewState>
+  <Sequence DisplayName="CheckCOLAEffective" sap:VirtualizedContainerService.HintSize="788,3862" sap2010:WorkflowViewState.IdRef="Sequence_4223">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Boolean" Name="bool_LetterVersionException" />
     </Sequence.Variables>
@@ -184,7 +193,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <TryCatch DisplayName="Try Catch-CheckColaEffective" sap:VirtualizedContainerService.HintSize="726,1820" sap2010:WorkflowViewState.IdRef="TryCatch_235">
+    <TryCatch DisplayName="Try Catch-CheckColaEffective" sap:VirtualizedContainerService.HintSize="726,3774" sap2010:WorkflowViewState.IdRef="TryCatch_235">
       <TryCatch.Variables>
         <Variable x:TypeArguments="x:Boolean" Name="bool_ColaDateBeforeToday" />
       </TryCatch.Variables>
@@ -195,21 +204,21 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <TryCatch.Try>
-        <Sequence DisplayName="ColaeffectiveCheck" sap:VirtualizedContainerService.HintSize="688,1569" sap2010:WorkflowViewState.IdRef="Sequence_4222">
+        <Sequence DisplayName="ColaeffectiveCheck" sap:VirtualizedContainerService.HintSize="688,3185" sap2010:WorkflowViewState.IdRef="Sequence_4222">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Switch x:TypeArguments="x:String" DisplayName="Switch-str_LetterVersion" Expression="[in_str_LetterVersion.Trim.ToString.ToLower]" sap:VirtualizedContainerService.HintSize="626,194" sap2010:WorkflowViewState.IdRef="Switch`1_24">
+          <Switch x:TypeArguments="x:String" DisplayName="Switch-str_LetterVersion" Expression="[in_str_LetterVersion.Trim.ToString.ToLower]" sap:VirtualizedContainerService.HintSize="626,1338" sap2010:WorkflowViewState.IdRef="Switch`1_24">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <If x:Key="monthly" Condition="[in_str_BeginningMonth.Trim.ToLower.Contains(&quot;december&quot;)]" DisplayName="If-BeginningMonthIsDecember" sap:VirtualizedContainerService.HintSize="200,25" sap2010:WorkflowViewState.IdRef="If_1254">
+            <If x:Key="monthly" Condition="[in_str_BeginningMonth.Trim.ToLower.Contains(&quot;december&quot;)]" DisplayName="If-BeginningMonthIsDecember" sap:VirtualizedContainerService.HintSize="530,434" sap2010:WorkflowViewState.IdRef="If_1254">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
@@ -250,7 +259,7 @@
                 </Sequence>
               </If.Else>
             </If>
-            <If x:Key="yearly" Condition="[in_str_BeginningYear.Trim.ToLower.Contains(DateTime.Now.AddYears(1).Year.ToString)]" DisplayName="If-BeginningYearIsNextYear" sap:VirtualizedContainerService.HintSize="200,25" sap2010:WorkflowViewState.IdRef="If_1255">
+            <If x:Key="yearly" Condition="[in_str_BeginningYear.Trim.ToLower.Contains(DateTime.Now.AddYears(1).Year.ToString)]" DisplayName="If-BeginningYearIsNextYear" sap:VirtualizedContainerService.HintSize="530,434" sap2010:WorkflowViewState.IdRef="If_1255">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
@@ -292,7 +301,7 @@
               </If.Else>
             </If>
           </Switch>
-          <If Condition="[in_bool_COLALetterExists]" DisplayName="If-ColaLetterExists" sap:VirtualizedContainerService.HintSize="626,409" sap2010:WorkflowViewState.IdRef="If_1257">
+          <If Condition="[in_bool_COLALetterExists]" DisplayName="If-ColaLetterExists" sap:VirtualizedContainerService.HintSize="626,1155" sap2010:WorkflowViewState.IdRef="If_1264">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
@@ -300,14 +309,79 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <If.Then>
-              <Sequence DisplayName="Then: If-ColaLetterExists" sap:VirtualizedContainerService.HintSize="416,136" sap2010:WorkflowViewState.IdRef="Sequence_4218">
+              <Sequence DisplayName="Then: If-ColaLetterExists" sap:VirtualizedContainerService.HintSize="592,882" sap2010:WorkflowViewState.IdRef="Sequence_4218">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <If Condition="[in_jarr_ColaLetters.Any(Function(l) DateTime.ParseExact(l(&quot;Date&quot;).ToString, &quot;yyyy-MM-dd&quot;, System.Globalization.CultureInfo.InvariantCulture) &lt;= DateTime.Today)]" DisplayName="If-ColaDate&lt;=Today's Date" sap:VirtualizedContainerService.HintSize="354,48" sap2010:WorkflowViewState.IdRef="If_1262">
+                <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="530,247" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+                  <ui:CommentOut.Body>
+                    <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,136" sap2010:WorkflowViewState.IdRef="Sequence_4231">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <If Condition="[in_jarr_ColaLetters.Any(Function(l) DateTime.ParseExact(l(&quot;Date&quot;).ToString, &quot;yyyy-MM-dd&quot;, System.Globalization.CultureInfo.InvariantCulture) &lt;= DateTime.Today)]" DisplayName="If-ColaDate&lt;=Today's Date" sap:VirtualizedContainerService.HintSize="354,48" sap2010:WorkflowViewState.IdRef="If_1262">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <If.Then>
+                          <Sequence DisplayName="Then: If-ColaDate&lt;=Today's Date" sap:VirtualizedContainerService.HintSize="496,193" sap2010:WorkflowViewState.IdRef="Sequence_4216">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <Assign DisplayName="Assign-ColaDate&lt;=Today" sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_892">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Boolean">[bool_ColaDateBeforeToday]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                              </Assign.Value>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </Assign>
+                          </Sequence>
+                        </If.Then>
+                        <If.Else>
+                          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="496,193" sap2010:WorkflowViewState.IdRef="Sequence_4217">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <Assign DisplayName="Assign-ColaDate&lt;=Today-False" sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_893">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Boolean">[bool_ColaDateBeforeToday]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                              </Assign.Value>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </Assign>
+                          </Sequence>
+                        </If.Else>
+                      </If>
+                    </Sequence>
+                  </ui:CommentOut.Body>
+                </ui:CommentOut>
+                <If Condition="[DateTime.Parse(in_jarr_ColaLetters(0)(&quot;Date&quot;).ToString()) &lt;= DateTime.Today]" DisplayName="If-ColaDate&lt;=Today's Date" sap:VirtualizedContainerService.HintSize="530,547" sap2010:WorkflowViewState.IdRef="If_1263">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
@@ -315,14 +389,14 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                   <If.Then>
-                    <Sequence DisplayName="Then: If-ColaDate&lt;=Today's Date" sap:VirtualizedContainerService.HintSize="496,193" sap2010:WorkflowViewState.IdRef="Sequence_4216">
+                    <Sequence DisplayName="Then: If-ColaDate&lt;=Today's Date" sap:VirtualizedContainerService.HintSize="496,193" sap2010:WorkflowViewState.IdRef="Sequence_4232">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           <x:Boolean x:Key="IsPinned">False</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <Assign DisplayName="Assign-ColaDate&lt;=Today" sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_892">
+                      <Assign DisplayName="Assign-ColaDate&lt;=Today" sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_900">
                         <Assign.To>
                           <OutArgument x:TypeArguments="x:Boolean">[bool_ColaDateBeforeToday]</OutArgument>
                         </Assign.To>
@@ -338,14 +412,14 @@
                     </Sequence>
                   </If.Then>
                   <If.Else>
-                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="496,193" sap2010:WorkflowViewState.IdRef="Sequence_4217">
+                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="496,193" sap2010:WorkflowViewState.IdRef="Sequence_4233">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           <x:Boolean x:Key="IsPinned">False</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <Assign DisplayName="Assign-ColaDate&lt;=Today-False" sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_893">
+                      <Assign DisplayName="Assign-ColaDate&lt;=Today-False" sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_901">
                         <Assign.To>
                           <OutArgument x:TypeArguments="x:Boolean">[bool_ColaDateBeforeToday]</OutArgument>
                         </Assign.To>
@@ -374,11 +448,11 @@
               </Sequence>
             </If.Else>
           </If>
-          <If Condition="[in_bool_COLACalcExists]" DisplayName="If-ColaCalcExists" sap:VirtualizedContainerService.HintSize="626,830" sap2010:WorkflowViewState.IdRef="If_1260">
+          <If Condition="[in_bool_COLACalcExists]" DisplayName="If-ColaCalcExists" sap:VirtualizedContainerService.HintSize="626,57" sap2010:WorkflowViewState.IdRef="If_1260">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <If.Then>
@@ -446,7 +520,7 @@
               </Sequence>
             </If.Then>
             <If.Else>
-              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,25" sap2010:WorkflowViewState.IdRef="Sequence_4230">
+              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,103" sap2010:WorkflowViewState.IdRef="Sequence_4230">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -456,7 +530,7 @@
               </Sequence>
             </If.Else>
           </If>
-          <If Condition="[((Today &gt;= New DateTime(Now.Year, 10, 15) AndAlso Today &lt;= New DateTime(Now.Year, 12, 31)) Or bool_ColaDateBeforeToday) And Not (bool_LetterVersionException)]" DisplayName="If-ColaEffective" sap:VirtualizedContainerService.HintSize="626,48" sap2010:WorkflowViewState.IdRef="If_1258">
+          <If Condition="[((Today &gt;= New DateTime(Now.Year, 10, 15) AndAlso Today &lt;= New DateTime(Now.Year, 12, 31)) Or bool_ColaDateBeforeToday) And Not (bool_LetterVersionException)]" DisplayName="If-ColaEffective" sap:VirtualizedContainerService.HintSize="626,547" sap2010:WorkflowViewState.IdRef="If_1258">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
@@ -513,7 +587,7 @@
         </Sequence>
       </TryCatch.Try>
       <TryCatch.Catches>
-        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="692,22" sap2010:WorkflowViewState.IdRef="Catch`1_227">
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="692,256" sap2010:WorkflowViewState.IdRef="Catch`1_227">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
