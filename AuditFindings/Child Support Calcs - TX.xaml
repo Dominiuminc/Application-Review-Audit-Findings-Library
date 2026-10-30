@@ -441,7 +441,11 @@
                                     <ui:AssignOperation.Value>
                                       <InArgument x:TypeArguments="s:String[]" xml:space="preserve">[out_arr_CSCPaymentAmounts.Concat(
     jObj_JSON.SelectTokens("ConsistantChildSupport[*].AmountPaid").
-    Concat(jObj_JSON.SelectTokens("Payments[*].Amount")).
+    Concat(jObj_JSON.SelectTokens("Payments[*]").
+        Where(Function(p) p("PaymentDate") IsNot Nothing AndAlso p("Amount") IsNot Nothing AndAlso IsDate(p("PaymentDate").ToString) AndAlso
+            CDate(p("PaymentDate").ToString) = jObj_JSON.SelectTokens("Payments[*].PaymentDate").
+                Where(Function(d) IsDate(d.ToString)).Max(Function(d) CDate(d.ToString))).
+        Select(Function(p) p("Amount"))).
     Select(Function(t) t.ToString().Replace("$", "").Replace(",", "").Trim()).
     Where(Function(s) IsNumeric(s) AndAlso CDec(s) &gt; 0).
     Select(Function(s) CDec(s).ToString("0.00"))).ToArray()]</InArgument>
