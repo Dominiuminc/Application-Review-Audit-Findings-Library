@@ -1,13 +1,13 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="StudentCertification_Extraction" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="http://schemas.uipath.com/workflow/activities/intelligentocr" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uisad="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.DataExtraction;assembly=UiPath.IntelligentOCR.StudioWeb.Activities" xmlns:uisad1="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.DocumentClassification;assembly=UiPath.IntelligentOCR.StudioWeb.Activities" xmlns:uisasecb="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.SWEntities.ExtendedExtractionResultsForDocumentData.CommonCSEIandSC21StudentCertificationV9.Bundle;assembly=ExtendedExtractionRe.dKy7HEHHYF1Ev5cN4tRTH13" xmlns:upr="clr-namespace:UiPath.Platform.ResourceHandling;assembly=UiPath.Platform" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="StudentCertification_Extraction" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:p="http://schemas.uipath.com/workflow/activities/intelligentocr" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uisad="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.DataExtraction;assembly=UiPath.IntelligentOCR.StudioWeb.Activities" xmlns:uisad1="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.DocumentClassification;assembly=UiPath.IntelligentOCR.StudioWeb.Activities" xmlns:uisasecb="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.SWEntities.ExtendedExtractionResultsForDocumentData.CommonCSEIandSC21StudentCertificationV9.Bundle;assembly=ExtendedExtractionRe.dKy7HEHHYF1Ev5cN4tRTH13" xmlns:upr="clr-namespace:UiPath.Platform.ResourceHandling;assembly=UiPath.Platform" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_ArrImages" Type="InArgument(s:String[])" />
     <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
-    <x:Property Name="out_dtSCDUData" Type="OutArgument(sd:DataTable)" />
+    <x:Property Name="out_SCDocumentDataList" Type="OutArgument(njl:JArray)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1018,3324</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>2031,3082</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>StudentCertification_Extraction_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -125,13 +125,16 @@
       <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="StudentCertification_Extraction" sap:VirtualizedContainerService.HintSize="704,3219" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="StudentCertification_Extraction" sap:VirtualizedContainerService.HintSize="608,3017" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="njl:JArray" Name="jArr_SCDocumentDataResults" />
+    </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message: Started" sap:VirtualizedContainerService.HintSize="642,173" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;StudentCertification_Extraction.xaml is Started&quot;]">
+    <ui:LogMessage DisplayName="Log Message: Started" sap:VirtualizedContainerService.HintSize="546,173" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;StudentCertification_Extraction.xaml is Started&quot;]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -139,14 +142,21 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <ui:BuildDataTable DataTable="[out_dtSCDUData]" DisplayName="Build Data Table - out_dtSCData" sap:VirtualizedContainerService.HintSize="642,92" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;PartA1NotAStudent&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; /&gt;&#xA;                &lt;xs:element name=&quot;PartA2PartTimeStudent&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; /&gt;&#xA;                &lt;xs:element name=&quot;PartA3FullTimeStudent&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; /&gt;&#xA;                &lt;xs:element name=&quot;PartB1&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; /&gt;&#xA;                &lt;xs:element name=&quot;PartB2&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; /&gt;&#xA;                &lt;xs:element name=&quot;PartB2A&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; /&gt;&#xA;                &lt;xs:element name=&quot;PartB2B&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; /&gt;&#xA;                &lt;xs:element name=&quot;PartB3&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; /&gt;&#xA;                &lt;xs:element name=&quot;PartB4&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; /&gt;&#xA;                &lt;xs:element name=&quot;PartB5&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
-    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each currentFile" sap:VirtualizedContainerService.HintSize="642,2866" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[in_ArrImages]">
+    <Assign DisplayName="Assign-InitSCDocumentDataList" sap:VirtualizedContainerService.HintSize="546,114" sap2010:WorkflowViewState.IdRef="Assign_35">
+      <Assign.To>
+        <OutArgument x:TypeArguments="njl:JArray">[jArr_SCDocumentDataResults]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="njl:JArray">[New JArray()]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each currentFile" sap:VirtualizedContainerService.HintSize="546,2191" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[in_ArrImages]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="x:String">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:String" Name="currentFile" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body: Processing each image" sap:VirtualizedContainerService.HintSize="608,2729" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Body: Processing each image" sap:VirtualizedContainerService.HintSize="512,2045" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <Sequence.Variables>
               <Variable x:TypeArguments="upr:ILocalResource" Name="lRes_File" />
               <Variable x:TypeArguments="uisad1:DocumentData" Name="classifiedDocument" />
@@ -156,9 +166,9 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:LogMessage DisplayName="Log file processing update" sap:VirtualizedContainerService.HintSize="546,173" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[string.Format(&quot;Processing file: {0}&quot;, currentFile)]" />
-            <ui:PathExists Exists="{x:Null}" DisplayName="CurrentFile Exists" sap:VirtualizedContainerService.HintSize="546,172" sap2010:WorkflowViewState.IdRef="PathExists_1" Path="[currentFile]" PathType="File" Resource="[lRes_File]" />
-            <p:ClassifyDocument ApiKey="{x:Null}" ClassifierResult="{x:Null}" DocumentObjectModel="{x:Null}" DocumentPath="{x:Null}" DocumentText="{x:Null}" DocumentTypes="{x:Null}" PersistenceId="{x:Null}" PredictionId="{x:Null}" Prompt="{x:Null}" ClassificationResults="[classifiedDocument]" ClassifierId="26790897-ce94-f111-9b33-000d3a8c392e" ClassifierName="CommonCSEIandSC_2-1_classifier_v9" DisplayName="Classify Document" Endpoint="https://cloud.uipath.com/a6e81ae5-13a7-4d1d-9b35-86ac86d911ce/4af39ed3-b30e-48f2-b551-f1e60b4acb75/du_/api/framework/projects/2fdd4fa5-6b45-f111-8ef3-6045bda78650/classifiers/26790897-ce94-f111-9b33-000d3a8c392e/classification/start?api-version=1.1" FileInput="[lRes_File]" sap:VirtualizedContainerService.HintSize="546,345" sap2010:WorkflowViewState.IdRef="ClassifyDocument_1" MinimumConfidence="50" ProjectId="2fdd4fa5-6b45-f111-8ef3-6045bda78650" ProjectName="Common Document Understanding" ProjectVersionName="CommonCSEIandSC_2-1" ProjectVersionNumber="9" RuntimeAssetPath="Compliance/Application Review Process/DU_AppCredentials" RuntimeTenantUrl="[in_Config(&quot;DU_TenantURL&quot;).ToString]" TimeoutInSeconds="3600">
+            <ui:LogMessage DisplayName="Log file processing update" sap:VirtualizedContainerService.HintSize="450,173" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[string.Format(&quot;Processing file: {0}&quot;, currentFile)]" />
+            <ui:PathExists Exists="{x:Null}" DisplayName="CurrentFile Exists" sap:VirtualizedContainerService.HintSize="450,172" sap2010:WorkflowViewState.IdRef="PathExists_1" Path="[currentFile]" PathType="File" Resource="[lRes_File]" />
+            <p:ClassifyDocument ApiKey="{x:Null}" ClassifierResult="{x:Null}" DocumentObjectModel="{x:Null}" DocumentPath="{x:Null}" DocumentText="{x:Null}" DocumentTypes="{x:Null}" PersistenceId="{x:Null}" PredictionId="{x:Null}" Prompt="{x:Null}" ClassificationResults="[classifiedDocument]" ClassifierId="26790897-ce94-f111-9b33-000d3a8c392e" ClassifierName="CommonCSEIandSC_2-1_classifier_v9" DisplayName="Classify Document" Endpoint="https://cloud.uipath.com/a6e81ae5-13a7-4d1d-9b35-86ac86d911ce/4af39ed3-b30e-48f2-b551-f1e60b4acb75/du_/api/framework/projects/2fdd4fa5-6b45-f111-8ef3-6045bda78650/classifiers/26790897-ce94-f111-9b33-000d3a8c392e/classification/start?api-version=1.1" FileInput="[lRes_File]" sap:VirtualizedContainerService.HintSize="450,339" sap2010:WorkflowViewState.IdRef="ClassifyDocument_1" MinimumConfidence="50" ProjectId="2fdd4fa5-6b45-f111-8ef3-6045bda78650" ProjectName="Common Document Understanding" ProjectVersionName="CommonCSEIandSC_2-1" ProjectVersionNumber="9" RuntimeAssetPath="Compliance/Application Review Process/DU_AppCredentials" RuntimeTenantUrl="[in_Config(&quot;DU_TenantURL&quot;).ToString]" TimeoutInSeconds="3600">
               <p:ClassifyDocument.GptPromptWithVariables>
                 <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
               </p:ClassifyDocument.GptPromptWithVariables>
@@ -168,7 +178,7 @@
                 </InArgument>
               </p:ClassifyDocument.ProjectTag>
             </p:ClassifyDocument>
-            <ui:LogMessage DisplayName="Log document type" sap:VirtualizedContainerService.HintSize="546,173" sap2010:WorkflowViewState.IdRef="LogMessage_3" Message="[string.Format(&quot;Classified {0} as {1}&quot;, currentFile, classifiedDocument.DocumentType.DisplayName)]">
+            <ui:LogMessage DisplayName="Log document type" sap:VirtualizedContainerService.HintSize="450,173" sap2010:WorkflowViewState.IdRef="LogMessage_3" Message="[string.Format(&quot;Classified {0} as {1}&quot;, currentFile, classifiedDocument.DocumentType.DisplayName)]">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -176,9 +186,9 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:LogMessage>
-            <If Condition="[classifiedDocument.DocumentType.DisplayName.Equals(&quot;Student Certification&quot;)]" DisplayName="If - Document type is Student Certification" sap:VirtualizedContainerService.HintSize="546,1778" sap2010:WorkflowViewState.IdRef="If_1">
+            <If Condition="[classifiedDocument.DocumentType.DisplayName.Equals(&quot;Student Certification&quot;)]" DisplayName="If - Document type is Student Certification" sap:VirtualizedContainerService.HintSize="450,1100" sap2010:WorkflowViewState.IdRef="If_1">
               <If.Then>
-                <Sequence DisplayName="Then: If - Document type is Student Certification" sap:VirtualizedContainerService.HintSize="512,1513" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                <Sequence DisplayName="Then: If - Document type is Student Certification" sap:VirtualizedContainerService.HintSize="416,836" sap2010:WorkflowViewState.IdRef="Sequence_3">
                   <Sequence.Variables>
                     <Variable x:TypeArguments="uisad:IDocumentData(uisasecb:CommonCSEIandSC21StudentCertificationV9)" Name="SCDocData" />
                   </Sequence.Variables>
@@ -187,7 +197,7 @@
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <p:ExtractDocumentDataWithDocumentData x:TypeArguments="uisasecb:CommonCSEIandSC21StudentCertificationV9" DocumentBounds="{x:Null}" DocumentObjectModel="{x:Null}" DocumentPath="{x:Null}" DocumentText="{x:Null}" ExtractorDocumentType="{x:Null}" ExtractorResult="{x:Null}" PersistenceId="{x:Null}" PredictionId="{x:Null}" Prompt="{x:Null}" ApplyAutoValidation="False" DisplayName="Extract Document Data - SC" DocType="25790897-ce94-f111-9b33-000d3a8c392e" ExtractionResults="[SCDocData]" ExtractorName="CommonCSEIandSC_2-1_Student Certification_v9" FileInput="[classifiedDocument]" GenerateData="True" sap:VirtualizedContainerService.HintSize="450,359" sap2010:WorkflowViewState.IdRef="ExtractDocumentDataWithDocumentData`1_1" ModernDocumentTypeId="e694516a-7592-f111-9b33-000d3a1c9a08" ModernDocumentTypeName="Student Certification" ProjectId="2fdd4fa5-6b45-f111-8ef3-6045bda78650" ProjectName="Common Document Understanding" ProjectTag="[Nothing]" ProjectVersionName="CommonCSEIandSC_2-1" ProjectVersionNumber="9" RuntimeAssetPath="Compliance/Application Review Process/DU_AppCredentials" RuntimeTenantUrl="[in_Config(&quot;DU_TenantURL&quot;).ToString]" TimeoutInSeconds="3600">
+                  <p:ExtractDocumentDataWithDocumentData x:TypeArguments="uisasecb:CommonCSEIandSC21StudentCertificationV9" DocumentBounds="{x:Null}" DocumentObjectModel="{x:Null}" DocumentPath="{x:Null}" DocumentText="{x:Null}" ExtractorDocumentType="{x:Null}" ExtractorResult="{x:Null}" PersistenceId="{x:Null}" PredictionId="{x:Null}" Prompt="{x:Null}" ApplyAutoValidation="False" DisplayName="Extract Document Data - SC" DocType="25790897-ce94-f111-9b33-000d3a8c392e" ExtractionResults="[SCDocData]" ExtractorName="CommonCSEIandSC_2-1_Student Certification_v9" FileInput="[classifiedDocument]" GenerateData="True" sap:VirtualizedContainerService.HintSize="354,359" sap2010:WorkflowViewState.IdRef="ExtractDocumentDataWithDocumentData`1_1" ModernDocumentTypeId="e694516a-7592-f111-9b33-000d3a1c9a08" ModernDocumentTypeName="Student Certification" ProjectId="2fdd4fa5-6b45-f111-8ef3-6045bda78650" ProjectName="Common Document Understanding" ProjectTag="[Nothing]" ProjectVersionName="CommonCSEIandSC_2-1" ProjectVersionNumber="9" RuntimeAssetPath="Compliance/Application Review Process/DU_AppCredentials" RuntimeTenantUrl="[in_Config(&quot;DU_TenantURL&quot;).ToString]" TimeoutInSeconds="3600">
                     <p:ExtractDocumentDataWithDocumentData.AutoValidationConfidenceThreshold>
                       <InArgument x:TypeArguments="s:Nullable(x:Int32)">
                         <Literal x:TypeArguments="s:Nullable(x:Int32)" Value="0" />
@@ -197,7 +207,7 @@
                       <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
                     </p:ExtractDocumentDataWithDocumentData.GptPromptWithVariables>
                   </p:ExtractDocumentDataWithDocumentData>
-                  <ui:LogMessage DisplayName="Write extracted data SC" sap:VirtualizedContainerService.HintSize="450,173" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;The following data has been extracted (excluding table data): {for each fields, except tables, display as key-value pairs: field name - field value}.&quot; &amp; vbCrLf &amp; SCDocData.ToString]">
+                  <ui:LogMessage DisplayName="Write extracted data SC" sap:VirtualizedContainerService.HintSize="354,173" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;The following data has been extracted (excluding table data): {for each fields, except tables, display as key-value pairs: field name - field value}.&quot; &amp; vbCrLf &amp; SCDocData.ToString]">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -205,370 +215,396 @@
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                   </ui:LogMessage>
-                  <Sequence DisplayName="Replacing regular values" sap:VirtualizedContainerService.HintSize="450,893" sap2010:WorkflowViewState.IdRef="Sequence_5">
-                    <Sequence.Variables>
-                      <Variable x:TypeArguments="x:String" Name="str_PartA1NotAStudent" />
-                      <Variable x:TypeArguments="x:String" Name="str_PartA2PartTimeStudent" />
-                      <Variable x:TypeArguments="x:String" Name="str_PartA3FulltimeStudent" />
-                      <Variable x:TypeArguments="x:String" Name="str_PartB1" />
-                      <Variable x:TypeArguments="x:String" Name="str_PartB2A" />
-                      <Variable x:TypeArguments="x:String" Name="str_PartB2B" />
-                      <Variable x:TypeArguments="x:String" Name="str_PartB3" />
-                      <Variable x:TypeArguments="x:String" Name="str_PartB4" />
-                      <Variable x:TypeArguments="x:String" Name="str_PartB5" />
-                      <Variable x:TypeArguments="x:String" Name="str_PartB2" />
-                    </Sequence.Variables>
+                  <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="354,57" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+                    <ui:CommentOut.Body>
+                      <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="512,136" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <Sequence DisplayName="Replacing regular values" sap:VirtualizedContainerService.HintSize="450,48" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                          <Sequence.Variables>
+                            <Variable x:TypeArguments="x:String" Name="str_PartA1NotAStudent" />
+                            <Variable x:TypeArguments="x:String" Name="str_PartA2PartTimeStudent" />
+                            <Variable x:TypeArguments="x:String" Name="str_PartA3FulltimeStudent" />
+                            <Variable x:TypeArguments="x:String" Name="str_PartB1" />
+                            <Variable x:TypeArguments="x:String" Name="str_PartB2A" />
+                            <Variable x:TypeArguments="x:String" Name="str_PartB2B" />
+                            <Variable x:TypeArguments="x:String" Name="str_PartB3" />
+                            <Variable x:TypeArguments="x:String" Name="str_PartB4" />
+                            <Variable x:TypeArguments="x:String" Name="str_PartB5" />
+                            <Variable x:TypeArguments="x:String" Name="str_PartB2" />
+                          </Sequence.Variables>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Switch x:TypeArguments="x:String" DisplayName="Switch: str_PartA1NotAStudent" Expression="[SCDocData.Data.PartA1NotAStudent.Value.ToLower.Trim]" sap:VirtualizedContainerService.HintSize="388,57" sap2010:WorkflowViewState.IdRef="Switch`1_3">
+                            <Switch.Default>
+                              <Assign DisplayName="Assign: PartA1NotAStudent &quot;unanswered&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_10">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">[str_PartA1NotAStudent]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">unanswered</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </Switch.Default>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <Assign x:Key="☐" DisplayName="Assign: PartA1NotAStudent &quot;unchecked&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_8">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[str_PartA1NotAStudent]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">unchecked</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign x:Key="☒" DisplayName="Assign: PartA1NotAStudent &quot;checked&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_9">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[str_PartA1NotAStudent]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">checked</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </Switch>
+                          <Switch x:TypeArguments="x:String" DisplayName="Switch: str_PartA2PartTimeStudent" Expression="[SCDocData.Data.PartA2ParttimeStudent.Value.ToLower.Trim]" sap:VirtualizedContainerService.HintSize="388,57" sap2010:WorkflowViewState.IdRef="Switch`1_2">
+                            <Switch.Default>
+                              <Assign DisplayName="Assign: str_PartA2PartTimeStudent &quot;unanswered&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_7">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">[str_PartA2PartTimeStudent]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">unanswered</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </Switch.Default>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <Assign x:Key="☐" DisplayName="Assign: str_PartA2PartTimeStudent &quot;unchecked&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_5">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[str_PartA2PartTimeStudent]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">unchecked</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign x:Key="☒" DisplayName="Assign: str_PartA2PartTimeStudent &quot;checked&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_6">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[str_PartA2PartTimeStudent]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">checked</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </Switch>
+                          <Switch x:TypeArguments="x:String" DisplayName="Switch: str_PartA2PartTimeStudent" Expression="[SCDocData.Data.PartA3FulltimeStudent.Value.ToLower.Trim]" sap:VirtualizedContainerService.HintSize="388,57" sap2010:WorkflowViewState.IdRef="Switch`1_4">
+                            <Switch.Default>
+                              <Assign DisplayName="Assign: str_PartA3FulltimeStudent &quot;unanswered&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_13">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">[str_PartA3FulltimeStudent]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">unanswered</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </Switch.Default>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <Assign x:Key="☐" DisplayName="Assign: str_PartA3FulltimeStudent &quot;unchecked&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_11">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[str_PartA3FulltimeStudent]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">unchecked</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign x:Key="☒" DisplayName="Assign: str_PartA3FulltimeStudent &quot;checked&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_12">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[str_PartA3FulltimeStudent]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">checked</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </Switch>
+                          <Switch x:TypeArguments="x:String" DisplayName="Switch: str_PartB1" Expression="[SCDocData.Data.PartB1.Value.Replace(&quot;☒&quot;,&quot;&quot;).ToLower.Trim]" sap:VirtualizedContainerService.HintSize="388,57" sap2010:WorkflowViewState.IdRef="Switch`1_5">
+                            <Switch.Default>
+                              <Assign DisplayName="Assign: str_PartB1&quot;unanswered&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_16">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">[str_PartB1]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">unanswered</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </Switch.Default>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <Assign x:Key="no" DisplayName="Assign: str_PartB1 &quot;false&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_14">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[str_PartB1]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">false</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign x:Key="yes" DisplayName="Assign: str_PartB1 &quot;true&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_15">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[str_PartB1]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">true</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </Switch>
+                          <Switch x:TypeArguments="x:String" DisplayName="Switch: str_PartB2" Expression="[SCDocData.Data.PartB2.Value.Replace(&quot;☒&quot;,&quot;&quot;).ToLower.Trim]" sap:VirtualizedContainerService.HintSize="388,57" sap2010:WorkflowViewState.IdRef="Switch`1_6">
+                            <Switch.Default>
+                              <Assign DisplayName="Assign: str_PartB2 &quot;unanswered&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_19">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">[str_PartB2]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">unanswered</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </Switch.Default>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <Assign x:Key="no" DisplayName="Assign: str_PartB2 &quot;false&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_17">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[str_PartB2]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">false</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign x:Key="yes" DisplayName="Assign: str_PartB2 &quot;true&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_18">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[str_PartB2]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">true</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </Switch>
+                          <Switch x:TypeArguments="x:String" DisplayName="Switch: str_PartB2A" Expression="[SCDocData.Data.PartB2A.Value.Replace(&quot;☒&quot;,&quot;&quot;).ToLower.Trim]" sap:VirtualizedContainerService.HintSize="388,57" sap2010:WorkflowViewState.IdRef="Switch`1_7">
+                            <Switch.Default>
+                              <Assign DisplayName="Assign: str_PartB2A &quot;unanswered&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_22">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">[str_PartB2A]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">unanswered</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </Switch.Default>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <Assign x:Key="no" DisplayName="Assign: str_PartB2A &quot;false&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_20">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[str_PartB2A]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">false</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign x:Key="yes" DisplayName="Assign: str_PartB2A &quot;true&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_21">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[str_PartB2A]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">true</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </Switch>
+                          <Switch x:TypeArguments="x:String" DisplayName="Switch: str_PartB2B" Expression="[SCDocData.Data.PartB2B.Value.Replace(&quot;☒&quot;,&quot;&quot;).ToLower.Trim]" sap:VirtualizedContainerService.HintSize="388,57" sap2010:WorkflowViewState.IdRef="Switch`1_8">
+                            <Switch.Default>
+                              <Assign DisplayName="Assign: str_PartB2B &quot;unanswered&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_25">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">[str_PartB2B]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">unanswered</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </Switch.Default>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <Assign x:Key="no" DisplayName="Assign: str_PartB2B &quot;false&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_23">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[str_PartB2B]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">false</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign x:Key="yes" DisplayName="Assign: str_PartB2B &quot;true&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_24">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[str_PartB2B]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">true</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </Switch>
+                          <Switch x:TypeArguments="x:String" DisplayName="Switch: str_PartB3" Expression="[SCDocData.Data.PartB3.Value.Replace(&quot;☒&quot;,&quot;&quot;).ToLower.Trim]" sap:VirtualizedContainerService.HintSize="388,57" sap2010:WorkflowViewState.IdRef="Switch`1_9">
+                            <Switch.Default>
+                              <Assign DisplayName="Assign: str_PartB3 &quot;unanswered&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_28">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">[str_PartB3]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">unanswered</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </Switch.Default>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <Assign x:Key="no" DisplayName="Assign: str_PartB3 &quot;false&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_26">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[str_PartB3]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">false</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign x:Key="yes" DisplayName="Assign: str_PartB3 &quot;true&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_27">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[str_PartB3]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">true</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </Switch>
+                          <Switch x:TypeArguments="x:String" DisplayName="Switch: str_PartB4" Expression="[SCDocData.Data.PartB4.Value.Replace(&quot;☒&quot;,&quot;&quot;).ToLower.Trim]" sap:VirtualizedContainerService.HintSize="388,57" sap2010:WorkflowViewState.IdRef="Switch`1_10">
+                            <Switch.Default>
+                              <Assign DisplayName="Assign: str_PartB3 &quot;unanswered&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_31">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">[str_PartB4]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">unanswered</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </Switch.Default>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <Assign x:Key="no" DisplayName="Assign: str_PartB4 &quot;false&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_29">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[str_PartB4]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">false</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign x:Key="yes" DisplayName="Assign: str_PartB4 &quot;true&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_30">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[str_PartB4]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">true</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </Switch>
+                          <Switch x:TypeArguments="x:String" DisplayName="Switch: str_PartB5" Expression="[SCDocData.Data.PartB5.Value.Replace(&quot;☒&quot;,&quot;&quot;).ToLower.Trim]" sap:VirtualizedContainerService.HintSize="388,57" sap2010:WorkflowViewState.IdRef="Switch`1_11">
+                            <Switch.Default>
+                              <Assign DisplayName="Assign: str_PartB5 &quot;unanswered&quot;" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_34">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">[str_PartB5]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">unanswered</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </Switch.Default>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <Assign x:Key="no" DisplayName="Assign: str_PartB5 &quot;false&quot;" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_32">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[str_PartB5]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">false</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign x:Key="yes" DisplayName="Assign: str_PartB5 &quot;true&quot;" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_33">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[str_PartB5]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">true</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </Switch>
+                          <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{str_PartA1NotAStudent, str_PartA2PartTimeStudent, str_PartA3FulltimeStudent, str_PartB1,&#xA;str_PartB2, str_PartB2A, str_PartB2B, str_PartB3, str_PartB4, str_PartB5}]" DataTable="[out_dtSCDUData]" DisplayName="Add Data Row: out_dtSCDUData" sap:VirtualizedContainerService.HintSize="388,212" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
+                        </Sequence>
+                      </Sequence>
+                    </ui:CommentOut.Body>
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <Switch x:TypeArguments="x:String" DisplayName="Switch: str_PartA1NotAStudent" Expression="[SCDocData.Data.PartA1NotAStudent.Value.ToLower.Trim]" sap:VirtualizedContainerService.HintSize="388,57" sap2010:WorkflowViewState.IdRef="Switch`1_3">
-                      <Switch.Default>
-                        <Assign DisplayName="Assign: PartA1NotAStudent &quot;unanswered&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_10">
-                          <Assign.To>
-                            <OutArgument x:TypeArguments="x:String">[str_PartA1NotAStudent]</OutArgument>
-                          </Assign.To>
-                          <Assign.Value>
-                            <InArgument x:TypeArguments="x:String">unanswered</InArgument>
-                          </Assign.Value>
-                        </Assign>
-                      </Switch.Default>
-                      <sap:WorkflowViewStateService.ViewState>
-                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                          <x:Boolean x:Key="IsPinned">True</x:Boolean>
-                        </scg:Dictionary>
-                      </sap:WorkflowViewStateService.ViewState>
-                      <Assign x:Key="☐" DisplayName="Assign: PartA1NotAStudent &quot;unchecked&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_8">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:String">[str_PartA1NotAStudent]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:String">unchecked</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                      <Assign x:Key="☒" DisplayName="Assign: PartA1NotAStudent &quot;checked&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_9">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:String">[str_PartA1NotAStudent]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:String">checked</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                    </Switch>
-                    <Switch x:TypeArguments="x:String" DisplayName="Switch: str_PartA2PartTimeStudent" Expression="[SCDocData.Data.PartA2ParttimeStudent.Value.ToLower.Trim]" sap:VirtualizedContainerService.HintSize="388,57" sap2010:WorkflowViewState.IdRef="Switch`1_2">
-                      <Switch.Default>
-                        <Assign DisplayName="Assign: str_PartA2PartTimeStudent &quot;unanswered&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_7">
-                          <Assign.To>
-                            <OutArgument x:TypeArguments="x:String">[str_PartA2PartTimeStudent]</OutArgument>
-                          </Assign.To>
-                          <Assign.Value>
-                            <InArgument x:TypeArguments="x:String">unanswered</InArgument>
-                          </Assign.Value>
-                        </Assign>
-                      </Switch.Default>
-                      <sap:WorkflowViewStateService.ViewState>
-                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                          <x:Boolean x:Key="IsPinned">True</x:Boolean>
-                        </scg:Dictionary>
-                      </sap:WorkflowViewStateService.ViewState>
-                      <Assign x:Key="☐" DisplayName="Assign: str_PartA2PartTimeStudent &quot;unchecked&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_5">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:String">[str_PartA2PartTimeStudent]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:String">unchecked</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                      <Assign x:Key="☒" DisplayName="Assign: str_PartA2PartTimeStudent &quot;checked&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_6">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:String">[str_PartA2PartTimeStudent]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:String">checked</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                    </Switch>
-                    <Switch x:TypeArguments="x:String" DisplayName="Switch: str_PartA2PartTimeStudent" Expression="[SCDocData.Data.PartA3FulltimeStudent.Value.ToLower.Trim]" sap:VirtualizedContainerService.HintSize="388,57" sap2010:WorkflowViewState.IdRef="Switch`1_4">
-                      <Switch.Default>
-                        <Assign DisplayName="Assign: str_PartA3FulltimeStudent &quot;unanswered&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_13">
-                          <Assign.To>
-                            <OutArgument x:TypeArguments="x:String">[str_PartA3FulltimeStudent]</OutArgument>
-                          </Assign.To>
-                          <Assign.Value>
-                            <InArgument x:TypeArguments="x:String">unanswered</InArgument>
-                          </Assign.Value>
-                        </Assign>
-                      </Switch.Default>
-                      <sap:WorkflowViewStateService.ViewState>
-                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                          <x:Boolean x:Key="IsPinned">True</x:Boolean>
-                        </scg:Dictionary>
-                      </sap:WorkflowViewStateService.ViewState>
-                      <Assign x:Key="☐" DisplayName="Assign: str_PartA3FulltimeStudent &quot;unchecked&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_11">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:String">[str_PartA3FulltimeStudent]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:String">unchecked</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                      <Assign x:Key="☒" DisplayName="Assign: str_PartA3FulltimeStudent &quot;checked&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_12">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:String">[str_PartA3FulltimeStudent]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:String">checked</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                    </Switch>
-                    <Switch x:TypeArguments="x:String" DisplayName="Switch: str_PartB1" Expression="[SCDocData.Data.PartB1.Value.Replace(&quot;☒&quot;,&quot;&quot;).ToLower.Trim]" sap:VirtualizedContainerService.HintSize="388,57" sap2010:WorkflowViewState.IdRef="Switch`1_5">
-                      <Switch.Default>
-                        <Assign DisplayName="Assign: str_PartB1&quot;unanswered&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_16">
-                          <Assign.To>
-                            <OutArgument x:TypeArguments="x:String">[str_PartB1]</OutArgument>
-                          </Assign.To>
-                          <Assign.Value>
-                            <InArgument x:TypeArguments="x:String">unanswered</InArgument>
-                          </Assign.Value>
-                        </Assign>
-                      </Switch.Default>
-                      <sap:WorkflowViewStateService.ViewState>
-                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                          <x:Boolean x:Key="IsPinned">True</x:Boolean>
-                        </scg:Dictionary>
-                      </sap:WorkflowViewStateService.ViewState>
-                      <Assign x:Key="no" DisplayName="Assign: str_PartB1 &quot;false&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_14">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:String">[str_PartB1]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:String">false</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                      <Assign x:Key="yes" DisplayName="Assign: str_PartB1 &quot;true&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_15">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:String">[str_PartB1]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:String">true</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                    </Switch>
-                    <Switch x:TypeArguments="x:String" DisplayName="Switch: str_PartB2" Expression="[SCDocData.Data.PartB2.Value.Replace(&quot;☒&quot;,&quot;&quot;).ToLower.Trim]" sap:VirtualizedContainerService.HintSize="388,57" sap2010:WorkflowViewState.IdRef="Switch`1_6">
-                      <Switch.Default>
-                        <Assign DisplayName="Assign: str_PartB2 &quot;unanswered&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_19">
-                          <Assign.To>
-                            <OutArgument x:TypeArguments="x:String">[str_PartB2]</OutArgument>
-                          </Assign.To>
-                          <Assign.Value>
-                            <InArgument x:TypeArguments="x:String">unanswered</InArgument>
-                          </Assign.Value>
-                        </Assign>
-                      </Switch.Default>
-                      <sap:WorkflowViewStateService.ViewState>
-                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                          <x:Boolean x:Key="IsPinned">True</x:Boolean>
-                        </scg:Dictionary>
-                      </sap:WorkflowViewStateService.ViewState>
-                      <Assign x:Key="no" DisplayName="Assign: str_PartB2 &quot;false&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_17">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:String">[str_PartB2]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:String">false</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                      <Assign x:Key="yes" DisplayName="Assign: str_PartB2 &quot;true&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_18">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:String">[str_PartB2]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:String">true</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                    </Switch>
-                    <Switch x:TypeArguments="x:String" DisplayName="Switch: str_PartB2A" Expression="[SCDocData.Data.PartB2A.Value.Replace(&quot;☒&quot;,&quot;&quot;).ToLower.Trim]" sap:VirtualizedContainerService.HintSize="388,57" sap2010:WorkflowViewState.IdRef="Switch`1_7">
-                      <Switch.Default>
-                        <Assign DisplayName="Assign: str_PartB2A &quot;unanswered&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_22">
-                          <Assign.To>
-                            <OutArgument x:TypeArguments="x:String">[str_PartB2A]</OutArgument>
-                          </Assign.To>
-                          <Assign.Value>
-                            <InArgument x:TypeArguments="x:String">unanswered</InArgument>
-                          </Assign.Value>
-                        </Assign>
-                      </Switch.Default>
-                      <sap:WorkflowViewStateService.ViewState>
-                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                          <x:Boolean x:Key="IsPinned">True</x:Boolean>
-                        </scg:Dictionary>
-                      </sap:WorkflowViewStateService.ViewState>
-                      <Assign x:Key="no" DisplayName="Assign: str_PartB2A &quot;false&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_20">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:String">[str_PartB2A]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:String">false</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                      <Assign x:Key="yes" DisplayName="Assign: str_PartB2A &quot;true&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_21">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:String">[str_PartB2A]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:String">true</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                    </Switch>
-                    <Switch x:TypeArguments="x:String" DisplayName="Switch: str_PartB2B" Expression="[SCDocData.Data.PartB2B.Value.Replace(&quot;☒&quot;,&quot;&quot;).ToLower.Trim]" sap:VirtualizedContainerService.HintSize="388,57" sap2010:WorkflowViewState.IdRef="Switch`1_8">
-                      <Switch.Default>
-                        <Assign DisplayName="Assign: str_PartB2B &quot;unanswered&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_25">
-                          <Assign.To>
-                            <OutArgument x:TypeArguments="x:String">[str_PartB2B]</OutArgument>
-                          </Assign.To>
-                          <Assign.Value>
-                            <InArgument x:TypeArguments="x:String">unanswered</InArgument>
-                          </Assign.Value>
-                        </Assign>
-                      </Switch.Default>
-                      <sap:WorkflowViewStateService.ViewState>
-                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                          <x:Boolean x:Key="IsPinned">True</x:Boolean>
-                        </scg:Dictionary>
-                      </sap:WorkflowViewStateService.ViewState>
-                      <Assign x:Key="no" DisplayName="Assign: str_PartB2B &quot;false&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_23">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:String">[str_PartB2B]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:String">false</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                      <Assign x:Key="yes" DisplayName="Assign: str_PartB2B &quot;true&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_24">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:String">[str_PartB2B]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:String">true</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                    </Switch>
-                    <Switch x:TypeArguments="x:String" DisplayName="Switch: str_PartB3" Expression="[SCDocData.Data.PartB3.Value.Replace(&quot;☒&quot;,&quot;&quot;).ToLower.Trim]" sap:VirtualizedContainerService.HintSize="388,57" sap2010:WorkflowViewState.IdRef="Switch`1_9">
-                      <Switch.Default>
-                        <Assign DisplayName="Assign: str_PartB3 &quot;unanswered&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_28">
-                          <Assign.To>
-                            <OutArgument x:TypeArguments="x:String">[str_PartB3]</OutArgument>
-                          </Assign.To>
-                          <Assign.Value>
-                            <InArgument x:TypeArguments="x:String">unanswered</InArgument>
-                          </Assign.Value>
-                        </Assign>
-                      </Switch.Default>
-                      <sap:WorkflowViewStateService.ViewState>
-                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                          <x:Boolean x:Key="IsPinned">True</x:Boolean>
-                        </scg:Dictionary>
-                      </sap:WorkflowViewStateService.ViewState>
-                      <Assign x:Key="no" DisplayName="Assign: str_PartB3 &quot;false&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_26">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:String">[str_PartB3]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:String">false</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                      <Assign x:Key="yes" DisplayName="Assign: str_PartB3 &quot;true&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_27">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:String">[str_PartB3]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:String">true</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                    </Switch>
-                    <Switch x:TypeArguments="x:String" DisplayName="Switch: str_PartB4" Expression="[SCDocData.Data.PartB4.Value.Replace(&quot;☒&quot;,&quot;&quot;).ToLower.Trim]" sap:VirtualizedContainerService.HintSize="388,57" sap2010:WorkflowViewState.IdRef="Switch`1_10">
-                      <Switch.Default>
-                        <Assign DisplayName="Assign: str_PartB3 &quot;unanswered&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_31">
-                          <Assign.To>
-                            <OutArgument x:TypeArguments="x:String">[str_PartB4]</OutArgument>
-                          </Assign.To>
-                          <Assign.Value>
-                            <InArgument x:TypeArguments="x:String">unanswered</InArgument>
-                          </Assign.Value>
-                        </Assign>
-                      </Switch.Default>
-                      <sap:WorkflowViewStateService.ViewState>
-                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                          <x:Boolean x:Key="IsPinned">True</x:Boolean>
-                        </scg:Dictionary>
-                      </sap:WorkflowViewStateService.ViewState>
-                      <Assign x:Key="no" DisplayName="Assign: str_PartB4 &quot;false&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_29">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:String">[str_PartB4]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:String">false</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                      <Assign x:Key="yes" DisplayName="Assign: str_PartB4 &quot;true&quot;" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_30">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:String">[str_PartB4]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:String">true</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                    </Switch>
-                    <Switch x:TypeArguments="x:String" DisplayName="Switch: str_PartB5" Expression="[SCDocData.Data.PartB5.Value.Replace(&quot;☒&quot;,&quot;&quot;).ToLower.Trim]" sap:VirtualizedContainerService.HintSize="388,57" sap2010:WorkflowViewState.IdRef="Switch`1_11">
-                      <Switch.Default>
-                        <Assign DisplayName="Assign: str_PartB5 &quot;unanswered&quot;" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_34">
-                          <Assign.To>
-                            <OutArgument x:TypeArguments="x:String">[str_PartB5]</OutArgument>
-                          </Assign.To>
-                          <Assign.Value>
-                            <InArgument x:TypeArguments="x:String">unanswered</InArgument>
-                          </Assign.Value>
-                        </Assign>
-                      </Switch.Default>
-                      <sap:WorkflowViewStateService.ViewState>
-                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                          <x:Boolean x:Key="IsPinned">True</x:Boolean>
-                        </scg:Dictionary>
-                      </sap:WorkflowViewStateService.ViewState>
-                      <Assign x:Key="no" DisplayName="Assign: str_PartB5 &quot;false&quot;" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_32">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:String">[str_PartB5]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:String">false</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                      <Assign x:Key="yes" DisplayName="Assign: str_PartB5 &quot;true&quot;" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_33">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:String">[str_PartB5]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:String">true</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                    </Switch>
-                    <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{str_PartA1NotAStudent, str_PartA2PartTimeStudent, str_PartA3FulltimeStudent, str_PartB1,&#xA;str_PartB2, str_PartB2A, str_PartB2B, str_PartB3, str_PartB4, str_PartB5}]" DataTable="[out_dtSCDUData]" DisplayName="Add Data Row: out_dtSCDUData" sap:VirtualizedContainerService.HintSize="388,212" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
-                  </Sequence>
+                  </ui:CommentOut>
+                  <InvokeMethod DisplayName="Add SCDocumentData to List (InvokeMethod)" sap:VirtualizedContainerService.HintSize="354,159" sap2010:WorkflowViewState.IdRef="InvokeMethod_1" MethodName="Add">
+                    <InvokeMethod.TargetObject>
+                      <InArgument x:TypeArguments="njl:JArray">[jArr_SCDocumentDataResults]</InArgument>
+                    </InvokeMethod.TargetObject>
+                    <InArgument x:TypeArguments="njl:JObject">
+                      <VisualBasicValue x:TypeArguments="njl:JObject" ExpressionText="JObject.FromObject(SCDocData.Data)" />
+                    </InArgument>
+                  </InvokeMethod>
                 </Sequence>
               </If.Then>
               <If.Else>
-                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,104" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,103" sap2010:WorkflowViewState.IdRef="Sequence_4">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -581,5 +617,15 @@
         </ActivityAction>
       </ui:ForEach.Body>
     </ui:ForEach>
+    <Assign DisplayName="Assign-out_SCDocumentDataList" sap:VirtualizedContainerService.HintSize="546,114" sap2010:WorkflowViewState.IdRef="Assign_36">
+      <Assign.To>
+        <OutArgument x:TypeArguments="njl:JArray">[out_SCDocumentDataList]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="njl:JArray">[jArr_SCDocumentDataResults]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:LogMessage DisplayName="Log Message-Ended" sap:VirtualizedContainerService.HintSize="546,173" sap2010:WorkflowViewState.IdRef="LogMessage_5" Message="[&quot;Student Certification DU Extraction ended.&quot;]" />
+    <ui:LogMessage DisplayName="Log Message - DU results for SC" sap:VirtualizedContainerService.HintSize="546,164" sap2010:WorkflowViewState.IdRef="LogMessage_6" Message="[&quot;Extracted DU results for SC: &quot; + Environment.NewLine +&#xD;&#xA;jArr_SCDocumentDataResults.ToString]" />
   </Sequence>
 </Activity>
