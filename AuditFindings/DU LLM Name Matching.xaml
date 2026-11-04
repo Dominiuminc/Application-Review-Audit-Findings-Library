@@ -11,7 +11,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1159,3475</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1090,5110</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>DU_LLM_Name_Matching_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -116,9 +116,10 @@
       <AssemblyReference>System.Text.Encoding.CodePages</AssemblyReference>
       <AssemblyReference>System.Linq.Async</AssemblyReference>
       <AssemblyReference>Microsoft.Extensions.DependencyModel</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="DU_LLM_Name_Matching" sap:VirtualizedContainerService.HintSize="790,3410" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="DU_LLM_Name_Matching" sap:VirtualizedContainerService.HintSize="948,5045" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="DULastName" />
       <Variable x:TypeArguments="x:String" Name="DUFirstName" />
@@ -131,14 +132,14 @@
         <x:Boolean x:Key="IsPinned">False</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[DocType]" sap:VirtualizedContainerService.HintSize="728,3322" sap2010:WorkflowViewState.IdRef="Switch`1_6">
+    <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[DocType]" sap:VirtualizedContainerService.HintSize="886,4957" sap2010:WorkflowViewState.IdRef="Switch`1_6">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <Sequence x:Key="CertificationOfStudentStatus" DisplayName="Sequence" sap:VirtualizedContainerService.HintSize="846,3225" sap2010:WorkflowViewState.IdRef="Sequence_195">
+      <Sequence x:Key="CertificationOfStudentStatus" DisplayName="Sequence" sap:VirtualizedContainerService.HintSize="846,4528" sap2010:WorkflowViewState.IdRef="Sequence_195">
         <Sequence.Variables>
           <Variable x:TypeArguments="x:String" Name="FirstNameRaw" />
           <Variable x:TypeArguments="x:String" Name="LastNameRaw" />
@@ -372,7 +373,7 @@
             </sap:WorkflowViewStateService.ViewState>
           </ui:ForEachRow>
         </Sequence>
-        <Assign DisplayName="Assign" sap:VirtualizedContainerService.HintSize="784,115" sap2010:WorkflowViewState.IdRef="Assign_283">
+        <Assign DisplayName="Assign" sap:VirtualizedContainerService.HintSize="784,114" sap2010:WorkflowViewState.IdRef="Assign_283">
           <Assign.To>
             <OutArgument x:TypeArguments="s:String[]">[arr_DUMembers]</OutArgument>
           </Assign.To>
@@ -386,7 +387,7 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
         </Assign>
-        <Assign sap:VirtualizedContainerService.HintSize="784,115" sap2010:WorkflowViewState.IdRef="Assign_284">
+        <Assign sap:VirtualizedContainerService.HintSize="784,114" sap2010:WorkflowViewState.IdRef="Assign_284">
           <Assign.To>
             <OutArgument x:TypeArguments="s:String[]">[arr_LLMNames]</OutArgument>
           </Assign.To>
@@ -394,7 +395,7 @@
             <InArgument x:TypeArguments="s:String[]">[CType(LLM_Results(0)("HouseholdMembers"), JArray).Select(Function(m) m("Name").ToString()).ToArray()]</InArgument>
           </Assign.Value>
         </Assign>
-        <Assign sap:VirtualizedContainerService.HintSize="784,115" sap2010:WorkflowViewState.IdRef="Assign_285">
+        <Assign sap:VirtualizedContainerService.HintSize="784,114" sap2010:WorkflowViewState.IdRef="Assign_285">
           <Assign.To>
             <OutArgument x:TypeArguments="sd:DataTable">[out_dtMatchedMembers]</OutArgument>
           </Assign.To>
@@ -402,7 +403,7 @@
             <InArgument x:TypeArguments="sd:DataTable">[DU_Members.Clone()]</InArgument>
           </Assign.Value>
         </Assign>
-        <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each currentLLMName" sap:VirtualizedContainerService.HintSize="784,160" sap2010:WorkflowViewState.IdRef="ForEach`1_6" Values="[arr_LLMNames]">
+        <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each currentLLMName" sap:VirtualizedContainerService.HintSize="784,1466" sap2010:WorkflowViewState.IdRef="ForEach`1_6" Values="[arr_LLMNames]">
           <ui:ForEach.Body>
             <ActivityAction x:TypeArguments="x:String">
               <ActivityAction.Argument>
@@ -481,7 +482,7 @@
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <Throw DisplayName="Throw-DUReplacementFailure" Exception="[New SystemException(&quot;DU extracted names do not match LLM extracted names&quot;)]" sap:VirtualizedContainerService.HintSize="354,113" sap2010:WorkflowViewState.IdRef="Throw_24" />
+                      <Throw DisplayName="Throw-DUReplacementFailure" Exception="[New SystemException(&quot;DU extracted names do not match LLM extracted names. LLM Names: &quot; &amp; String.Join(&quot;, &quot;, arr_LLMNames) &amp; &quot; | DU Name: &quot; &amp; String.Join(&quot;, &quot;, arr_DUMembers))]" sap:VirtualizedContainerService.HintSize="354,113" sap2010:WorkflowViewState.IdRef="Throw_24" />
                     </Sequence>
                   </If.Else>
                 </If>
@@ -490,7 +491,7 @@
           </ui:ForEach.Body>
         </ui:ForEach>
       </Sequence>
-      <Sequence x:Key="CertificationofSelfEmployment" DisplayName="Sequence" sap:VirtualizedContainerService.HintSize="688,1295" sap2010:WorkflowViewState.IdRef="Sequence_196">
+      <Sequence x:Key="CertificationofSelfEmployment" DisplayName="Sequence" sap:VirtualizedContainerService.HintSize="688,2893" sap2010:WorkflowViewState.IdRef="Sequence_196">
         <Sequence.Variables>
           <Variable x:TypeArguments="x:String" Name="FirstNameRaw" />
           <Variable x:TypeArguments="x:String" Name="LastNameRaw" />
@@ -519,7 +520,7 @@
             <InArgument x:TypeArguments="s:String[]">[DUFullName.split(" "c)]</InArgument>
           </Assign.Value>
         </Assign>
-        <If Condition="[NameParts.Length = 1]" DisplayName="If - check for single or multiple word name" sap:VirtualizedContainerService.HintSize="626,214" sap2010:WorkflowViewState.IdRef="If_71">
+        <If Condition="[NameParts.Length = 1]" DisplayName="If - check for single or multiple word name" sap:VirtualizedContainerService.HintSize="626,1340" sap2010:WorkflowViewState.IdRef="If_71">
           <If.Then>
             <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="496,307" sap2010:WorkflowViewState.IdRef="Sequence_216">
               <sap:WorkflowViewStateService.ViewState>
@@ -648,7 +649,7 @@
           </Assign.Value>
         </Assign>
         <ausas:FindBestMatch Candidates="[arr_LLMNames]" DisplayName="Find Best Match" sap:VirtualizedContainerService.HintSize="626,275" sap2010:WorkflowViewState.IdRef="FindBestMatch_26" MinThreshold="[CDec(in_Config(&quot;FindAllMatches_Threshold&quot;).ToString)]" Query="[DUFullName]" Result="[DUMatchedName]" />
-        <If Condition="[DUMatchedName IsNot Nothing]" DisplayName="If Name is the same" sap:VirtualizedContainerService.HintSize="626,206" sap2010:WorkflowViewState.IdRef="If_76">
+        <If Condition="[DUMatchedName IsNot Nothing]" DisplayName="If Name is the same" sap:VirtualizedContainerService.HintSize="626,555" sap2010:WorkflowViewState.IdRef="If_76">
           <If.Then>
             <Sequence DisplayName="Then: If Name is the same" sap:VirtualizedContainerService.HintSize="496,193" sap2010:WorkflowViewState.IdRef="Sequence_220">
               <sap:WorkflowViewStateService.ViewState>
@@ -673,12 +674,12 @@
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Throw DisplayName="Throw-DUReplacementFailure" Exception="[New SystemException(&quot;DU extracted names do not match LLM extracted names&quot;)]" sap:VirtualizedContainerService.HintSize="354,113" sap2010:WorkflowViewState.IdRef="Throw_25" />
+              <Throw DisplayName="Throw-DUReplacementFailure" Exception="[New SystemException(&quot;DU extracted names do not match LLM extracted names. LLM Names: &quot; &amp; String.Join(&quot;, &quot;, arr_LLMNames) &amp; &quot; | DU Name: &quot; &amp; DUFullName)]" sap:VirtualizedContainerService.HintSize="354,113" sap2010:WorkflowViewState.IdRef="Throw_25" />
             </Sequence>
           </If.Else>
         </If>
       </Sequence>
-      <Sequence x:Key="CertificationOfZeroIncome" DisplayName="Sequence" sap:VirtualizedContainerService.HintSize="688,1295" sap2010:WorkflowViewState.IdRef="Sequence_197">
+      <Sequence x:Key="CertificationOfZeroIncome" DisplayName="Sequence" sap:VirtualizedContainerService.HintSize="688,2893" sap2010:WorkflowViewState.IdRef="Sequence_197">
         <Sequence.Variables>
           <Variable x:TypeArguments="x:String" Name="FirstNameRaw" />
           <Variable x:TypeArguments="x:String" Name="LastNameRaw" />
@@ -707,7 +708,7 @@
             <InArgument x:TypeArguments="s:String[]">[DUFullName.split(" "c)]</InArgument>
           </Assign.Value>
         </Assign>
-        <If Condition="[NameParts.Length = 1]" DisplayName="If - check for single or multiple word name" sap:VirtualizedContainerService.HintSize="626,214" sap2010:WorkflowViewState.IdRef="If_78">
+        <If Condition="[NameParts.Length = 1]" DisplayName="If - check for single or multiple word name" sap:VirtualizedContainerService.HintSize="626,1340" sap2010:WorkflowViewState.IdRef="If_78">
           <If.Then>
             <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="496,307" sap2010:WorkflowViewState.IdRef="Sequence_222">
               <sap:WorkflowViewStateService.ViewState>
@@ -836,7 +837,7 @@
           </Assign.Value>
         </Assign>
         <ausas:FindBestMatch Candidates="[arr_LLMNames]" DisplayName="Find Best Match" sap:VirtualizedContainerService.HintSize="626,275" sap2010:WorkflowViewState.IdRef="FindBestMatch_27" MinThreshold="[CDec(in_Config(&quot;FindAllMatches_Threshold&quot;).ToString)]" Query="[DUFullName]" Result="[DUMatchedName]" />
-        <If Condition="[DUMatchedName IsNot Nothing]" DisplayName="If Name is the same" sap:VirtualizedContainerService.HintSize="626,206" sap2010:WorkflowViewState.IdRef="If_79">
+        <If Condition="[DUMatchedName IsNot Nothing]" DisplayName="If Name is the same" sap:VirtualizedContainerService.HintSize="626,555" sap2010:WorkflowViewState.IdRef="If_79">
           <If.Then>
             <Sequence DisplayName="Then: If Name is the same" sap:VirtualizedContainerService.HintSize="496,193" sap2010:WorkflowViewState.IdRef="Sequence_226">
               <sap:WorkflowViewStateService.ViewState>
@@ -861,12 +862,12 @@
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Throw DisplayName="Throw-DUReplacementFailure" Exception="[New SystemException(&quot;DU extracted names do not match LLM extracted names&quot;)]" sap:VirtualizedContainerService.HintSize="354,113" sap2010:WorkflowViewState.IdRef="Throw_26" />
+              <Throw DisplayName="Throw-DUReplacementFailure" Exception="[New SystemException(&quot;DU extracted names do not match LLM extracted names. LLM Names: &quot; &amp; String.Join(&quot;, &quot;, arr_LLMNames) &amp; &quot; | DU Name: &quot; &amp; DUFullName)]" sap:VirtualizedContainerService.HintSize="354,113" sap2010:WorkflowViewState.IdRef="Throw_26" />
             </Sequence>
           </If.Else>
         </If>
       </Sequence>
-      <Sequence x:Key="RegularContributionsVerification" DisplayName="Sequence" sap:VirtualizedContainerService.HintSize="416,25" sap2010:WorkflowViewState.IdRef="Sequence_198">
+      <Sequence x:Key="RegularContributionsVerification" DisplayName="Sequence" sap:VirtualizedContainerService.HintSize="750,3210" sap2010:WorkflowViewState.IdRef="Sequence_198">
         <Sequence.Variables>
           <Variable x:TypeArguments="x:String" Name="FirstNameRaw" />
           <Variable x:TypeArguments="x:String" Name="LastNameRaw" />
@@ -880,11 +881,11 @@
         </Sequence.Variables>
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <Sequence DisplayName="Sequence - Extracting First and Last name from DU" sap:VirtualizedContainerService.HintSize="688,2068" sap2010:WorkflowViewState.IdRef="Sequence_199">
+        <Sequence DisplayName="Sequence - Extracting First and Last name from DU" sap:VirtualizedContainerService.HintSize="688,2064" sap2010:WorkflowViewState.IdRef="Sequence_199">
           <Sequence.Variables>
             <Variable x:TypeArguments="s:String[]" Name="arr_DUName" />
           </Sequence.Variables>
@@ -894,7 +895,7 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <ui:BuildDataTable DataTable="[out_dtMatchedMembers]" DisplayName="Build Data Table - out_dtMatchedMembers" sap:VirtualizedContainerService.HintSize="626,92" sap2010:WorkflowViewState.IdRef="BuildDataTable_13" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Member&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;DateOfBirth&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;IsFullTimeStudent&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;IsPartTimeStudent&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;IsVerifiedStatus&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
-          <Assign sap:VirtualizedContainerService.HintSize="626,115" sap2010:WorkflowViewState.IdRef="Assign_309">
+          <Assign sap:VirtualizedContainerService.HintSize="626,114" sap2010:WorkflowViewState.IdRef="Assign_309">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[DUFullName]</OutArgument>
             </Assign.To>
@@ -902,7 +903,7 @@
               <InArgument x:TypeArguments="x:String">[in_DU_Name.ToString.Trim]</InArgument>
             </Assign.Value>
           </Assign>
-          <Assign sap:VirtualizedContainerService.HintSize="626,115" sap2010:WorkflowViewState.IdRef="Assign_310">
+          <Assign sap:VirtualizedContainerService.HintSize="626,114" sap2010:WorkflowViewState.IdRef="Assign_310">
             <Assign.To>
               <OutArgument x:TypeArguments="s:String[]">[NameParts]</OutArgument>
             </Assign.To>
@@ -910,7 +911,7 @@
               <InArgument x:TypeArguments="s:String[]">[DUFullName.split(" "c)]</InArgument>
             </Assign.Value>
           </Assign>
-          <If Condition="[NameParts.Length = 1]" DisplayName="If - check for single or multiple word name" sap:VirtualizedContainerService.HintSize="626,1342" sap2010:WorkflowViewState.IdRef="If_81">
+          <If Condition="[NameParts.Length = 1]" DisplayName="If - check for single or multiple word name" sap:VirtualizedContainerService.HintSize="626,1340" sap2010:WorkflowViewState.IdRef="If_81">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -918,13 +919,13 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <If.Then>
-              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="496,308" sap2010:WorkflowViewState.IdRef="Sequence_228">
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="496,307" sap2010:WorkflowViewState.IdRef="Sequence_228">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <Assign sap:VirtualizedContainerService.HintSize="434,115" sap2010:WorkflowViewState.IdRef="Assign_311">
+                <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_311">
                   <Assign.To>
                     <OutArgument x:TypeArguments="x:String">[FirstNameRaw]</OutArgument>
                   </Assign.To>
@@ -1099,12 +1100,12 @@
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Throw DisplayName="Throw-DUReplacementFailure" Exception="[New SystemException(&quot;DU extracted names do not match LLM extracted names&quot;)]" sap:VirtualizedContainerService.HintSize="354,113" sap2010:WorkflowViewState.IdRef="Throw_27" />
+              <Throw DisplayName="Throw-DUReplacementFailure" Exception="[New SystemException(&quot;DU extracted names do not match LLM extracted names. LLM Name: &quot; &amp; str_LLMName &amp; &quot; | DU Name: &quot; &amp; String.Join(&quot;, &quot;, arr_DUName))]" sap:VirtualizedContainerService.HintSize="354,113" sap2010:WorkflowViewState.IdRef="Throw_27" />
             </Sequence>
           </If.Else>
         </If>
       </Sequence>
-      <Sequence x:Key="HousingHistoryDisclosure" DisplayName="Sequence" sap:VirtualizedContainerService.HintSize="688,1295" sap2010:WorkflowViewState.IdRef="Sequence_200">
+      <Sequence x:Key="HousingHistoryDisclosure" DisplayName="Sequence" sap:VirtualizedContainerService.HintSize="688,2893" sap2010:WorkflowViewState.IdRef="Sequence_200">
         <Sequence.Variables>
           <Variable x:TypeArguments="x:String" Name="FirstNameRaw" />
           <Variable x:TypeArguments="x:String" Name="LastNameRaw" />
@@ -1133,7 +1134,7 @@
             <InArgument x:TypeArguments="s:String[]">[DUFullName.split(" "c)]</InArgument>
           </Assign.Value>
         </Assign>
-        <If Condition="[NameParts.Length = 1]" DisplayName="If - check for single or multiple word name" sap:VirtualizedContainerService.HintSize="626,214" sap2010:WorkflowViewState.IdRef="If_84">
+        <If Condition="[NameParts.Length = 1]" DisplayName="If - check for single or multiple word name" sap:VirtualizedContainerService.HintSize="626,1340" sap2010:WorkflowViewState.IdRef="If_84">
           <If.Then>
             <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="496,307" sap2010:WorkflowViewState.IdRef="Sequence_234">
               <sap:WorkflowViewStateService.ViewState>
@@ -1262,7 +1263,7 @@
           </Assign.Value>
         </Assign>
         <ausas:FindBestMatch Candidates="[arr_LLMNames]" DisplayName="Find Best Match" sap:VirtualizedContainerService.HintSize="626,275" sap2010:WorkflowViewState.IdRef="FindBestMatch_29" MinThreshold="[CDec(in_Config(&quot;FindAllMatches_Threshold&quot;).ToString)]" Query="[DUFullName]" Result="[DUMatchedName]" />
-        <If Condition="[DUMatchedName IsNot Nothing]" DisplayName="If Name is the same" sap:VirtualizedContainerService.HintSize="626,206" sap2010:WorkflowViewState.IdRef="If_85">
+        <If Condition="[DUMatchedName IsNot Nothing]" DisplayName="If Name is the same" sap:VirtualizedContainerService.HintSize="626,555" sap2010:WorkflowViewState.IdRef="If_85">
           <If.Then>
             <Sequence DisplayName="Then: If Name is the same" sap:VirtualizedContainerService.HintSize="496,193" sap2010:WorkflowViewState.IdRef="Sequence_238">
               <sap:WorkflowViewStateService.ViewState>
@@ -1287,12 +1288,12 @@
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Throw DisplayName="Throw-DUReplacementFailure" Exception="[New SystemException(&quot;DU extracted names do not match LLM extracted names&quot;)]" sap:VirtualizedContainerService.HintSize="354,113" sap2010:WorkflowViewState.IdRef="Throw_28" />
+              <Throw DisplayName="Throw-DUReplacementFailure" Exception="[New SystemException(&quot;DU extracted names do not match LLM extracted names. LLM Names: &quot; &amp; String.Join(&quot;, &quot;, arr_LLMNames) &amp; &quot; | DU Name: &quot; &amp; DUFullName)]" sap:VirtualizedContainerService.HintSize="354,113" sap2010:WorkflowViewState.IdRef="Throw_28" />
             </Sequence>
           </If.Else>
         </If>
       </Sequence>
-      <Sequence x:Key="SelfCertificationOfNonEmployment" DisplayName="Sequence" sap:VirtualizedContainerService.HintSize="688,1642" sap2010:WorkflowViewState.IdRef="Sequence_201">
+      <Sequence x:Key="SelfCertificationOfNonEmployment" DisplayName="Sequence" sap:VirtualizedContainerService.HintSize="688,2893" sap2010:WorkflowViewState.IdRef="Sequence_201">
         <Sequence.Variables>
           <Variable x:TypeArguments="x:String" Name="FirstNameRaw" />
           <Variable x:TypeArguments="x:String" Name="LastNameRaw" />
@@ -1321,7 +1322,7 @@
             <InArgument x:TypeArguments="s:String[]">[DUFullName.split(" "c)]</InArgument>
           </Assign.Value>
         </Assign>
-        <If Condition="[NameParts.Length = 1]" DisplayName="If - check for single or multiple word name" sap:VirtualizedContainerService.HintSize="626,214" sap2010:WorkflowViewState.IdRef="If_87">
+        <If Condition="[NameParts.Length = 1]" DisplayName="If - check for single or multiple word name" sap:VirtualizedContainerService.HintSize="626,1340" sap2010:WorkflowViewState.IdRef="If_87">
           <If.Then>
             <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="496,307" sap2010:WorkflowViewState.IdRef="Sequence_240">
               <sap:WorkflowViewStateService.ViewState>
@@ -1475,12 +1476,12 @@
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Throw DisplayName="Throw-DUReplacementFailure" Exception="[New SystemException(&quot;DU extracted names do not match LLM extracted names&quot;)]" sap:VirtualizedContainerService.HintSize="354,113" sap2010:WorkflowViewState.IdRef="Throw_29" />
+              <Throw DisplayName="Throw-DUReplacementFailure" Exception="[New SystemException(&quot;DU extracted names do not match LLM extracted names. LLM Names: &quot; &amp; String.Join(&quot;, &quot;, arr_LLMNames) &amp; &quot; | DU Name: &quot; &amp; DUFullName)]" sap:VirtualizedContainerService.HintSize="354,113" sap2010:WorkflowViewState.IdRef="Throw_29" />
             </Sequence>
           </If.Else>
         </If>
       </Sequence>
-      <Sequence x:Key="EmploymentVerification" DisplayName="Sequence" sap:VirtualizedContainerService.HintSize="688,1291" sap2010:WorkflowViewState.IdRef="Sequence_202">
+      <Sequence x:Key="EmploymentVerification" DisplayName="Sequence" sap:VirtualizedContainerService.HintSize="688,2893" sap2010:WorkflowViewState.IdRef="Sequence_202">
         <Sequence.Variables>
           <Variable x:TypeArguments="x:String" Name="FirstNameRaw" />
           <Variable x:TypeArguments="x:String" Name="LastNameRaw" />
@@ -1509,7 +1510,7 @@
             <InArgument x:TypeArguments="s:String[]">[DUFullName.split(" "c)]</InArgument>
           </Assign.Value>
         </Assign>
-        <If Condition="[NameParts.Length = 1]" DisplayName="If - check for single or multiple word name" sap:VirtualizedContainerService.HintSize="626,214" sap2010:WorkflowViewState.IdRef="If_90">
+        <If Condition="[NameParts.Length = 1]" DisplayName="If - check for single or multiple word name" sap:VirtualizedContainerService.HintSize="626,1340" sap2010:WorkflowViewState.IdRef="If_90">
           <If.Then>
             <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="496,307" sap2010:WorkflowViewState.IdRef="Sequence_246">
               <sap:WorkflowViewStateService.ViewState>
@@ -1638,7 +1639,7 @@
           </Assign.Value>
         </Assign>
         <ausas:FindBestMatch Candidates="[arr_LLMNames]" DisplayName="Find Best Match" sap:VirtualizedContainerService.HintSize="626,275" sap2010:WorkflowViewState.IdRef="FindBestMatch_31" MinThreshold="[CDec(in_Config(&quot;FindAllMatches_Threshold&quot;).ToString)]" Query="[DUFullName]" Result="[DUMatchedName]" />
-        <If Condition="[DUMatchedName IsNot Nothing]" DisplayName="If Name is the same" sap:VirtualizedContainerService.HintSize="626,206" sap2010:WorkflowViewState.IdRef="If_91">
+        <If Condition="[DUMatchedName IsNot Nothing]" DisplayName="If Name is the same" sap:VirtualizedContainerService.HintSize="626,555" sap2010:WorkflowViewState.IdRef="If_91">
           <If.Then>
             <Sequence DisplayName="Then: If Name is the same" sap:VirtualizedContainerService.HintSize="496,193" sap2010:WorkflowViewState.IdRef="Sequence_250">
               <sap:WorkflowViewStateService.ViewState>
@@ -1657,18 +1658,18 @@
             </Sequence>
           </If.Then>
           <If.Else>
-            <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,108" sap2010:WorkflowViewState.IdRef="Sequence_251">
+            <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,201" sap2010:WorkflowViewState.IdRef="Sequence_251">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Throw DisplayName="Throw-DUReplacementFailure" Exception="[New SystemException(&quot;DU extracted names do not match LLM extracted names&quot;)]" sap2010:WorkflowViewState.IdRef="Throw_30" />
+              <Throw DisplayName="Throw-DUReplacementFailure" Exception="[New SystemException(&quot;DU extracted names do not match LLM extracted names. LLM Names: &quot; &amp; String.Join(&quot;, &quot;, arr_LLMNames) &amp; &quot; | DU Name: &quot; &amp; DUFullName)]" sap:VirtualizedContainerService.HintSize="354,113" sap2010:WorkflowViewState.IdRef="Throw_30" />
             </Sequence>
           </If.Else>
         </If>
       </Sequence>
-      <Sequence x:Key="MemberInformationDocument" DisplayName="Sequence" sap:VirtualizedContainerService.HintSize="688,2893" sap2010:WorkflowViewState.IdRef="Sequence_203">
+      <Sequence x:Key="MemberInformationDocument" DisplayName="Sequence" sap:VirtualizedContainerService.HintSize="688,2889" sap2010:WorkflowViewState.IdRef="Sequence_203">
         <Sequence.Variables>
           <Variable x:TypeArguments="x:String" Name="FirstNameRaw" />
           <Variable x:TypeArguments="x:String" Name="LastNameRaw" />
@@ -1852,12 +1853,12 @@
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Throw DisplayName="Throw-DUReplacementFailure" Exception="[New SystemException(&quot;DU extracted names do not match LLM extracted names&quot;)]" sap:VirtualizedContainerService.HintSize="354,113" sap2010:WorkflowViewState.IdRef="Throw_31" />
+              <Throw DisplayName="Throw-DUReplacementFailure" Exception="[New SystemException(&quot;DU extracted names do not match LLM extracted names. LLM Names: &quot; &amp; String.Join(&quot;, &quot;, arr_LLMNames) &amp; &quot; | DU Name: &quot; &amp; DUFullName)]" sap:VirtualizedContainerService.HintSize="354,113" sap2010:WorkflowViewState.IdRef="Throw_31" />
             </Sequence>
           </If.Else>
         </If>
       </Sequence>
-      <Sequence x:Key="AssetCertificationOfNetFamilyAssets" DisplayName="Sequence" sap:VirtualizedContainerService.HintSize="688,1290" sap2010:WorkflowViewState.IdRef="Sequence_204">
+      <Sequence x:Key="AssetCertificationOfNetFamilyAssets" DisplayName="Sequence" sap:VirtualizedContainerService.HintSize="688,2893" sap2010:WorkflowViewState.IdRef="Sequence_204">
         <Sequence.Variables>
           <Variable x:TypeArguments="x:String" Name="FirstNameRaw" />
           <Variable x:TypeArguments="x:String" Name="LastNameRaw" />
@@ -1887,15 +1888,15 @@
             <InArgument x:TypeArguments="s:String[]">[DUFullName.split(" "c)]</InArgument>
           </Assign.Value>
         </Assign>
-        <If Condition="[NameParts.Length = 1]" DisplayName="If - check for single or multiple word name" sap:VirtualizedContainerService.HintSize="626,214" sap2010:WorkflowViewState.IdRef="If_96">
+        <If Condition="[NameParts.Length = 1]" DisplayName="If - check for single or multiple word name" sap:VirtualizedContainerService.HintSize="626,1340" sap2010:WorkflowViewState.IdRef="If_96">
           <If.Then>
-            <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="496,309" sap2010:WorkflowViewState.IdRef="Sequence_258">
+            <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="496,307" sap2010:WorkflowViewState.IdRef="Sequence_258">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Assign DisplayName="Assign" sap:VirtualizedContainerService.HintSize="434,115" sap2010:WorkflowViewState.IdRef="Assign_367">
+              <Assign DisplayName="Assign" sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_367">
                 <Assign.To>
                   <OutArgument x:TypeArguments="x:String">[FirstNameRaw]</OutArgument>
                 </Assign.To>
@@ -1903,7 +1904,7 @@
                   <InArgument x:TypeArguments="x:String">[NameParts(0)]</InArgument>
                 </Assign.Value>
               </Assign>
-              <Assign DisplayName="Assign" sap:VirtualizedContainerService.HintSize="434,106" sap2010:WorkflowViewState.IdRef="Assign_368">
+              <Assign DisplayName="Assign" sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_368">
                 <Assign.To>
                   <OutArgument x:TypeArguments="x:String">[LastNameRaw]</OutArgument>
                 </Assign.To>
@@ -1916,13 +1917,13 @@
             </Sequence>
           </If.Then>
           <If.Else>
-            <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,294" sap2010:WorkflowViewState.IdRef="Sequence_261">
+            <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="592,863" sap2010:WorkflowViewState.IdRef="Sequence_261">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <If Condition="[{&quot;ii&quot;,&quot;iii&quot;,&quot;iv&quot;,&quot;v&quot;,&quot;jr&quot;,&quot;sr&quot;}.Contains(NameParts(NameParts.Length-1).Trim(&quot;.&quot;c).ToLower) AndAlso NameParts.Length &gt;= 3]" DisplayName="If - Detect Suffixes" sap:VirtualizedContainerService.HintSize="354,206" sap2010:WorkflowViewState.IdRef="If_95">
+              <If Condition="[{&quot;ii&quot;,&quot;iii&quot;,&quot;iv&quot;,&quot;v&quot;,&quot;jr&quot;,&quot;sr&quot;}.Contains(NameParts(NameParts.Length-1).Trim(&quot;.&quot;c).ToLower) AndAlso NameParts.Length &gt;= 3]" DisplayName="If - Detect Suffixes" sap:VirtualizedContainerService.HintSize="530,775" sap2010:WorkflowViewState.IdRef="If_95">
                 <If.Then>
                   <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="496,307" sap2010:WorkflowViewState.IdRef="Sequence_259">
                     <sap:WorkflowViewStateService.ViewState>
@@ -2016,10 +2017,15 @@
           </Assign.Value>
         </Assign>
         <ausas:FindBestMatch Candidates="[arr_LLMNames]" DisplayName="Find Best Match" sap:VirtualizedContainerService.HintSize="626,275" sap2010:WorkflowViewState.IdRef="FindBestMatch_33" MinThreshold="[CDec(in_Config(&quot;FindAllMatches_Threshold&quot;).ToString)]" Query="[DUFullName]" Result="[DUMatchedName]" />
-        <If Condition="[DUMatchedName IsNot Nothing]" DisplayName="If Name is the same" sap:VirtualizedContainerService.HintSize="626,205" sap2010:WorkflowViewState.IdRef="If_97">
+        <If Condition="[DUMatchedName IsNot Nothing]" DisplayName="If Name is the same" sap:VirtualizedContainerService.HintSize="626,555" sap2010:WorkflowViewState.IdRef="If_97">
           <If.Then>
-            <Sequence DisplayName="Then: If Name is the same" sap2010:WorkflowViewState.IdRef="Sequence_262">
-              <Assign DisplayName="Assign-out_MatchedName" sap2010:WorkflowViewState.IdRef="Assign_375">
+            <Sequence DisplayName="Then: If Name is the same" sap:VirtualizedContainerService.HintSize="496,193" sap2010:WorkflowViewState.IdRef="Sequence_262">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <Assign DisplayName="Assign-out_MatchedName" sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_375">
                 <Assign.To>
                   <OutArgument x:TypeArguments="x:String">[out_MatchedName]</OutArgument>
                 </Assign.To>
@@ -2030,13 +2036,18 @@
             </Sequence>
           </If.Then>
           <If.Else>
-            <Sequence DisplayName="Else" sap2010:WorkflowViewState.IdRef="Sequence_263">
-              <Throw DisplayName="Throw-DUReplacementFailure" Exception="[New SystemException(&quot;DU extracted names do not match LLM extracted names&quot;)]" sap2010:WorkflowViewState.IdRef="Throw_32" />
+            <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,201" sap2010:WorkflowViewState.IdRef="Sequence_263">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <Throw DisplayName="Throw-DUReplacementFailure" Exception="[New SystemException(&quot;DU extracted names do not match LLM extracted names. LLM Names: &quot; &amp; String.Join(&quot;, &quot;, arr_LLMNames) &amp; &quot; | DU Name: &quot; &amp; DUFullName)]" sap:VirtualizedContainerService.HintSize="354,113" sap2010:WorkflowViewState.IdRef="Throw_32" />
             </Sequence>
           </If.Else>
         </If>
       </Sequence>
-      <Sequence x:Key="SelfEmploymentCertification" DisplayName="Sequence " sap:VirtualizedContainerService.HintSize="818,3908" sap2010:WorkflowViewState.IdRef="Sequence_205">
+      <Sequence x:Key="SelfEmploymentCertification" DisplayName="Sequence " sap:VirtualizedContainerService.HintSize="818,6842" sap2010:WorkflowViewState.IdRef="Sequence_205">
         <Sequence.Variables>
           <Variable x:TypeArguments="s:String[]" Name="arr_DUNames" />
           <Variable x:TypeArguments="s:String[]" Name="arr_DUPrintedNames" />
@@ -2072,15 +2083,15 @@
           </Assign.Value>
         </Assign>
         <ui:AddDataColumn x:TypeArguments="x:Object" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="LLMIndex" DataTable="[out_dtMatchedMembers]" DisplayName="Add Data Column - LLMIndex" sap:VirtualizedContainerService.HintSize="756,218" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_13" />
-        <ui:ForEach x:TypeArguments="x:Int32" CurrentIndex="{x:Null}" DisplayName="For each LLM record" sap:VirtualizedContainerService.HintSize="756,3260" sap2010:WorkflowViewState.IdRef="ForEach`1_7" Values="[Enumerable.Range(0, LLM_Results.Count)]">
+        <ui:ForEach x:TypeArguments="x:Int32" CurrentIndex="{x:Null}" DisplayName="For each LLM record" sap:VirtualizedContainerService.HintSize="756,6194" sap2010:WorkflowViewState.IdRef="ForEach`1_7" Values="[Enumerable.Range(0, LLM_Results.Count)]">
           <ui:ForEach.Body>
             <ActivityAction x:TypeArguments="x:Int32">
               <ActivityAction.Argument>
                 <DelegateInArgument x:TypeArguments="x:Int32" Name="idx" />
               </ActivityAction.Argument>
-              <If Condition="[LLM_Results(idx)(&quot;SelfEmploymentCertification&quot;) IsNot Nothing AndAlso LLM_Results(idx)(&quot;SelfEmploymentCertification&quot;).HasValues]" DisplayName="If - LLM record has an SEC document" sap:VirtualizedContainerService.HintSize="722,3101" sap2010:WorkflowViewState.IdRef="If_107">
+              <If Condition="[LLM_Results(idx)(&quot;SelfEmploymentCertification&quot;) IsNot Nothing AndAlso LLM_Results(idx)(&quot;SelfEmploymentCertification&quot;).HasValues]" DisplayName="If - LLM record has an SEC document" sap:VirtualizedContainerService.HintSize="722,6035" sap2010:WorkflowViewState.IdRef="If_107">
                 <If.Then>
-                  <Sequence DisplayName="Match LLM SEC record with DU document" sap:VirtualizedContainerService.HintSize="688,2859" sap2010:WorkflowViewState.IdRef="Sequence_206">
+                  <Sequence DisplayName="Match LLM SEC record with DU document" sap:VirtualizedContainerService.HintSize="688,5793" sap2010:WorkflowViewState.IdRef="Sequence_206">
                     <Sequence.Variables>
                       <Variable x:TypeArguments="njl:JToken" Name="jTok_SEC" />
                       <Variable x:TypeArguments="x:String" Name="str_LLMApplicant" />
@@ -2139,7 +2150,7 @@
                         <InArgument x:TypeArguments="x:String">[If(String.IsNullOrWhiteSpace(str_LLMApplicant), "", System.Text.RegularExpressions.Regex.Replace(System.Text.RegularExpressions.Regex.Replace(String.Concat(String.Join(" ", {str_LLMApplicant.Trim.Split(New Char() {" "c}, StringSplitOptions.RemoveEmptyEntries).First, str_LLMApplicant.Trim.Split(New Char() {" "c}, StringSplitOptions.RemoveEmptyEntries).Last}).Normalize(System.Text.NormalizationForm.FormD).Where(Function(c) System.Globalization.CharUnicodeInfo.GetUnicodeCategory(c) &lt;&gt; System.Globalization.UnicodeCategory.NonSpacingMark).ToArray()).Normalize(System.Text.NormalizationForm.FormC), "[^a-zA-Z\s]", " "), "\s+", " ").ToLower.Trim)]</InArgument>
                       </Assign.Value>
                     </Assign>
-                    <If Condition="[Not String.IsNullOrWhiteSpace(str_QueryName) AndAlso arr_DUNames.Length &gt; 0]" DisplayName="If - LLM applicant name and DU applicant names available" sap:VirtualizedContainerService.HintSize="626,214" sap2010:WorkflowViewState.IdRef="If_98">
+                    <If Condition="[Not String.IsNullOrWhiteSpace(str_QueryName) AndAlso arr_DUNames.Length &gt; 0]" DisplayName="If - LLM applicant name and DU applicant names available" sap:VirtualizedContainerService.HintSize="626,627" sap2010:WorkflowViewState.IdRef="If_98">
                       <If.Then>
                         <Sequence DisplayName="Then: find applicant name" sap:VirtualizedContainerService.HintSize="416,354" sap2010:WorkflowViewState.IdRef="Sequence_264">
                           <sap:WorkflowViewStateService.ViewState>
@@ -2160,7 +2171,7 @@
                         </Sequence>
                       </If.Else>
                     </If>
-                    <If Condition="[matchedApplicant Is Nothing]" DisplayName="If - applicant name not matched" sap:VirtualizedContainerService.HintSize="626,214" sap2010:WorkflowViewState.IdRef="If_99">
+                    <If Condition="[matchedApplicant Is Nothing]" DisplayName="If - applicant name not matched" sap:VirtualizedContainerService.HintSize="626,474" sap2010:WorkflowViewState.IdRef="If_99">
                       <If.Then>
                         <Sequence DisplayName="Then: throw" sap:VirtualizedContainerService.HintSize="416,201" sap2010:WorkflowViewState.IdRef="Sequence_266">
                           <sap:WorkflowViewStateService.ViewState>
@@ -2189,7 +2200,7 @@
                         <InArgument x:TypeArguments="x:String">[If(String.IsNullOrWhiteSpace(str_LLMPrinted), "", System.Text.RegularExpressions.Regex.Replace(System.Text.RegularExpressions.Regex.Replace(String.Concat(String.Join(" ", {str_LLMPrinted.Trim.Split(New Char() {" "c}, StringSplitOptions.RemoveEmptyEntries).First, str_LLMPrinted.Trim.Split(New Char() {" "c}, StringSplitOptions.RemoveEmptyEntries).Last}).Normalize(System.Text.NormalizationForm.FormD).Where(Function(c) System.Globalization.CharUnicodeInfo.GetUnicodeCategory(c) &lt;&gt; System.Globalization.UnicodeCategory.NonSpacingMark).ToArray()).Normalize(System.Text.NormalizationForm.FormC), "[^a-zA-Z\s]", " "), "\s+", " ").ToLower.Trim)]</InArgument>
                       </Assign.Value>
                     </Assign>
-                    <If Condition="[Not String.IsNullOrWhiteSpace(str_QueryPrinted) AndAlso arr_DUPrintedNames.Length &gt; 0]" DisplayName="If - LLM printed name and DU printed names available" sap:VirtualizedContainerService.HintSize="626,214" sap2010:WorkflowViewState.IdRef="If_100">
+                    <If Condition="[Not String.IsNullOrWhiteSpace(str_QueryPrinted) AndAlso arr_DUPrintedNames.Length &gt; 0]" DisplayName="If - LLM printed name and DU printed names available" sap:VirtualizedContainerService.HintSize="626,627" sap2010:WorkflowViewState.IdRef="If_100">
                       <If.Then>
                         <Sequence DisplayName="Then: find printed name" sap:VirtualizedContainerService.HintSize="416,354" sap2010:WorkflowViewState.IdRef="Sequence_268">
                           <sap:WorkflowViewStateService.ViewState>
@@ -2210,7 +2221,7 @@
                         </Sequence>
                       </If.Else>
                     </If>
-                    <If Condition="[matchedPrinted Is Nothing]" DisplayName="If - printed name not matched" sap:VirtualizedContainerService.HintSize="626,214" sap2010:WorkflowViewState.IdRef="If_101">
+                    <If Condition="[matchedPrinted Is Nothing]" DisplayName="If - printed name not matched" sap:VirtualizedContainerService.HintSize="626,474" sap2010:WorkflowViewState.IdRef="If_101">
                       <If.Then>
                         <Sequence DisplayName="Then: throw" sap:VirtualizedContainerService.HintSize="416,201" sap2010:WorkflowViewState.IdRef="Sequence_270">
                           <sap:WorkflowViewStateService.ViewState>
@@ -2239,7 +2250,7 @@
                         <InArgument x:TypeArguments="sd:DataRow[]">[DU_Members.AsEnumerable().Where(Function(r) r("Name").ToString.Trim.Equals(matchedApplicant.OriginalName) AndAlso r("PrintedName").ToString.Trim.Equals(matchedPrinted.OriginalName)).ToArray()]</InArgument>
                       </Assign.Value>
                     </Assign>
-                    <If Condition="[arr_Candidates.Length = 0]" DisplayName="If - name and printed name not on the same DU document" sap:VirtualizedContainerService.HintSize="626,214" sap2010:WorkflowViewState.IdRef="If_102">
+                    <If Condition="[arr_Candidates.Length = 0]" DisplayName="If - name and printed name not on the same DU document" sap:VirtualizedContainerService.HintSize="626,474" sap2010:WorkflowViewState.IdRef="If_102">
                       <If.Then>
                         <Sequence DisplayName="Then: throw" sap:VirtualizedContainerService.HintSize="416,201" sap2010:WorkflowViewState.IdRef="Sequence_272">
                           <sap:WorkflowViewStateService.ViewState>
@@ -2260,15 +2271,15 @@
                         </Sequence>
                       </If.Else>
                     </If>
-                    <If Condition="[arr_Candidates.Length = 1]" DisplayName="If - one DU document with this name and printed name" sap:VirtualizedContainerService.HintSize="626,214" sap2010:WorkflowViewState.IdRef="If_105">
+                    <If Condition="[arr_Candidates.Length = 1]" DisplayName="If - one DU document with this name and printed name" sap:VirtualizedContainerService.HintSize="626,1543" sap2010:WorkflowViewState.IdRef="If_105">
                       <If.Then>
-                        <Sequence DisplayName="Then: take it" sap:VirtualizedContainerService.HintSize="496,194" sap2010:WorkflowViewState.IdRef="Sequence_274">
+                        <Sequence DisplayName="Then: take it" sap:VirtualizedContainerService.HintSize="496,193" sap2010:WorkflowViewState.IdRef="Sequence_274">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <Assign DisplayName="Assign-dr_Chosen" sap:VirtualizedContainerService.HintSize="434,106" sap2010:WorkflowViewState.IdRef="Assign_386">
+                          <Assign DisplayName="Assign-dr_Chosen" sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_386">
                             <Assign.To>
                               <OutArgument x:TypeArguments="sd:DataRow">[dr_Chosen]</OutArgument>
                             </Assign.To>
@@ -2279,13 +2290,13 @@
                         </Sequence>
                       </If.Then>
                       <If.Else>
-                        <Sequence DisplayName="Else: pick by business name" sap:VirtualizedContainerService.HintSize="592,1181" sap2010:WorkflowViewState.IdRef="Sequence_279">
+                        <Sequence DisplayName="Else: pick by business name" sap:VirtualizedContainerService.HintSize="592,1180" sap2010:WorkflowViewState.IdRef="Sequence_279">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <If Condition="[Not String.IsNullOrWhiteSpace(str_LLMBusiness)]" DisplayName="If - LLM business name available" sap:VirtualizedContainerService.HintSize="530,633" sap2010:WorkflowViewState.IdRef="If_103">
+                          <If Condition="[Not String.IsNullOrWhiteSpace(str_LLMBusiness)]" DisplayName="If - LLM business name available" sap:VirtualizedContainerService.HintSize="530,632" sap2010:WorkflowViewState.IdRef="If_103">
                             <If.Then>
                               <Sequence DisplayName="Then: find business name" sap:VirtualizedContainerService.HintSize="416,358" sap2010:WorkflowViewState.IdRef="Sequence_275">
                                 <sap:WorkflowViewStateService.ViewState>
@@ -2337,7 +2348,7 @@
                         </Sequence>
                       </If.Else>
                     </If>
-                    <If Condition="[dr_Chosen Is Nothing]" DisplayName="If - business name not matched" sap:VirtualizedContainerService.HintSize="626,477" sap2010:WorkflowViewState.IdRef="If_106">
+                    <If Condition="[dr_Chosen Is Nothing]" DisplayName="If - business name not matched" sap:VirtualizedContainerService.HintSize="626,476" sap2010:WorkflowViewState.IdRef="If_106">
                       <If.Then>
                         <Sequence DisplayName="Then: throw" sap:VirtualizedContainerService.HintSize="416,202" sap2010:WorkflowViewState.IdRef="Sequence_280">
                           <sap:WorkflowViewStateService.ViewState>
