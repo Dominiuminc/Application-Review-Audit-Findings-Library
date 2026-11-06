@@ -17,7 +17,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>2031,6227</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1361,6267</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ConvertPDFsToImages_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -361,7 +361,7 @@
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <aupap:ExtractPages Password="{x:Null}" CorrectOrientation="True" DisplayName="Extract Pages" sap:VirtualizedContainerService.HintSize="818,372" sap2010:WorkflowViewState.IdRef="ExtractPages_1" ImgExt="jpeg" OrientationMinConfidence="0.7" PdfPath="[currentText]" Quality="[CInt(in_Config(&quot;LLM_ImageQuality&quot;).ToString)]" Result="[ExtractedImageFiles]" TargetDir="[in_PDFFolder]" />
+              <aupap:ExtractPages Password="{x:Null}" CorrectOrientation="True" DisplayName="Extract Pages" sap:VirtualizedContainerService.HintSize="818,372" sap2010:WorkflowViewState.IdRef="ExtractPages_1" ImgExt="jpeg" OrientationMinConfidence="[CInt(in_Config(&quot;LLM_ExtractPagesConfidence&quot;).ToString)]" PdfPath="[currentText]" Quality="[CInt(in_Config(&quot;LLM_ImageQuality&quot;).ToString)]" Result="[ExtractedImageFiles]" TargetDir="[in_PDFFolder]" />
               <ui:ForEach x:TypeArguments="s:ValueTuple(x:String, x:Int32)" CurrentIndex="{x:Null}" DisplayName="For Each currentValueTupleOfTextAndNumber" sap:VirtualizedContainerService.HintSize="818,2899" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[ExtractedImageFiles]">
                 <ui:ForEach.Body>
                   <ActivityAction x:TypeArguments="s:ValueTuple(x:String, x:Int32)">
