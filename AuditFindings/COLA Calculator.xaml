@@ -7,7 +7,7 @@
     <x:Property Name="out_arr_COLACalcNames" Type="OutArgument(s:String[])" />
     <x:Property Name="out_bool_COLACalcExists" Type="OutArgument(x:Boolean)" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>1131,2542</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1090,2446</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -176,13 +176,13 @@
       <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="857,2437" sap2010:WorkflowViewState.IdRef="Sequence_4200">
+  <Sequence sap:VirtualizedContainerService.HintSize="857,2381" sap2010:WorkflowViewState.IdRef="Sequence_4200">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="ColaCalculatorCheck" sap:VirtualizedContainerService.HintSize="795,2349" sap2010:WorkflowViewState.IdRef="Sequence_4178">
+    <Sequence DisplayName="ColaCalculatorCheck" sap:VirtualizedContainerService.HintSize="795,2293" sap2010:WorkflowViewState.IdRef="Sequence_4178">
       <Sequence.Variables>
         <Variable x:TypeArguments="sd:DataTable" Name="dt_FilteredDocTypeData" />
       </Sequence.Variables>
@@ -200,7 +200,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:LogMessage>
-      <If Condition="[in_ClassificationResultsData IsNot Nothing AndAlso in_ClassificationResultsData.Columns.Count &gt; 0]" DisplayName="If Classification Results nothing" sap:VirtualizedContainerService.HintSize="733,1901" sap2010:WorkflowViewState.IdRef="If_1253">
+      <If Condition="[in_ClassificationResultsData IsNot Nothing AndAlso in_ClassificationResultsData.Columns.Count &gt; 0]" DisplayName="If Classification Results nothing" sap:VirtualizedContainerService.HintSize="733,1845" sap2010:WorkflowViewState.IdRef="If_1253">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -208,7 +208,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
         <If.Then>
-          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="699,1479" sap2010:WorkflowViewState.IdRef="Sequence_4201">
+          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="699,1423" sap2010:WorkflowViewState.IdRef="Sequence_4201">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -240,7 +240,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:FilterDataTable>
-            <If Condition="[dt_FilteredDocTypeData IsNot Nothing AndAlso dt_FilteredDocTypeData.RowCount &gt; 0]" DisplayName="If-ColacalcExists" sap:VirtualizedContainerService.HintSize="637,1334" sap2010:WorkflowViewState.IdRef="If_1252">
+            <If Condition="[dt_FilteredDocTypeData IsNot Nothing AndAlso dt_FilteredDocTypeData.RowCount &gt; 0]" DisplayName="If-ColacalcExists" sap:VirtualizedContainerService.HintSize="637,1278" sap2010:WorkflowViewState.IdRef="If_1252">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -248,14 +248,14 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
               <If.Then>
-                <Sequence DisplayName="Then: If-ColacalcExists" sap:VirtualizedContainerService.HintSize="603,921" sap2010:WorkflowViewState.IdRef="Sequence_4198">
+                <Sequence DisplayName="Then: If-ColacalcExists" sap:VirtualizedContainerService.HintSize="603,865" sap2010:WorkflowViewState.IdRef="Sequence_4198">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <Sequence DisplayName="GetLLMJSONResults" sap:VirtualizedContainerService.HintSize="541,833" sap2010:WorkflowViewState.IdRef="Sequence_4179">
+                  <Sequence DisplayName="GetLLMJSONResults" sap:VirtualizedContainerService.HintSize="541,777" sap2010:WorkflowViewState.IdRef="Sequence_4179">
                     <Sequence.Variables>
                       <Variable x:TypeArguments="scg:List(x:String)" Name="list_ImageFiles" />
                       <Variable x:TypeArguments="njl:JObject" Name="jObj_ExtractionResults" />
@@ -284,13 +284,14 @@
                  Select(Function(row) row("ImageFullPath").ToString()).ToList()]</InArgument>
                       </Assign.Value>
                     </Assign>
-                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="GetLLMExtractionResultsForEachDoc - Invoke Workflow File (GetLLMExtractionResultsForEachDoc.xaml)" sap:VirtualizedContainerService.HintSize="479,233" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_165" UnSafe="False" WorkflowFileName="LLM\GetLLMExtractionResultsForEachDoc.xaml">
+                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="GetLLMExtractionResultsForEachDoc - Invoke Workflow File (GetLLMExtractionResultsForEachDoc.xaml)" sap:VirtualizedContainerService.HintSize="479,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_165" UnSafe="False" WorkflowFileName="LLM\GetLLMExtractionResultsForEachDoc.xaml">
                       <ui:InvokeWorkflowFile.Arguments>
                         <InArgument x:TypeArguments="x:String" x:Key="in_UserPromptTextFile">[in_str_PromptsFolder+"COLACalculation_Prompt.txt"]</InArgument>
                         <InArgument x:TypeArguments="scg:List(x:String)" x:Key="in_ImagePath">[list_ImageFiles]</InArgument>
                         <OutArgument x:TypeArguments="njl:JObject" x:Key="out_jObjExtractionResults">[jObj_ExtractionResults]</OutArgument>
                         <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
                         <OutArgument x:TypeArguments="njl:JArray" x:Key="out_jArrExtractionResults">[jArr_ExtResults]</OutArgument>
+                        <OutArgument x:TypeArguments="s:Exception" x:Key="out_SystemException" />
                       </ui:InvokeWorkflowFile.Arguments>
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
