@@ -124,6 +124,7 @@
       <AssemblyReference>AshlingPartners.UiPath.StringMatching.Activities</AssemblyReference>
       <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
       <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence sap:VirtualizedContainerService.HintSize="1192,7037" sap2010:WorkflowViewState.IdRef="Sequence_7">
@@ -285,7 +286,7 @@
                                   <InArgument x:TypeArguments="njl:JObject">[currentJObject]</InArgument>
                                 </Assign.Value>
                               </Assign>
-                              <If Condition="[Not jObjJSON(&quot;HouseholdName&quot;).ToString.ToLower.Split(&quot; &quot;).Any(Function(word) in_ICWHeadOfHousehold.ToLower.Contains(word)) OrElse&#xA;String.IsNullOrEmpty(jObjJSON(&quot;HouseholdName&quot;).ToString)]" DisplayName="If - Household name does not match" sap:VirtualizedContainerService.HintSize="742,570" sap2010:WorkflowViewState.IdRef="If_9">
+                              <If Condition="[String.IsNullOrWhiteSpace(in_ICWHeadOfHousehold) OrElse Not jObjJSON(&quot;HouseholdName&quot;).ToString.ToLower.Split(&quot; &quot;).Any(Function(word) in_ICWHeadOfHousehold.ToLower.Contains(word)) OrElse String.IsNullOrEmpty(jObjJSON(&quot;HouseholdName&quot;).ToString)]" DisplayName="If - Household name does not match" sap:VirtualizedContainerService.HintSize="742,570" sap2010:WorkflowViewState.IdRef="If_9">
                                 <If.Then>
                                   <Sequence DisplayName="Then: If - Household name does not match" sap:VirtualizedContainerService.HintSize="416,297" sap2010:WorkflowViewState.IdRef="Sequence_24">
                                     <sap:WorkflowViewStateService.ViewState>
