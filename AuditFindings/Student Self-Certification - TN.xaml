@@ -10,7 +10,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1975,11455</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1978,12528</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Student_Self_Certification___TN_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -125,13 +125,13 @@
       <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="Student_Self_Certification___TN" sap:VirtualizedContainerService.HintSize="1476,11390" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Student_Self_Certification___TN" sap:VirtualizedContainerService.HintSize="1988,12463" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Started the checks for SSC message" sap:VirtualizedContainerService.HintSize="1414,173" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Started checking findings for &quot;+in_Config(&quot;Housing Disclosure&quot;).ToString]">
+    <ui:LogMessage DisplayName="Started the checks for SSC message" sap:VirtualizedContainerService.HintSize="1926,173" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Started checking findings for &quot;+in_Config(&quot;SSC&quot;).ToString]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
@@ -139,9 +139,9 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <TryCatch DisplayName="Try Catch - SSC" sap:VirtualizedContainerService.HintSize="1414,11129" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+    <TryCatch DisplayName="Try Catch - SSC" sap:VirtualizedContainerService.HintSize="1926,12202" sap2010:WorkflowViewState.IdRef="TryCatch_2">
       <TryCatch.Try>
-        <If Condition="[in_ClassificationResultsData IsNot Nothing AndAlso in_ClassificationResultsData.Columns.Count &gt; 0]" DisplayName="Check if classification results data is valid" sap:VirtualizedContainerService.HintSize="1376,10256" sap2010:WorkflowViewState.IdRef="If_1">
+        <If Condition="[in_ClassificationResultsData IsNot Nothing AndAlso in_ClassificationResultsData.Columns.Count &gt; 0]" DisplayName="Check if classification results data is valid" sap:VirtualizedContainerService.HintSize="1888,11329" sap2010:WorkflowViewState.IdRef="If_1">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -149,7 +149,7 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <If.Then>
-            <Sequence DisplayName="Then: Check if classification results data is valid" sap:VirtualizedContainerService.HintSize="1342,9866" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <Sequence DisplayName="Then: Check if classification results data is valid" sap:VirtualizedContainerService.HintSize="1854,10939" sap2010:WorkflowViewState.IdRef="Sequence_2">
               <Sequence.Variables>
                 <Variable x:TypeArguments="sd:DataTable" Name="dt_FilteredSSCData" />
               </Sequence.Variables>
@@ -159,7 +159,7 @@
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:FilterDataTable DataTable="[in_ClassificationResultsData]" DisplayName="SSC Data Table" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="1280,193" sap2010:WorkflowViewState.IdRef="FilterDataTable_1" OutputDataTable="[dt_FilteredSSCData]" SelectColumnsMode="Remove">
+              <ui:FilterDataTable DataTable="[in_ClassificationResultsData]" DisplayName="SSC Data Table" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="1792,193" sap2010:WorkflowViewState.IdRef="FilterDataTable_1" OutputDataTable="[dt_FilteredSSCData]" SelectColumnsMode="Remove">
                 <ui:FilterDataTable.Filters>
                   <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
                     <ui:FilterOperationArgument BooleanOperator="And" Operator="CONTAINS">
@@ -184,33 +184,17 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </ui:FilterDataTable>
-              <If Condition="[dt_FilteredSSCData IsNot Nothing AndAlso&#xA;dt_FilteredSSCData.RowCount &gt; 0]" DisplayName="Check if filtered data table contains any rows" sap:VirtualizedContainerService.HintSize="1280,9585" sap2010:WorkflowViewState.IdRef="If_2">
+              <If Condition="[dt_FilteredSSCData IsNot Nothing AndAlso&#xA;dt_FilteredSSCData.RowCount &gt; 0]" DisplayName="Check if filtered data table contains any rows" sap:VirtualizedContainerService.HintSize="1792,10658" sap2010:WorkflowViewState.IdRef="If_2">
                 <If.Then>
-                  <Sequence DisplayName="Then: Check if filtered data table contains any rows" sap:VirtualizedContainerService.HintSize="1246,8954" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                  <Sequence DisplayName="Then: Check if filtered data table contains any rows" sap:VirtualizedContainerService.HintSize="1758,10027" sap2010:WorkflowViewState.IdRef="Sequence_3">
                     <Sequence.Variables>
                       <Variable x:TypeArguments="scg:List(x:String)" Name="list_ImageFiles" />
                       <Variable x:TypeArguments="njl:JArray" Name="jArr_ExtractionResults" />
                       <Variable x:TypeArguments="njl:JObject" Name="jObj_ExtractionResults" />
                       <Variable x:TypeArguments="x:String" Name="str_DocType" />
                       <Variable x:TypeArguments="scg:List(x:String)" Name="list_PrintedNames" />
-                      <Variable x:TypeArguments="scg:List(x:Boolean)" Name="list_Signed">
-                        <Variable.Default>
-                          <VisualBasicValue x:TypeArguments="scg:List(x:Boolean)" ExpressionText="New List(of Boolean)">
-                            <VisualBasicValue.Result>
-                              <OutArgument x:TypeArguments="scg:List(x:Boolean)" />
-                            </VisualBasicValue.Result>
-                          </VisualBasicValue>
-                        </Variable.Default>
-                      </Variable>
-                      <Variable x:TypeArguments="scg:List(x:String)" Name="list_DateSigned">
-                        <Variable.Default>
-                          <VisualBasicValue x:TypeArguments="scg:List(x:String)" ExpressionText="New List(of String)">
-                            <VisualBasicValue.Result>
-                              <OutArgument x:TypeArguments="scg:List(x:String)" />
-                            </VisualBasicValue.Result>
-                          </VisualBasicValue>
-                        </Variable.Default>
-                      </Variable>
+                      <Variable x:TypeArguments="scg:List(x:Boolean)" Default="[New List(of Boolean)]" Name="list_Signed" />
+                      <Variable x:TypeArguments="scg:List(x:String)" Default="[New List(of String)]" Name="list_DateSigned" />
                       <Variable x:TypeArguments="njl:JObject" Name="jObj_JSON" />
                     </Sequence.Variables>
                     <sap:WorkflowViewStateService.ViewState>
@@ -219,17 +203,17 @@
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <Sequence DisplayName="Process documents by extracting data using LLM and DU in parallel" sap:VirtualizedContainerService.HintSize="1184,57" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                    <Sequence DisplayName="Process documents by extracting data using LLM and DU in parallel" sap:VirtualizedContainerService.HintSize="1696,623" sap2010:WorkflowViewState.IdRef="Sequence_6">
                       <Sequence.Variables>
                         <Variable x:TypeArguments="s:Exception" Name="LLMException" />
                       </Sequence.Variables>
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                          <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <ui:LogMessage DisplayName="Log message about 'SSC' configuration existence" sap:VirtualizedContainerService.HintSize="470,173" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="{x:Null}" Message="[in_Config(&quot;SSC&quot;).ToString+&quot; exists.&quot;]">
+                      <ui:LogMessage DisplayName="Log message about 'SSC' configuration existence" sap:VirtualizedContainerService.HintSize="470,173" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[in_Config(&quot;SSC&quot;).ToString+&quot; exists.&quot;]">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -247,7 +231,7 @@
                         </Assign.Value>
                       </Assign>
                       <Parallel DisplayName="Execute parallel activities for LLM and DU extraction results" sap:VirtualizedContainerService.HintSize="470,215" sap2010:WorkflowViewState.IdRef="Parallel_1">
-                        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="GetLLMExtractionResultsForEachDoc - Invoke Workflow File (LLM\GetLLMExtractionResultsForEachDoc.xaml)" sap:VirtualizedContainerService.HintSize="376,145" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" Level="{x:Null}" LogEntry="{x:Null}" LogExit="{x:Null}" Timeout="{x:Null}" UnSafe="False" WorkflowFileName="LLM\GetLLMExtractionResultsForEachDoc.xaml">
+                        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="GetLLMExtractionResultsForEachDoc - Invoke Workflow File (LLM\GetLLMExtractionResultsForEachDoc.xaml)" sap:VirtualizedContainerService.HintSize="376,145" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="LLM\GetLLMExtractionResultsForEachDoc.xaml">
                           <ui:InvokeWorkflowFile.Arguments>
                             <InArgument x:TypeArguments="x:String" x:Key="in_UserPromptTextFile">[in_PromptsFolder + "SSC_Prompt.txt"]</InArgument>
                             <InArgument x:TypeArguments="scg:List(x:String)" x:Key="in_ImagePath">[list_ImageFiles]</InArgument>
@@ -259,7 +243,7 @@
                         </ui:InvokeWorkflowFile>
                       </Parallel>
                     </Sequence>
-                    <Assign DisplayName="Assigns extraction results to a JArray variable" sap:VirtualizedContainerService.HintSize="1184,114" sap2010:WorkflowViewState.IdRef="Assign_2">
+                    <Assign DisplayName="Assigns extraction results to a JArray variable" sap:VirtualizedContainerService.HintSize="1696,114" sap2010:WorkflowViewState.IdRef="Assign_2">
                       <Assign.To>
                         <OutArgument x:TypeArguments="njl:JArray">[jArr_ExtractionResults]</OutArgument>
                       </Assign.To>
@@ -267,7 +251,7 @@
                         <InArgument x:TypeArguments="njl:JArray">[CType(jObj_ExtractionResults("values")(0)("StudentSelfCertification"), JArray)]</InArgument>
                       </Assign.Value>
                     </Assign>
-                    <Assign DisplayName="Assign document type from extraction results" sap:VirtualizedContainerService.HintSize="1184,114" sap2010:WorkflowViewState.IdRef="Assign_3">
+                    <Assign DisplayName="Assign document type from extraction results" sap:VirtualizedContainerService.HintSize="1696,114" sap2010:WorkflowViewState.IdRef="Assign_3">
                       <Assign.To>
                         <OutArgument x:TypeArguments="x:String">[str_DocType]</OutArgument>
                       </Assign.To>
@@ -275,8 +259,8 @@
                         <InArgument x:TypeArguments="x:String">[CType(jObj_ExtractionResults("values")(0), JObject).Properties.First.Name]</InArgument>
                       </Assign.Value>
                     </Assign>
-                    <ui:Comment sap:VirtualizedContainerService.HintSize="1184,88" sap2010:WorkflowViewState.IdRef="Comment_1" Text="Here is the DU part" />
-                    <ui:WriteTextFile ContinueOnError="{x:Null}" DisplayName="Write DU JSON results to a file" Encoding="{x:Null}" File="{x:Null}" FileName="[Path.GetDirectoryName(list_ImageFiles(0))+&quot;\&quot;+Path.GetFileNameWithoutExtension(in_PromptsFolder + &quot;SSC_Prompt.txt&quot;)+&quot;_DU_JSON.txt&quot;]" sap:VirtualizedContainerService.HintSize="1184,175" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Output="{x:Null}" Text="[jArr_ExtractionResults.ToString]">
+                    <ui:Comment sap:VirtualizedContainerService.HintSize="1696,89" sap2010:WorkflowViewState.IdRef="Comment_1" Text="Here is the DU part" />
+                    <ui:WriteTextFile File="{x:Null}" Output="{x:Null}" DisplayName="Write DU JSON results to a file" FileName="[Path.GetDirectoryName(list_ImageFiles(0))+&quot;\&quot;+Path.GetFileNameWithoutExtension(in_PromptsFolder + &quot;SSC_Prompt.txt&quot;)+&quot;_DU_JSON.txt&quot;]" sap:VirtualizedContainerService.HintSize="1696,175" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[jArr_ExtractionResults.ToString]">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -284,7 +268,7 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                     </ui:WriteTextFile>
-                    <ui:MultipleAssign DisplayName="Initialize list variables for date, names, and signed status" sap:VirtualizedContainerService.HintSize="1184,210" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+                    <ui:MultipleAssign DisplayName="Initialize list variables for date, names, and signed status" sap:VirtualizedContainerService.HintSize="1696,210" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
                       <ui:MultipleAssign.AssignOperations>
                         <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
                           <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
@@ -314,20 +298,20 @@
                         </scg:List>
                       </ui:MultipleAssign.AssignOperations>
                     </ui:MultipleAssign>
-                    <ui:ForEach x:TypeArguments="njl:JObject" CurrentIndex="{x:Null}" DisplayName="Iterate through JObjects" sap:VirtualizedContainerService.HintSize="1184,8108" sap2010:WorkflowViewState.IdRef="ForEach`1_1" MaxIterations="{x:Null}" Values="[jArr_ExtractionResults]">
+                    <ui:ForEach x:TypeArguments="njl:JObject" CurrentIndex="{x:Null}" DisplayName="Iterate through JObjects" sap:VirtualizedContainerService.HintSize="1696,8614" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[jArr_ExtractionResults]">
                       <ui:ForEach.Body>
                         <ActivityAction x:TypeArguments="njl:JObject">
                           <ActivityAction.Argument>
                             <DelegateInArgument x:TypeArguments="njl:JObject" Name="jObj_ExtractionResults" />
                           </ActivityAction.Argument>
-                          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="1150,7971" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="1662,8477" sap2010:WorkflowViewState.IdRef="Sequence_7">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <Assign DisplayName="Assign - jObj_JSON" sap:VirtualizedContainerService.HintSize="1088,114" sap2010:WorkflowViewState.IdRef="Assign_4">
+                            <Assign DisplayName="Assign - jObj_JSON" sap:VirtualizedContainerService.HintSize="1600,114" sap2010:WorkflowViewState.IdRef="Assign_4">
                               <Assign.To>
                                 <OutArgument x:TypeArguments="njl:JObject">[jObj_JSON]</OutArgument>
                               </Assign.To>
@@ -341,7 +325,7 @@
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
                             </Assign>
-                            <ui:ForEach x:TypeArguments="njl:JObject" CurrentIndex="{x:Null}" DisplayName="Extract printed names from JSON signatures" sap:VirtualizedContainerService.HintSize="1088,1800" sap2010:WorkflowViewState.IdRef="ForEach`1_2" MaxIterations="{x:Null}" Values="[jObj_JSON(&quot;Signatures&quot;)]">
+                            <ui:ForEach x:TypeArguments="njl:JObject" CurrentIndex="{x:Null}" DisplayName="Extract printed names from JSON signatures" sap:VirtualizedContainerService.HintSize="1600,1800" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[jObj_JSON(&quot;Signatures&quot;)]">
                               <ui:ForEach.Body>
                                 <ActivityAction x:TypeArguments="njl:JObject">
                                   <ActivityAction.Argument>
@@ -361,7 +345,7 @@
                                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                             </scg:Dictionary>
                                           </sap:WorkflowViewStateService.ViewState>
-                                          <uasc:AppendItemToCollection x:TypeArguments="x:String" Collection="[list_DateSigned]" DisplayName="Append a string item to a collection" sap:VirtualizedContainerService.HintSize="354,164" sap2010:WorkflowViewState.IdRef="AppendItemToCollection`1_1" Result="{x:Null}">
+                                          <uasc:AppendItemToCollection x:TypeArguments="x:String" Collection="[list_PrintedNames]" DisplayName="Append a string item to a collection" sap:VirtualizedContainerService.HintSize="354,164" sap2010:WorkflowViewState.IdRef="AppendItemToCollection`1_1">
                                             <uasc:AppendItemToCollection.Items>
                                               <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
                                                 <InArgument x:TypeArguments="x:String">[currentJObject("PrintedName").ToString]</InArgument>
@@ -388,7 +372,7 @@
                                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                             </scg:Dictionary>
                                           </sap:WorkflowViewStateService.ViewState>
-                                          <uasc:AppendItemToCollection x:TypeArguments="x:Boolean" Collection="[list_Signed]" DisplayName="Append a boolean value to a list" sap:VirtualizedContainerService.HintSize="354,164" sap2010:WorkflowViewState.IdRef="AppendItemToCollection`1_4" Result="{x:Null}">
+                                          <uasc:AppendItemToCollection x:TypeArguments="x:Boolean" Collection="[list_Signed]" DisplayName="Append a boolean value to a list" sap:VirtualizedContainerService.HintSize="354,164" sap2010:WorkflowViewState.IdRef="AppendItemToCollection`1_4">
                                             <uasc:AppendItemToCollection.Items>
                                               <scg:List x:TypeArguments="InArgument(x:Boolean)" Capacity="4">
                                                 <InArgument x:TypeArguments="x:Boolean">[CBool(currentJObject("IsSigned").ToString)]</InArgument>
@@ -415,7 +399,7 @@
                                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                             </scg:Dictionary>
                                           </sap:WorkflowViewStateService.ViewState>
-                                          <uasc:AppendItemToCollection x:TypeArguments="x:String" Collection="[list_DateSigned]" DisplayName="Append date string to a list" sap:VirtualizedContainerService.HintSize="354,164" sap2010:WorkflowViewState.IdRef="AppendItemToCollection`1_3" Result="{x:Null}">
+                                          <uasc:AppendItemToCollection x:TypeArguments="x:String" Collection="[list_DateSigned]" DisplayName="Append date string to a list" sap:VirtualizedContainerService.HintSize="354,164" sap2010:WorkflowViewState.IdRef="AppendItemToCollection`1_3">
                                             <uasc:AppendItemToCollection.Items>
                                               <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
                                                 <InArgument x:TypeArguments="x:String">[currentJObject("Date").ToString]</InArgument>
@@ -438,16 +422,16 @@
                                 </ActivityAction>
                               </ui:ForEach.Body>
                             </ui:ForEach>
-                            <Switch x:TypeArguments="x:Boolean" DisplayName="Switch based on printed names count versus adults" Expression="[CInt(list_PrintedNames.Count) &lt; in_int_ICWNoOfAdults]" sap:VirtualizedContainerService.HintSize="1088,506" sap2010:WorkflowViewState.IdRef="Switch`1_7">
-                              <ui:AddDataRow x:Key="True" ArrayRow="[{&quot;SSC&quot;,&quot;PageNum&quot;,in_Config(&quot;TN_SSC_PrintedName&quot;).ToString,&quot;&quot;}]" DataRow="{x:Null}" DataTable="[io_dt_AuditFindings]" DisplayName="Add TN_SSC_PrintedName to io_dt_AuditFindings" sap:VirtualizedContainerService.HintSize="335,186" sap2010:WorkflowViewState.IdRef="AddDataRow_8" />
+                            <Switch x:TypeArguments="x:Boolean" DisplayName="Switch based on printed names count versus adults" Expression="[CInt(list_PrintedNames.Count) &lt; in_int_ICWNoOfAdults]" sap:VirtualizedContainerService.HintSize="1600,506" sap2010:WorkflowViewState.IdRef="Switch`1_7">
+                              <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;SSC&quot;,&quot;PageNum&quot;,in_Config(&quot;TN_SSC_PrintedName&quot;).ToString,&quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add TN_SSC_PrintedName to io_dt_AuditFindings" sap:VirtualizedContainerService.HintSize="335,186" sap2010:WorkflowViewState.IdRef="AddDataRow_8" />
                             </Switch>
-                            <Switch x:TypeArguments="x:Boolean" DisplayName="Check signed count against number of adults" Expression="[CInt(list_Signed.Where(Function(b) b).Count) &lt; in_int_ICWNoOfAdults]" sap:VirtualizedContainerService.HintSize="1088,506" sap2010:WorkflowViewState.IdRef="Switch`1_8">
-                              <ui:AddDataRow x:Key="True" ArrayRow="[{&quot;SSC&quot;,&quot;PageNum&quot;,in_Config(&quot;TN_SSC_Dated&quot;).ToString,&quot;&quot;}]" DataRow="{x:Null}" DataTable="[io_dt_AuditFindings]" DisplayName="Add TN_SSC_Dated to io_dt_AuditFindings" sap:VirtualizedContainerService.HintSize="334,186" sap2010:WorkflowViewState.IdRef="AddDataRow_9" />
+                            <Switch x:TypeArguments="x:Boolean" DisplayName="Check signed count against number of adults" Expression="[CInt(list_Signed.Where(Function(b) b).Count) &lt; in_int_ICWNoOfAdults]" sap:VirtualizedContainerService.HintSize="1600,506" sap2010:WorkflowViewState.IdRef="Switch`1_8">
+                              <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;SSC&quot;,&quot;PageNum&quot;,in_Config(&quot;TN_SSC_Dated&quot;).ToString,&quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add TN_SSC_Dated to io_dt_AuditFindings" sap:VirtualizedContainerService.HintSize="334,186" sap2010:WorkflowViewState.IdRef="AddDataRow_9" />
                             </Switch>
-                            <Switch x:TypeArguments="x:Boolean" DisplayName="Switch based on printed names count versus adults" Expression="[CInt(list_DateSigned.Count) &lt; in_int_ICWNoOfAdults]" sap:VirtualizedContainerService.HintSize="1088,506" sap2010:WorkflowViewState.IdRef="Switch`1_9">
-                              <ui:AddDataRow x:Key="True" ArrayRow="[{&quot;SSC&quot;,&quot;PageNum&quot;,in_Config(&quot;TN_SSC_PrintedName&quot;).ToString,&quot;&quot;}]" DataRow="{x:Null}" DataTable="[io_dt_AuditFindings]" DisplayName="Add TN_SSC_PrintedName to io_dt_AuditFindings" sap:VirtualizedContainerService.HintSize="335,186" sap2010:WorkflowViewState.IdRef="AddDataRow_10" />
+                            <Switch x:TypeArguments="x:Boolean" DisplayName="Switch based on printed names count versus adults" Expression="[CInt(list_DateSigned.Count) &lt; in_int_ICWNoOfAdults]" sap:VirtualizedContainerService.HintSize="1600,506" sap2010:WorkflowViewState.IdRef="Switch`1_9">
+                              <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;SSC&quot;,&quot;PageNum&quot;,in_Config(&quot;TN_SSC_PrintedName&quot;).ToString,&quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add TN_SSC_PrintedName to io_dt_AuditFindings" sap:VirtualizedContainerService.HintSize="335,186" sap2010:WorkflowViewState.IdRef="AddDataRow_10" />
                             </Switch>
-                            <Switch x:TypeArguments="x:Boolean" DisplayName="Check if MoveIndate input is provided" Expression="[Not String.IsNullOrWhiteSpace(in_MoveIndate)]" sap:VirtualizedContainerService.HintSize="1088,1424" sap2010:WorkflowViewState.IdRef="Switch`1_10">
+                            <Switch x:TypeArguments="x:Boolean" DisplayName="Check if MoveIndate input is provided" Expression="[Not String.IsNullOrWhiteSpace(in_MoveIndate)]" sap:VirtualizedContainerService.HintSize="1600,1424" sap2010:WorkflowViewState.IdRef="Switch`1_10">
                               <TryCatch x:Key="True" DisplayName="Try Catch-DateCheckWithMoveIn-SSC" sap:VirtualizedContainerService.HintSize="488,1104" sap2010:WorkflowViewState.IdRef="TryCatch_1">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -481,7 +465,7 @@
                                             <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                           </scg:Dictionary>
                                         </sap:WorkflowViewStateService.ViewState>
-                                        <ui:AddDataRow ArrayRow="[{&quot;SSC&quot;,&quot;PageNum&quot;,in_Config(&quot;TN_SSC_CheckMoveInDate&quot;).ToString,&quot;&quot;}]" DataRow="{x:Null}" DataTable="[io_dt_AuditFindings]" DisplayName="Add TN_SSC_CheckMoveInDateto io_dt_AuditFindings" sap:VirtualizedContainerService.HintSize="354,209" sap2010:WorkflowViewState.IdRef="AddDataRow_13" />
+                                        <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;SSC&quot;,&quot;PageNum&quot;,in_Config(&quot;TN_SSC_CheckMoveInDate&quot;).ToString,&quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add TN_SSC_CheckMoveInDateto io_dt_AuditFindings" sap:VirtualizedContainerService.HintSize="354,209" sap2010:WorkflowViewState.IdRef="AddDataRow_13" />
                                       </Sequence>
                                     </If.Else>
                                   </If>
@@ -498,7 +482,7 @@
                                       <ActivityAction.Argument>
                                         <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                                       </ActivityAction.Argument>
-                                      <ui:AddDataRow ArrayRow="[{&quot;SSC&quot;,&quot;PageNum&quot;,&quot;Unable to validate a Finding: &quot;+ in_Config(&quot;TN_SSC_CheckMoveInDate&quot;).ToString +&quot; Needs manual review&quot;,exception.Message}]" DataRow="{x:Null}" DataTable="[io_dt_AuditFindings]" DisplayName="Erros in validating findings for SSC" sap:VirtualizedContainerService.HintSize="334,186" sap2010:WorkflowViewState.IdRef="AddDataRow_12">
+                                      <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;SSC&quot;,&quot;PageNum&quot;,&quot;Unable to validate a Finding: &quot;+ in_Config(&quot;TN_SSC_CheckMoveInDate&quot;).ToString +&quot; Needs manual review&quot;,exception.Message}]" DataTable="[io_dt_AuditFindings]" DisplayName="Erros in validating findings for SSC" sap:VirtualizedContainerService.HintSize="334,186" sap2010:WorkflowViewState.IdRef="AddDataRow_12">
                                         <sap:WorkflowViewStateService.ViewState>
                                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                             <x:Boolean x:Key="IsPinned">False</x:Boolean>
@@ -510,23 +494,26 @@
                                 </TryCatch.Catches>
                               </TryCatch>
                             </Switch>
-                            <Switch x:TypeArguments="x:Boolean" DisplayName="Check HeadOfHousehold status in JSON" Expression="[String.IsNullOrWhiteSpace(jObj_JSON(&quot;HouseholdInformation&quot;)(&quot;HeadOfHousehold&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="1088,506" sap2010:WorkflowViewState.IdRef="Switch`1_1">
-                              <ui:AddDataRow x:Key="True" ArrayRow="[{&quot;SSC&quot;,&quot;PageNum&quot;,in_Config(&quot;TN_SSC_Name&quot;).ToString,&quot;&quot;}]" DataRow="{x:Null}" DataTable="[io_dt_AuditFindings]" DisplayName="Add TN_SSC_Name to io_dt_AuditFindings" sap:VirtualizedContainerService.HintSize="334,186" sap2010:WorkflowViewState.IdRef="AddDataRow_2" />
+                            <Switch x:TypeArguments="x:Boolean" DisplayName="Check HeadOfHousehold status in JSON" Expression="[String.IsNullOrWhiteSpace(jObj_JSON(&quot;HouseholdInformation&quot;)(&quot;HeadOfHousehold&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="1600,506" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+                              <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;SSC&quot;,&quot;PageNum&quot;,in_Config(&quot;TN_SSC_Name&quot;).ToString,&quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add TN_SSC_Name to io_dt_AuditFindings" sap:VirtualizedContainerService.HintSize="334,186" sap2010:WorkflowViewState.IdRef="AddDataRow_2" />
                             </Switch>
-                            <Switch x:TypeArguments="x:Boolean" DisplayName="Check if MoveInDate in JSON is empty" Expression="[String.IsNullOrWhiteSpace(jObj_JSON(&quot;HouseholdInformation&quot;)(&quot;MoveInDate&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="1088,506" sap2010:WorkflowViewState.IdRef="Switch`1_2">
-                              <ui:AddDataRow x:Key="True" ArrayRow="[{&quot;SSC&quot;,&quot;PageNum&quot;,in_Config(&quot;TN_SSC_MoveInDate&quot;).ToString,&quot;&quot;}]" DataRow="{x:Null}" DataTable="[io_dt_AuditFindings]" DisplayName="Add TN_SSC_MoveInDate to io_dt_AuditFindings" sap:VirtualizedContainerService.HintSize="341,186" sap2010:WorkflowViewState.IdRef="AddDataRow_3" />
+                            <Switch x:TypeArguments="x:Boolean" DisplayName="Check if MoveInDate in JSON is empty" Expression="[String.IsNullOrWhiteSpace(jObj_JSON(&quot;HouseholdInformation&quot;)(&quot;MoveInDate&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="1600,506" sap2010:WorkflowViewState.IdRef="Switch`1_2">
+                              <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;SSC&quot;,&quot;PageNum&quot;,in_Config(&quot;TN_SSC_MoveInDate&quot;).ToString,&quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add TN_SSC_MoveInDate to io_dt_AuditFindings" sap:VirtualizedContainerService.HintSize="341,186" sap2010:WorkflowViewState.IdRef="AddDataRow_3" />
                             </Switch>
-                            <Switch x:TypeArguments="x:Boolean" DisplayName="Check if JSON household member field is empty" Expression="[String.IsNullOrWhiteSpace(jObj_JSON(&quot;HouseholdInformation&quot;)(&quot;HouseholdMember&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="1088,506" sap2010:WorkflowViewState.IdRef="Switch`1_3">
-                              <ui:AddDataRow x:Key="True" ArrayRow="[{&quot;SSC&quot;,&quot;PageNum&quot;,in_Config(&quot;TN_SSC_HouseholdMember&quot;).ToString,&quot;&quot;}]" DataRow="{x:Null}" DataTable="[io_dt_AuditFindings]" DisplayName="Add TN_SSC_HouseholdMember to io_dt_AuditFindings" sap:VirtualizedContainerService.HintSize="338,186" sap2010:WorkflowViewState.IdRef="AddDataRow_4" />
+                            <Switch x:TypeArguments="x:Boolean" DisplayName="Check if JSON household member field is empty" Expression="[String.IsNullOrWhiteSpace(jObj_JSON(&quot;HouseholdInformation&quot;)(&quot;HouseholdMember&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="1600,506" sap2010:WorkflowViewState.IdRef="Switch`1_3">
+                              <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;SSC&quot;,&quot;PageNum&quot;,in_Config(&quot;TN_SSC_HouseholdMember&quot;).ToString,&quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add TN_SSC_HouseholdMember to io_dt_AuditFindings" sap:VirtualizedContainerService.HintSize="338,186" sap2010:WorkflowViewState.IdRef="AddDataRow_4" />
                             </Switch>
-                            <Switch x:TypeArguments="x:Boolean" DisplayName="Check if JSON household unit number is empty" Expression="[String.IsNullOrWhiteSpace(jObj_JSON(&quot;HouseholdInformation&quot;)(&quot;UnitNumber&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="1088,506" sap2010:WorkflowViewState.IdRef="Switch`1_4">
-                              <ui:AddDataRow x:Key="True" ArrayRow="[{&quot;SSC&quot;,&quot;PageNum&quot;,in_Config(&quot;TN_SSC_Unit&quot;).ToString,&quot;&quot;}]" DataRow="{x:Null}" DataTable="[io_dt_AuditFindings]" DisplayName="Add TN_SSC_Unit to io_dt_AuditFindings" sap:VirtualizedContainerService.HintSize="334,186" sap2010:WorkflowViewState.IdRef="AddDataRow_5" />
+                            <Switch x:TypeArguments="x:Boolean" DisplayName="Check if JSON household unit number is empty" Expression="[String.IsNullOrWhiteSpace(jObj_JSON(&quot;HouseholdInformation&quot;)(&quot;UnitNumber&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="1600,506" sap2010:WorkflowViewState.IdRef="Switch`1_4">
+                              <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;SSC&quot;,&quot;PageNum&quot;,in_Config(&quot;TN_SSC_Unit&quot;).ToString,&quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add TN_SSC_Unit to io_dt_AuditFindings" sap:VirtualizedContainerService.HintSize="334,186" sap2010:WorkflowViewState.IdRef="AddDataRow_5" />
                             </Switch>
-                            <Switch x:TypeArguments="x:Boolean" DisplayName="Check if JSON household effective date is empty" Expression="[String.IsNullOrWhiteSpace(jObj_JSON(&quot;HouseholdInformation&quot;)(&quot;EffectiveDate&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="1088,506" sap2010:WorkflowViewState.IdRef="Switch`1_5">
-                              <ui:AddDataRow x:Key="True" ArrayRow="[{&quot;SSC&quot;,&quot;PageNum&quot;,in_Config(&quot;TN_SSC_EffectiveDate&quot;).ToString,&quot;&quot;}]" DataRow="{x:Null}" DataTable="[io_dt_AuditFindings]" DisplayName="Add TN_SSC_EffectiveDate to io_dt_AuditFindings" sap:VirtualizedContainerService.HintSize="335,186" sap2010:WorkflowViewState.IdRef="AddDataRow_6" />
+                            <Switch x:TypeArguments="x:Boolean" DisplayName="Check if JSON household effective date is empty" Expression="[String.IsNullOrWhiteSpace(jObj_JSON(&quot;HouseholdInformation&quot;)(&quot;EffectiveDate&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="1600,506" sap2010:WorkflowViewState.IdRef="Switch`1_5">
+                              <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;SSC&quot;,&quot;PageNum&quot;,in_Config(&quot;TN_SSC_EffectiveDate&quot;).ToString,&quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add TN_SSC_EffectiveDate to io_dt_AuditFindings" sap:VirtualizedContainerService.HintSize="335,186" sap2010:WorkflowViewState.IdRef="AddDataRow_6" />
                             </Switch>
-                            <Switch x:TypeArguments="x:Boolean" DisplayName="Check if effective and move-in dates exist and differ" Expression="[jObj_JSON(&quot;HouseholdInformation&quot;)(&quot;EffectiveDate&quot;).ToString IsNot Nothing AndAlso&#xD;&#xA;jObj_JSON(&quot;HouseholdInformation&quot;)(&quot;MoveInDate&quot;).ToString IsNot Nothing AndAlso&#xD;&#xA;Not DateTime.Parse(jObj_JSON(&quot;HouseholdInformation&quot;)(&quot;EffectiveDate&quot;).ToString).Date = DateTime.Parse(jObj_JSON(&quot;HouseholdInformation&quot;)(&quot;MoveInDate&quot;).ToString).Date]" sap:VirtualizedContainerService.HintSize="1088,497" sap2010:WorkflowViewState.IdRef="Switch`1_6">
-                              <ui:AddDataRow x:Key="True" ArrayRow="[{&quot;SSC&quot;,&quot;PageNum&quot;,in_Config(&quot;TN_SSC_DatesNotMatch&quot;).ToString,&quot;&quot;}]" DataRow="{x:Null}" DataTable="[io_dt_AuditFindings]" DisplayName="Add TN_SSC_DatesNotMatch to io_dt_AuditFindings" sap:VirtualizedContainerService.HintSize="334,186" sap2010:WorkflowViewState.IdRef="AddDataRow_7" />
+                            <Switch x:TypeArguments="x:Boolean" DisplayName="Check if effective and move-in dates exist and differ" Expression="[jObj_JSON(&quot;HouseholdInformation&quot;)(&quot;EffectiveDate&quot;).ToString IsNot Nothing AndAlso&#xD;&#xA;jObj_JSON(&quot;HouseholdInformation&quot;)(&quot;MoveInDate&quot;).ToString IsNot Nothing AndAlso&#xD;&#xA;Not DateTime.Parse(jObj_JSON(&quot;HouseholdInformation&quot;)(&quot;EffectiveDate&quot;).ToString, New System.Globalization.CultureInfo(&quot;en-US&quot;)).Date = DateTime.Parse(jObj_JSON(&quot;HouseholdInformation&quot;)(&quot;MoveInDate&quot;).ToString, New System.Globalization.CultureInfo(&quot;en-US&quot;)).Date]" sap:VirtualizedContainerService.HintSize="1600,506" sap2010:WorkflowViewState.IdRef="Switch`1_6">
+                              <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;SSC&quot;,&quot;PageNum&quot;,in_Config(&quot;TN_SSC_DatesNotMatch&quot;).ToString,&quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add TN_SSC_DatesNotMatch to io_dt_AuditFindings" sap:VirtualizedContainerService.HintSize="334,186" sap2010:WorkflowViewState.IdRef="AddDataRow_7" />
+                            </Switch>
+                            <Switch x:TypeArguments="x:Boolean" DisplayName="Evaluate student household status based on multiple criteria" Expression="[(jObj_JSON(&quot;StudentQuestions&quot;)(&quot;HouseholdHasANonStudent&quot;).ToString.ToLower.Equals(&quot;false&quot;) AndAlso&#xD;&#xA;jObj_JSON(&quot;StudentQuestions&quot;)(&quot;AllStudentHousehold&quot;).ToString.ToLower.Equals(&quot;false&quot;) AndAlso&#xD;&#xA;jObj_JSON(&quot;StudentQuestions&quot;)(&quot;AllFullTimeStudents&quot;).ToString.ToLower.Equals(&quot;false&quot;)) OrElse&#xD;&#xA;(jObj_JSON(&quot;StudentQuestions&quot;)(&quot;AllStudentHousehold&quot;).ToString.ToLower.Equals(&quot;true&quot;) AndAlso&#xD;&#xA;(jObj_JSON(&quot;StudentQuestions&quot;)(&quot;HouseholdStudentList&quot;) Is Nothing OrElse&#xD;&#xA;jObj_JSON(&quot;StudentQuestions&quot;)(&quot;HouseholdStudentList&quot;).Type = Newtonsoft.Json.Linq.JTokenType.Null OrElse&#xD;&#xA;jObj_JSON(&quot;StudentQuestions&quot;)(&quot;HouseholdStudentList&quot;).Count = 0)) OrElse&#xD;&#xA;(jObj_JSON(&quot;StudentQuestions&quot;)(&quot;AllFullTimeStudents&quot;).ToString.ToLower.Equals(&quot;true&quot;) AndAlso &#xD;&#xA;(jObj_JSON(&quot;StudentQuestions&quot;)(&quot;JointTaxReturn&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;) OrElse&#xD;&#xA;jObj_JSON(&quot;StudentQuestions&quot;)(&quot;SingleParentStudent&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;) OrElse&#xD;&#xA;jObj_JSON(&quot;StudentQuestions&quot;)(&quot;StudentTANF&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;) OrElse&#xD;&#xA;jObj_JSON(&quot;StudentQuestions&quot;)(&quot;StudentWorkforceInnovationOpportunityAct&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;) OrElse&#xD;&#xA;jObj_JSON(&quot;StudentQuestions&quot;)(&quot;FosterCareStudent&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;))) OrElse&#xD;&#xA;(jObj_JSON(&quot;StudentQuestions&quot;)(&quot;AllFullTimeStudents&quot;).ToString.ToLower.Equals(&quot;false&quot;) AndAlso&#xD;&#xA;(Not jObj_JSON(&quot;StudentQuestions&quot;)(&quot;JointTaxReturn&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;) OrElse&#xD;&#xA;Not jObj_JSON(&quot;StudentQuestions&quot;)(&quot;SingleParentStudent&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;) OrElse&#xD;&#xA;Not jObj_JSON(&quot;StudentQuestions&quot;)(&quot;StudentTANF&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;) OrElse&#xD;&#xA;Not jObj_JSON(&quot;StudentQuestions&quot;)(&quot;StudentWorkforceInnovationOpportunityAct&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;) OrElse&#xD;&#xA;Not jObj_JSON(&quot;StudentQuestions&quot;)(&quot;FosterCareStudent&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;)))]" sap:VirtualizedContainerService.HintSize="1600,497" sap2010:WorkflowViewState.IdRef="Switch`1_11">
+                              <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;SSC&quot;,&quot;PageNum&quot;,in_Config(&quot;TN_SSC_StudentStatusSection&quot;).ToString,&quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add TN_SSC_StudentStatusSection to io_dt_AuditFindings" sap:VirtualizedContainerService.HintSize="335,186" sap2010:WorkflowViewState.IdRef="AddDataRow_15" />
                             </Switch>
                           </Sequence>
                         </ActivityAction>
@@ -542,7 +529,7 @@
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                     <ui:LogMessage DisplayName="Logs a warning when no SSC rows are available" sap:VirtualizedContainerService.HintSize="354,173" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Warn" Message="[&quot;No SSC rows to process.&quot;]" />
-                    <ui:AddDataRow ArrayRow="[{&quot;SSC&quot;,&quot;PageNum&quot;,in_Config(&quot;TN_SSCExists&quot;).ToString,&quot;&quot;}]" DataRow="{x:Null}" DataTable="[io_dt_AuditFindings]" DisplayName="Add TN_SSCExists to io_dt_AuditFindings" sap:VirtualizedContainerService.HintSize="354,209" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
+                    <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;SSC&quot;,&quot;PageNum&quot;,in_Config(&quot;TN_SSCExists&quot;).ToString,&quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add TN_SSCExists to io_dt_AuditFindings" sap:VirtualizedContainerService.HintSize="354,209" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
                   </Sequence>
                 </If.Else>
               </If>
