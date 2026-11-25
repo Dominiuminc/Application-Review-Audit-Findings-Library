@@ -4,10 +4,9 @@
     <x:Property Name="in_ClassificationResultsData" Type="InArgument(sd:DataTable)" />
     <x:Property Name="in_str_PromptsFolder" Type="InArgument(x:String)" />
     <x:Property Name="in_str_MoveIndate" Type="InArgument(x:String)" />
-    <x:Property Name="in_State" Type="InArgument(x:String)" />
     <x:Property Name="io_dt_AuditFindings" Type="InOutArgument(sd:DataTable)" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>1745,3895</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1975,11280</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -49,6 +48,7 @@
       <x:String>GlobalVariablesNamespace</x:String>
       <x:String>GlobalConstantsNamespace</x:String>
       <x:String>System.Linq.Expressions</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -145,15 +145,21 @@
       <AssemblyReference>System.IO.Packaging</AssemblyReference>
       <AssemblyReference>System.IO.FileSystem.AccessControl</AssemblyReference>
       <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
+      <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Certification of Zero Income Tennesse" sap:VirtualizedContainerService.HintSize="1560,3830" sap2010:WorkflowViewState.IdRef="Sequence_4028">
+  <sap:WorkflowViewStateService.ViewState>
+    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+      <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
+    </scg:Dictionary>
+  </sap:WorkflowViewStateService.ViewState>
+  <Sequence DisplayName="Certification of Zero Income Tennesse" sap:VirtualizedContainerService.HintSize="1705,11135" sap2010:WorkflowViewState.IdRef="Sequence_4028">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <TryCatch DisplayName="Try Catch-CZI" sap:VirtualizedContainerService.HintSize="1498,3742" sap2010:WorkflowViewState.IdRef="TryCatch_236">
+    <TryCatch DisplayName="Try Catch-CZI" sap:VirtualizedContainerService.HintSize="1643,11047" sap2010:WorkflowViewState.IdRef="TryCatch_236">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
@@ -161,7 +167,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <TryCatch.Try>
-        <Sequence DisplayName="Certification of Zero IncomeCheck" sap:VirtualizedContainerService.HintSize="1460,3491" sap2010:WorkflowViewState.IdRef="Sequence_4036">
+        <Sequence DisplayName="Certification of Zero IncomeCheck" sap:VirtualizedContainerService.HintSize="1605,10692" sap2010:WorkflowViewState.IdRef="Sequence_4036">
           <Sequence.Variables>
             <Variable x:TypeArguments="sd:DataTable" Name="dt_FilteredDocTypeData" />
           </Sequence.Variables>
@@ -171,7 +177,7 @@
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1398,173" sap2010:WorkflowViewState.IdRef="LogMessage_150" Message="[&quot;Started checking findings for &quot;+in_Config(&quot;CZI&quot;).ToString]">
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1543,173" sap2010:WorkflowViewState.IdRef="LogMessage_150" Message="[&quot;Started checking findings for &quot;+in_Config(&quot;CZI&quot;).ToString]">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -179,7 +185,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:LogMessage>
-          <If Condition="[in_ClassificationResultsData IsNot Nothing AndAlso in_ClassificationResultsData.Columns.Count &gt; 0]" DisplayName="If Classification Results nothing" sap:VirtualizedContainerService.HintSize="1398,3066" sap2010:WorkflowViewState.IdRef="If_1236">
+          <If Condition="[in_ClassificationResultsData IsNot Nothing AndAlso in_ClassificationResultsData.Columns.Count &gt; 0]" DisplayName="If Classification Results nothing" sap:VirtualizedContainerService.HintSize="1543,10267" sap2010:WorkflowViewState.IdRef="If_1236">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -187,14 +193,14 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <If.Then>
-              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="930,2644" sap2010:WorkflowViewState.IdRef="Sequence_4080">
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="1509,9845" sap2010:WorkflowViewState.IdRef="Sequence_4080">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:FilterDataTable DataTable="[in_ClassificationResultsData]" DisplayName="Filter Data Table" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="868,193" sap2010:WorkflowViewState.IdRef="FilterDataTable_72" OutputDataTable="[dt_FilteredDocTypeData]" SelectColumnsMode="Remove">
+                <ui:FilterDataTable DataTable="[in_ClassificationResultsData]" DisplayName="Filter Data Table" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="1447,193" sap2010:WorkflowViewState.IdRef="FilterDataTable_72" OutputDataTable="[dt_FilteredDocTypeData]" SelectColumnsMode="Remove">
                   <ui:FilterDataTable.Filters>
                     <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
                       <ui:FilterOperationArgument BooleanOperator="And" Operator="CONTAINS">
@@ -219,7 +225,7 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                 </ui:FilterDataTable>
-                <If Condition="[dt_FilteredDocTypeData IsNot Nothing AndAlso dt_FilteredDocTypeData.RowCount &gt; 0]" DisplayName="If-CZIExists" sap:VirtualizedContainerService.HintSize="868,2363" sap2010:WorkflowViewState.IdRef="If_1222">
+                <If Condition="[dt_FilteredDocTypeData IsNot Nothing AndAlso dt_FilteredDocTypeData.RowCount &gt; 0]" DisplayName="If-CZIExists" sap:VirtualizedContainerService.HintSize="1447,9564" sap2010:WorkflowViewState.IdRef="If_1222">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -227,7 +233,7 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                   <If.Then>
-                    <Sequence DisplayName="Then: If-CZIExists" sap:VirtualizedContainerService.HintSize="834,1950" sap2010:WorkflowViewState.IdRef="Sequence_4037">
+                    <Sequence DisplayName="Then: If-CZIExists" sap:VirtualizedContainerService.HintSize="1413,9151" sap2010:WorkflowViewState.IdRef="Sequence_4037">
                       <Sequence.Variables>
                         <Variable x:TypeArguments="njl:JArray" Name="jArr_ExtResults" />
                         <Variable x:TypeArguments="scg:List(x:String)" Name="list_ImageFiles" />
@@ -239,7 +245,7 @@
                           <x:Boolean x:Key="IsPinned">False</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="772,173" sap2010:WorkflowViewState.IdRef="LogMessage_151" Message="[in_Config(&quot;CZI&quot;).ToString+&quot; exists&quot;]">
+                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1351,173" sap2010:WorkflowViewState.IdRef="LogMessage_151" Message="[in_Config(&quot;CZI&quot;).ToString+&quot; exists&quot;]">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -247,7 +253,7 @@
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
                       </ui:LogMessage>
-                      <Sequence DisplayName="GetLLMJSONResults" sap:VirtualizedContainerService.HintSize="772,564" sap2010:WorkflowViewState.IdRef="Sequence_4038">
+                      <Sequence DisplayName="GetLLMJSONResults" sap:VirtualizedContainerService.HintSize="1351,564" sap2010:WorkflowViewState.IdRef="Sequence_4038">
                         <Sequence.Variables>
                           <Variable x:TypeArguments="njl:JObject" Name="jObj_ExtractionResults" />
                         </Sequence.Variables>
@@ -269,7 +275,7 @@
                         <Parallel sap:VirtualizedContainerService.HintSize="710,224" sap2010:WorkflowViewState.IdRef="Parallel_1">
                           <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="GetLLMExtractionResultsForEachDoc - Invoke Workflow File (GetLLMExtractionResultsForEachDoc.xaml)" sap:VirtualizedContainerService.HintSize="376,145" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_141" UnSafe="False" WorkflowFileName="LLM\GetLLMExtractionResultsForEachDoc.xaml">
                             <ui:InvokeWorkflowFile.Arguments>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_UserPromptTextFile">[in_str_PromptsFolder+"CZI_TN_Prompt.txt"]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_UserPromptTextFile">[in_str_PromptsFolder+"CZI_Prompt_TN.txt"]</InArgument>
                               <InArgument x:TypeArguments="scg:List(x:String)" x:Key="in_ImagePath">[list_ImageFiles]</InArgument>
                               <OutArgument x:TypeArguments="njl:JObject" x:Key="out_jObjExtractionResults">[jObj_ExtractionResults]</OutArgument>
                               <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
@@ -284,20 +290,20 @@
                           </ui:InvokeWorkflowFile>
                           <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="240,145" sap2010:WorkflowViewState.IdRef="CommentOut_5">
                             <ui:CommentOut.Body>
-                              <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="696,1293" sap2010:WorkflowViewState.IdRef="Sequence_4082">
+                              <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="696,1725" sap2010:WorkflowViewState.IdRef="Sequence_4082">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
-                                <Sequence DisplayName="DU_Replacement_CZI" sap:VirtualizedContainerService.HintSize="634,1291" sap2010:WorkflowViewState.IdRef="Sequence_4051">
+                                <Sequence DisplayName="DU_Replacement_CZI" sap:VirtualizedContainerService.HintSize="634,1637" sap2010:WorkflowViewState.IdRef="Sequence_4051">
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
-                                  <TryCatch DisplayName="Try Catch - Validate CZI DU" sap:VirtualizedContainerService.HintSize="572,1180" sap2010:WorkflowViewState.IdRef="TryCatch_234">
+                                  <TryCatch DisplayName="Try Catch - Validate CZI DU" sap:VirtualizedContainerService.HintSize="572,1526" sap2010:WorkflowViewState.IdRef="TryCatch_234">
                                     <sap:WorkflowViewStateService.ViewState>
                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -305,16 +311,16 @@
                                       </scg:Dictionary>
                                     </sap:WorkflowViewStateService.ViewState>
                                     <TryCatch.Try>
-                                      <ui:RetryScope LogRetriedExceptions="{x:Null}" RetriedExceptionsLogLevel="{x:Null}" DisplayName="Retry Scope - CZI DU retry" sap:VirtualizedContainerService.HintSize="534,929" sap2010:WorkflowViewState.IdRef="RetryScope_12" NumberOfRetries="3" RetryInterval="[TimeSpan.FromSeconds(5)]">
+                                      <ui:RetryScope LogRetriedExceptions="{x:Null}" RetriedExceptionsLogLevel="{x:Null}" DisplayName="Retry Scope - CZI DU retry" sap:VirtualizedContainerService.HintSize="534,1171" sap2010:WorkflowViewState.IdRef="RetryScope_12" NumberOfRetries="3" RetryInterval="[TimeSpan.FromSeconds(5)]">
                                         <ui:RetryScope.ActivityBody>
                                           <ActivityAction>
-                                            <Sequence DisplayName="Action" sap:VirtualizedContainerService.HintSize="500,728" sap2010:WorkflowViewState.IdRef="Sequence_4050">
+                                            <Sequence DisplayName="Action" sap:VirtualizedContainerService.HintSize="500,970" sap2010:WorkflowViewState.IdRef="Sequence_4050">
                                               <sap:WorkflowViewStateService.ViewState>
                                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                                 </scg:Dictionary>
                                               </sap:WorkflowViewStateService.ViewState>
-                                              <TryCatch DisplayName="Try Catch - CZI DU" sap:VirtualizedContainerService.HintSize="438,476" sap2010:WorkflowViewState.IdRef="TryCatch_233">
+                                              <TryCatch DisplayName="Try Catch - CZI DU" sap:VirtualizedContainerService.HintSize="438,718" sap2010:WorkflowViewState.IdRef="TryCatch_233">
                                                 <TryCatch.Try>
                                                   <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="CertificationOfZeroIncome_Extraction - Invoke Workflow File (DU\CertificationOfZeroIncome_Extraction.xaml)" sap:VirtualizedContainerService.HintSize="335,216" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_142" UnSafe="True" WorkflowFileName="DU\CertificationOfZeroIncome_Extraction.xaml">
                                                     <ui:InvokeWorkflowFile.Arguments>
@@ -325,7 +331,7 @@
                                                   </ui:InvokeWorkflowFile>
                                                 </TryCatch.Try>
                                                 <TryCatch.Catches>
-                                                  <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,22" sap2010:WorkflowViewState.IdRef="Catch`1_227">
+                                                  <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,160" sap2010:WorkflowViewState.IdRef="Catch`1_227">
                                                     <sap:WorkflowViewStateService.ViewState>
                                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                         <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -373,7 +379,7 @@
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
                           </ui:CommentOut>
@@ -387,15 +393,15 @@
                           </Assign.Value>
                         </Assign>
                       </Sequence>
-                      <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="772,57" sap2010:WorkflowViewState.IdRef="CommentOut_6">
+                      <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="1351,57" sap2010:WorkflowViewState.IdRef="CommentOut_6">
                         <ui:CommentOut.Body>
-                          <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="512,311" sap2010:WorkflowViewState.IdRef="Sequence_4083">
+                          <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="1209,6762" sap2010:WorkflowViewState.IdRef="Sequence_4083">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <Sequence DisplayName="Merge DU checkboxes into matching LLM record - CZI" sap:VirtualizedContainerService.HintSize="450,57" sap2010:WorkflowViewState.IdRef="Sequence_4039">
+                            <Sequence DisplayName="Merge DU checkboxes into matching LLM record - CZI" sap:VirtualizedContainerService.HintSize="1147,6508" sap2010:WorkflowViewState.IdRef="Sequence_4039">
                               <Sequence.Variables>
                                 <Variable x:TypeArguments="njl:JArray" Name="jArr_CZIRecords" />
                               </Sequence.Variables>
@@ -405,7 +411,7 @@
                                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
-                              <Assign DisplayName="Assign-jArr_CZIRecords" sap:VirtualizedContainerService.HintSize="1045,114" sap2010:WorkflowViewState.IdRef="Assign_864">
+                              <Assign DisplayName="Assign-jArr_CZIRecords" sap:VirtualizedContainerService.HintSize="1085,114" sap2010:WorkflowViewState.IdRef="Assign_864">
                                 <Assign.To>
                                   <OutArgument x:TypeArguments="njl:JArray">[jArr_CZIRecords]</OutArgument>
                                 </Assign.To>
@@ -413,13 +419,13 @@
                                   <InArgument x:TypeArguments="njl:JArray">[JArray.FromObject(jArr_ExtResults.SelectMany(Function(x) CType(x("CertificationOfZeroIncome"), JArray)).ToList())]</InArgument>
                                 </Assign.Value>
                               </Assign>
-                              <ui:ForEach x:TypeArguments="njl:JObject" CurrentIndex="{x:Null}" DisplayName="For each DU-extracted CZI document" sap:VirtualizedContainerService.HintSize="1045,5005" sap2010:WorkflowViewState.IdRef="ForEach`1_173" Values="[jArr_CZIDocumentData]">
+                              <ui:ForEach x:TypeArguments="njl:JObject" CurrentIndex="{x:Null}" DisplayName="For each DU-extracted CZI document" sap:VirtualizedContainerService.HintSize="1085,6274" sap2010:WorkflowViewState.IdRef="ForEach`1_173" Values="[jArr_CZIDocumentData]">
                                 <ui:ForEach.Body>
                                   <ActivityAction x:TypeArguments="njl:JObject">
                                     <ActivityAction.Argument>
                                       <DelegateInArgument x:TypeArguments="njl:JObject" Name="duJObj" />
                                     </ActivityAction.Argument>
-                                    <Sequence DisplayName="Merge DU checkboxes into matching LLM record" sap:VirtualizedContainerService.HintSize="1011,4868" sap2010:WorkflowViewState.IdRef="Sequence_4040">
+                                    <Sequence DisplayName="Merge DU checkboxes into matching LLM record" sap:VirtualizedContainerService.HintSize="1051,6137" sap2010:WorkflowViewState.IdRef="Sequence_4040">
                                       <Sequence.Variables>
                                         <Variable x:TypeArguments="x:String" Name="str_DUName" />
                                         <Variable x:TypeArguments="x:String" Name="str_MatchedName" />
@@ -429,8 +435,8 @@
                                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                         </scg:Dictionary>
                                       </sap:WorkflowViewStateService.ViewState>
-                                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="949,175" sap2010:WorkflowViewState.IdRef="LogMessage_153" Message="[&quot;Merge Check V2&quot; &amp; duJObj.ToString]" />
-                                      <Assign DisplayName="Assign-str_DUName" sap:VirtualizedContainerService.HintSize="949,115" sap2010:WorkflowViewState.IdRef="Assign_865">
+                                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="989,173" sap2010:WorkflowViewState.IdRef="LogMessage_153" Message="[&quot;Merge Check V2&quot; &amp; duJObj.ToString]" />
+                                      <Assign DisplayName="Assign-str_DUName" sap:VirtualizedContainerService.HintSize="989,114" sap2010:WorkflowViewState.IdRef="Assign_865">
                                         <Assign.To>
                                           <OutArgument x:TypeArguments="x:String">[str_DUName]</OutArgument>
                                         </Assign.To>
@@ -438,7 +444,7 @@
                                           <InArgument x:TypeArguments="x:String">[If(duJObj("SectionType").ToString.Equals("A"), duJObj("Name")("Value").ToString, duJObj("PrintedName")("Value").ToString)]</InArgument>
                                         </Assign.Value>
                                       </Assign>
-                                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="DU LLM Name Matching - Invoke Workflow File (AuditFindings\DU LLM Name Matching.xaml)" sap:VirtualizedContainerService.HintSize="949,251" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_143" UnSafe="False" WorkflowFileName="AuditFindings\DU LLM Name Matching.xaml">
+                                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="DU LLM Name Matching - Invoke Workflow File (AuditFindings\DU LLM Name Matching.xaml)" sap:VirtualizedContainerService.HintSize="989,248" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_143" UnSafe="False" WorkflowFileName="AuditFindings\DU LLM Name Matching.xaml">
                                         <ui:InvokeWorkflowFile.Arguments>
                                           <InArgument x:TypeArguments="x:String" x:Key="DocType">["CertificationOfZeroIncome"]</InArgument>
                                           <InArgument x:TypeArguments="njl:JArray" x:Key="LLM_Results">[jArr_CZIRecords]</InArgument>
@@ -447,13 +453,13 @@
                                           <OutArgument x:TypeArguments="x:String" x:Key="out_MatchedName">[str_MatchedName]</OutArgument>
                                         </ui:InvokeWorkflowFile.Arguments>
                                       </ui:InvokeWorkflowFile>
-                                      <ui:ForEach x:TypeArguments="njl:JObject" CurrentIndex="{x:Null}" DisplayName="For each LLM page" sap:VirtualizedContainerService.HintSize="949,4239" sap2010:WorkflowViewState.IdRef="ForEach`1_172" Values="[jArr_ExtResults]">
+                                      <ui:ForEach x:TypeArguments="njl:JObject" CurrentIndex="{x:Null}" DisplayName="For each LLM page" sap:VirtualizedContainerService.HintSize="989,5514" sap2010:WorkflowViewState.IdRef="ForEach`1_172" Values="[jArr_ExtResults]">
                                         <ui:ForEach.Body>
                                           <ActivityAction x:TypeArguments="njl:JObject">
                                             <ActivityAction.Argument>
                                               <DelegateInArgument x:TypeArguments="njl:JObject" Name="jObj_ExtractionResults" />
                                             </ActivityAction.Argument>
-                                            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="915,4101" sap2010:WorkflowViewState.IdRef="Sequence_4041">
+                                            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="955,5377" sap2010:WorkflowViewState.IdRef="Sequence_4041">
                                               <Sequence.Variables>
                                                 <Variable x:TypeArguments="njl:JArray" Name="jArr_Certifications" />
                                               </Sequence.Variables>
@@ -462,7 +468,7 @@
                                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                                 </scg:Dictionary>
                                               </sap:WorkflowViewStateService.ViewState>
-                                              <Assign DisplayName="Assign-jArr_Certifications" sap:VirtualizedContainerService.HintSize="853,115" sap2010:WorkflowViewState.IdRef="Assign_866">
+                                              <Assign DisplayName="Assign-jArr_Certifications" sap:VirtualizedContainerService.HintSize="893,114" sap2010:WorkflowViewState.IdRef="Assign_866">
                                                 <Assign.To>
                                                   <OutArgument x:TypeArguments="njl:JArray">[jArr_Certifications]</OutArgument>
                                                 </Assign.To>
@@ -470,15 +476,15 @@
                                                   <InArgument x:TypeArguments="njl:JArray">[CType(jObj_ExtractionResults("CertificationOfZeroIncome"), JArray)]</InArgument>
                                                 </Assign.Value>
                                               </Assign>
-                                              <ui:ForEach x:TypeArguments="njl:JObject" CurrentIndex="{x:Null}" DisplayName="For each CZI record" sap:VirtualizedContainerService.HintSize="853,3898" sap2010:WorkflowViewState.IdRef="ForEach`1_171" Values="[jArr_Certifications]">
+                                              <ui:ForEach x:TypeArguments="njl:JObject" CurrentIndex="{x:Null}" DisplayName="For each CZI record" sap:VirtualizedContainerService.HintSize="893,5175" sap2010:WorkflowViewState.IdRef="ForEach`1_171" Values="[jArr_Certifications]">
                                                 <ui:ForEach.Body>
                                                   <ActivityAction x:TypeArguments="njl:JObject">
                                                     <ActivityAction.Argument>
                                                       <DelegateInArgument x:TypeArguments="njl:JObject" Name="currentCertJObject" />
                                                     </ActivityAction.Argument>
-                                                    <If Condition="[currentCertJObject(&quot;Signature&quot;)(&quot;PrintedName&quot;).ToString.Equals(str_MatchedName)]" DisplayName="If Names are the same" sap:VirtualizedContainerService.HintSize="819,3738" sap2010:WorkflowViewState.IdRef="If_1226">
+                                                    <If Condition="[currentCertJObject(&quot;Signature&quot;)(&quot;PrintedName&quot;).ToString.Equals(str_MatchedName)]" DisplayName="If Names are the same" sap:VirtualizedContainerService.HintSize="859,5016" sap2010:WorkflowViewState.IdRef="If_1226">
                                                       <If.Then>
-                                                        <Sequence DisplayName="Then: If Names are the same" sap:VirtualizedContainerService.HintSize="785,3495" sap2010:WorkflowViewState.IdRef="Sequence_4042">
+                                                        <Sequence DisplayName="Then: If Names are the same" sap:VirtualizedContainerService.HintSize="825,4774" sap2010:WorkflowViewState.IdRef="Sequence_4042">
                                                           <Sequence.Variables>
                                                             <Variable x:TypeArguments="njl:JObject" Name="jObj_JSON" />
                                                           </Sequence.Variables>
@@ -487,7 +493,7 @@
                                                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                                             </scg:Dictionary>
                                                           </sap:WorkflowViewStateService.ViewState>
-                                                          <Assign DisplayName="Assign-jObj_JSON" sap:VirtualizedContainerService.HintSize="723,115" sap2010:WorkflowViewState.IdRef="Assign_867">
+                                                          <Assign DisplayName="Assign-jObj_JSON" sap:VirtualizedContainerService.HintSize="763,114" sap2010:WorkflowViewState.IdRef="Assign_867">
                                                             <Assign.To>
                                                               <OutArgument x:TypeArguments="njl:JObject">[jObj_JSON]</OutArgument>
                                                             </Assign.To>
@@ -495,9 +501,9 @@
                                                               <InArgument x:TypeArguments="njl:JObject">[currentCertJObject]</InArgument>
                                                             </Assign.Value>
                                                           </Assign>
-                                                          <If Condition="[duJObj(&quot;SectionType&quot;).ToString.Equals(&quot;A&quot;)]" DisplayName="If SectionType A" sap:VirtualizedContainerService.HintSize="723,3244" sap2010:WorkflowViewState.IdRef="If_1225">
+                                                          <If Condition="[duJObj(&quot;SectionType&quot;).ToString.Equals(&quot;A&quot;)]" DisplayName="If SectionType A" sap:VirtualizedContainerService.HintSize="763,4524" sap2010:WorkflowViewState.IdRef="If_1225">
                                                             <If.Then>
-                                                              <Sequence DisplayName="Then: SectionA merge" sap:VirtualizedContainerService.HintSize="608,1484" sap2010:WorkflowViewState.IdRef="Sequence_4043">
+                                                              <Sequence DisplayName="Then: SectionA merge" sap:VirtualizedContainerService.HintSize="608,1480" sap2010:WorkflowViewState.IdRef="Sequence_4043">
                                                                 <Sequence.Variables>
                                                                   <Variable x:TypeArguments="s:String[]" Name="arr_Qstns" />
                                                                 </Sequence.Variables>
@@ -506,7 +512,7 @@
                                                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                                                   </scg:Dictionary>
                                                                 </sap:WorkflowViewStateService.ViewState>
-                                                                <Assign DisplayName="Assign-arr_Qstns" sap:VirtualizedContainerService.HintSize="546,115" sap2010:WorkflowViewState.IdRef="Assign_868">
+                                                                <Assign DisplayName="Assign-arr_Qstns" sap:VirtualizedContainerService.HintSize="546,114" sap2010:WorkflowViewState.IdRef="Assign_868">
                                                                   <Assign.To>
                                                                     <OutArgument x:TypeArguments="s:String[]">[arr_Qstns]</OutArgument>
                                                                   </Assign.To>
@@ -514,13 +520,13 @@
                                                                     <InArgument x:TypeArguments="s:String[]">[CType(jObj_JSON("SectionAIncomeQuestions"), JArray).Where(Function(x) x("QuestionText") IsNot Nothing AndAlso Not String.IsNullOrWhiteSpace(x("QuestionText").ToString)).Select(Function(x) x("QuestionText").ToString).ToArray()]</InArgument>
                                                                   </Assign.Value>
                                                                 </Assign>
-                                                                <ui:ForEach x:TypeArguments="njl:JProperty" CurrentIndex="{x:Null}" DisplayName="For each currentDUProperty" sap:VirtualizedContainerService.HintSize="546,1115" sap2010:WorkflowViewState.IdRef="ForEach`1_169" Values="[duJObj.Properties().Where(Function(p) p.Name &lt;&gt; &quot;SectionType&quot;).ToArray()]">
+                                                                <ui:ForEach x:TypeArguments="njl:JProperty" CurrentIndex="{x:Null}" DisplayName="For each currentDUProperty" sap:VirtualizedContainerService.HintSize="546,1112" sap2010:WorkflowViewState.IdRef="ForEach`1_169" Values="[duJObj.Properties().Where(Function(p) p.Name &lt;&gt; &quot;SectionType&quot;).ToArray()]">
                                                                   <ui:ForEach.Body>
                                                                     <ActivityAction x:TypeArguments="njl:JProperty">
                                                                       <ActivityAction.Argument>
                                                                         <DelegateInArgument x:TypeArguments="njl:JProperty" Name="currentDUProperty" />
                                                                       </ActivityAction.Argument>
-                                                                      <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="512,968" sap2010:WorkflowViewState.IdRef="Sequence_4044">
+                                                                      <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="512,966" sap2010:WorkflowViewState.IdRef="Sequence_4044">
                                                                         <Sequence.Variables>
                                                                           <Variable x:TypeArguments="x:String" Name="str_Question" />
                                                                           <Variable x:TypeArguments="x:String" Name="str_Value" />
@@ -533,7 +539,7 @@
                                                                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                                                           </scg:Dictionary>
                                                                         </sap:WorkflowViewStateService.ViewState>
-                                                                        <Assign DisplayName="Assign-str_Qstn" sap:VirtualizedContainerService.HintSize="450,115" sap2010:WorkflowViewState.IdRef="Assign_869">
+                                                                        <Assign DisplayName="Assign-str_Qstn" sap:VirtualizedContainerService.HintSize="450,114" sap2010:WorkflowViewState.IdRef="Assign_869">
                                                                           <Assign.To>
                                                                             <OutArgument x:TypeArguments="x:String">[str_Question]</OutArgument>
                                                                           </Assign.To>
@@ -541,7 +547,7 @@
                                                                             <InArgument x:TypeArguments="x:String">[currentDUProperty.Name]</InArgument>
                                                                           </Assign.Value>
                                                                         </Assign>
-                                                                        <Assign DisplayName="Assign-str_Value" sap:VirtualizedContainerService.HintSize="450,115" sap2010:WorkflowViewState.IdRef="Assign_870">
+                                                                        <Assign DisplayName="Assign-str_Value" sap:VirtualizedContainerService.HintSize="450,114" sap2010:WorkflowViewState.IdRef="Assign_870">
                                                                           <Assign.To>
                                                                             <OutArgument x:TypeArguments="x:String">[str_Value]</OutArgument>
                                                                           </Assign.To>
@@ -587,7 +593,7 @@
                                                               </Sequence>
                                                             </If.Then>
                                                             <If.Else>
-                                                              <Sequence DisplayName="Then: SectionB merge" sap:VirtualizedContainerService.HintSize="689,1589" sap2010:WorkflowViewState.IdRef="Sequence_4045">
+                                                              <Sequence DisplayName="Then: SectionB merge" sap:VirtualizedContainerService.HintSize="729,2874" sap2010:WorkflowViewState.IdRef="Sequence_4045">
                                                                 <Sequence.Variables>
                                                                   <Variable x:TypeArguments="s:String[]" Name="arr_ExpenseTypes" />
                                                                 </Sequence.Variables>
@@ -596,7 +602,7 @@
                                                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                                                   </scg:Dictionary>
                                                                 </sap:WorkflowViewStateService.ViewState>
-                                                                <Assign DisplayName="Assign-arr_ExpenseTypes" sap:VirtualizedContainerService.HintSize="627,115" sap2010:WorkflowViewState.IdRef="Assign_871">
+                                                                <Assign DisplayName="Assign-arr_ExpenseTypes" sap:VirtualizedContainerService.HintSize="667,114" sap2010:WorkflowViewState.IdRef="Assign_871">
                                                                   <Assign.To>
                                                                     <OutArgument x:TypeArguments="s:String[]">[arr_ExpenseTypes]</OutArgument>
                                                                   </Assign.To>
@@ -604,13 +610,13 @@
                                                                     <InArgument x:TypeArguments="s:String[]">[CType(jObj_JSON("SectionBExpenseQuestions"), JArray).Where(Function(x) x("ExpenseType") IsNot Nothing AndAlso Not String.IsNullOrWhiteSpace(x("ExpenseType").ToString())).Select(Function(x) x("ExpenseType").ToString()).ToArray()]</InArgument>
                                                                   </Assign.Value>
                                                                 </Assign>
-                                                                <ui:ForEach x:TypeArguments="njl:JProperty" CurrentIndex="{x:Null}" DisplayName="For each currentDUProperty" sap:VirtualizedContainerService.HintSize="627,1220" sap2010:WorkflowViewState.IdRef="ForEach`1_170" Values="[duJObj.Properties().Where(Function(p) p.Name &lt;&gt; &quot;SectionType&quot;).ToArray()]">
+                                                                <ui:ForEach x:TypeArguments="njl:JProperty" CurrentIndex="{x:Null}" DisplayName="For each currentDUProperty" sap:VirtualizedContainerService.HintSize="667,2508" sap2010:WorkflowViewState.IdRef="ForEach`1_170" Values="[duJObj.Properties().Where(Function(p) p.Name &lt;&gt; &quot;SectionType&quot;).ToArray()]">
                                                                   <ui:ForEach.Body>
                                                                     <ActivityAction x:TypeArguments="njl:JProperty">
                                                                       <ActivityAction.Argument>
                                                                         <DelegateInArgument x:TypeArguments="njl:JProperty" Name="currentDUProperty" />
                                                                       </ActivityAction.Argument>
-                                                                      <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="593,1073" sap2010:WorkflowViewState.IdRef="Sequence_4046">
+                                                                      <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="633,2362" sap2010:WorkflowViewState.IdRef="Sequence_4046">
                                                                         <Sequence.Variables>
                                                                           <Variable x:TypeArguments="x:String" Name="str_ExpenseType" />
                                                                           <Variable x:TypeArguments="x:String" Name="str_Value" />
@@ -623,7 +629,7 @@
                                                                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                                                           </scg:Dictionary>
                                                                         </sap:WorkflowViewStateService.ViewState>
-                                                                        <Assign DisplayName="Assign-str_Expensetype" sap:VirtualizedContainerService.HintSize="531,115" sap2010:WorkflowViewState.IdRef="Assign_872">
+                                                                        <Assign DisplayName="Assign-str_Expensetype" sap:VirtualizedContainerService.HintSize="571,114" sap2010:WorkflowViewState.IdRef="Assign_872">
                                                                           <Assign.To>
                                                                             <OutArgument x:TypeArguments="x:String">[str_ExpenseType]</OutArgument>
                                                                           </Assign.To>
@@ -631,7 +637,7 @@
                                                                             <InArgument x:TypeArguments="x:String">[currentDUProperty.Name]</InArgument>
                                                                           </Assign.Value>
                                                                         </Assign>
-                                                                        <Assign DisplayName="Assign-str_Value" sap:VirtualizedContainerService.HintSize="531,115" sap2010:WorkflowViewState.IdRef="Assign_873">
+                                                                        <Assign DisplayName="Assign-str_Value" sap:VirtualizedContainerService.HintSize="571,114" sap2010:WorkflowViewState.IdRef="Assign_873">
                                                                           <Assign.To>
                                                                             <OutArgument x:TypeArguments="x:String">[str_Value]</OutArgument>
                                                                           </Assign.To>
@@ -639,7 +645,7 @@
                                                                             <InArgument x:TypeArguments="x:String">[CType(currentDUProperty.Value, JObject)("Value").ToString()]</InArgument>
                                                                           </Assign.Value>
                                                                         </Assign>
-                                                                        <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim highestScore As Double = 0.0&#xA;Dim closestMatch As String = &quot;&quot;&#xA;&#xA;' Insert spaces in camel case&#xA;searchText = System.Text.RegularExpressions.Regex.Replace(searchText, &quot;([A-Z]+)([A-Z][a-z])&quot;, &quot;$1 $2&quot;)&#xA;searchText = System.Text.RegularExpressions.Regex.Replace(searchText, &quot;([a-z\d])([A-Z])&quot;, &quot;$1 $2&quot;)&#xA;&#xA;' Normalize&#xA;Dim normalizedSearch As String = searchText.ToLower()&#xA;normalizedSearch = System.Text.RegularExpressions.Regex.Replace(normalizedSearch, &quot;[^a-z0-9 ]&quot;, &quot;&quot;)&#xA;normalizedSearch = System.Text.RegularExpressions.Regex.Replace(normalizedSearch, &quot;\s+&quot;, &quot; &quot;).Trim()&#xA;&#xA;Dim searchWords = normalizedSearch.Split(&quot; &quot;c)&#xA;&#xA;For Each item As String In items&#xA;&#xA;    ' Normalize item&#xA;    Dim normalizedItem As String = item.ToLower()&#xA;    normalizedItem = System.Text.RegularExpressions.Regex.Replace(normalizedItem, &quot;[^a-z0-9 ]&quot;, &quot;&quot;)&#xA;    normalizedItem = System.Text.RegularExpressions.Regex.Replace(normalizedItem, &quot;\s+&quot;, &quot; &quot;).Trim()&#xA;&#xA;    Dim matchCount As Integer = 0&#xA;&#xA;    For Each word In searchWords&#xA;&#xA;        If normalizedItem.Contains(word) Then&#xA;            matchCount += 1&#xA;        End If&#xA;&#xA;    Next&#xA;&#xA;    Dim similarity As Double = 0.0&#xA;    If searchWords.Length &gt; 0 Then&#xA;        similarity = matchCount / searchWords.Length&#xA;    End If&#xA;&#xA;    If similarity &gt; highestScore Then&#xA;        highestScore = similarity&#xA;        closestMatch = item&#xA;    End If&#xA;&#xA;Next&#xA;&#xA;bestMatch = closestMatch&#xA;bestScore = highestScore&#xA;isMatchFound = (highestScore &gt;= minScore)" DisplayName="Invoke Code-Find Best Expense Match" sap:VirtualizedContainerService.HintSize="531,197" sap2010:WorkflowViewState.IdRef="InvokeCode_3">
+                                                                        <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim highestScore As Double = 0.0&#xA;Dim closestMatch As String = &quot;&quot;&#xA;&#xA;' Insert spaces in camel case&#xA;searchText = System.Text.RegularExpressions.Regex.Replace(searchText, &quot;([A-Z]+)([A-Z][a-z])&quot;, &quot;$1 $2&quot;)&#xA;searchText = System.Text.RegularExpressions.Regex.Replace(searchText, &quot;([a-z\d])([A-Z])&quot;, &quot;$1 $2&quot;)&#xA;&#xA;' Normalize&#xA;Dim normalizedSearch As String = searchText.ToLower()&#xA;normalizedSearch = System.Text.RegularExpressions.Regex.Replace(normalizedSearch, &quot;[^a-z0-9 ]&quot;, &quot;&quot;)&#xA;normalizedSearch = System.Text.RegularExpressions.Regex.Replace(normalizedSearch, &quot;\s+&quot;, &quot; &quot;).Trim()&#xA;&#xA;Dim searchWords = normalizedSearch.Split(&quot; &quot;c)&#xA;&#xA;For Each item As String In items&#xA;&#xA;    ' Normalize item&#xA;    Dim normalizedItem As String = item.ToLower()&#xA;    normalizedItem = System.Text.RegularExpressions.Regex.Replace(normalizedItem, &quot;[^a-z0-9 ]&quot;, &quot;&quot;)&#xA;    normalizedItem = System.Text.RegularExpressions.Regex.Replace(normalizedItem, &quot;\s+&quot;, &quot; &quot;).Trim()&#xA;&#xA;    Dim matchCount As Integer = 0&#xA;&#xA;    For Each word In searchWords&#xA;&#xA;        If normalizedItem.Contains(word) Then&#xA;            matchCount += 1&#xA;        End If&#xA;&#xA;    Next&#xA;&#xA;    Dim similarity As Double = 0.0&#xA;    If searchWords.Length &gt; 0 Then&#xA;        similarity = matchCount / searchWords.Length&#xA;    End If&#xA;&#xA;    If similarity &gt; highestScore Then&#xA;        highestScore = similarity&#xA;        closestMatch = item&#xA;    End If&#xA;&#xA;Next&#xA;&#xA;bestMatch = closestMatch&#xA;bestScore = highestScore&#xA;isMatchFound = (highestScore &gt;= minScore)" DisplayName="Invoke Code-Find Best Expense Match" sap:VirtualizedContainerService.HintSize="571,197" sap2010:WorkflowViewState.IdRef="InvokeCode_3">
                                                                           <ui:InvokeCode.Arguments>
                                                                             <InArgument x:TypeArguments="x:String" x:Key="searchText">[str_ExpenseType]</InArgument>
                                                                             <InArgument x:TypeArguments="s:String[]" x:Key="items">[arr_ExpenseTypes]</InArgument>
@@ -649,7 +655,7 @@
                                                                             <OutArgument x:TypeArguments="x:Boolean" x:Key="isMatchFound">[bool_MatchedExpenseType]</OutArgument>
                                                                           </ui:InvokeCode.Arguments>
                                                                         </ui:InvokeCode>
-                                                                        <If Condition="[bool_MatchedExpenseType]" DisplayName="If - matchedExpenseType isnot nothing" sap:VirtualizedContainerService.HintSize="531,558" sap2010:WorkflowViewState.IdRef="If_1224">
+                                                                        <If Condition="[bool_MatchedExpenseType]" DisplayName="If - matchedExpenseType isnot nothing" sap:VirtualizedContainerService.HintSize="571,1849" sap2010:WorkflowViewState.IdRef="If_1224">
                                                                           <If.Then>
                                                                             <ui:InvokeCode ContinueOnError="{x:Null}" Code="If jsonObj(&quot;SectionBExpenseQuestions&quot;) IsNot Nothing Then&#xA;    For Each item In jsonObj(&quot;SectionBExpenseQuestions&quot;) _&#xA;                        .Where(Function(x) x(&quot;ExpenseType&quot;) IsNot Nothing _&#xA;                            AndAlso x(&quot;ExpenseType&quot;).ToString() = expeneTypeToMatch)&#xA;&#xA;        Dim value = JValue.CreateString(selectedValue).ToString.Trim&#xA;&#x9;&#x9;item(&quot;IsNAChecked&quot;) = If(value = &quot;☒&quot;, &quot;True&quot;, If(value = &quot;☐&quot;, &quot;False&quot;, &quot;not extracted&quot;))&#xA;    Next&#xA;End If" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="334,165" sap2010:WorkflowViewState.IdRef="InvokeCode_4">
                                                                               <ui:InvokeCode.Arguments>
@@ -660,10 +666,10 @@
                                                                             </ui:InvokeCode>
                                                                           </If.Then>
                                                                           <If.Else>
-                                                                            <Switch x:TypeArguments="x:String" DisplayName="Switch-SecB" Expression="[str_ExpenseType.ToLower]" sap:VirtualizedContainerService.HintSize="497,187" sap2010:WorkflowViewState.IdRef="Switch`1_5">
-                                                                              <Switch x:TypeArguments="x:String" x:Key="rent" DisplayName="Switch-rent" Expression="[str_Value.Trim]" sap:VirtualizedContainerService.HintSize="497,376" sap2010:WorkflowViewState.IdRef="Switch`1_2">
+                                                                            <Switch x:TypeArguments="x:String" DisplayName="Switch-SecB" Expression="[str_ExpenseType.ToLower]" sap:VirtualizedContainerService.HintSize="537,1479" sap2010:WorkflowViewState.IdRef="Switch`1_5">
+                                                                              <Switch x:TypeArguments="x:String" x:Key="rent" DisplayName="Switch-rent" Expression="[str_Value.Trim]" sap:VirtualizedContainerService.HintSize="497,412" sap2010:WorkflowViewState.IdRef="Switch`1_2">
                                                                                 <Switch.Default>
-                                                                                  <Assign DisplayName="Assign-rent" sap:VirtualizedContainerService.HintSize="180,82" sap2010:WorkflowViewState.IdRef="Assign_876">
+                                                                                  <Assign DisplayName="Assign-rent" sap:VirtualizedContainerService.HintSize="434,81" sap2010:WorkflowViewState.IdRef="Assign_876">
                                                                                     <Assign.To>
                                                                                       <OutArgument x:TypeArguments="njl:JToken">[jObj_JSON("section_b_expenses")("rent")("na_checked")]</OutArgument>
                                                                                     </Assign.To>
@@ -752,7 +758,7 @@
                                                                     </ActivityAction>
                                                                   </ui:ForEach.Body>
                                                                 </ui:ForEach>
-                                                                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="627,166" sap2010:WorkflowViewState.IdRef="LogMessage_155" Level="Info" Message="[&quot;DU for CZI-SecB replaced LLM values&quot;]" />
+                                                                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="667,164" sap2010:WorkflowViewState.IdRef="LogMessage_155" Level="Info" Message="[&quot;DU for CZI-SecB replaced LLM values&quot;]" />
                                                               </Sequence>
                                                             </If.Else>
                                                           </If>
@@ -781,7 +787,7 @@
                                 </ui:ForEach.Body>
                               </ui:ForEach>
                             </Sequence>
-                            <ui:WriteTextFile File="{x:Null}" Output="{x:Null}" DisplayName="Write Text File-JSONDU" FileName="[Path.GetDirectoryName(list_ImageFiles(0))+&quot;\&quot;+Path.GetFileNameWithoutExtension(in_str_PromptsFolder+&quot;CZI_Prompt.txt&quot;)+&quot;_DU_JSON.txt&quot;]" sap:VirtualizedContainerService.HintSize="450,166" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[jArr_ExtResults.ToString]">
+                            <ui:WriteTextFile File="{x:Null}" Output="{x:Null}" DisplayName="Write Text File-JSONDU" FileName="[Path.GetDirectoryName(list_ImageFiles(0))+&quot;\&quot;+Path.GetFileNameWithoutExtension(in_str_PromptsFolder+&quot;CZI_Prompt.txt&quot;)+&quot;_DU_JSON.txt&quot;]" sap:VirtualizedContainerService.HintSize="592,166" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[jArr_ExtResults.ToString]">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -794,17 +800,17 @@
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
                       </ui:CommentOut>
-                      <ui:ForEach x:TypeArguments="njl:JObject" CurrentIndex="{x:Null}" DisplayName="For Each Jarrobject" sap:VirtualizedContainerService.HintSize="772,1068" sap2010:WorkflowViewState.IdRef="ForEach`1_177" Values="[jArr_ExtResults]">
+                      <ui:ForEach x:TypeArguments="njl:JObject" CurrentIndex="{x:Null}" DisplayName="For Each Jarrobject" sap:VirtualizedContainerService.HintSize="1351,8269" sap2010:WorkflowViewState.IdRef="ForEach`1_177" Values="[jArr_ExtResults]">
                         <ui:ForEach.Body>
                           <ActivityAction x:TypeArguments="njl:JObject">
                             <ActivityAction.Argument>
                               <DelegateInArgument x:TypeArguments="njl:JObject" Name="currentJObject" />
                             </ActivityAction.Argument>
-                            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="574,931" sap2010:WorkflowViewState.IdRef="Sequence_4047">
+                            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="1317,8132" sap2010:WorkflowViewState.IdRef="Sequence_4047">
                               <Sequence.Variables>
                                 <Variable x:TypeArguments="njl:JToken" Name="jArr_Certifications" />
                               </Sequence.Variables>
@@ -814,7 +820,7 @@
                                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
-                              <Sequence DisplayName="Certification of Zero Income" sap:VirtualizedContainerService.HintSize="512,843" sap2010:WorkflowViewState.IdRef="Sequence_4048">
+                              <Sequence DisplayName="Certification of Zero Income" sap:VirtualizedContainerService.HintSize="1255,8044" sap2010:WorkflowViewState.IdRef="Sequence_4048">
                                 <Sequence.Variables>
                                   <Variable x:TypeArguments="njl:JObject" Name="jObj_Validation" />
                                   <Variable x:TypeArguments="njl:JObject" Name="jObj_JSON" />
@@ -826,7 +832,7 @@
                                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
-                                <Assign DisplayName="Assign 'currentJObject' to 'jObj_JSON'" sap:VirtualizedContainerService.HintSize="450,114" sap2010:WorkflowViewState.IdRef="Assign_885">
+                                <Assign DisplayName="Assign 'currentJObject' to 'jObj_JSON'" sap:VirtualizedContainerService.HintSize="1193,114" sap2010:WorkflowViewState.IdRef="Assign_885">
                                   <Assign.To>
                                     <OutArgument x:TypeArguments="njl:JObject">[jObj_JSON]</OutArgument>
                                   </Assign.To>
@@ -840,7 +846,7 @@
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
                                 </Assign>
-                                <If Condition="[String.IsNullOrWhiteSpace(jObj_JSON(&quot;ApplicantName&quot;).ToString)]" DisplayName="Checks if Applicant Name is empty" sap:VirtualizedContainerService.HintSize="450,570" sap2010:WorkflowViewState.IdRef="If_1237">
+                                <If Condition="[String.IsNullOrWhiteSpace(jObj_JSON(&quot;ApplicantName&quot;).ToString)]" DisplayName="Checks if Applicant Name is empty" sap:VirtualizedContainerService.HintSize="1193,570" sap2010:WorkflowViewState.IdRef="If_1237">
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
@@ -875,187 +881,381 @@
                                     </Sequence>
                                   </If.Else>
                                 </If>
-                                <ui:CommentOut DisplayName="minimal expenses. might be worth keeping it and just replacing fields" sap:VirtualizedContainerService.HintSize="450,48" sap2010:WorkflowViewState.IdRef="CommentOut_7">
-                                  <ui:CommentOut.Body>
-                                    <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="846,1290" sap2010:WorkflowViewState.IdRef="Sequence_4086">
+                                <If Condition="[String.IsNullOrWhiteSpace(jObj_JSON(&quot;UnitNumber&quot;).ToString)]" DisplayName="Checks if Unit Number is empty" sap:VirtualizedContainerService.HintSize="1193,570" sap2010:WorkflowViewState.IdRef="If_1238">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <If.Then>
+                                    <Sequence DisplayName="Then: Checks if Unit Number is empty" sap:VirtualizedContainerService.HintSize="416,297" sap2010:WorkflowViewState.IdRef="Sequence_4087">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;CZI&quot;,&quot;PageNum&quot;,in_Config(&quot;CZI_TN_UnitNumber&quot;).ToString,&quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CZI_TN_UnitNumber details to io_dt_AuditFindings" sap:VirtualizedContainerService.HintSize="354,209" sap2010:WorkflowViewState.IdRef="AddDataRow_1150">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </ui:AddDataRow>
+                                    </Sequence>
+                                  </If.Then>
+                                  <If.Else>
+                                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,103" sap2010:WorkflowViewState.IdRef="Sequence_4088">
                                       <sap:WorkflowViewStateService.ViewState>
                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                         </scg:Dictionary>
                                       </sap:WorkflowViewStateService.ViewState>
-                                      <Sequence DisplayName="CheckMinimalExpenseMarkedN/A" sap:VirtualizedContainerService.HintSize="784,1202" sap2010:WorkflowViewState.IdRef="Sequence_4076">
+                                    </Sequence>
+                                  </If.Else>
+                                </If>
+                                <If Condition="[jObj_JSON(&quot;Part1&quot;)(&quot;ExpectIncomeIn12Mos&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;) OrElse&#xD;&#xA;jObj_JSON(&quot;Part1&quot;)(&quot;JobStartsSoon&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;) OrElse&#xD;&#xA;jObj_JSON(&quot;Part1&quot;)(&quot;RecurringBenefitStartsSoon&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;)]" DisplayName="Checks if one of Part I questions is 'unanswered'" sap:VirtualizedContainerService.HintSize="1193,570" sap2010:WorkflowViewState.IdRef="If_1239">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <If.Then>
+                                    <Sequence DisplayName="Then: Checks if one of Part I questions is 'unanswered'" sap:VirtualizedContainerService.HintSize="416,297" sap2010:WorkflowViewState.IdRef="Sequence_4089">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;CZI&quot;,&quot;PageNum&quot;,in_Config(&quot;CZI_TN_Part1&quot;).ToString,&quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CZI_TN_Part1 details to io_dt_AuditFindings" sap:VirtualizedContainerService.HintSize="354,209" sap2010:WorkflowViewState.IdRef="AddDataRow_1151">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </ui:AddDataRow>
+                                    </Sequence>
+                                  </If.Then>
+                                  <If.Else>
+                                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,103" sap2010:WorkflowViewState.IdRef="Sequence_4090">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                    </Sequence>
+                                  </If.Else>
+                                </If>
+                                <If Condition="[jObj_JSON(&quot;Part1&quot;)(&quot;ExpectIncomeIn12Mos&quot;).ToString.ToLower.Equals(&quot;false&quot;) OrElse&#xD;&#xA;jObj_JSON(&quot;Part1&quot;)(&quot;JobStartsSoon&quot;).ToString.ToLower.Equals(&quot;true&quot;) OrElse&#xD;&#xA;jObj_JSON(&quot;Part1&quot;)(&quot;RecurringBenefitStartsSoon&quot;).ToString.ToLower.Equals(&quot;true&quot;)]" DisplayName="Checks if  Part I indicates potential income" sap:VirtualizedContainerService.HintSize="1193,570" sap2010:WorkflowViewState.IdRef="If_1240">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <If.Then>
+                                    <Sequence DisplayName="Then: Checks if  Part I indicates potential income" sap:VirtualizedContainerService.HintSize="416,297" sap2010:WorkflowViewState.IdRef="Sequence_4091">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;CZI&quot;,&quot;PageNum&quot;,in_Config(&quot;CZI_TN_PotentialIncome&quot;).ToString,&quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CZI_TN_PotentialIncome details to io_dt_AuditFindings" sap:VirtualizedContainerService.HintSize="354,209" sap2010:WorkflowViewState.IdRef="AddDataRow_1152">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </ui:AddDataRow>
+                                    </Sequence>
+                                  </If.Then>
+                                  <If.Else>
+                                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,103" sap2010:WorkflowViewState.IdRef="Sequence_4092">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                    </Sequence>
+                                  </If.Else>
+                                </If>
+                                <If Condition="[jObj_JSON(&quot;Part2&quot;)(&quot;IncomeReceivedFromSources&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;) OrElse&#xD;&#xA;(jObj_JSON(&quot;Part2&quot;)(&quot;IncomeReceivedFromSources&quot;).ToString.ToLower.Equals(&quot;false&quot;) AndAlso&#xD;&#xA;(jObj_JSON(&quot;Part2&quot;)(&quot;WagesBonusesTips&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;) OrElse&#xD;&#xA;jObj_JSON(&quot;Part2&quot;)(&quot;UnemploymentBenefit&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;) OrElse&#xD;&#xA;jObj_JSON(&quot;Part2&quot;)(&quot;WorkersComp&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;) OrElse&#xD;&#xA;jObj_JSON(&quot;Part2&quot;)(&quot;DisabilityPayment&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;) OrElse&#xD;&#xA;jObj_JSON(&quot;Part2&quot;)(&quot;Alimony&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;) OrElse&#xD;&#xA;jObj_JSON(&quot;Part2&quot;)(&quot;ChildSupport&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;) OrElse&#xD;&#xA;jObj_JSON(&quot;Part2&quot;)(&quot;SocialSecurity&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;) OrElse&#xD;&#xA;jObj_JSON(&quot;Part2&quot;)(&quot;RegularGifts&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;) OrElse&#xD;&#xA;jObj_JSON(&quot;Part2&quot;)(&quot;SelfEmployment&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;) OrElse&#xD;&#xA;jObj_JSON(&quot;Part2&quot;)(&quot;AnnuitiesInsuranceStocks&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;) OrElse&#xD;&#xA;jObj_JSON(&quot;Part2&quot;)(&quot;PensionsIRA401K&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;) OrElse&#xD;&#xA;jObj_JSON(&quot;Part2&quot;)(&quot;RentalPropertyIncome&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;) OrElse&#xD;&#xA;jObj_JSON(&quot;Part2&quot;)(&quot;DeathBenefit&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;) OrElse&#xD;&#xA;jObj_JSON(&quot;Part2&quot;)(&quot;DirectSales&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;) OrElse&#xD;&#xA;jObj_JSON(&quot;Part2&quot;)(&quot;WorkForCash&quot;).ToString.ToLower.Equals(&quot;unanswered&quot;)))]" DisplayName="Checks if Part II is completely completed" sap:VirtualizedContainerService.HintSize="1193,570" sap2010:WorkflowViewState.IdRef="If_1241">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <If.Then>
+                                    <Sequence DisplayName="Then: Checks if Part II is completely completed" sap:VirtualizedContainerService.HintSize="416,297" sap2010:WorkflowViewState.IdRef="Sequence_4093">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;CZI&quot;,&quot;PageNum&quot;,in_Config(&quot;CZI_TN_Part2&quot;).ToString,&quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CZI_TN_Part2 details to io_dt_AuditFindings" sap:VirtualizedContainerService.HintSize="354,209" sap2010:WorkflowViewState.IdRef="AddDataRow_1153">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </ui:AddDataRow>
+                                    </Sequence>
+                                  </If.Then>
+                                  <If.Else>
+                                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,103" sap2010:WorkflowViewState.IdRef="Sequence_4094">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                    </Sequence>
+                                  </If.Else>
+                                </If>
+                                <If Condition="[jObj_JSON(&quot;Part2&quot;)(&quot;WagesBonusesTips&quot;).ToString.ToLower.Equals(&quot;yes&quot;) OrElse&#xD;&#xA;jObj_JSON(&quot;Part2&quot;)(&quot;UnemploymentBenefit&quot;).ToString.ToLower.Equals(&quot;yes&quot;) OrElse&#xD;&#xA;jObj_JSON(&quot;Part2&quot;)(&quot;WorkersComp&quot;).ToString.ToLower.Equals(&quot;yes&quot;) OrElse&#xD;&#xA;jObj_JSON(&quot;Part2&quot;)(&quot;DisabilityPayment&quot;).ToString.ToLower.Equals(&quot;yes&quot;) OrElse&#xD;&#xA;jObj_JSON(&quot;Part2&quot;)(&quot;Alimony&quot;).ToString.ToLower.Equals(&quot;yes&quot;) OrElse&#xD;&#xA;jObj_JSON(&quot;Part2&quot;)(&quot;ChildSupport&quot;).ToString.ToLower.Equals(&quot;yes&quot;) OrElse&#xD;&#xA;jObj_JSON(&quot;Part2&quot;)(&quot;SocialSecurity&quot;).ToString.ToLower.Equals(&quot;yes&quot;) OrElse&#xD;&#xA;jObj_JSON(&quot;Part2&quot;)(&quot;RegularGifts&quot;).ToString.ToLower.Equals(&quot;yes&quot;) OrElse&#xD;&#xA;jObj_JSON(&quot;Part2&quot;)(&quot;SelfEmployment&quot;).ToString.ToLower.Equals(&quot;yes&quot;) OrElse&#xD;&#xA;jObj_JSON(&quot;Part2&quot;)(&quot;AnnuitiesInsuranceStocks&quot;).ToString.ToLower.Equals(&quot;yes&quot;) OrElse&#xD;&#xA;jObj_JSON(&quot;Part2&quot;)(&quot;PensionsIRA401K&quot;).ToString.ToLower.Equals(&quot;yes&quot;) OrElse&#xD;&#xA;jObj_JSON(&quot;Part2&quot;)(&quot;RentalPropertyIncome&quot;).ToString.ToLower.Equals(&quot;yes&quot;) OrElse&#xD;&#xA;jObj_JSON(&quot;Part2&quot;)(&quot;DeathBenefit&quot;).ToString.ToLower.Equals(&quot;yes&quot;) OrElse&#xD;&#xA;jObj_JSON(&quot;Part2&quot;)(&quot;DirectSales&quot;).ToString.ToLower.Equals(&quot;yes&quot;) OrElse&#xD;&#xA;jObj_JSON(&quot;Part2&quot;)(&quot;WorkForCash&quot;).ToString.ToLower.Equals(&quot;yes&quot;)]" DisplayName="Checks if Part II has one or more questions answered 'yes'" sap:VirtualizedContainerService.HintSize="1193,570" sap2010:WorkflowViewState.IdRef="If_1242">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <If.Then>
+                                    <Sequence DisplayName="Then: Checks if Part II has one or more questions answered 'yes'" sap:VirtualizedContainerService.HintSize="423,297" sap2010:WorkflowViewState.IdRef="Sequence_4095">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;CZI&quot;,&quot;PageNum&quot;,in_Config(&quot;CZI_TN_Part2Yes&quot;).ToString,&quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CZI_TN_Part2Yes details to io_dt_AuditFindings" sap:VirtualizedContainerService.HintSize="361,209" sap2010:WorkflowViewState.IdRef="AddDataRow_1154">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </ui:AddDataRow>
+                                    </Sequence>
+                                  </If.Then>
+                                  <If.Else>
+                                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,103" sap2010:WorkflowViewState.IdRef="Sequence_4096">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                    </Sequence>
+                                  </If.Else>
+                                </If>
+                                <If Condition="[String.IsNullOrWhiteSpace(jObj_JSON(&quot;Signature&quot;)(&quot;Date&quot;).ToString)]" DisplayName="Checks if Signature Date is empty" sap:VirtualizedContainerService.HintSize="1193,570" sap2010:WorkflowViewState.IdRef="If_1243">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <If.Then>
+                                    <Sequence DisplayName="Then: Checks if Signature Date is empty" sap:VirtualizedContainerService.HintSize="416,297" sap2010:WorkflowViewState.IdRef="Sequence_4097">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;CZI&quot;,&quot;PageNum&quot;,in_Config(&quot;CZI_TN_Dated&quot;).ToString,&quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CZI_TN_Dated details to io_dt_AuditFindings" sap:VirtualizedContainerService.HintSize="354,209" sap2010:WorkflowViewState.IdRef="AddDataRow_1155">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </ui:AddDataRow>
+                                    </Sequence>
+                                  </If.Then>
+                                  <If.Else>
+                                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,103" sap2010:WorkflowViewState.IdRef="Sequence_4098">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                    </Sequence>
+                                  </If.Else>
+                                </If>
+                                <If Condition="[String.IsNullOrWhiteSpace(jObj_JSON(&quot;Signature&quot;)(&quot;PrintedName&quot;).ToString)]" DisplayName="Checks if Signature Printed Name is empty" sap:VirtualizedContainerService.HintSize="1193,570" sap2010:WorkflowViewState.IdRef="If_1244">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <If.Then>
+                                    <Sequence DisplayName="Then: Checks if Signature Printed Name is empty" sap:VirtualizedContainerService.HintSize="416,297" sap2010:WorkflowViewState.IdRef="Sequence_4099">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;CZI&quot;,&quot;PageNum&quot;,in_Config(&quot;CZI_TN_PrintedName&quot;).ToString,&quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CZI_TN_PrintedName details to io_dt_AuditFindings" sap:VirtualizedContainerService.HintSize="354,209" sap2010:WorkflowViewState.IdRef="AddDataRow_1156">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </ui:AddDataRow>
+                                    </Sequence>
+                                  </If.Then>
+                                  <If.Else>
+                                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,103" sap2010:WorkflowViewState.IdRef="Sequence_4100">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                    </Sequence>
+                                  </If.Else>
+                                </If>
+                                <If Condition="[CBool(jObj_JSON(&quot;Signature&quot;)(&quot;IsSigned&quot;).ToString) = False]" DisplayName="Checks if Signature is present" sap:VirtualizedContainerService.HintSize="1193,570" sap2010:WorkflowViewState.IdRef="If_1245">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <If.Then>
+                                    <Sequence DisplayName="Then: Checks if Signature is present" sap:VirtualizedContainerService.HintSize="416,297" sap2010:WorkflowViewState.IdRef="Sequence_4101">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;CZI&quot;,&quot;PageNum&quot;,in_Config(&quot;CZI_TN_Signed&quot;).ToString,&quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CZI_TN_Signed details to io_dt_AuditFindings" sap:VirtualizedContainerService.HintSize="354,209" sap2010:WorkflowViewState.IdRef="AddDataRow_1157">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </ui:AddDataRow>
+                                    </Sequence>
+                                  </If.Then>
+                                  <If.Else>
+                                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,103" sap2010:WorkflowViewState.IdRef="Sequence_4102">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                    </Sequence>
+                                  </If.Else>
+                                </If>
+                                <Switch x:TypeArguments="x:Boolean" DisplayName="Check if move-in and CZI dates are valid" Expression="[Not String.IsNullOrWhiteSpace(in_str_MoveInDate) AndAlso&#xD;&#xA;String.IsNullOrWhiteSpace(jObj_JSON(&quot;Signature&quot;)(&quot;Date&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="1193,1424" sap2010:WorkflowViewState.IdRef="Switch`1_6">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <TryCatch x:Key="True" DisplayName="Try Catch - Move In Date check" sap:VirtualizedContainerService.HintSize="488,1104" sap2010:WorkflowViewState.IdRef="TryCatch_237">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <TryCatch.Try>
+                                      <If Condition="[CDate(jObj_JSON(&quot;Signature&quot;)(&quot;Date&quot;).ToString) &gt;= CDate(in_str_MoveInDate).AddDays(-120)]" DisplayName="If Check Date &gt; 120 Days Old" sap:VirtualizedContainerService.HintSize="450,538" sap2010:WorkflowViewState.IdRef="If_1246">
                                         <sap:WorkflowViewStateService.ViewState>
                                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                             <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                           </scg:Dictionary>
                                         </sap:WorkflowViewStateService.ViewState>
-                                        <ui:ForEach x:TypeArguments="njl:JToken" CurrentIndex="{x:Null}" DisplayName="For Each currentJExpenses" sap:VirtualizedContainerService.HintSize="722,1043" sap2010:WorkflowViewState.IdRef="ForEach`1_174" Values="[jObj_JSON(&quot;SectionBExpenseQuestions&quot;)]">
-                                          <ui:ForEach.Body>
-                                            <ActivityAction x:TypeArguments="njl:JToken">
-                                              <ActivityAction.Argument>
-                                                <DelegateInArgument x:TypeArguments="njl:JToken" Name="currentJExpenses" />
-                                              </ActivityAction.Argument>
-                                              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="688,897" sap2010:WorkflowViewState.IdRef="Sequence_4071">
-                                                <sap:WorkflowViewStateService.ViewState>
-                                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                                  </scg:Dictionary>
-                                                </sap:WorkflowViewStateService.ViewState>
-                                                <If Condition="[currentJExpenses(&quot;ExpenseType&quot;).ToString.ToUpper.Contains(&quot;PERSONAL CARE PRODUCTS&quot;)]" DisplayName="If-ExpenseIspersonalCare" sap:VirtualizedContainerService.HintSize="626,809" sap2010:WorkflowViewState.IdRef="If_1234">
-                                                  <sap:WorkflowViewStateService.ViewState>
-                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                                    </scg:Dictionary>
-                                                  </sap:WorkflowViewStateService.ViewState>
-                                                  <If.Then>
-                                                    <Sequence DisplayName="Then: If-ExpenseIspersonalCare" sap:VirtualizedContainerService.HintSize="592,545" sap2010:WorkflowViewState.IdRef="Sequence_4069">
-                                                      <sap:WorkflowViewStateService.ViewState>
-                                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                                        </scg:Dictionary>
-                                                      </sap:WorkflowViewStateService.ViewState>
-                                                      <If Condition="[currentJExpenses(&quot;IsNAChecked&quot;).ToString.ToLower.Contains(&quot;true&quot;) Or&#xA;CInt(currentJExpenses(&quot;MonthlyAmount&quot;).ToString).Equals(0)]" DisplayName="If-NaChecked or Amount 0" sap:VirtualizedContainerService.HintSize="530,457" sap2010:WorkflowViewState.IdRef="If_1233">
-                                                        <sap:WorkflowViewStateService.ViewState>
-                                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                                          </scg:Dictionary>
-                                                        </sap:WorkflowViewStateService.ViewState>
-                                                        <If.Then>
-                                                          <Sequence DisplayName="Then: If-NaChecked or Amount 0" sap:VirtualizedContainerService.HintSize="496,193" sap2010:WorkflowViewState.IdRef="Sequence_4067">
-                                                            <sap:WorkflowViewStateService.ViewState>
-                                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                                              </scg:Dictionary>
-                                                            </sap:WorkflowViewStateService.ViewState>
-                                                            <Assign DisplayName="Assign-bool_NAChecked" sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_886">
-                                                              <Assign.To>
-                                                                <OutArgument x:TypeArguments="x:Boolean">[bool_NAChecked]</OutArgument>
-                                                              </Assign.To>
-                                                              <Assign.Value>
-                                                                <InArgument x:TypeArguments="x:Boolean">True</InArgument>
-                                                              </Assign.Value>
-                                                              <sap:WorkflowViewStateService.ViewState>
-                                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                                                </scg:Dictionary>
-                                                              </sap:WorkflowViewStateService.ViewState>
-                                                            </Assign>
-                                                          </Sequence>
-                                                        </If.Then>
-                                                        <If.Else>
-                                                          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,103" sap2010:WorkflowViewState.IdRef="Sequence_4068">
-                                                            <sap:WorkflowViewStateService.ViewState>
-                                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                                              </scg:Dictionary>
-                                                            </sap:WorkflowViewStateService.ViewState>
-                                                          </Sequence>
-                                                        </If.Else>
-                                                      </If>
-                                                    </Sequence>
-                                                  </If.Then>
-                                                  <If.Else>
-                                                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,103" sap2010:WorkflowViewState.IdRef="Sequence_4070">
-                                                      <sap:WorkflowViewStateService.ViewState>
-                                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                                        </scg:Dictionary>
-                                                      </sap:WorkflowViewStateService.ViewState>
-                                                    </Sequence>
-                                                  </If.Else>
-                                                </If>
-                                              </Sequence>
-                                            </ActivityAction>
-                                          </ui:ForEach.Body>
-                                          <sap:WorkflowViewStateService.ViewState>
-                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                            </scg:Dictionary>
-                                          </sap:WorkflowViewStateService.ViewState>
-                                        </ui:ForEach>
-                                        <Sequence DisplayName="Minimal Expenses check" sap:VirtualizedContainerService.HintSize="722,48" sap2010:WorkflowViewState.IdRef="Sequence_4075">
-                                          <sap:WorkflowViewStateService.ViewState>
-                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                            </scg:Dictionary>
-                                          </sap:WorkflowViewStateService.ViewState>
-                                          <ui:ForEach x:TypeArguments="njl:JToken" CurrentIndex="{x:Null}" DisplayName="For Each currentJToken" sap:VirtualizedContainerService.HintSize="546,817" sap2010:WorkflowViewState.IdRef="ForEach`1_175" Values="[jObj_JSON(&quot;SectionBExpenseQuestions&quot;)]">
-                                            <ui:ForEach.Body>
-                                              <ActivityAction x:TypeArguments="njl:JToken">
-                                                <ActivityAction.Argument>
-                                                  <DelegateInArgument x:TypeArguments="njl:JToken" Name="currentJToken" />
-                                                </ActivityAction.Argument>
-                                                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="512,680" sap2010:WorkflowViewState.IdRef="Sequence_4074">
-                                                  <sap:WorkflowViewStateService.ViewState>
-                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                                    </scg:Dictionary>
-                                                  </sap:WorkflowViewStateService.ViewState>
-                                                  <If sap2010:Annotation.AnnotationText="Check for expense type" Condition="[(currentJToken(&quot;ExpenseType&quot;).ToString.ToUpper.Equals(&quot;RENT&quot;) And&#xA;(currentJToken(&quot;IsNAChecked&quot;).ToString.ToLower.Contains(&quot;true&quot;) Or&#xA;currentJToken(&quot;MonthlyAmount&quot;.ToString).Equals(0))) Or&#xA;(currentJToken(&quot;ExpenseType&quot;).ToString.ToUpper.Equals(&quot;UTILITIES&quot;) And&#xA;(currentJToken(&quot;IsNAChecked&quot;).ToString.ToLower.Contains(&quot;true&quot;) Or&#xA;currentJToken(&quot;MonthlyAmount&quot;).ToString.Equals(0))) Or&#xA;(currentJToken(&quot;ExpenseType&quot;).ToString.ToUpper.Equals(&quot;FOOD&quot;) And&#xA;(currentJToken(&quot;IsNAChecked&quot;).ToString.ToLower.Contains(&quot;true&quot;) Or&#xA;currentJToken(&quot;MonthlyAmount&quot;).ToString.Equals(0))) Or&#xA;bool_NAChecked]" DisplayName="If - ExpenseType is one Food, Rent or Utilities" sap:VirtualizedContainerService.HintSize="450,592" sap2010:WorkflowViewState.IdRef="If_1235">
-                                                    <sap:WorkflowViewStateService.ViewState>
-                                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                                                      </scg:Dictionary>
-                                                    </sap:WorkflowViewStateService.ViewState>
-                                                    <If.Then>
-                                                      <Sequence DisplayName="Then: If - ExpenseType is one Food, Rent or Utilities" sap:VirtualizedContainerService.HintSize="416,297" sap2010:WorkflowViewState.IdRef="Sequence_4072">
-                                                        <sap:WorkflowViewStateService.ViewState>
-                                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                                          </scg:Dictionary>
-                                                        </sap:WorkflowViewStateService.ViewState>
-                                                        <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;CZI&quot;,&quot;PageNum&quot;,in_Config(&quot;CZI_MinimalExpenseMarkedNA&quot;).ToString,&quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="354,209" sap2010:WorkflowViewState.IdRef="AddDataRow_1147">
-                                                          <sap:WorkflowViewStateService.ViewState>
-                                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                                            </scg:Dictionary>
-                                                          </sap:WorkflowViewStateService.ViewState>
-                                                        </ui:AddDataRow>
-                                                      </Sequence>
-                                                    </If.Then>
-                                                    <If.Else>
-                                                      <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,103" sap2010:WorkflowViewState.IdRef="Sequence_4073">
-                                                        <sap:WorkflowViewStateService.ViewState>
-                                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                                          </scg:Dictionary>
-                                                        </sap:WorkflowViewStateService.ViewState>
-                                                      </Sequence>
-                                                    </If.Else>
-                                                  </If>
-                                                </Sequence>
-                                              </ActivityAction>
-                                            </ui:ForEach.Body>
+                                        <If.Then>
+                                          <Sequence DisplayName="Then: If Check Date &gt; 120 Days Old" sap:VirtualizedContainerService.HintSize="416,103" sap2010:WorkflowViewState.IdRef="Sequence_4103">
                                             <sap:WorkflowViewStateService.ViewState>
                                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                               </scg:Dictionary>
                                             </sap:WorkflowViewStateService.ViewState>
-                                          </ui:ForEach>
-                                        </Sequence>
-                                      </Sequence>
-                                    </Sequence>
-                                  </ui:CommentOut.Body>
+                                          </Sequence>
+                                        </If.Then>
+                                        <If.Else>
+                                          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,297" sap2010:WorkflowViewState.IdRef="Sequence_4104">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;CZI&quot;,&quot;PageNum&quot;,in_Config(&quot;CZI_TN_CheckMoveInDate&quot;).ToString,&quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CZI_TN_CheckMoveInDate details to io_dt_AuditFindings" sap:VirtualizedContainerService.HintSize="354,209" sap2010:WorkflowViewState.IdRef="AddDataRow_1158" />
+                                          </Sequence>
+                                        </If.Else>
+                                      </If>
+                                    </TryCatch.Try>
+                                    <TryCatch.Catches>
+                                      <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="454,256" sap2010:WorkflowViewState.IdRef="Catch`1_231">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                        <ActivityAction x:TypeArguments="s:Exception">
+                                          <ActivityAction.Argument>
+                                            <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                          </ActivityAction.Argument>
+                                          <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;CZI&quot;,&quot;PageNum&quot;,&quot;Unable to validate a Finding: &quot; + in_Config(&quot;CZI_TN_CheckMoveInDate&quot;).ToString + &quot; Needs manual review &quot;, exception.Message}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CZI_TN_CheckMoveInDate error details to io_dt_AuditFindings" sap:VirtualizedContainerService.HintSize="334,186" sap2010:WorkflowViewState.IdRef="AddDataRow_1159" />
+                                        </ActivityAction>
+                                      </Catch>
+                                    </TryCatch.Catches>
+                                  </TryCatch>
+                                </Switch>
+                                <Sequence DisplayName="CheckMinimalExpenseMarkedN/A" sap:VirtualizedContainerService.HintSize="1193,1265" sap2010:WorkflowViewState.IdRef="Sequence_4105">
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
-                                </ui:CommentOut>
+                                  <Switch x:TypeArguments="x:Boolean" DisplayName="Validate Expenses" Expression="[{&quot;Rent&quot;,&quot;ChildCare&quot;,&quot;Utilities&quot;,&quot;Food&quot;,&quot;ClothingShoes&quot;,&quot;School&quot;,&quot;Phone&quot;,&quot;TV&quot;,&quot;Internet&quot;,&#xD;&#xA; &quot;MedicalCare&quot;,&quot;MedicationPerscriptions&quot;,&quot;PersonalCare&quot;,&quot;AutoExpenses&quot;,&quot;OtherTransportation&quot;,&#xD;&#xA; &quot;CreditCardPayments&quot;,&quot;Other&quot;} _&#xD;&#xA;.Any(Function(c) _&#xD;&#xA;    Not If(jObj_JSON.SelectToken(&quot;Part3['&quot; &amp; c &amp; &quot;']['N/ACheck']&quot;), New JValue(&quot;&quot;)).ToString.Trim.Equals(&quot;True&quot;, StringComparison.OrdinalIgnoreCase) _&#xD;&#xA;    AndAlso String.IsNullOrWhiteSpace(If(jObj_JSON.SelectToken(&quot;Part3['&quot; &amp; c &amp; &quot;']['Explanation']&quot;), New JValue(&quot;&quot;)).ToString))]" sap:VirtualizedContainerService.HintSize="1131,506" sap2010:WorkflowViewState.IdRef="Switch`1_7">
+                                    <ui:AddDataRow x:Key="True" ArrayRow="[{&quot;CZI&quot;,&quot;PageNum&quot;,in_Config(&quot;CZI_TN_Expenses&quot;).ToString,&quot;&quot;}]" DataRow="{x:Null}" DataTable="[io_dt_AuditFindings]" DisplayName="Add CZI_TN_Expenses details to io_dt_AuditFindings" sap:VirtualizedContainerService.HintSize="340,186" sap2010:WorkflowViewState.IdRef="AddDataRow_1161">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                    </ui:AddDataRow>
+                                  </Switch>
+                                  <Sequence DisplayName="Minimal Expenses check" sap:VirtualizedContainerService.HintSize="1131,648" sap2010:WorkflowViewState.IdRef="Sequence_4075">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <Switch x:TypeArguments="x:Boolean" DisplayName="Validate Minimal Expenses" Expression="[{&quot;Rent&quot;,&quot;Food&quot;,&quot;Utilities&quot;} _&#xD;&#xA;.Any(Function(c) _&#xD;&#xA;    If(jObj_JSON.SelectToken(&quot;Part3['&quot; &amp; c &amp; &quot;']['N/ACheck']&quot;), New JValue(&quot;&quot;)).ToString.Trim.Equals(&quot;True&quot;, StringComparison.OrdinalIgnoreCase) _&#xD;&#xA;    OrElse System.Text.RegularExpressions.Regex.IsMatch(If(jObj_JSON.SelectToken(&quot;Part3['&quot; &amp; c &amp; &quot;']['Explanation']&quot;), New JValue(&quot;&quot;)).ToString, &quot;^\s*\$?\s*0+([.,]0+)?\s*$&quot;))]" sap:VirtualizedContainerService.HintSize="1069,537" sap2010:WorkflowViewState.IdRef="Switch`1_8">
+                                      <ui:AddDataRow DataRow="{x:Null}" x:Key="True" ArrayRow="[{&quot;CZI&quot;,&quot;PageNum&quot;,in_Config(&quot;CZI_TN_MinimalExpenses&quot;).ToString,&quot;&quot;}]" DataTable="[io_dt_AuditFindings]" DisplayName="Add CZI_TN_MinimalExpenses details to io_dt_AuditFindings" sap:VirtualizedContainerService.HintSize="341,186" sap2010:WorkflowViewState.IdRef="AddDataRow_1162">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </ui:AddDataRow>
+                                    </Switch>
+                                  </Sequence>
+                                </Sequence>
                               </Sequence>
                             </Sequence>
                           </ActivityAction>
@@ -1077,7 +1277,7 @@
                           <x:Boolean x:Key="IsPinned">False</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="354,164" sap2010:WorkflowViewState.IdRef="LogMessage_158" Level="Warn" Message="[&quot;No CZI rows to process.&quot;]" />
+                      <ui:LogMessage DisplayName="Logs a warning message when no CZI rows are found" sap:VirtualizedContainerService.HintSize="354,164" sap2010:WorkflowViewState.IdRef="LogMessage_158" Level="Warn" Message="[&quot;No CZI rows to process.&quot;]" />
                     </Sequence>
                   </If.Else>
                 </If>
@@ -1101,7 +1301,7 @@
               </Sequence>
             </If.Else>
           </If>
-          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1398,164" sap2010:WorkflowViewState.IdRef="LogMessage_156" Message="[&quot;Finished findings for &quot;+in_Config(&quot;CZI&quot;).ToString]" />
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1543,164" sap2010:WorkflowViewState.IdRef="LogMessage_156" Message="[&quot;Finished findings for &quot;+in_Config(&quot;CZI&quot;).ToString]" />
         </Sequence>
       </TryCatch.Try>
       <TryCatch.Catches>
@@ -1123,7 +1323,7 @@
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:LogMessage DisplayName="Log error for Certification of Zero Income" sap:VirtualizedContainerService.HintSize="354,173" sap2010:WorkflowViewState.IdRef="LogMessage_157" Level="{x:Null}" Message="[&quot;Failed at Certification of Zero Income: &quot;+exception.Message]">
+              <ui:LogMessage DisplayName="Log error for Certification of Zero Income" sap:VirtualizedContainerService.HintSize="354,173" sap2010:WorkflowViewState.IdRef="LogMessage_157" Message="[&quot;Failed at Certification of Zero Income: &quot;+exception.Message]">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
