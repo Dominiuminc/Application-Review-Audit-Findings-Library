@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="EmploymentVerification_Extraction___FL" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:upr="clr-namespace:UiPath.Platform.ResourceHandling;assembly=UiPath.Platform" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="EmploymentVerification_Extraction___FL" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:p="http://schemas.uipath.com/workflow/activities/intelligentocr" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uisad="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.DataExtraction;assembly=UiPath.IntelligentOCR.StudioWeb.Activities" xmlns:uisad1="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.DocumentClassification;assembly=UiPath.IntelligentOCR.StudioWeb.Activities" xmlns:uisasefb="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.SWEntities.ExtendedExtractionResultsForDocumentData.FLCSSCEVHHDSCSC10EmploymentVerificationV2_727d1984.Bundle;assembly=ExtendedExtractionRe.EOnYo3tdr8I1WPjYZ47RCcF" xmlns:upr="clr-namespace:UiPath.Platform.ResourceHandling;assembly=UiPath.Platform" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_ArrImages" Type="InArgument(s:String[])" />
     <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
@@ -7,6 +7,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1090,3521</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>EmploymentVerification_Extraction___FL_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -51,6 +52,12 @@
       <x:String>Newtonsoft.Json</x:String>
       <x:String>System.Dynamic</x:String>
       <x:String>System.Collections.Specialized</x:String>
+      <x:String>UiPath.IntelligentOCR.StudioWeb.Activities.Telemetry</x:String>
+      <x:String>System.Numerics</x:String>
+      <x:String>UiPath.IntelligentOCR.StudioWeb.Activities.SWEntities.ExtendedExtractionResultsForDocumentData.CommonAOR10AcknowledgementOfReceiptV14_2fdd4fa5.Bundle</x:String>
+      <x:String>UiPath.IntelligentOCR.StudioWeb.Activities.Bindings</x:String>
+      <x:String>UiPath.IntelligentOCR.StudioWeb.Activities.SWEntities.ExtendedExtractionResultsForDocumentData.FLCSSCEVHHDSCSC10HousingHistoryDisclosureV2_727d1984.Bundle</x:String>
+      <x:String>UiPath.IntelligentOCR.StudioWeb.Activities.SWEntities.ExtendedExtractionResultsForDocumentData.FLCSSCEVHHDSCSC10EmploymentVerificationV2_727d1984.Bundle</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -111,14 +118,24 @@
       <AssemblyReference>Newtonsoft.Json</AssemblyReference>
       <AssemblyReference>netstandard</AssemblyReference>
       <AssemblyReference>System.Collections.Specialized</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>ExtendedExtractionRe.0BjFa3mR4EC14PU093ftI2J</AssemblyReference>
+      <AssemblyReference>ExtendedExtractionRe.iEKP11jPGjJ1NKf4B4eJUPc4</AssemblyReference>
+      <AssemblyReference>ExtendedExtractionRe.EOnYo3tdr8I1WPjYZ47RCcF</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="EmploymentVerification_Extraction - FL" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="EmploymentVerification_Extraction - FL" sap:VirtualizedContainerService.HintSize="750,3456" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="njl:JArray" Name="jArr_EVDocumentDataResults" />
     </Sequence.Variables>
-    <ui:LogMessage DisplayName="Log Message-Started" Message="[&quot;EmploymentVerification_Extraction - FL.xaml is Started&quot;]" sap2010:WorkflowViewState.IdRef="LogMessage_1" />
-    <Assign DisplayName="Assign-InitEVDocumentDataList" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Message-Started" sap:VirtualizedContainerService.HintSize="688,173" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;EmploymentVerification_Extraction - FL.xaml is Started&quot;]" />
+    <Assign DisplayName="Assign-InitEVDocumentDataList" sap:VirtualizedContainerService.HintSize="688,114" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="njl:JArray">[jArr_EVDocumentDataResults]</OutArgument>
       </Assign.To>
@@ -126,33 +143,139 @@
         <InArgument x:TypeArguments="njl:JArray">[New JArray()]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each currentFile" Values="[in_ArrImages]" sap2010:WorkflowViewState.IdRef="ForEach`1_1">
+    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each currentFile" sap:VirtualizedContainerService.HintSize="688,2329" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[in_ArrImages]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="x:String">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:String" Name="currentFile" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="654,2183" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <Sequence.Variables>
               <Variable x:TypeArguments="upr:ILocalResource" Name="lRes_File" />
             </Sequence.Variables>
-            <ui:LogMessage DisplayName="Log file processing update" Message="[string.Format(&quot;Processing file: {0}&quot;, currentFile)]" sap2010:WorkflowViewState.IdRef="LogMessage_2" />
-            <ui:PathExists Exists="{x:Null}" DisplayName="CurrentFile Exists" Path="[currentFile]" PathType="File" Resource="[lRes_File]" sap2010:WorkflowViewState.IdRef="PathExists_1" />
-            <Sequence DisplayName="TODO-BIND-DU: add 'Classify Document' then 'Extract Document Data' (model FL_CSSC_EV_HHD_SCSC_1-0, doc type Employment Verification) here" sap2010:WorkflowViewState.IdRef="Sequence_3">
-              <ui:LogMessage DisplayName="Log Message: DU not bound yet" Level="Warn" Message="[string.Format(&quot;DU model FL_CSSC_EV_HHD_SCSC_1-0 is not bound in EmploymentVerification_Extraction - FL.xaml - skipping {0}&quot;, currentFile)]" sap2010:WorkflowViewState.IdRef="LogMessage_3" />
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:LogMessage DisplayName="Log file processing update" sap:VirtualizedContainerService.HintSize="592,173" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[string.Format(&quot;Processing file: {0}&quot;, currentFile)]" />
+            <ui:PathExists Exists="{x:Null}" DisplayName="CurrentFile Exists" sap:VirtualizedContainerService.HintSize="592,172" sap2010:WorkflowViewState.IdRef="PathExists_1" Path="[currentFile]" PathType="File" Resource="[lRes_File]" />
+            <Sequence DisplayName="Classify and Extract" sap:VirtualizedContainerService.HintSize="592,1750" sap2010:WorkflowViewState.IdRef="Sequence_3">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="uisad1:DocumentData" Name="classifiedDocument" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <p:ClassifyDocument ApiKey="{x:Null}" ClassifierResult="{x:Null}" DocumentObjectModel="{x:Null}" DocumentPath="{x:Null}" DocumentText="{x:Null}" DocumentTypes="{x:Null}" PersistenceId="{x:Null}" PredictionId="{x:Null}" ClassificationResults="[classifiedDocument]" ClassifierId="867edfc2-9edf-f111-91f4-000d3a9a5c9a" ClassifierName="FL_CSSC_EV_HHD_SCSC_1-0_classifier_v2" DisplayName="Classify Document" Endpoint="https://cloud.uipath.com/a6e81ae5-13a7-4d1d-9b35-86ac86d911ce/4af39ed3-b30e-48f2-b551-f1e60b4acb75/du_/api/framework/projects/727d1984-40a5-f111-9b32-6045bdd7b556/classifiers/867edfc2-9edf-f111-91f4-000d3a9a5c9a/classification/start?api-version=2.0" FileInput="[lRes_File]" sap:VirtualizedContainerService.HintSize="530,309" sap2010:WorkflowViewState.IdRef="ClassifyDocument_1" MinimumConfidence="50" ProjectId="727d1984-40a5-f111-9b32-6045bdd7b556" ProjectName="Florida Document Understanding" ProjectVersionName="FL_CSSC_EV_HHD_SCSC_1-0" ProjectVersionNumber="2" RuntimeAssetPath="Compliance/Application Review Process/DU_AppCredentials" RuntimeTenantUrl="[in_Config(&quot;DU_TenantURL&quot;).ToString]" TimeoutInSeconds="[CInt(in_config(&quot;DU_TimeOut&quot;).ToString)]">
+                <p:ClassifyDocument.GptPromptWithVariables>
+                  <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                </p:ClassifyDocument.GptPromptWithVariables>
+                <p:ClassifyDocument.ProjectTag>
+                  <InArgument x:TypeArguments="x:String">
+                    <Literal x:TypeArguments="x:String" Value="" />
+                  </InArgument>
+                </p:ClassifyDocument.ProjectTag>
+              </p:ClassifyDocument>
+              <ui:LogMessage DisplayName="Log Message: DU not bound yet" sap:VirtualizedContainerService.HintSize="530,173" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Warn" Message="[string.Format(&quot;DU model FL_CSSC_EV_HHD_SCSC_1-0 is not bound in EmploymentVerification_Extraction - FL.xaml - skipping {0}&quot;, currentFile)]" />
+              <If Condition="[classifiedDocument.DocumentType.DisplayName = &quot;Acknowledgement of Receipt&quot;]" sap:VirtualizedContainerService.HintSize="530,1157" sap2010:WorkflowViewState.IdRef="If_2">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <If.Then>
+                  <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="496,893" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="njl:JObject" Name="duJObj_EV" />
+                      <Variable x:TypeArguments="uisad:IDocumentData(uisasefb:FLCSSCEVHHDSCSC10EmploymentVerificationV2_727d1984)" Name="EVDocumentData" />
+                    </Sequence.Variables>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <p:ExtractDocumentDataWithDocumentData x:TypeArguments="uisasefb:FLCSSCEVHHDSCSC10EmploymentVerificationV2_727d1984" DocumentBounds="{x:Null}" DocumentObjectModel="{x:Null}" DocumentPath="{x:Null}" DocumentText="{x:Null}" ExtractorDocumentType="{x:Null}" ExtractorResult="{x:Null}" PersistenceId="{x:Null}" PredictionId="{x:Null}" ActivityMajorVersion="2" ApplyAutoValidation="False" DisplayName="Extract Document Data" DocType="877edfc2-9edf-f111-91f4-000d3a9a5c9a" ExtractionResults="[EVDocumentData]" ExtractorName="FL_CSSC_EV_HHD_SCSC_1-0_Employment Verification_v2" FileInput="[classifiedDocument]" GenerateData="True" sap:VirtualizedContainerService.HintSize="434,359" sap2010:WorkflowViewState.IdRef="ExtractDocumentDataWithDocumentData`1_1" ModernDocumentTypeId="4a380748-7fdf-f111-91f2-000d3a4e780a" ModernDocumentTypeName="Employment Verification" ProjectId="727d1984-40a5-f111-9b32-6045bdd7b556" ProjectName="Florida Document Understanding" ProjectVersionName="FL_CSSC_EV_HHD_SCSC_1-0" ProjectVersionNumber="2" RuntimeAssetPath="Compliance/Application Review Process/DU_AppCredentials" RuntimeTenantUrl="[in_Config(&quot;DU_TenantURL&quot;).ToString]" TimeoutInSeconds="3600">
+                      <p:ExtractDocumentDataWithDocumentData.AutoValidationConfidenceThreshold>
+                        <InArgument x:TypeArguments="s:Nullable(x:Int32)">
+                          <Literal x:TypeArguments="s:Nullable(x:Int32)" Value="0" />
+                        </InArgument>
+                      </p:ExtractDocumentDataWithDocumentData.AutoValidationConfidenceThreshold>
+                      <p:ExtractDocumentDataWithDocumentData.GptPromptWithVariables>
+                        <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                      </p:ExtractDocumentDataWithDocumentData.GptPromptWithVariables>
+                      <p:ExtractDocumentDataWithDocumentData.ProjectTag>
+                        <InArgument x:TypeArguments="x:String">
+                          <Literal x:TypeArguments="x:String" Value="" />
+                        </InArgument>
+                      </p:ExtractDocumentDataWithDocumentData.ProjectTag>
+                    </p:ExtractDocumentDataWithDocumentData>
+                    <ui:LogMessage DisplayName="Write extracted data EV" sap:VirtualizedContainerService.HintSize="434,173" sap2010:WorkflowViewState.IdRef="LogMessage_5" Message="[&quot;The following data has been extracted (excluding table data): {for each fields, except tables, display as key-value pairs: field name - field value}.&quot; &amp; vbCrLf &amp; EVDocumentData.ToString]">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:LogMessage>
+                    <Assign DisplayName="Assign - duJObj_CSS" sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_3">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="njl:JObject">[duJObj_EV]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="njl:JObject">[JObject.Parse(Newtonsoft.Json.JsonConvert.SerializeObject(EVDocumentData.Data))]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <InvokeMethod DisplayName="Add CSEIDocumentData to List (InvokeMethod)" sap:VirtualizedContainerService.HintSize="434,159" sap2010:WorkflowViewState.IdRef="InvokeMethod_1" MethodName="Add">
+                      <InvokeMethod.TargetObject>
+                        <InArgument x:TypeArguments="njl:JArray">[jArr_EVDocumentDataResults]</InArgument>
+                      </InvokeMethod.TargetObject>
+                      <InArgument x:TypeArguments="njl:JObject">
+                        <VisualBasicValue x:TypeArguments="njl:JObject" ExpressionText="JObject.FromObject(EVDocumentData.Data)" />
+                      </InArgument>
+                    </InvokeMethod>
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,103" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Sequence>
+                </If.Else>
+              </If>
             </Sequence>
           </Sequence>
         </ActivityAction>
       </ui:ForEach.Body>
     </ui:ForEach>
-    <If Condition="[jArr_EVDocumentDataResults.Count = 0]" DisplayName="If - no EV document extracted by DU" sap2010:WorkflowViewState.IdRef="If_1">
+    <If Condition="[jArr_EVDocumentDataResults.Count = 0]" DisplayName="If - no EV document extracted by DU" sap:VirtualizedContainerService.HintSize="688,474" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Then>
-        <Sequence DisplayName="Then: If - no EV document extracted by DU" sap2010:WorkflowViewState.IdRef="Sequence_4">
-          <Throw DisplayName="Throw-NoDUResults" Exception="[New SystemException(&quot;DU returned no Employment Verification documents (classifier did not match, or the DU model is not bound in EmploymentVerification_Extraction - FL.xaml).&quot;)]" sap2010:WorkflowViewState.IdRef="Throw_1" />
+        <Sequence DisplayName="Then: If - no EV document extracted by DU" sap:VirtualizedContainerService.HintSize="416,201" sap2010:WorkflowViewState.IdRef="Sequence_4">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Throw DisplayName="Throw-NoDUResults" Exception="[New SystemException(&quot;DU returned no Employment Verification documents (classifier did not match, or the DU model is not bound in EmploymentVerification_Extraction - FL.xaml).&quot;)]" sap:VirtualizedContainerService.HintSize="354,113" sap2010:WorkflowViewState.IdRef="Throw_1" />
         </Sequence>
       </If.Then>
+      <If.Else>
+        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,103" sap2010:WorkflowViewState.IdRef="Sequence_5">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </Sequence>
+      </If.Else>
     </If>
-    <Assign DisplayName="Assign-out_EVDocumentDataList" sap2010:WorkflowViewState.IdRef="Assign_2">
+    <Assign DisplayName="Assign-out_EVDocumentDataList" sap:VirtualizedContainerService.HintSize="688,114" sap2010:WorkflowViewState.IdRef="Assign_2">
       <Assign.To>
         <OutArgument x:TypeArguments="njl:JArray">[out_EVDocumentDataList]</OutArgument>
       </Assign.To>
@@ -160,6 +283,6 @@
         <InArgument x:TypeArguments="njl:JArray">[jArr_EVDocumentDataResults]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:LogMessage DisplayName="Log Message-Completed" Message="[&quot;EmploymentVerification_Extraction - FL.xaml is Completed&quot;]" sap2010:WorkflowViewState.IdRef="LogMessage_4" />
+    <ui:LogMessage DisplayName="Log Message-Completed" sap:VirtualizedContainerService.HintSize="688,164" sap2010:WorkflowViewState.IdRef="LogMessage_4" Message="[&quot;EmploymentVerification_Extraction - FL.xaml is Completed&quot;]" />
   </Sequence>
 </Activity>
