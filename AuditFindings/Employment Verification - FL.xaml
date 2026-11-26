@@ -1,0 +1,1327 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Employment_Verification___FL" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ausam="clr-namespace:AshlingPartners.UiPath.StringMatching.Activities.Models;assembly=AshlingPartners.UiPath.StringMatching.Activities" xmlns:ausas="clr-namespace:AshlingPartners.UiPath.StringMatching.Activities.StringMatching;assembly=AshlingPartners.UiPath.StringMatching.Activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_ClassificationResultsData" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="in_strPromptsFolder" Type="InArgument(x:String)" />
+    <x:Property Name="in_strMoveInDate" Type="InArgument(x:String)" />
+    <x:Property Name="in_RDCExists" Type="InArgument(x:Boolean)" />
+    <x:Property Name="in_dt_RDCPayCategories" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="in_ArrRDCTotalGrossPay" Type="InArgument(s:String[])" />
+    <x:Property Name="in_dt_ICWIncomeData" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="in_ArrICWMemberNames" Type="InArgument(s:String[])" />
+    <x:Property Name="in_ArrRDCHouseholdMembers" Type="InArgument(s:String[])" />
+    <x:Property Name="in_dt_IncomeSourceDetails" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="io_DtIncomeDetails" Type="InOutArgument(sd:DataTable)" />
+    <x:Property Name="out_EVDoesNotExist" Type="OutArgument(x:Boolean)" />
+    <x:Property Name="io_dtAuditFindings" Type="InOutArgument(sd:DataTable)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1592,6839</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>Employment_Verification___FL_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>System.Numerics</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+      <x:String>System.Dynamic</x:String>
+      <x:String>System.Collections.Specialized</x:String>
+      <x:String>System.Activities.Runtime.Collections</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>AshlingPartners.UiPath.StringMatching.Activities.Models</x:String>
+      <x:String>AshlingPartners.UiPath.StringMatching.Activities</x:String>
+      <x:String>AshlingPartners.UiPath.StringMatching.Activities.StringMatching</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>NPOI.Core</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>netstandard</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System.Collections.Specialized</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.Watcher</AssemblyReference>
+      <AssemblyReference>System.IO.Packaging</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.AccessControl</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
+      <AssemblyReference>AshlingPartners.UiPath.StringMatching.Activities</AssemblyReference>
+      <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Employment Verification - FL" sap:VirtualizedContainerService.HintSize="1602,6774" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <TryCatch DisplayName="Try Catch - Employment Verification" sap:VirtualizedContainerService.HintSize="1540,6686" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+      <TryCatch.Try>
+        <Sequence DisplayName="Employment_Verification" sap:VirtualizedContainerService.HintSize="1502,6435" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="sd:DataTable" Name="dt_FilteredEVData" />
+          </Sequence.Variables>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1440,173" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Started checking findings for &quot;+in_Config(&quot;EV&quot;).ToString+&quot; - FL&quot;]" />
+          <If Condition="[in_ClassificationResultsData IsNot Nothing AndAlso in_ClassificationResultsData.Columns.Count &gt; 0]" DisplayName="If Classification Results nothing" sap:VirtualizedContainerService.HintSize="1440,6010" sap2010:WorkflowViewState.IdRef="If_1">
+            <If.Then>
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="1406,5732" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:FilterDataTable DataTable="[in_ClassificationResultsData]" DisplayName="Filter Data Table - EV" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="1344,193" sap2010:WorkflowViewState.IdRef="FilterDataTable_1" OutputDataTable="[dt_FilteredEVData]" SelectColumnsMode="Remove">
+                  <ui:FilterDataTable.Filters>
+                    <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
+                      <ui:FilterOperationArgument BooleanOperator="And" Operator="CONTAINS">
+                        <ui:FilterOperationArgument.Column>
+                          <InArgument x:TypeArguments="x:String">["RequiredClassificationResult"]</InArgument>
+                        </ui:FilterOperationArgument.Column>
+                        <ui:FilterOperationArgument.Operand>
+                          <InArgument x:TypeArguments="x:Object">[in_Config("EV").ToString]</InArgument>
+                        </ui:FilterOperationArgument.Operand>
+                      </ui:FilterOperationArgument>
+                    </scg:List>
+                  </ui:FilterDataTable.Filters>
+                  <ui:FilterDataTable.SelectColumns>
+                    <scg:List x:TypeArguments="InArgument" Capacity="4">
+                      <x:Null />
+                    </scg:List>
+                  </ui:FilterDataTable.SelectColumns>
+                </ui:FilterDataTable>
+                <If Condition="[dt_FilteredEVData IsNot Nothing AndAlso dt_FilteredEVData.RowCount &gt; 0]" DisplayName="If - Employment Verification exists" sap:VirtualizedContainerService.HintSize="1344,5451" sap2010:WorkflowViewState.IdRef="If_2">
+                  <If.Then>
+                    <Sequence DisplayName="Then: If - Employment Verification exists" sap:VirtualizedContainerService.HintSize="1310,5270" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                      <Sequence.Variables>
+                        <Variable x:TypeArguments="njl:JArray" Name="jArrExtResults" />
+                        <Variable x:TypeArguments="scg:List(x:String)" Name="listImageFiles" />
+                        <Variable x:TypeArguments="njl:JArray" Name="jArr_EVDocumentData" />
+                      </Sequence.Variables>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:LogMessage DisplayName="Log Message - EV exists" sap:VirtualizedContainerService.HintSize="1248,173" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[in_Config(&quot;EV&quot;).ToString+&quot; exists&quot;]" />
+                      <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;EV&quot;,&quot;PageNum&quot;,in_Config(&quot;EV_FL_EmailReceiptAndClarification&quot;).ToString,&quot;&quot;}]" DataTable="[io_dtAuditFindings]" DisplayName="Add Data Row - EV_FL_EmailReceiptAndClarification" sap:VirtualizedContainerService.HintSize="1248,218" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
+                      <Sequence DisplayName="Get LLM JSON Results" sap:VirtualizedContainerService.HintSize="1248,2398" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                        <Sequence.Variables>
+                          <Variable x:TypeArguments="njl:JObject" Name="jObjExtractionResults" />
+                          <Variable x:TypeArguments="s:Exception" Name="LLMException" />
+                          <Variable x:TypeArguments="s:Exception" Name="DUSystemException" />
+                        </Sequence.Variables>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <Assign DisplayName="Assign - Image Files" sap:VirtualizedContainerService.HintSize="1060,114" sap2010:WorkflowViewState.IdRef="Assign_1">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="scg:List(x:String)">[listImageFiles]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="scg:List(x:String)">[dt_FilteredEVData.AsEnumerable().Select(Function(row) row("ImageFullPath").ToString).ToList]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Parallel DisplayName="Parallel - LLM and DU extraction" sap:VirtualizedContainerService.HintSize="1060,875" sap2010:WorkflowViewState.IdRef="Parallel_1">
+                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="GetLLMExtractionResultsForEachDoc - Invoke Workflow File (LLM\GetLLMExtractionResultsForEachDoc.xaml)" sap:VirtualizedContainerService.HintSize="376,796" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="LLM\GetLLMExtractionResultsForEachDoc.xaml">
+                            <ui:InvokeWorkflowFile.Arguments>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_UserPromptTextFile">[in_strPromptsFolder+"EV_Prompt_FL.txt"]</InArgument>
+                              <InArgument x:TypeArguments="scg:List(x:String)" x:Key="in_ImagePath">[listImageFiles]</InArgument>
+                              <OutArgument x:TypeArguments="njl:JObject" x:Key="out_jObjExtractionResults">[jObjExtractionResults]</OutArgument>
+                              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
+                              <OutArgument x:TypeArguments="njl:JArray" x:Key="out_jArrExtractionResults">[jArrExtResults]</OutArgument>
+                              <OutArgument x:TypeArguments="s:Exception" x:Key="out_SystemException">[LLMException]</OutArgument>
+                            </ui:InvokeWorkflowFile.Arguments>
+                          </ui:InvokeWorkflowFile>
+                          <TryCatch DisplayName="Try Catch - Validate EV DU" sap:VirtualizedContainerService.HintSize="590,796" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+                            <TryCatch.Try>
+                              <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="512,568" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:RetryScope LogRetriedExceptions="{x:Null}" RetriedExceptionsLogLevel="{x:Null}" DisplayName="Retry Scope - EV DU replacement" sap:VirtualizedContainerService.HintSize="450,480" sap2010:WorkflowViewState.IdRef="RetryScope_1" NumberOfRetries="[3]" RetryInterval="[TimeSpan.FromSeconds(5)]">
+                                  <ui:RetryScope.ActivityBody>
+                                    <ActivityAction>
+                                      <Sequence DisplayName="Action" sap:VirtualizedContainerService.HintSize="416,256" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="EmploymentVerification_Extraction - FL - Invoke Workflow File (DU\EmploymentVerification_Extraction - FL.xaml)" sap:VirtualizedContainerService.HintSize="354,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="True" WorkflowFileName="DU\EmploymentVerification_Extraction - FL.xaml">
+                                          <ui:InvokeWorkflowFile.Arguments>
+                                            <InArgument x:TypeArguments="s:String[]" x:Key="in_ArrImages">[listImageFiles.ToArray]</InArgument>
+                                            <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
+                                            <OutArgument x:TypeArguments="njl:JArray" x:Key="out_EVDocumentDataList">[jArr_EVDocumentData]</OutArgument>
+                                          </ui:InvokeWorkflowFile.Arguments>
+                                        </ui:InvokeWorkflowFile>
+                                      </Sequence>
+                                    </ActivityAction>
+                                  </ui:RetryScope.ActivityBody>
+                                  <ui:RetryScope.Condition>
+                                    <ActivityFunc x:TypeArguments="x:Boolean" />
+                                  </ui:RetryScope.Condition>
+                                </ui:RetryScope>
+                              </Sequence>
+                            </TryCatch.Try>
+                            <TryCatch.Catches>
+                              <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="516,22" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ActivityAction x:TypeArguments="s:Exception">
+                                  <ActivityAction.Argument>
+                                    <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                  </ActivityAction.Argument>
+                                  <Sequence DisplayName="Catch" sap:VirtualizedContainerService.HintSize="496,191" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <Assign DisplayName="Assign - DUSystemException" sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_2">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="s:Exception">[DUSystemException]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="s:Exception">[exception]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                  </Sequence>
+                                </ActivityAction>
+                              </Catch>
+                            </TryCatch.Catches>
+                          </TryCatch>
+                        </Parallel>
+                        <Sequence DisplayName="HandlingDUOrLLMExceptionIfAny" sap:VirtualizedContainerService.HintSize="1060,1184" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <If Condition="[DUSystemException IsNot Nothing]" DisplayName="If-DUOrLLMException" sap:VirtualizedContainerService.HintSize="546,1064" sap2010:WorkflowViewState.IdRef="If_3">
+                            <If.Then>
+                              <Sequence DisplayName="Then: If-DUOrLLMException" sap:VirtualizedContainerService.HintSize="416,201" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <Throw DisplayName="Throw-DUExc" Exception="[New SystemException(DUSystemException.ToString)]" sap:VirtualizedContainerService.HintSize="354,113" sap2010:WorkflowViewState.IdRef="Throw_1" />
+                              </Sequence>
+                            </If.Then>
+                            <If.Else>
+                              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="512,702" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <If Condition="[LLMException IsNot Nothing]" DisplayName="If-LLMExpection" sap:VirtualizedContainerService.HintSize="450,614" sap2010:WorkflowViewState.IdRef="If_4">
+                                  <If.Then>
+                                    <Sequence DisplayName="Then: If-LLMExpection" sap:VirtualizedContainerService.HintSize="416,201" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <Throw DisplayName="Throw-LLMExc" Exception="[New SystemException(LLMException.ToString)]" sap:VirtualizedContainerService.HintSize="354,113" sap2010:WorkflowViewState.IdRef="Throw_2" />
+                                    </Sequence>
+                                  </If.Then>
+                                  <If.Else>
+                                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,252" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <ui:LogMessage DisplayName="Log Message-LLM&amp;DUSuccess" sap:VirtualizedContainerService.HintSize="354,164" sap2010:WorkflowViewState.IdRef="LogMessage_3" Message="[&quot;LLM and DU are successful&quot;]" />
+                                    </Sequence>
+                                  </If.Else>
+                                </If>
+                              </Sequence>
+                            </If.Else>
+                          </If>
+                        </Sequence>
+                        <Assign DisplayName="Assign - jArrExtResults" sap:VirtualizedContainerService.HintSize="1060,105" sap2010:WorkflowViewState.IdRef="Assign_3">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="njl:JArray">[jArrExtResults]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="njl:JArray">[CType(jObjExtractionResults("values")(0)("EmploymentVerification"), JArray)]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                      <Sequence DisplayName="DU Replacement - EV" sap:VirtualizedContainerService.HintSize="1248,2178" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:ForEach x:TypeArguments="njl:JObject" CurrentIndex="{x:Null}" DisplayName="For each DU-extracted EV document" sap:VirtualizedContainerService.HintSize="1186,2058" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[jArr_EVDocumentData]">
+                          <ui:ForEach.Body>
+                            <ActivityAction x:TypeArguments="njl:JObject">
+                              <ActivityAction.Argument>
+                                <DelegateInArgument x:TypeArguments="njl:JObject" Name="duJObj" />
+                              </ActivityAction.Argument>
+                              <Sequence DisplayName="Merge DU values into matching LLM record" sap:VirtualizedContainerService.HintSize="1152,1921" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                                <Sequence.Variables>
+                                  <Variable x:TypeArguments="x:String" Name="str_DUName" />
+                                  <Variable x:TypeArguments="x:String" Name="str_MatchedName" />
+                                </Sequence.Variables>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <Assign DisplayName="Assign-str_DUName" sap:VirtualizedContainerService.HintSize="1090,114" sap2010:WorkflowViewState.IdRef="Assign_4">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">[str_DUName]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String">[duJObj("ApplicantName")("Value").ToString]</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <TryCatch DisplayName="Try Catch - DU LLM Name Matching" sap:VirtualizedContainerService.HintSize="1090,587" sap2010:WorkflowViewState.IdRef="TryCatch_3">
+                                  <TryCatch.Try>
+                                    <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="416,327" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="DU LLM Name Matching - Invoke Workflow File (AuditFindings\DU LLM Name Matching.xaml)" sap:VirtualizedContainerService.HintSize="354,239" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="AuditFindings\DU LLM Name Matching.xaml">
+                                        <ui:InvokeWorkflowFile.Arguments>
+                                          <InArgument x:TypeArguments="x:String" x:Key="DocType">EmploymentVerificationFL</InArgument>
+                                          <InArgument x:TypeArguments="njl:JArray" x:Key="LLM_Results">[jArrExtResults]</InArgument>
+                                          <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
+                                          <InArgument x:TypeArguments="x:String" x:Key="in_DU_Name">[str_DUName]</InArgument>
+                                          <OutArgument x:TypeArguments="x:String" x:Key="out_MatchedName">[str_MatchedName]</OutArgument>
+                                        </ui:InvokeWorkflowFile.Arguments>
+                                      </ui:InvokeWorkflowFile>
+                                    </Sequence>
+                                  </TryCatch.Try>
+                                  <TryCatch.Catches>
+                                    <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="420,22" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <ActivityAction x:TypeArguments="s:Exception">
+                                        <ActivityAction.Argument>
+                                          <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                        </ActivityAction.Argument>
+                                        <Sequence DisplayName="Catch" sap:VirtualizedContainerService.HintSize="416,174" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                          <If Condition="[jArrExtResults.Count = 1 AndAlso String.IsNullOrWhiteSpace(jArrExtResults(0)(&quot;ApplicantSection&quot;)(&quot;ApplicantName&quot;).ToString)]" DisplayName="If - single LLM record with blank Applicant Name" sap:VirtualizedContainerService.HintSize="354,205" sap2010:WorkflowViewState.IdRef="If_5">
+                                            <If.Then>
+                                              <Sequence DisplayName="Then: If - single LLM record with blank Applicant Name" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                                                <Assign DisplayName="Assign: str_MatchedName-blank" sap2010:WorkflowViewState.IdRef="Assign_5">
+                                                  <Assign.To>
+                                                    <OutArgument x:TypeArguments="x:String">[str_MatchedName]</OutArgument>
+                                                  </Assign.To>
+                                                  <Assign.Value>
+                                                    <InArgument x:TypeArguments="x:String">[String.Empty]</InArgument>
+                                                  </Assign.Value>
+                                                </Assign>
+                                              </Sequence>
+                                            </If.Then>
+                                            <If.Else>
+                                              <Sequence DisplayName="Else" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                                                <Rethrow DisplayName="Rethrow-NameMatchFailure" sap2010:WorkflowViewState.IdRef="Rethrow_1" />
+                                              </Sequence>
+                                            </If.Else>
+                                          </If>
+                                        </Sequence>
+                                      </ActivityAction>
+                                    </Catch>
+                                  </TryCatch.Catches>
+                                </TryCatch>
+                                <ui:ForEach x:TypeArguments="njl:JObject" CurrentIndex="{x:Null}" DisplayName="Find matching LLM record" sap:VirtualizedContainerService.HintSize="1090,1132" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[jArrExtResults]">
+                                  <ui:ForEach.Body>
+                                    <ActivityAction x:TypeArguments="njl:JObject">
+                                      <ActivityAction.Argument>
+                                        <DelegateInArgument x:TypeArguments="njl:JObject" Name="jObj_JSON" />
+                                      </ActivityAction.Argument>
+                                      <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="1056,995" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                        <If Condition="[jObj_JSON(&quot;ApplicantSection&quot;)(&quot;ApplicantName&quot;).ToString.Equals(str_MatchedName)]" DisplayName="If Names are the same" sap:VirtualizedContainerService.HintSize="994,907" sap2010:WorkflowViewState.IdRef="If_6">
+                                          <If.Then>
+                                            <Sequence DisplayName="Then: If Names are the same" sap:VirtualizedContainerService.HintSize="960,726" sap2010:WorkflowViewState.IdRef="Sequence_21">
+                                              <sap:WorkflowViewStateService.ViewState>
+                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                </scg:Dictionary>
+                                              </sap:WorkflowViewStateService.ViewState>
+                                              <Switch x:TypeArguments="x:String" DisplayName="Switch - CommisionTipsBonusFrequency" Expression="[System.Text.RegularExpressions.Regex.Replace(duJObj(&quot;CommisionTipsBonusFrequency&quot;)(&quot;Value&quot;).ToString, &quot;[^a-zA-Z]&quot;, &quot;&quot;).ToLower.Trim]" sap:VirtualizedContainerService.HintSize="898,302" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+                                                <Switch.Default>
+                                                  <Sequence DisplayName="Default" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                                                    <Assign DisplayName="Assign - unanswered (commissions frequency)" sap2010:WorkflowViewState.IdRef="Assign_6">
+                                                      <Assign.To>
+                                                        <OutArgument x:TypeArguments="njl:JToken">[jObj_JSON("EmployerSection")("CommisionTipsBonusFrequency")]</OutArgument>
+                                                      </Assign.To>
+                                                      <Assign.Value>
+                                                        <InArgument x:TypeArguments="njl:JToken">["unanswered"]</InArgument>
+                                                      </Assign.Value>
+                                                    </Assign>
+                                                  </Sequence>
+                                                </Switch.Default>
+                                                <Sequence x:Key="hourly" DisplayName="hourly" sap:VirtualizedContainerService.HintSize="496,191" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                                                  <sap:WorkflowViewStateService.ViewState>
+                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                    </scg:Dictionary>
+                                                  </sap:WorkflowViewStateService.ViewState>
+                                                  <Assign DisplayName="Assign - hourly (commissions frequency)" sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_7">
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="njl:JToken">[jObj_JSON("EmployerSection")("CommisionTipsBonusFrequency")]</OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="njl:JToken">["hourly"]</InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                </Sequence>
+                                                <Sequence x:Key="weekly" DisplayName="weekly" sap:VirtualizedContainerService.HintSize="496,191" sap2010:WorkflowViewState.IdRef="Sequence_24">
+                                                  <sap:WorkflowViewStateService.ViewState>
+                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                    </scg:Dictionary>
+                                                  </sap:WorkflowViewStateService.ViewState>
+                                                  <Assign DisplayName="Assign - weekly (commissions frequency)" sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_8">
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="njl:JToken">[jObj_JSON("EmployerSection")("CommisionTipsBonusFrequency")]</OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="njl:JToken">["weekly"]</InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                </Sequence>
+                                                <Sequence x:Key="biweekly" DisplayName="biweekly" sap:VirtualizedContainerService.HintSize="496,191" sap2010:WorkflowViewState.IdRef="Sequence_25">
+                                                  <sap:WorkflowViewStateService.ViewState>
+                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                    </scg:Dictionary>
+                                                  </sap:WorkflowViewStateService.ViewState>
+                                                  <Assign DisplayName="Assign - biweekly (commissions frequency)" sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_9">
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="njl:JToken">[jObj_JSON("EmployerSection")("CommisionTipsBonusFrequency")]</OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="njl:JToken">["biweekly"]</InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                </Sequence>
+                                                <Sequence x:Key="semimonthly" DisplayName="semimonthly" sap:VirtualizedContainerService.HintSize="496,191" sap2010:WorkflowViewState.IdRef="Sequence_26">
+                                                  <sap:WorkflowViewStateService.ViewState>
+                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                    </scg:Dictionary>
+                                                  </sap:WorkflowViewStateService.ViewState>
+                                                  <Assign DisplayName="Assign - semimonthly (commissions frequency)" sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_10">
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="njl:JToken">[jObj_JSON("EmployerSection")("CommisionTipsBonusFrequency")]</OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="njl:JToken">["semimonthly"]</InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                </Sequence>
+                                                <Sequence x:Key="monthly" DisplayName="monthly" sap:VirtualizedContainerService.HintSize="496,191" sap2010:WorkflowViewState.IdRef="Sequence_27">
+                                                  <sap:WorkflowViewStateService.ViewState>
+                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                    </scg:Dictionary>
+                                                  </sap:WorkflowViewStateService.ViewState>
+                                                  <Assign DisplayName="Assign - monthly (commissions frequency)" sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_11">
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="njl:JToken">[jObj_JSON("EmployerSection")("CommisionTipsBonusFrequency")]</OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="njl:JToken">["monthly"]</InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                </Sequence>
+                                                <Sequence x:Key="yearly" DisplayName="yearly" sap:VirtualizedContainerService.HintSize="496,191" sap2010:WorkflowViewState.IdRef="Sequence_28">
+                                                  <sap:WorkflowViewStateService.ViewState>
+                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                    </scg:Dictionary>
+                                                  </sap:WorkflowViewStateService.ViewState>
+                                                  <Assign DisplayName="Assign - yearly (commissions frequency)" sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_12">
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="njl:JToken">[jObj_JSON("EmployerSection")("CommisionTipsBonusFrequency")]</OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="njl:JToken">["yearly"]</InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                </Sequence>
+                                                <Sequence x:Key="other" DisplayName="other" sap:VirtualizedContainerService.HintSize="496,191" sap2010:WorkflowViewState.IdRef="Sequence_29">
+                                                  <sap:WorkflowViewStateService.ViewState>
+                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                    </scg:Dictionary>
+                                                  </sap:WorkflowViewStateService.ViewState>
+                                                  <Assign DisplayName="Assign - other (commissions frequency)" sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_13">
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="njl:JToken">[jObj_JSON("EmployerSection")("CommisionTipsBonusFrequency")]</OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="njl:JToken">["other"]</InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                </Sequence>
+                                              </Switch>
+                                              <Switch x:TypeArguments="x:String" DisplayName="Switch - CurrentWagesFrequency" Expression="[System.Text.RegularExpressions.Regex.Replace(duJObj(&quot;CurrentWagesFrequency&quot;)(&quot;Value&quot;).ToString, &quot;[^a-zA-Z]&quot;, &quot;&quot;).ToLower.Trim]" sap:VirtualizedContainerService.HintSize="898,296" sap2010:WorkflowViewState.IdRef="Switch`1_2">
+                                                <Switch.Default>
+                                                  <Sequence DisplayName="Default" sap2010:WorkflowViewState.IdRef="Sequence_30">
+                                                    <Assign DisplayName="Assign - unanswered CurrentWagesFrequency" sap2010:WorkflowViewState.IdRef="Assign_14">
+                                                      <Assign.To>
+                                                        <OutArgument x:TypeArguments="njl:JToken">[jObj_JSON("EmployerSection")("CurrentWagesFrequency")]</OutArgument>
+                                                      </Assign.To>
+                                                      <Assign.Value>
+                                                        <InArgument x:TypeArguments="njl:JToken">["unanswered"]</InArgument>
+                                                      </Assign.Value>
+                                                    </Assign>
+                                                  </Sequence>
+                                                </Switch.Default>
+                                                <Sequence x:Key="hourly" DisplayName="hourly" sap:VirtualizedContainerService.HintSize="416,108" sap2010:WorkflowViewState.IdRef="Sequence_31">
+                                                  <sap:WorkflowViewStateService.ViewState>
+                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                    </scg:Dictionary>
+                                                  </sap:WorkflowViewStateService.ViewState>
+                                                  <Assign DisplayName="Assign - hourly CurrentWagesFrequency" sap2010:WorkflowViewState.IdRef="Assign_15">
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="njl:JToken">[jObj_JSON("EmployerSection")("CurrentWagesFrequency")]</OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="njl:JToken">["hourly"]</InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                </Sequence>
+                                                <Sequence x:Key="weekly" DisplayName="weekly" sap2010:WorkflowViewState.IdRef="Sequence_32">
+                                                  <Assign DisplayName="Assign - weekly CurrentWagesFrequency" sap2010:WorkflowViewState.IdRef="Assign_16">
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="njl:JToken">[jObj_JSON("EmployerSection")("CurrentWagesFrequency")]</OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="njl:JToken">["weekly"]</InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                </Sequence>
+                                                <Sequence x:Key="biweekly" DisplayName="biweekly" sap2010:WorkflowViewState.IdRef="Sequence_33">
+                                                  <Assign DisplayName="Assign - biweekly CurrentWagesFrequency" sap2010:WorkflowViewState.IdRef="Assign_17">
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="njl:JToken">[jObj_JSON("EmployerSection")("CurrentWagesFrequency")]</OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="njl:JToken">["biweekly"]</InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                </Sequence>
+                                                <Sequence x:Key="semimonthly" DisplayName="semimonthly" sap2010:WorkflowViewState.IdRef="Sequence_34">
+                                                  <Assign DisplayName="Assign - semimonthly CurrentWagesFrequency" sap2010:WorkflowViewState.IdRef="Assign_18">
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="njl:JToken">[jObj_JSON("EmployerSection")("CurrentWagesFrequency")]</OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="njl:JToken">["semimonthly"]</InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                </Sequence>
+                                                <Sequence x:Key="monthly" DisplayName="monthly" sap2010:WorkflowViewState.IdRef="Sequence_35">
+                                                  <Assign DisplayName="Assign - monthly CurrentWagesFrequency" sap2010:WorkflowViewState.IdRef="Assign_19">
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="njl:JToken">[jObj_JSON("EmployerSection")("CurrentWagesFrequency")]</OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="njl:JToken">["monthly"]</InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                </Sequence>
+                                                <Sequence x:Key="yearly" DisplayName="yearly" sap2010:WorkflowViewState.IdRef="Sequence_36">
+                                                  <Assign DisplayName="Assign - yearly CurrentWagesFrequency" sap2010:WorkflowViewState.IdRef="Assign_20">
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="njl:JToken">[jObj_JSON("EmployerSection")("CurrentWagesFrequency")]</OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="njl:JToken">["yearly"]</InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                </Sequence>
+                                                <Sequence x:Key="other" DisplayName="other" sap2010:WorkflowViewState.IdRef="Sequence_37">
+                                                  <Assign DisplayName="Assign - other CurrentWagesFrequency" sap2010:WorkflowViewState.IdRef="Assign_21">
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="njl:JToken">[jObj_JSON("EmployerSection")("CurrentWagesFrequency")]</OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="njl:JToken">["other"]</InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                </Sequence>
+                                              </Switch>
+                                              <Switch x:TypeArguments="x:String" DisplayName="Switch - PresentlyEmployed" Expression="[duJObj(&quot;PresentlyEmployed&quot;)(&quot;Value&quot;).ToString.Replace(&quot;☒&quot;,&quot;&quot;).Replace(&quot;☐&quot;,&quot;&quot;).ToLower.Trim]" sap2010:WorkflowViewState.IdRef="Switch`1_3">
+                                                <Switch.Default>
+                                                  <Sequence DisplayName="Default" sap2010:WorkflowViewState.IdRef="Sequence_38">
+                                                    <Assign DisplayName="Assign - unanswered PresentlyEmployed" sap2010:WorkflowViewState.IdRef="Assign_22">
+                                                      <Assign.To>
+                                                        <OutArgument x:TypeArguments="njl:JToken">[jObj_JSON("EmployerSection")("PresentlyEmployeed")]</OutArgument>
+                                                      </Assign.To>
+                                                      <Assign.Value>
+                                                        <InArgument x:TypeArguments="njl:JToken">["unanswered"]</InArgument>
+                                                      </Assign.Value>
+                                                    </Assign>
+                                                  </Sequence>
+                                                </Switch.Default>
+                                                <Sequence x:Key="no" DisplayName="no" sap2010:WorkflowViewState.IdRef="Sequence_39">
+                                                  <Assign DisplayName="Assign - no PresentlyEmployed" sap2010:WorkflowViewState.IdRef="Assign_23">
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="njl:JToken">[jObj_JSON("EmployerSection")("PresentlyEmployeed")]</OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="njl:JToken">["no"]</InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                </Sequence>
+                                                <Sequence x:Key="yes" DisplayName="yes" sap2010:WorkflowViewState.IdRef="Sequence_40">
+                                                  <Assign DisplayName="Assign - yes PresentlyEmployed" sap2010:WorkflowViewState.IdRef="Assign_24">
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="njl:JToken">[jObj_JSON("EmployerSection")("PresentlyEmployeed")]</OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="njl:JToken">["yes"]</InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                </Sequence>
+                                              </Switch>
+                                              <ui:Break DisplayName="Break - matching LLM record found" sap2010:WorkflowViewState.IdRef="Break_1" />
+                                            </Sequence>
+                                          </If.Then>
+                                          <If.Else>
+                                            <Sequence DisplayName="Else" sap2010:WorkflowViewState.IdRef="Sequence_98" />
+                                          </If.Else>
+                                        </If>
+                                      </Sequence>
+                                    </ActivityAction>
+                                  </ui:ForEach.Body>
+                                </ui:ForEach>
+                              </Sequence>
+                            </ActivityAction>
+                          </ui:ForEach.Body>
+                        </ui:ForEach>
+                      </Sequence>
+                      <ui:WriteTextFile File="{x:Null}" Output="{x:Null}" DisplayName="Write Text File-JSONDU" FileName="[Path.GetDirectoryName(listImageFiles(0))+&quot;\&quot;+Path.GetFileNameWithoutExtension(in_strPromptsFolder+&quot;EV_Prompt_FL.txt&quot;)+&quot;_DU_JSON.txt&quot;]" sap:VirtualizedContainerService.HintSize="1248,175" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[jArrExtResults.ToString]" />
+                      <ui:ForEach x:TypeArguments="njl:JObject" CurrentIndex="{x:Null}" DisplayName="For Each jObjExtractionResults" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[jArrExtResults]">
+                        <ui:ForEach.Body>
+                          <ActivityAction x:TypeArguments="njl:JObject">
+                            <ActivityAction.Argument>
+                              <DelegateInArgument x:TypeArguments="njl:JObject" Name="jObj_JSON" />
+                            </ActivityAction.Argument>
+                            <Sequence DisplayName="Employment Verification - FL checks" sap2010:WorkflowViewState.IdRef="Sequence_41">
+                              <Sequence.Variables>
+                                <Variable x:TypeArguments="x:String" Name="strEmployeeName" />
+                                <Variable x:TypeArguments="x:String" Name="strFirmName" />
+                                <Variable x:TypeArguments="x:String" Name="strFrequency" />
+                                <Variable x:TypeArguments="x:Decimal" Name="decGross" />
+                                <Variable x:TypeArguments="x:Decimal" Name="decOvertime" />
+                                <Variable x:TypeArguments="x:Decimal" Name="decShiftDiff" />
+                                <Variable x:TypeArguments="x:String" Name="strAnticipated" />
+                                <Variable x:TypeArguments="x:String" Name="strSeasonal" />
+                                <Variable x:TypeArguments="x:Int32" Name="intNumberPayPeriods" />
+                              </Sequence.Variables>
+                              <ui:MultipleAssign DisplayName="Multiple Assign - Employee name, Firm name, Frequency, Wage, Overtime, Shift diff, Anticipated change and Seasonal work" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+                                <ui:MultipleAssign.AssignOperations>
+                                  <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
+                                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
+                                      <ui:AssignOperation.To>
+                                        <OutArgument x:TypeArguments="x:String">[strEmployeeName]</OutArgument>
+                                      </ui:AssignOperation.To>
+                                      <ui:AssignOperation.Value>
+                                        <InArgument x:TypeArguments="x:String">[jObj_JSON("EmployerSection")("EmployeeName").ToString]</InArgument>
+                                      </ui:AssignOperation.Value>
+                                    </ui:AssignOperation>
+                                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
+                                      <ui:AssignOperation.To>
+                                        <OutArgument x:TypeArguments="x:String">[strFirmName]</OutArgument>
+                                      </ui:AssignOperation.To>
+                                      <ui:AssignOperation.Value>
+                                        <InArgument x:TypeArguments="x:String">[jObj_JSON("EmployerSignature")("FirmName").ToString]</InArgument>
+                                      </ui:AssignOperation.Value>
+                                    </ui:AssignOperation>
+                                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
+                                      <ui:AssignOperation.To>
+                                        <OutArgument x:TypeArguments="x:String">[strFrequency]</OutArgument>
+                                      </ui:AssignOperation.To>
+                                      <ui:AssignOperation.Value>
+                                        <InArgument x:TypeArguments="x:String">[jObj_JSON("EmployerSection")("CurrentWagesFrequency").ToString.ToLower.Replace("-", "").Replace("_", "").Replace(" ", "").Trim]</InArgument>
+                                      </ui:AssignOperation.Value>
+                                    </ui:AssignOperation>
+                                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
+                                      <ui:AssignOperation.To>
+                                        <OutArgument x:TypeArguments="x:Decimal">[decGross]</OutArgument>
+                                      </ui:AssignOperation.To>
+                                      <ui:AssignOperation.Value>
+                                        <InArgument x:TypeArguments="x:Decimal">[CDec(Val(jObj_JSON("EmployerSection")("CurrentWagesAmount").ToString.Replace("$", "").Replace(",", "").Trim))]</InArgument>
+                                      </ui:AssignOperation.Value>
+                                    </ui:AssignOperation>
+                                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_5">
+                                      <ui:AssignOperation.To>
+                                        <OutArgument x:TypeArguments="x:Decimal">[decOvertime]</OutArgument>
+                                      </ui:AssignOperation.To>
+                                      <ui:AssignOperation.Value>
+                                        <InArgument x:TypeArguments="x:Decimal">[CDec(Val(jObj_JSON("EmployerSection")("OvertimeRate").ToString.Replace("$", "").Replace(",", "").Trim))]</InArgument>
+                                      </ui:AssignOperation.Value>
+                                    </ui:AssignOperation>
+                                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_6">
+                                      <ui:AssignOperation.To>
+                                        <OutArgument x:TypeArguments="x:Decimal">[decShiftDiff]</OutArgument>
+                                      </ui:AssignOperation.To>
+                                      <ui:AssignOperation.Value>
+                                        <InArgument x:TypeArguments="x:Decimal">[CDec(Val(jObj_JSON("EmployerSection")("ShiftDifferentialRate").ToString.Replace("$", "").Replace(",", "").Trim))]</InArgument>
+                                      </ui:AssignOperation.Value>
+                                    </ui:AssignOperation>
+                                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_7">
+                                      <ui:AssignOperation.To>
+                                        <OutArgument x:TypeArguments="x:String">[strAnticipated]</OutArgument>
+                                      </ui:AssignOperation.To>
+                                      <ui:AssignOperation.Value>
+                                        <InArgument x:TypeArguments="x:String">[jObj_JSON("EmployerSection")("AnticipatedChangeOfRate").ToString.ToLower.Replace("$", "").Replace(",", "").Trim]</InArgument>
+                                      </ui:AssignOperation.Value>
+                                    </ui:AssignOperation>
+                                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_8">
+                                      <ui:AssignOperation.To>
+                                        <OutArgument x:TypeArguments="x:String">[strSeasonal]</OutArgument>
+                                      </ui:AssignOperation.To>
+                                      <ui:AssignOperation.Value>
+                                        <InArgument x:TypeArguments="x:String">[jObj_JSON("EmployerSection")("SeasonalSporadicWork").ToString.ToLower.Trim]</InArgument>
+                                      </ui:AssignOperation.Value>
+                                    </ui:AssignOperation>
+                                  </scg:List>
+                                </ui:MultipleAssign.AssignOperations>
+                              </ui:MultipleAssign>
+                              <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;EV&quot;, strEmployeeName, strFirmName}]" DataTable="[io_DtIncomeDetails]" DisplayName="Add Data Row - dtIncomeDetails" sap2010:WorkflowViewState.IdRef="AddDataRow_2" />
+                              <Sequence DisplayName="Matching IAQ page 2" sap2010:WorkflowViewState.IdRef="Sequence_94">
+                                <Sequence.Variables>
+                                  <Variable x:TypeArguments="scg:List(ausam:NameMatchResult)" Name="list_MatchedNamesIAQ" />
+                                  <Variable x:TypeArguments="sd:DataTable" Name="dt_IAQMatchingDoc" />
+                                  <Variable x:TypeArguments="s:String[]" Name="arr_EVMemberName" />
+                                </Sequence.Variables>
+                                <ui:FilterDataTable DataTable="[in_dt_IncomeSourceDetails]" DisplayName="Filter Data Table - IAQ Employment Verification" FilterRowsMode="Keep" sap2010:WorkflowViewState.IdRef="FilterDataTable_4" OutputDataTable="[dt_IAQMatchingDoc]" SelectColumnsMode="Remove">
+                                  <ui:FilterDataTable.Filters>
+                                    <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
+                                      <ui:FilterOperationArgument BooleanOperator="And" Operator="CONTAINS">
+                                        <ui:FilterOperationArgument.Column>
+                                          <InArgument x:TypeArguments="x:String">["IncomeType"]</InArgument>
+                                        </ui:FilterOperationArgument.Column>
+                                        <ui:FilterOperationArgument.Operand>
+                                          <InArgument x:TypeArguments="x:String">["Employment Verification"]</InArgument>
+                                        </ui:FilterOperationArgument.Operand>
+                                      </ui:FilterOperationArgument>
+                                    </scg:List>
+                                  </ui:FilterDataTable.Filters>
+                                  <ui:FilterDataTable.SelectColumns>
+                                    <scg:List x:TypeArguments="InArgument" Capacity="4">
+                                      <x:Null />
+                                    </scg:List>
+                                  </ui:FilterDataTable.SelectColumns>
+                                </ui:FilterDataTable>
+                                <If Condition="[dt_IAQMatchingDoc IsNot Nothing AndAlso dt_IAQMatchingDoc.RowCount &gt; 0 AndAlso Not String.IsNullOrWhiteSpace(strEmployeeName)]" DisplayName="If - IAQ lists Employment Verification income" sap2010:WorkflowViewState.IdRef="If_36">
+                                  <If.Then>
+                                    <Sequence DisplayName="Then: If - IAQ lists Employment Verification income" sap2010:WorkflowViewState.IdRef="Sequence_95">
+                                      <Assign DisplayName="Assign - arr_EVMemberName" sap2010:WorkflowViewState.IdRef="Assign_33">
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="s:String[]">[arr_EVMemberName]</OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="s:String[]">[dt_IAQMatchingDoc.AsEnumerable().Select(Function(r) r("MemberName").ToString().Trim()).ToArray()]</InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                      <ausas:FindAllMatches Candidates="[arr_EVMemberName]" DisplayName="Find All Matches - Employee Name vs IAQ" sap2010:WorkflowViewState.IdRef="FindAllMatches_1" MinThreshold="[CDec(in_Config(&quot;FindAllMatches_Threshold&quot;).ToString)]" Query="[strEmployeeName]" Result="[list_MatchedNamesIAQ]" />
+                                      <If Condition="[list_MatchedNamesIAQ.Count = 0]" DisplayName="If - Employee Name not found on IAQ" sap2010:WorkflowViewState.IdRef="If_37">
+                                        <If.Then>
+                                          <Sequence DisplayName="Then: If - Employee Name not found on IAQ" sap2010:WorkflowViewState.IdRef="Sequence_96">
+                                            <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;EV&quot;,&quot;PageNum&quot;,in_Config(&quot;EV_NameNotMatchingIAQ&quot;).ToString,&quot;&quot;}]" DataTable="[io_dtAuditFindings]" DisplayName="Add Data Row - EV_NameNotMatchingIAQ" sap2010:WorkflowViewState.IdRef="AddDataRow_34" />
+                                          </Sequence>
+                                        </If.Then>
+                                      </If>
+                                    </Sequence>
+                                  </If.Then>
+                                </If>
+                              </Sequence>
+                              <If Condition="[String.IsNullOrWhiteSpace(jObj_JSON(&quot;ApplicantSection&quot;)(&quot;ApplicantDate&quot;).ToString)]" DisplayName="If - Applicant Date is blank" sap2010:WorkflowViewState.IdRef="If_7">
+                                <If.Then>
+                                  <Sequence DisplayName="Then: If - Applicant Date is blank" sap2010:WorkflowViewState.IdRef="Sequence_42">
+                                    <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;EV&quot;,&quot;PageNum&quot;,in_Config(&quot;EV_FL_ApplicantDate&quot;).ToString,&quot;&quot;}]" DataTable="[io_dtAuditFindings]" DisplayName="Add Data Row - EV_FL_ApplicantDate" sap2010:WorkflowViewState.IdRef="AddDataRow_3" />
+                                  </Sequence>
+                                </If.Then>
+                                <If.Else>
+                                  <Sequence DisplayName="Else: If - Applicant Date is present" sap2010:WorkflowViewState.IdRef="Sequence_43">
+                                    <If Condition="[Not String.IsNullOrWhiteSpace(in_strMoveInDate)]" DisplayName="If - Move-In date available (Applicant Date)" sap2010:WorkflowViewState.IdRef="If_8">
+                                      <If.Then>
+                                        <Sequence DisplayName="Then: If - Move-In date available (Applicant Date)" sap2010:WorkflowViewState.IdRef="Sequence_44">
+                                          <TryCatch DisplayName="Try Catch - Applicant Date Move In check" sap2010:WorkflowViewState.IdRef="TryCatch_4">
+                                            <TryCatch.Try>
+                                              <Sequence DisplayName="Try" sap2010:WorkflowViewState.IdRef="Sequence_45">
+                                                <If Condition="[CDate(jObj_JSON(&quot;ApplicantSection&quot;)(&quot;ApplicantDate&quot;).ToString) &gt;= CDate(in_strMoveInDate).AddDays(-120)]" DisplayName="If Applicant Date within 120 Days of Move-In" sap2010:WorkflowViewState.IdRef="If_9">
+                                                  <If.Then>
+                                                    <Sequence DisplayName="Then: If Applicant Date within 120 Days of Move-In" sap2010:WorkflowViewState.IdRef="Sequence_46" />
+                                                  </If.Then>
+                                                  <If.Else>
+                                                    <Sequence DisplayName="Else" sap2010:WorkflowViewState.IdRef="Sequence_47">
+                                                      <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;EV&quot;,&quot;PageNum&quot;,in_Config(&quot;EV_FL_CheckDateWithMoveIn&quot;).ToString,&quot;&quot;}]" DataTable="[io_dtAuditFindings]" DisplayName="Add Data Row - EV_FL_CheckDateWithMoveIn" sap2010:WorkflowViewState.IdRef="AddDataRow_4" />
+                                                    </Sequence>
+                                                  </If.Else>
+                                                </If>
+                                              </Sequence>
+                                            </TryCatch.Try>
+                                            <TryCatch.Catches>
+                                              <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_3">
+                                                <ActivityAction x:TypeArguments="s:Exception">
+                                                  <ActivityAction.Argument>
+                                                    <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                                  </ActivityAction.Argument>
+                                                  <Sequence DisplayName="Catch" sap2010:WorkflowViewState.IdRef="Sequence_48">
+                                                    <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;EV&quot;,&quot;PageNum&quot;,&quot;Unable to validate a Finding: &quot; + in_Config(&quot;EV_FL_CheckDateWithMoveIn&quot;).ToString + &quot; Needs manual review &quot;, exception.Message}]" DataTable="[io_dtAuditFindings]" DisplayName="Add Data Row - EV error in Applicant Date move in" sap2010:WorkflowViewState.IdRef="AddDataRow_5" />
+                                                  </Sequence>
+                                                </ActivityAction>
+                                              </Catch>
+                                            </TryCatch.Catches>
+                                          </TryCatch>
+                                        </Sequence>
+                                      </If.Then>
+                                    </If>
+                                  </Sequence>
+                                </If.Else>
+                              </If>
+                              <If Condition="[String.IsNullOrWhiteSpace(jObj_JSON(&quot;ApplicantSection&quot;)(&quot;ApplicantName&quot;).ToString)]" DisplayName="If - Applicant Name is blank" sap2010:WorkflowViewState.IdRef="If_10">
+                                <If.Then>
+                                  <Sequence DisplayName="Then: If - Applicant Name is blank" sap2010:WorkflowViewState.IdRef="Sequence_49">
+                                    <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;EV&quot;,&quot;PageNum&quot;,in_Config(&quot;EV_FL_ApplicantName&quot;).ToString,&quot;&quot;}]" DataTable="[io_dtAuditFindings]" DisplayName="Add Data Row - EV_FL_ApplicantName" sap2010:WorkflowViewState.IdRef="AddDataRow_6" />
+                                  </Sequence>
+                                </If.Then>
+                              </If>
+                              <If Condition="[String.IsNullOrWhiteSpace(jObj_JSON(&quot;ApplicantSection&quot;)(&quot;DevelopmentName&quot;).ToString)]" DisplayName="If - Development Name is blank" sap2010:WorkflowViewState.IdRef="If_11">
+                                <If.Then>
+                                  <Sequence DisplayName="Then: If - Development Name is blank" sap2010:WorkflowViewState.IdRef="Sequence_50">
+                                    <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;EV&quot;,&quot;PageNum&quot;,in_Config(&quot;EV_FL_DevelopmentName&quot;).ToString,&quot;&quot;}]" DataTable="[io_dtAuditFindings]" DisplayName="Add Data Row - EV_FL_DevelopmentName" sap2010:WorkflowViewState.IdRef="AddDataRow_7" />
+                                  </Sequence>
+                                </If.Then>
+                              </If>
+                              <If Condition="[String.IsNullOrWhiteSpace(jObj_JSON(&quot;ApplicantSection&quot;)(&quot;UnitNumber&quot;).ToString)]" DisplayName="If - Unit Number is blank" sap2010:WorkflowViewState.IdRef="If_12">
+                                <If.Then>
+                                  <Sequence DisplayName="Then: If - Unit Number is blank" sap2010:WorkflowViewState.IdRef="Sequence_51">
+                                    <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;EV&quot;,&quot;PageNum&quot;,in_Config(&quot;EV_FL_UnitNumber&quot;).ToString,&quot;&quot;}]" DataTable="[io_dtAuditFindings]" DisplayName="Add Data Row - EV_FL_UnitNumber" sap2010:WorkflowViewState.IdRef="AddDataRow_8" />
+                                  </Sequence>
+                                </If.Then>
+                              </If>
+                              <If Condition="[String.IsNullOrWhiteSpace(jObj_JSON(&quot;ApplicantSection&quot;)(&quot;EmployerAddress&quot;).ToString)]" DisplayName="If - To (Employer name and address) is blank" sap2010:WorkflowViewState.IdRef="If_13">
+                                <If.Then>
+                                  <Sequence DisplayName="Then: If - To (Employer name and address) is blank" sap2010:WorkflowViewState.IdRef="Sequence_52">
+                                    <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;EV&quot;,&quot;PageNum&quot;,in_Config(&quot;EV_FL_ToField&quot;).ToString,&quot;&quot;}]" DataTable="[io_dtAuditFindings]" DisplayName="Add Data Row - EV_FL_ToField" sap2010:WorkflowViewState.IdRef="AddDataRow_9" />
+                                  </Sequence>
+                                </If.Then>
+                              </If>
+                              <If Condition="[Not jObj_JSON(&quot;ApplicantSection&quot;)(&quot;ApplicantSignature&quot;).ToString.ToLower.Contains(&quot;true&quot;)]" DisplayName="If - Applicant authorization signature is missing" sap2010:WorkflowViewState.IdRef="If_14">
+                                <If.Then>
+                                  <Sequence DisplayName="Then: If - Applicant authorization signature is missing" sap2010:WorkflowViewState.IdRef="Sequence_53">
+                                    <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;EV&quot;,&quot;PageNum&quot;,in_Config(&quot;EV_FL_ApplicantSignature&quot;).ToString,&quot;&quot;}]" DataTable="[io_dtAuditFindings]" DisplayName="Add Data Row - EV_FL_ApplicantSignature" sap2010:WorkflowViewState.IdRef="AddDataRow_10" />
+                                  </Sequence>
+                                </If.Then>
+                              </If>
+                              <If Condition="[String.IsNullOrWhiteSpace(strEmployeeName)]" DisplayName="If - Employee Name is blank" sap2010:WorkflowViewState.IdRef="If_15">
+                                <If.Then>
+                                  <Sequence DisplayName="Then: If - Employee Name is blank" sap2010:WorkflowViewState.IdRef="Sequence_54">
+                                    <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;EV&quot;,&quot;PageNum&quot;,in_Config(&quot;EV_FL_EmployeeName&quot;).ToString,&quot;&quot;}]" DataTable="[io_dtAuditFindings]" DisplayName="Add Data Row - EV_FL_EmployeeName" sap2010:WorkflowViewState.IdRef="AddDataRow_11" />
+                                  </Sequence>
+                                </If.Then>
+                              </If>
+                              <If Condition="[String.IsNullOrWhiteSpace(jObj_JSON(&quot;EmployerSection&quot;)(&quot;EmployeeTitle&quot;).ToString)]" DisplayName="If - Job Title is blank" sap2010:WorkflowViewState.IdRef="If_16">
+                                <If.Then>
+                                  <Sequence DisplayName="Then: If - Job Title is blank" sap2010:WorkflowViewState.IdRef="Sequence_55">
+                                    <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;EV&quot;,&quot;PageNum&quot;,in_Config(&quot;EV_FL_JobTitle&quot;).ToString,&quot;&quot;}]" DataTable="[io_dtAuditFindings]" DisplayName="Add Data Row - EV_FL_JobTitle" sap2010:WorkflowViewState.IdRef="AddDataRow_12" />
+                                  </Sequence>
+                                </If.Then>
+                              </If>
+                              <Switch x:TypeArguments="x:String" DisplayName="Switch - Presently Employed" Expression="[jObj_JSON(&quot;EmployerSection&quot;)(&quot;PresentlyEmployeed&quot;).ToString.ToLower.Trim]" sap2010:WorkflowViewState.IdRef="Switch`1_4">
+                                <Switch.Default>
+                                  <Sequence DisplayName="Presently Employed not answered" sap2010:WorkflowViewState.IdRef="Sequence_56">
+                                    <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;EV&quot;,&quot;PageNum&quot;,in_Config(&quot;EV_FL_PresentlyEmployedUnanswered&quot;).ToString,&quot;&quot;}]" DataTable="[io_dtAuditFindings]" DisplayName="Add Data Row - EV_FL_PresentlyEmployedUnanswered" sap2010:WorkflowViewState.IdRef="AddDataRow_13" />
+                                  </Sequence>
+                                </Switch.Default>
+                                <Sequence x:Key="yes" DisplayName="Presently Employed Yes" sap2010:WorkflowViewState.IdRef="Sequence_57">
+                                  <If Condition="[String.IsNullOrWhiteSpace(jObj_JSON(&quot;EmployerSection&quot;)(&quot;DateFirstEmployed&quot;).ToString)]" DisplayName="If - Date First Employed not provided" sap2010:WorkflowViewState.IdRef="If_17">
+                                    <If.Then>
+                                      <Sequence DisplayName="Then: If - Date First Employed not provided" sap2010:WorkflowViewState.IdRef="Sequence_58">
+                                        <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;EV&quot;,&quot;PageNum&quot;,in_Config(&quot;EV_FL_PresentlyEmployedYes&quot;).ToString,&quot;&quot;}]" DataTable="[io_dtAuditFindings]" DisplayName="Add Data Row - EV_FL_PresentlyEmployedYes" sap2010:WorkflowViewState.IdRef="AddDataRow_14" />
+                                      </Sequence>
+                                    </If.Then>
+                                  </If>
+                                </Sequence>
+                                <Sequence x:Key="no" DisplayName="Presently Employed No" sap2010:WorkflowViewState.IdRef="Sequence_59">
+                                  <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;EV&quot;,&quot;PageNum&quot;,in_Config(&quot;EV_FL_PresentlyEmployedNo&quot;).ToString,&quot;&quot;}]" DataTable="[io_dtAuditFindings]" DisplayName="Add Data Row - EV_FL_PresentlyEmployedNo" sap2010:WorkflowViewState.IdRef="AddDataRow_15" />
+                                </Sequence>
+                              </Switch>
+                              <If Condition="[Val(jObj_JSON(&quot;EmployerSection&quot;)(&quot;CommisionTipsBonus&quot;).ToString.Replace(&quot;$&quot;, &quot;&quot;).Replace(&quot;,&quot;, &quot;&quot;).Trim) &lt;&gt; 0 OrElse (Not String.IsNullOrWhiteSpace(jObj_JSON(&quot;EmployerSection&quot;)(&quot;CommisionTipsBonusFrequency&quot;).ToString) AndAlso Not jObj_JSON(&quot;EmployerSection&quot;)(&quot;CommisionTipsBonusFrequency&quot;).ToString.ToLower.Trim.Equals(&quot;unanswered&quot;))]" DisplayName="If - Commission, bonuses, tips or other compensation documented" sap2010:WorkflowViewState.IdRef="If_18">
+                                <If.Then>
+                                  <Sequence DisplayName="Then: If - Commission, bonuses, tips or other compensation documented" sap2010:WorkflowViewState.IdRef="Sequence_60">
+                                    <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;EV&quot;,&quot;PageNum&quot;,in_Config(&quot;EV_FL_CommissionCheck&quot;).ToString,&quot;&quot;}]" DataTable="[io_dtAuditFindings]" DisplayName="Add Data Row - EV_FL_CommissionCheck" sap2010:WorkflowViewState.IdRef="AddDataRow_16" />
+                                  </Sequence>
+                                </If.Then>
+                              </If>
+                              <If Condition="[strAnticipated &lt;&gt; &quot;&quot; AndAlso Not {&quot;0&quot;, &quot;0.0&quot;, &quot;0.00&quot;, &quot;none&quot;, &quot;n/a&quot;, &quot;na&quot;, &quot;no&quot;, &quot;nil&quot;}.Contains(strAnticipated)]" DisplayName="If - Anticipated increase in base pay documented" sap2010:WorkflowViewState.IdRef="If_19">
+                                <If.Then>
+                                  <Sequence DisplayName="Then: If - Anticipated increase in base pay documented" sap2010:WorkflowViewState.IdRef="Sequence_61">
+                                    <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;EV&quot;,&quot;PageNum&quot;,in_Config(&quot;EV_FL_AnticipatedIncrease&quot;).ToString,&quot;&quot;}]" DataTable="[io_dtAuditFindings]" DisplayName="Add Data Row - EV_FL_AnticipatedIncrease" sap2010:WorkflowViewState.IdRef="AddDataRow_17" />
+                                  </Sequence>
+                                </If.Then>
+                              </If>
+                              <If Condition="[strSeasonal &lt;&gt; &quot;&quot; AndAlso Not {&quot;0&quot;, &quot;none&quot;, &quot;n/a&quot;, &quot;na&quot;, &quot;no&quot;, &quot;nil&quot;}.Contains(strSeasonal)]" DisplayName="If - Seasonal or sporadic work documented" sap2010:WorkflowViewState.IdRef="If_20">
+                                <If.Then>
+                                  <Sequence DisplayName="Then: If - Seasonal or sporadic work documented" sap2010:WorkflowViewState.IdRef="Sequence_62">
+                                    <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;EV&quot;,&quot;PageNum&quot;,in_Config(&quot;EV_FL_SeasonOrSporadic&quot;).ToString,&quot;&quot;}]" DataTable="[io_dtAuditFindings]" DisplayName="Add Data Row - EV_FL_SeasonOrSporadic" sap2010:WorkflowViewState.IdRef="AddDataRow_18" />
+                                  </Sequence>
+                                </If.Then>
+                              </If>
+                              <If Condition="[in_RDCExists]" DisplayName="If - RDC Form Exists" sap2010:WorkflowViewState.IdRef="If_21">
+                                <If.Then>
+                                  <Sequence DisplayName="Then: If - RDC Form Exists" sap2010:WorkflowViewState.IdRef="Sequence_63">
+                                    <Sequence.Variables>
+                                      <Variable x:TypeArguments="scg:List(ausam:NameMatchResult)" Name="list_ICWMatchedResults" />
+                                      <Variable x:TypeArguments="scg:List(ausam:NameMatchResult)" Name="list_EDCMatchedResults" />
+                                    </Sequence.Variables>
+                                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="CheckICW&amp;EDCMembersMatch - Invoke Workflow File (Utilities\CheckICW&amp;EDCMembersMatch.xaml)" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Utilities\CheckICW&amp;EDCMembersMatch.xaml">
+                                      <ui:InvokeWorkflowFile.Arguments>
+                                        <InArgument x:TypeArguments="s:String[]" x:Key="in_ArrICWMemNames">[in_ArrICWMemberNames]</InArgument>
+                                        <InArgument x:TypeArguments="s:String[]" x:Key="in_ArrEDCMemNames">[in_ArrRDCHouseholdMembers]</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="in_MemNameToCheck">[strEmployeeName]</InArgument>
+                                        <OutArgument x:TypeArguments="scg:List(ausam:NameMatchResult)" x:Key="out_EDCMatchedResults">[list_EDCMatchedResults]</OutArgument>
+                                        <OutArgument x:TypeArguments="scg:List(ausam:NameMatchResult)" x:Key="out_ICWMatchedResults">[list_ICWMatchedResults]</OutArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="in_Threshold">[in_Config("FindAllMatches_Threshold").ToString]</InArgument>
+                                      </ui:InvokeWorkflowFile.Arguments>
+                                    </ui:InvokeWorkflowFile>
+                                    <If Condition="[Not String.IsNullOrWhiteSpace(strEmployeeName) AndAlso Not (in_ArrICWMemberNames IsNot Nothing AndAlso list_ICWMatchedResults.Count &gt; 0 AndAlso list_EDCMatchedResults.Count &gt; 0)]" DisplayName="If - Employee Name does not match ICW and Day Calculator" sap2010:WorkflowViewState.IdRef="If_38">
+                                      <If.Then>
+                                        <Sequence DisplayName="Then: If - Employee Name does not match ICW and Day Calculator" sap2010:WorkflowViewState.IdRef="Sequence_97">
+                                          <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;EV&quot;,&quot;PageNum&quot;,in_Config(&quot;EV_EmployeeName&quot;).ToString,&quot;&quot;}]" DataTable="[io_dtAuditFindings]" DisplayName="Add Data Row - EV_EmployeeName" sap2010:WorkflowViewState.IdRef="AddDataRow_35" />
+                                        </Sequence>
+                                      </If.Then>
+                                    </If>
+                                    <Switch x:TypeArguments="x:String" DisplayName="Switch - Number of pay periods based on frequency" Expression="[strFrequency]" sap2010:WorkflowViewState.IdRef="Switch`1_5">
+                                      <Switch.Default>
+                                        <Sequence DisplayName="Default" sap2010:WorkflowViewState.IdRef="Sequence_64">
+                                          <Assign DisplayName="Assign - pay periods 0 (hourly or unsupported frequency)" sap2010:WorkflowViewState.IdRef="Assign_25">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:Int32">[intNumberPayPeriods]</OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:Int32">[0]</InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                        </Sequence>
+                                      </Switch.Default>
+                                      <Sequence x:Key="weekly" DisplayName="weekly" sap2010:WorkflowViewState.IdRef="Sequence_65">
+                                        <Assign DisplayName="Assign - pay periods weekly" sap2010:WorkflowViewState.IdRef="Assign_26">
+                                          <Assign.To>
+                                            <OutArgument x:TypeArguments="x:Int32">[intNumberPayPeriods]</OutArgument>
+                                          </Assign.To>
+                                          <Assign.Value>
+                                            <InArgument x:TypeArguments="x:Int32">[52]</InArgument>
+                                          </Assign.Value>
+                                        </Assign>
+                                      </Sequence>
+                                      <Sequence x:Key="biweekly" DisplayName="biweekly" sap2010:WorkflowViewState.IdRef="Sequence_66">
+                                        <Assign DisplayName="Assign - pay periods biweekly" sap2010:WorkflowViewState.IdRef="Assign_27">
+                                          <Assign.To>
+                                            <OutArgument x:TypeArguments="x:Int32">[intNumberPayPeriods]</OutArgument>
+                                          </Assign.To>
+                                          <Assign.Value>
+                                            <InArgument x:TypeArguments="x:Int32">[26]</InArgument>
+                                          </Assign.Value>
+                                        </Assign>
+                                      </Sequence>
+                                      <Sequence x:Key="semimonthly" DisplayName="semimonthly" sap2010:WorkflowViewState.IdRef="Sequence_67">
+                                        <Assign DisplayName="Assign - pay periods semimonthly" sap2010:WorkflowViewState.IdRef="Assign_28">
+                                          <Assign.To>
+                                            <OutArgument x:TypeArguments="x:Int32">[intNumberPayPeriods]</OutArgument>
+                                          </Assign.To>
+                                          <Assign.Value>
+                                            <InArgument x:TypeArguments="x:Int32">[24]</InArgument>
+                                          </Assign.Value>
+                                        </Assign>
+                                      </Sequence>
+                                      <Sequence x:Key="monthly" DisplayName="monthly" sap2010:WorkflowViewState.IdRef="Sequence_68">
+                                        <Assign DisplayName="Assign - pay periods monthly" sap2010:WorkflowViewState.IdRef="Assign_29">
+                                          <Assign.To>
+                                            <OutArgument x:TypeArguments="x:Int32">[intNumberPayPeriods]</OutArgument>
+                                          </Assign.To>
+                                          <Assign.Value>
+                                            <InArgument x:TypeArguments="x:Int32">[12]</InArgument>
+                                          </Assign.Value>
+                                        </Assign>
+                                      </Sequence>
+                                      <Sequence x:Key="yearly" DisplayName="yearly" sap2010:WorkflowViewState.IdRef="Sequence_69">
+                                        <Assign DisplayName="Assign - pay periods yearly" sap2010:WorkflowViewState.IdRef="Assign_30">
+                                          <Assign.To>
+                                            <OutArgument x:TypeArguments="x:Int32">[intNumberPayPeriods]</OutArgument>
+                                          </Assign.To>
+                                          <Assign.Value>
+                                            <InArgument x:TypeArguments="x:Int32">[1]</InArgument>
+                                          </Assign.Value>
+                                        </Assign>
+                                      </Sequence>
+                                      <Sequence x:Key="annually" DisplayName="annually" sap2010:WorkflowViewState.IdRef="Sequence_70">
+                                        <Assign DisplayName="Assign - pay periods annually" sap2010:WorkflowViewState.IdRef="Assign_31">
+                                          <Assign.To>
+                                            <OutArgument x:TypeArguments="x:Int32">[intNumberPayPeriods]</OutArgument>
+                                          </Assign.To>
+                                          <Assign.Value>
+                                            <InArgument x:TypeArguments="x:Int32">[1]</InArgument>
+                                          </Assign.Value>
+                                        </Assign>
+                                      </Sequence>
+                                    </Switch>
+                                    <If Condition="[decGross &lt;&gt; 0 AndAlso Not in_dt_RDCPayCategories.AsEnumerable().Any(Function(row) row(&quot;Category&quot;).ToString.Trim.Equals(&quot;Regular Rate&quot;, StringComparison.OrdinalIgnoreCase) AndAlso If(strFrequency = &quot;hourly&quot;, Math.Round(CDec(Val(row(&quot;pay_rate&quot;).ToString.Replace(&quot;$&quot;, &quot;&quot;).Replace(&quot;,&quot;, &quot;&quot;).Trim)), 2) = Math.Round(decGross, 2), Math.Round(CDec(Val(row(&quot;total_per_year&quot;).ToString.Replace(&quot;$&quot;, &quot;&quot;).Replace(&quot;,&quot;, &quot;&quot;).Trim)), 2) = Math.Round(decGross * intNumberPayPeriods, 2)))]" DisplayName="If - Current Wage/Salary does not match Day Calculator" sap2010:WorkflowViewState.IdRef="If_22">
+                                      <If.Then>
+                                        <Sequence DisplayName="Then: If - Current Wage/Salary does not match Day Calculator" sap2010:WorkflowViewState.IdRef="Sequence_71">
+                                          <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;EV&quot;,&quot;PageNum&quot;,in_Config(&quot;EV_FL_GrossWageCheck&quot;).ToString,&quot;&quot;}]" DataTable="[io_dtAuditFindings]" DisplayName="Add Data Row - EV_FL_GrossWageCheck" sap2010:WorkflowViewState.IdRef="AddDataRow_19" />
+                                        </Sequence>
+                                      </If.Then>
+                                    </If>
+                                    <If Condition="[decOvertime &lt;&gt; 0 AndAlso Not in_dt_RDCPayCategories.AsEnumerable().Any(Function(row) row(&quot;Category&quot;).ToString.Trim.Equals(&quot;OT Rate&quot;, StringComparison.OrdinalIgnoreCase) AndAlso Math.Round(CDec(Val(row(&quot;pay_rate&quot;).ToString.Replace(&quot;$&quot;, &quot;&quot;).Replace(&quot;,&quot;, &quot;&quot;).Trim)), 2) = Math.Round(decOvertime, 2))]" DisplayName="If - Overtime Rate does not match Day Calculator" sap2010:WorkflowViewState.IdRef="If_23">
+                                      <If.Then>
+                                        <Sequence DisplayName="Then: If - Overtime Rate does not match Day Calculator" sap2010:WorkflowViewState.IdRef="Sequence_72">
+                                          <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;EV&quot;,&quot;PageNum&quot;,in_Config(&quot;EV_FL_OvertimeRateCheck&quot;).ToString,&quot;&quot;}]" DataTable="[io_dtAuditFindings]" DisplayName="Add Data Row - EV_FL_OvertimeRateCheck" sap2010:WorkflowViewState.IdRef="AddDataRow_20" />
+                                        </Sequence>
+                                      </If.Then>
+                                    </If>
+                                    <If Condition="[decShiftDiff &lt;&gt; 0 AndAlso Not in_dt_RDCPayCategories.AsEnumerable().Any(Function(row) row(&quot;Category&quot;).ToString.Trim.Equals(&quot;Shift Pay&quot;, StringComparison.OrdinalIgnoreCase) AndAlso Math.Round(CDec(Val(row(&quot;pay_rate&quot;).ToString.Replace(&quot;$&quot;, &quot;&quot;).Replace(&quot;,&quot;, &quot;&quot;).Trim)), 2) = Math.Round(decShiftDiff, 2))]" DisplayName="If - Shift Differential Rate does not match Day Calculator" sap2010:WorkflowViewState.IdRef="If_24">
+                                      <If.Then>
+                                        <Sequence DisplayName="Then: If - Shift Differential Rate does not match Day Calculator" sap2010:WorkflowViewState.IdRef="Sequence_73">
+                                          <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;EV&quot;,&quot;PageNum&quot;,in_Config(&quot;EV_FL_ShiftDifferentialRateCheck&quot;).ToString,&quot;&quot;}]" DataTable="[io_dtAuditFindings]" DisplayName="Add Data Row - EV_FL_ShiftDifferentialRateCheck" sap2010:WorkflowViewState.IdRef="AddDataRow_21" />
+                                        </Sequence>
+                                      </If.Then>
+                                    </If>
+                                    <If Condition="[Not (in_dt_ICWIncomeData IsNot Nothing AndAlso in_ArrRDCTotalGrossPay IsNot Nothing AndAlso in_dt_ICWIncomeData.AsEnumerable().Any(Function(row) in_ArrRDCTotalGrossPay.Any(Function(strTotal) Math.Round(CDec(Val(row(&quot;VerifiedIncome&quot;).ToString.Replace(&quot;$&quot;, &quot;&quot;).Replace(&quot;,&quot;, &quot;&quot;).Trim)), 2) = Math.Round(CDec(Val(strTotal.Replace(&quot;$&quot;, &quot;&quot;).Replace(&quot;,&quot;, &quot;&quot;).Trim)), 2))))]" DisplayName="If - Day Calculator total does not match Verified Income on ICW" sap2010:WorkflowViewState.IdRef="If_25">
+                                      <If.Then>
+                                        <Sequence DisplayName="Then: If - Day Calculator total does not match Verified Income on ICW" sap2010:WorkflowViewState.IdRef="Sequence_74">
+                                          <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;EV&quot;,&quot;PageNum&quot;,in_Config(&quot;EV_FL_TotalListedCheck&quot;).ToString,&quot;&quot;}]" DataTable="[io_dtAuditFindings]" DisplayName="Add Data Row - EV_FL_TotalListedCheck" sap2010:WorkflowViewState.IdRef="AddDataRow_22" />
+                                        </Sequence>
+                                      </If.Then>
+                                    </If>
+                                  </Sequence>
+                                </If.Then>
+                                <If.Else>
+                                  <Sequence DisplayName="Else" sap2010:WorkflowViewState.IdRef="Sequence_75">
+                                    <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;EV&quot;,&quot;PageNum&quot;,in_Config(&quot;EV_FL_CheckRDC&quot;).ToString,&quot;&quot;}]" DataTable="[io_dtAuditFindings]" DisplayName="Add Data Row - EV_FL_CheckRDC" sap2010:WorkflowViewState.IdRef="AddDataRow_23" />
+                                  </Sequence>
+                                </If.Else>
+                              </If>
+                              <If Condition="[Not jObj_JSON(&quot;EmployerSignature&quot;)(&quot;EmployerSignature&quot;).ToString.ToLower.Contains(&quot;true&quot;)]" DisplayName="If - Employer representative signature is missing" sap2010:WorkflowViewState.IdRef="If_26">
+                                <If.Then>
+                                  <Sequence DisplayName="Then: If - Employer representative signature is missing" sap2010:WorkflowViewState.IdRef="Sequence_76">
+                                    <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;EV&quot;,&quot;PageNum&quot;,in_Config(&quot;EV_FL_RepSignature&quot;).ToString,&quot;&quot;}]" DataTable="[io_dtAuditFindings]" DisplayName="Add Data Row - EV_FL_RepSignature" sap2010:WorkflowViewState.IdRef="AddDataRow_24" />
+                                  </Sequence>
+                                </If.Then>
+                              </If>
+                              <If Condition="[String.IsNullOrWhiteSpace(jObj_JSON(&quot;EmployerSignature&quot;)(&quot;EmployerPrintedName&quot;).ToString)]" DisplayName="If - Employer representative printed name is blank" sap2010:WorkflowViewState.IdRef="If_27">
+                                <If.Then>
+                                  <Sequence DisplayName="Then: If - Employer representative printed name is blank" sap2010:WorkflowViewState.IdRef="Sequence_77">
+                                    <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;EV&quot;,&quot;PageNum&quot;,in_Config(&quot;EV_FL_RepPrintedName&quot;).ToString,&quot;&quot;}]" DataTable="[io_dtAuditFindings]" DisplayName="Add Data Row - EV_FL_RepPrintedName" sap2010:WorkflowViewState.IdRef="AddDataRow_25" />
+                                  </Sequence>
+                                </If.Then>
+                              </If>
+                              <If Condition="[jObj_JSON(&quot;EmployerSignature&quot;)(&quot;EmployerTitle&quot;) Is Nothing OrElse String.IsNullOrWhiteSpace(jObj_JSON(&quot;EmployerSignature&quot;)(&quot;EmployerTitle&quot;).ToString)]" DisplayName="If - Employer representative title is blank" sap2010:WorkflowViewState.IdRef="If_28">
+                                <If.Then>
+                                  <Sequence DisplayName="Then: If - Employer representative title is blank" sap2010:WorkflowViewState.IdRef="Sequence_78">
+                                    <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;EV&quot;,&quot;PageNum&quot;,in_Config(&quot;EV_FL_RepTitle&quot;).ToString,&quot;&quot;}]" DataTable="[io_dtAuditFindings]" DisplayName="Add Data Row - EV_FL_RepTitle" sap2010:WorkflowViewState.IdRef="AddDataRow_26" />
+                                  </Sequence>
+                                </If.Then>
+                              </If>
+                              <If Condition="[String.IsNullOrWhiteSpace(jObj_JSON(&quot;EmployerSignature&quot;)(&quot;EmployerTelephone&quot;).ToString)]" DisplayName="If - Employer representative telephone number is blank" sap2010:WorkflowViewState.IdRef="If_29">
+                                <If.Then>
+                                  <Sequence DisplayName="Then: If - Employer representative telephone number is blank" sap2010:WorkflowViewState.IdRef="Sequence_79">
+                                    <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;EV&quot;,&quot;PageNum&quot;,in_Config(&quot;EV_FL_RepTelephone&quot;).ToString,&quot;&quot;}]" DataTable="[io_dtAuditFindings]" DisplayName="Add Data Row - EV_FL_RepTelephone" sap2010:WorkflowViewState.IdRef="AddDataRow_27" />
+                                  </Sequence>
+                                </If.Then>
+                              </If>
+                              <If Condition="[String.IsNullOrWhiteSpace(strFirmName)]" DisplayName="If - Firm Name is blank" sap2010:WorkflowViewState.IdRef="If_30">
+                                <If.Then>
+                                  <Sequence DisplayName="Then: If - Firm Name is blank" sap2010:WorkflowViewState.IdRef="Sequence_80">
+                                    <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;EV&quot;,&quot;PageNum&quot;,in_Config(&quot;EV_FL_FirmName&quot;).ToString,&quot;&quot;}]" DataTable="[io_dtAuditFindings]" DisplayName="Add Data Row - EV_FL_FirmName" sap2010:WorkflowViewState.IdRef="AddDataRow_28" />
+                                  </Sequence>
+                                </If.Then>
+                              </If>
+                              <If Condition="[String.IsNullOrWhiteSpace(jObj_JSON(&quot;EmployerSignature&quot;)(&quot;EmployerCompletionDate&quot;).ToString)]" DisplayName="If - Completion Date is blank" sap2010:WorkflowViewState.IdRef="If_31">
+                                <If.Then>
+                                  <Sequence DisplayName="Then: If - Completion Date is blank" sap2010:WorkflowViewState.IdRef="Sequence_81">
+                                    <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;EV&quot;,&quot;PageNum&quot;,in_Config(&quot;EV_FL_CompletionDate&quot;).ToString,&quot;&quot;}]" DataTable="[io_dtAuditFindings]" DisplayName="Add Data Row - EV_FL_CompletionDate" sap2010:WorkflowViewState.IdRef="AddDataRow_29" />
+                                  </Sequence>
+                                </If.Then>
+                                <If.Else>
+                                  <Sequence DisplayName="Else: If - Completion Date is present" sap2010:WorkflowViewState.IdRef="Sequence_82">
+                                    <If Condition="[Not String.IsNullOrWhiteSpace(in_strMoveInDate)]" DisplayName="If - Move-In date available (Completion Date)" sap2010:WorkflowViewState.IdRef="If_32">
+                                      <If.Then>
+                                        <Sequence DisplayName="Then: If - Move-In date available (Completion Date)" sap2010:WorkflowViewState.IdRef="Sequence_83">
+                                          <TryCatch DisplayName="Try Catch - Completion Date Move In check" sap2010:WorkflowViewState.IdRef="TryCatch_5">
+                                            <TryCatch.Try>
+                                              <Sequence DisplayName="Try" sap2010:WorkflowViewState.IdRef="Sequence_84">
+                                                <If Condition="[CDate(jObj_JSON(&quot;EmployerSignature&quot;)(&quot;EmployerCompletionDate&quot;).ToString) &gt;= CDate(in_strMoveInDate).AddDays(-120)]" DisplayName="If Completion Date within 120 Days of Move-In" sap2010:WorkflowViewState.IdRef="If_33">
+                                                  <If.Then>
+                                                    <Sequence DisplayName="Then: If Completion Date within 120 Days of Move-In" sap2010:WorkflowViewState.IdRef="Sequence_85" />
+                                                  </If.Then>
+                                                  <If.Else>
+                                                    <Sequence DisplayName="Else" sap2010:WorkflowViewState.IdRef="Sequence_86">
+                                                      <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;EV&quot;,&quot;PageNum&quot;,in_Config(&quot;EV_FL_CompletionDateCheckWithMoveIn&quot;).ToString,&quot;&quot;}]" DataTable="[io_dtAuditFindings]" DisplayName="Add Data Row - EV_FL_CompletionDateCheckWithMoveIn" sap2010:WorkflowViewState.IdRef="AddDataRow_30" />
+                                                    </Sequence>
+                                                  </If.Else>
+                                                </If>
+                                              </Sequence>
+                                            </TryCatch.Try>
+                                            <TryCatch.Catches>
+                                              <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_4">
+                                                <ActivityAction x:TypeArguments="s:Exception">
+                                                  <ActivityAction.Argument>
+                                                    <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                                  </ActivityAction.Argument>
+                                                  <Sequence DisplayName="Catch" sap2010:WorkflowViewState.IdRef="Sequence_87">
+                                                    <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;EV&quot;,&quot;PageNum&quot;,&quot;Unable to validate a Finding: &quot; + in_Config(&quot;EV_FL_CompletionDateCheckWithMoveIn&quot;).ToString + &quot; Needs manual review &quot;, exception.Message}]" DataTable="[io_dtAuditFindings]" DisplayName="Add Data Row - EV error in Completion Date move in" sap2010:WorkflowViewState.IdRef="AddDataRow_31" />
+                                                  </Sequence>
+                                                </ActivityAction>
+                                              </Catch>
+                                            </TryCatch.Catches>
+                                          </TryCatch>
+                                        </Sequence>
+                                      </If.Then>
+                                    </If>
+                                  </Sequence>
+                                </If.Else>
+                              </If>
+                            </Sequence>
+                          </ActivityAction>
+                        </ui:ForEach.Body>
+                      </ui:ForEach>
+                      <Sequence DisplayName="Check Multiple Income Documents" sap2010:WorkflowViewState.IdRef="Sequence_88">
+                        <Sequence.Variables>
+                          <Variable x:TypeArguments="sd:DataTable" Name="dt_PSIncomeDocDetails" />
+                          <Variable x:TypeArguments="sd:DataTable" Name="dt_EVincomeDocDetails" />
+                          <Variable x:TypeArguments="x:Boolean" Name="bool_DiscardSameIncomeDocsExists" />
+                        </Sequence.Variables>
+                        <If Condition="[jArrExtResults.Select(Function(x) (x(&quot;EmployerSection&quot;)(&quot;EmployeeName&quot;).ToString.Trim &amp; &quot;|&quot; &amp; x(&quot;EmployerSignature&quot;)(&quot;FirmName&quot;).ToString.Trim).ToUpper).Where(Function(k) Not k.StartsWith(&quot;|&quot;)).GroupBy(Function(k) k).Any(Function(g) g.Count() &gt; 1)]" DisplayName="If - Multiple EV records for same employment" sap2010:WorkflowViewState.IdRef="If_34">
+                          <If.Then>
+                            <Sequence DisplayName="Then: If - Multiple EV records for same employment" sap2010:WorkflowViewState.IdRef="Sequence_89">
+                              <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;EV&quot;,&quot;PageNum&quot;,in_Config(&quot;EV_FL_MultipleEmployment&quot;).ToString,&quot;&quot;}]" DataTable="[io_dtAuditFindings]" DisplayName="Add Data Row - EV_FL_MultipleEmployment" sap2010:WorkflowViewState.IdRef="AddDataRow_32" />
+                            </Sequence>
+                          </If.Then>
+                        </If>
+                        <ui:FilterDataTable DataTable="[io_DtIncomeDetails]" DisplayName="Filter Data Table - PS" FilterRowsMode="Keep" sap2010:WorkflowViewState.IdRef="FilterDataTable_2" OutputDataTable="[dt_PSIncomeDocDetails]" SelectColumnsMode="Remove">
+                          <ui:FilterDataTable.Filters>
+                            <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
+                              <ui:FilterOperationArgument BooleanOperator="And" Operator="CONTAINS">
+                                <ui:FilterOperationArgument.Column>
+                                  <InArgument x:TypeArguments="x:String">["DocumentType"]</InArgument>
+                                </ui:FilterOperationArgument.Column>
+                                <ui:FilterOperationArgument.Operand>
+                                  <InArgument x:TypeArguments="x:String">["PS"]</InArgument>
+                                </ui:FilterOperationArgument.Operand>
+                              </ui:FilterOperationArgument>
+                            </scg:List>
+                          </ui:FilterDataTable.Filters>
+                          <ui:FilterDataTable.SelectColumns>
+                            <scg:List x:TypeArguments="InArgument" Capacity="4">
+                              <x:Null />
+                            </scg:List>
+                          </ui:FilterDataTable.SelectColumns>
+                        </ui:FilterDataTable>
+                        <ui:FilterDataTable DataTable="[io_DtIncomeDetails]" DisplayName="Filter Data Table - EV" FilterRowsMode="Keep" sap2010:WorkflowViewState.IdRef="FilterDataTable_3" OutputDataTable="[dt_EVincomeDocDetails]" SelectColumnsMode="Remove">
+                          <ui:FilterDataTable.Filters>
+                            <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
+                              <ui:FilterOperationArgument BooleanOperator="And" Operator="CONTAINS">
+                                <ui:FilterOperationArgument.Column>
+                                  <InArgument x:TypeArguments="x:String">["DocumentType"]</InArgument>
+                                </ui:FilterOperationArgument.Column>
+                                <ui:FilterOperationArgument.Operand>
+                                  <InArgument x:TypeArguments="x:String">["EV"]</InArgument>
+                                </ui:FilterOperationArgument.Operand>
+                              </ui:FilterOperationArgument>
+                            </scg:List>
+                          </ui:FilterDataTable.Filters>
+                          <ui:FilterDataTable.SelectColumns>
+                            <scg:List x:TypeArguments="InArgument" Capacity="4">
+                              <x:Null />
+                            </scg:List>
+                          </ui:FilterDataTable.SelectColumns>
+                        </ui:FilterDataTable>
+                        <If Condition="[dt_PSIncomeDocDetails.RowCount &gt; 0 And dt_EVincomeDocDetails.RowCount &gt; 0]" DisplayName="If - PS &amp; EV Income Documents Exist" sap2010:WorkflowViewState.IdRef="If_35">
+                          <If.Then>
+                            <Sequence DisplayName="Then: If - PS &amp; EV Income Documents Exist" sap2010:WorkflowViewState.IdRef="Sequence_90">
+                              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="CompareTwoIncomeDocuments - Invoke Workflow File (Utilities\CompareTwoIncomeDocuments.xaml)" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Utilities\CompareTwoIncomeDocuments.xaml">
+                                <ui:InvokeWorkflowFile.Arguments>
+                                  <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
+                                  <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_DTAuditFindings">[io_dtAuditFindings]</InOutArgument>
+                                  <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DtIncomeDocDetails1">[dt_PSIncomeDocDetails]</InArgument>
+                                  <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DtIncomeDocDetails2">[dt_EVincomeDocDetails]</InArgument>
+                                  <OutArgument x:TypeArguments="x:Boolean" x:Key="out_DoSameIncomeDocsExists">[bool_DiscardSameIncomeDocsExists]</OutArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="in_DocumentType1">PS</InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="in_DocumentType2">EV</InArgument>
+                                  <InArgument x:TypeArguments="x:Boolean" x:Key="in_IgnoreVS">[False]</InArgument>
+                                </ui:InvokeWorkflowFile.Arguments>
+                              </ui:InvokeWorkflowFile>
+                            </Sequence>
+                          </If.Then>
+                        </If>
+                      </Sequence>
+                    </Sequence>
+                  </If.Then>
+                  <If.Else>
+                    <Sequence DisplayName="Else" sap2010:WorkflowViewState.IdRef="Sequence_91">
+                      <ui:LogMessage DisplayName="Log Message" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Warn" Message="[&quot;No EV - FL rows to process.&quot;]" />
+                      <Assign DisplayName="Assign - out_EVDoesNotExist" sap2010:WorkflowViewState.IdRef="Assign_32">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Boolean">[out_EVDoesNotExist]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Boolean">[True]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </Sequence>
+                  </If.Else>
+                </If>
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,108" sap2010:WorkflowViewState.IdRef="Sequence_92">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:LogMessage DisplayName="Log Message" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Warn" Message="[&quot;Classification results are missing or have no columns. Data cannot be filtered for EV - FL.&quot;]" />
+              </Sequence>
+            </If.Else>
+          </If>
+          <ui:LogMessage DisplayName="Log Message - Finished findings" sap:VirtualizedContainerService.HintSize="1440,164" sap2010:WorkflowViewState.IdRef="LogMessage_6" Message="[&quot;Finished findings for &quot; + in_Config(&quot;EV&quot;).ToString + &quot; - FL&quot;]" />
+        </Sequence>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="1506,22" sap2010:WorkflowViewState.IdRef="Catch`1_5">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ActivityAction x:TypeArguments="s:Exception">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Catch" sap:VirtualizedContainerService.HintSize="416,128" sap2010:WorkflowViewState.IdRef="Sequence_93">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage DisplayName="Log Message - Exception EV FL" sap2010:WorkflowViewState.IdRef="LogMessage_7" Message="[&quot;Failed at EV - FL: &quot; + exception.Message]" />
+              <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;EV&quot;,&quot;PageNum&quot;,in_Config(&quot;EV_FL_FindingError&quot;).ToString,exception.Message}]" DataTable="[io_dtAuditFindings]" DisplayName="Add Data Row - EV_FL_FindingError" sap2010:WorkflowViewState.IdRef="AddDataRow_33" />
+            </Sequence>
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+    </TryCatch>
+  </Sequence>
+</Activity>
